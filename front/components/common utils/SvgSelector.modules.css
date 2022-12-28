@@ -1,0 +1,15 @@
+.standart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50x;
+}
+
+.big {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100x;
+}
