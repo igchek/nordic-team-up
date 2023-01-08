@@ -8,31 +8,35 @@ const initialState = {
          currentAudience:157, 
          modality:'vibe', 
          promoLogo:'../../../../assets/PromoLogo/CookeyMonster.jpg',
-         sourceType:'content'    
+         sourceType:'content',
+         authorLogo:'../../../../assets/ArtistLogo/CoockeyMonster.jpg'    
         },
          {id:'4',
          title:'Debasement',
          author:'Electric Wizard', 
          currentAudience:95, 
          modality:'vibe', 
-         promoLogo:'.../../../../assets/PromoLogo/ElectricWizard.jpg',
-         sourceType:'content'      
+         promoLogo:'../../../../assets/PromoLogo/ElectricWizard.jpg',
+         sourceType:'content',
+         authorLogo:'../../../../assets/ArtistLogo/ElectricWizard.jpg'      
         },
          {id:'5',
          title:'New album!',
          author:'Two Door Cinema Club', 
          currentAudience:56, 
          modality:'vibe', 
-         promoLogo:'.../../../../assets/PromoLogo/TwoDoorCinemaClub.jpg',
-         sourceType:'content'      
+         promoLogo:'../../../../assets/PromoLogo/TwoDoorCinemaClub.jpg',
+         sourceType:'content',
+         authorLogo:'../../../../assets/ArtistLogo/TwoDoorCinemaClub.jpg'      
         },
          {id:'6',
          title:'Nostalgic Tour',
          author:'Radio Head', 
          currentAudience:354, 
          modality:'gig', 
-         promoLogo:'.../../../../assets/PromoLogo/RadioHead.jpg',
-         sourceType:'content'      
+         promoLogo:'../../../../assets/PromoLogo/RadioHead.jpg',
+         sourceType:'content',
+         authorLogo:'../../../../assets/ArtistLogo/RadioHead.jpg'      
         },
          {id:'7',
          title:'New EP presentation',
@@ -40,7 +44,8 @@ const initialState = {
          currentAudience:48, 
          modality:'vibe', 
          promoLogo:'../../../../assets/PromoLogo/SpringKing.jpg',
-         sourceType:'content'          
+         sourceType:'content',
+         authorLogo:'../../../../assets/ArtistLogo/SpringKing.jpg'          
         },
          {id:'8',
          title:'Беларусь starter pack',
@@ -48,7 +53,8 @@ const initialState = {
          currentAudience:132, 
          modality:'sync', 
          promoLogo:'../../../../assets/PromoLogo/Komissarenko.jpg',
-         sourceType:'content'      
+         sourceType:'content',
+         authorLogo:'../../../../assets/ArtistLogo/SlavaKomissarenko.jpg'      
         },
          {id:'9',
          title:'Sleeper showcase',
@@ -56,7 +62,8 @@ const initialState = {
          currentAudience:89, 
          modality:'vibe', 
          promoLogo:'../../../../assets/PromoLogo/LeisureSociety.jpg',
-         sourceType:'content'      
+         sourceType:'content',
+         authorLogo:'../../../../assets/ArtistLogo/LeisureSociety.jpg'      
         },
          {id:'10',
          title:'Ницшеанская бессоница live',
@@ -64,18 +71,18 @@ const initialState = {
          currentAudience:109, 
          modality:'vibe', 
          promoLogo:'../../../../assets/PromoLogo/EjiSarmat.jpg',
-         sourceType:'content'      
+         sourceType:'content',
+         authorLogo:'../../../../assets/ArtistLogo/EjiSarmat.jpg'      
         },
          {id:'11',
           providerTitle:'Black Keys',
           providerType:'artist',
-          logo:'../../../../assets/ArtistLogo/BlackKeys.jpg',
-
-
-
+          logo:'../../../../assets/ArtistLogo/BlackKeys.jpg'
          }   
     ],
-    publicSearchSettings: '',
+    publicSearchSettings: {
+        indexInput:''
+    },
     sortedContent: []
 }
  const publicContentSlice = createSlice({
@@ -187,9 +194,15 @@ const initialState = {
                     state.sortedContent=venuesExcludedSort
                 }
             }
+        },
+        setSearchIndexInput: (state, {type, payload:inputValue}) => {
+            if(inputValue!==''){
+                state.publicSearchSettings.indexInput = inputValue
+            }
+            
         }
     }
  })
 
- export const {setPublicContent, setPublicSearchSettings, setSortByGigPreset, setSortBySyncPreset, setSortByVibePreset, setSortByVenuePreset, setSortByArtistPreset} =publicContentSlice.actions
+ export const {setSearchIndexInput, setPublicContent, setPublicSearchSettings, setSortByGigPreset, setSortBySyncPreset, setSortByVibePreset, setSortByVenuePreset, setSortByArtistPreset} =publicContentSlice.actions
  export default publicContentSlice.reducer

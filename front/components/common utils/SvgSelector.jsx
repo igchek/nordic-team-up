@@ -11,6 +11,8 @@ import SearchOffSvg from '../../assets/svg/SearchOffSvg'
 import SettingsOnSvg from '../../assets/svg/SettingsOnSvg'
 import ArtistOnSvg from '../../assets/svg/ArtistOnSvg'
 import ArtistOffSvg from '../../assets/svg/ArtistOffSvg'
+import MutedSvg from '../../assets/svg/mutedSVG'
+import UnmutedSvg from '../../assets/svg/UnmutedSvg'
 
 
 const SvgSelector = (props) => {
@@ -28,6 +30,7 @@ const SvgSelector = (props) => {
             </div>
         )
     }
+}
             
       
 
@@ -247,7 +250,35 @@ const SvgSelector = (props) => {
             )
         }
                 }
-            }}
+    else if (props.value ==='muted')  {
+        switch(tier){
+            case 'standart':return(
+                <div className={classes.standart}> 
+                    <MutedSvg/>
+                </div>
+                        )
+            case 'big': return(
+                <div className={classes.big}> 
+                    <MutedSvg/>
+                </div>
+            )
+        }
+                }
+    else if (props.value ==='unmuted')  {
+        switch(tier){
+            case 'standart':return(
+                <div className={classes.standart}> 
+                    <UnmutedSvg/>
+                </div>
+                        )
+            case 'big': return(
+                <div className={classes.big}> 
+                    <UnmutedSvg/>
+                </div>
+            )
+        }
+                }
+            }
   
 
 export default SvgSelector

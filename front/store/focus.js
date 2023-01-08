@@ -2,8 +2,9 @@ import {createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
     focusedContent:'',
-    focusedFormat:'',
-    focusedGenre:'',
+    focusedSection:'',
+    focusedSubsection:'',
+    foucsPublicSettings:''
 
 
 }
@@ -15,14 +16,25 @@ const FocusSlice = createSlice ({
         setFocusedContent: (state, {type, payload:content}) =>{
             state.focusedContent=content
         },
-        setFocusedFormat: (state, {type, payload:format}) =>{
-            state.focusedFormat=format
+        setFocusedSection: (state, {type, payload:section}) =>{
+            state.focusedSection=section
+            state.focusedSubsection=''
         },
-        setFocusedGenre: (state, {type, payload:genre}) =>{
-            state.focusedGenre=genre
+        setFocusedSubsection: (state, {type, payload:subsection}) => {
+            state.focusedSubsection=subsection
         },
+        setPublicSettingsFocus: (state, {type, payload:isPublicSettingsOn}) =>{
+            if(isPublicSettingsOn==='true'){
+            state.foucsPublicSettings='true'
+            }
+            else {
+                state.foucsPublicSettings=''
+            }
+
+    
+        }
     }
 })
 
-export const {setFocusedContent, setFocusedFormat, setFocusedGenre} = FocusSlice.actions
+export const {setFocusedContent, setFocusedSection, setFocusedSubsection,setPublicSettingsFocus} = FocusSlice.actions
 export default FocusSlice.reducer
