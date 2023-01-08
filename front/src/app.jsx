@@ -16,9 +16,6 @@ const App = () => {
     return <main className={classes.mainWrapper}>
         <ReduxProvider store={store}>
             <RouterProvider router={router}>
-                <PersonalSection/>
-                <Focus/>
-                <Public/>
             </RouterProvider>
         </ReduxProvider>
     </main>
