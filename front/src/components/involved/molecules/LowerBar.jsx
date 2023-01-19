@@ -1,11 +1,11 @@
 import React from "react";
-import classes from './LowerBar.modules.css'
+import styles from './LowerBar.module.scss'
 
 const LowerBar = () => {
 
 
     return(
-        <div className={classes.wrapper}>
+        <div className={styles.wrapper}>
 
         </div>
     )

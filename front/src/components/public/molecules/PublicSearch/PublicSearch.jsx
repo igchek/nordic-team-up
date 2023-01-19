@@ -1,11 +1,11 @@
 import React from 'react'
 import SearchInput from '../../atoms/PublicSearch/SearchInput'
 import SearchSettings from '../../atoms/PublicSearch/SearchSettings'
-import classes from './PublicSearch.modules.css'
+import styles from './PublicSearch.module.scss'
 
 const PublicSearch = () => {
   return (
-    <div className={classes.wrapper}>
+    <div className={styles.wrapper}>
         <SearchInput/>
         <SearchSettings/>
     </div>

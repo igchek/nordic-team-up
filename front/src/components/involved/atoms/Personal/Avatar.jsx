@@ -1,11 +1,11 @@
 import React from "react";
-import classes from './Avatar.modules.css'
+import styles from './Avatar.module.scss'
 
 
 const Avatar = (props) => {
     return (
-        <div className={classes.wrapper}>
-            <img className={classes.avatar} src={props.avatar} alt="avatar" />
+        <div className={styles.wrapper}>
+            <img className={styles.avatar} src={props.avatar} alt="avatar" />
         </div>
     )
 }

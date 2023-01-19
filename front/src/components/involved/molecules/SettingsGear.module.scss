@@ -1,0 +1,10 @@
+
+.wrapper {
+    align-self: flex-end;
+    width:100px;
+    height: 100px;
+    opacity: 50%;
+    &:hover{
+        opacity: 80%;
+    }
+}

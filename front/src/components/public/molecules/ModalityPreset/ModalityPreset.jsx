@@ -1,14 +1,14 @@
 import React from 'react'
-import classes from './ModalityPreset.modules.css';
-import SvgSelector from '../../../common utils/SvgSelector'
+import styles from './ModalityPreset.module.scss';
 import {useDispatch} from 'react-redux'
 import {useState} from 'react'
+import ModalityTemplate from '../../atoms/ModalityPreset/ModalityTemplate';
 
 const ModalityPreset = () => {
   const [isVibePreset, setVibePreset] = useState('false')
   const [isSyncPreset, setSyncPreset] = useState('false')
   const [isGigPreset, setGigPreset] = useState('false')
-  const dispatch = useDispacth()
+  const dispatch = useDispatch()
 
 
   const vibeSet = (e) =>{
@@ -45,31 +45,25 @@ const ModalityPreset = () => {
   }
 
   return (
-    <div className={classes.wrapper}>
-      <div onClick={vibeSet} className={classes.modalitySocketNormal}>
-          <SvgSelector 
-              value='vibe'
-              focus={isVibePreset}
-              tier='normal'
-
-          />           
-      </div>
-      <div onClick={syncSet} className={classes.modalitySocketNormal}>
-          <SvgSelector 
-              value='sync'
-              focus={isSyncPreset}
-              tier='normal'
-
-          />           
-      </div>
-      <div onClick={gigSet} className={classes.modalitySocketNormal}>
-          <SvgSelector 
-              value='gig'
-              focus={isGigPreset}
-              tier='normal'
-
-          />           
-      </div>
+    <div className={styles.wrapper}>
+      <ModalityTemplate
+        onClick={vibeSet}
+        value='vibe'
+        focus={isVibePreset}
+        tier='standart'
+      />
+      <ModalityTemplate
+        onClick={syncSet}
+        value='sync'
+        focus={isSyncPreset}
+        tier='standart'
+      />
+      <ModalityTemplate
+        onClick={gigSet}
+        value='gig'
+        focus={isGigPreset}
+        tier='standart'
+      />
     </div>
   )
 }

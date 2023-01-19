@@ -1,15 +1,27 @@
 import React from "react";
-import classes from './SettingsGear.modules.css'
+import SvgSelector from "../../common utils/SvgSelector";
+import styles from './SettingsGear.module.scss';
+import { useState } from "react";
 
 
 const SettingsGear = () => {
+    const [isFocused, setFocus] =useState ('false')
     const click = (event) => {
-
+        if (isFocused){
+            setFocus('false')
+        }
+        else {
+            setFocus('true')
+        }
     }
 
     return (
-        <div className={classes.wrapper}>
-            <img className={classes.SettingsGear} onClick={click} src="../../../assets/icons/gear.svg" alt="" />
+        <div className={styles.wrapper}>
+            <SvgSelector
+                value='gear'
+                tier='standart'
+                focus={isFocused}
+            />
         </div>
     )
 }

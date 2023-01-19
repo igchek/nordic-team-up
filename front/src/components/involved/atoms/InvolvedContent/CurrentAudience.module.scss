@@ -1,0 +1,15 @@
+@use '../../../../stylesCommon/_templates';
+
+.wrapper {
+    @include _templates.minorUnitAudienceWrapper;
+}
+
+.passiveSocket {
+    @include _templates.minorUnitAudienceSocket;
+    background:#A7A7A7;
+}
+
+.activeSocket {
+    @include _templates.minorUnitAudienceSocket;
+    background:#ADADAD;
+}

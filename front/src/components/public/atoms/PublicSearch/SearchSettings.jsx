@@ -1,5 +1,5 @@
 import React from 'react'
-import classes from './SearchSettings.modules.css'
+import styles from './SearchSettings.module.scss'
 import SvgSelector from '../../../common utils/SvgSelector'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
@@ -21,7 +21,7 @@ const SearchSettings = () => {
     
 
   return (
-    <div className={classes.wrapper}>
+    <div className={styles.wrapper}>
         <SvgSelector 
           value='settings'
           tier='normal'

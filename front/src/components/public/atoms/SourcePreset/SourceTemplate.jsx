@@ -1,18 +1,16 @@
 import React from 'react'
-import classes from './SourceTemplate.modules.css'
+import styles from './SourceTemplate.module.scss'
 
 
 const SourceTemplate = (props) => {
   return (
-    <div>
-        <div className={classes.wrapper}>
+        <div className={styles.wrapper}>
             <SvgSelector 
                 value={props.value}
                 focus={props.focus}
                 tier={props.tier}
             />
         </div>
-    </div>
   )
 }
 

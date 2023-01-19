@@ -1,0 +1,6 @@
+@use '../../../../stylesCommon/_templates.scss';
+
+ .wrapper {
+    @include _templates.minorUnitContentDataWrapper
+    
+ }

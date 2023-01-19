@@ -1,5 +1,5 @@
 import React from "react";
-import classes from './InvolvedOutput.modules.css'
+import styles from './InvolvedOutput.module.scss'
 import { useSelector } from "react-redux";
 import InvolvedContent from "./involvedContent";
 import involvedContent from "../../../store/involvedContent";
@@ -16,7 +16,7 @@ const InvolvedOutput = (props) => {
 
 
     return(
-        <div className={classes.wrapper}>
+        <div className={styles.wrapper}>
             {involvedContentArr.map(contentUnit=> {
                 <InvolvedContent 
                     img={contentUnit.promoLogo}

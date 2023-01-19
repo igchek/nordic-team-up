@@ -2,7 +2,7 @@ import React from "react";
 import PublicPoster from "../../atoms/PublicOutput/PublicPoster";
 import PublicSourceData from "../../atoms/PublicOutput/PublicSourceData";
 import PublicTitles from "../../atoms/PublicOutput/PublicTitles";
-import classes from './PublicUnit.modules.css'
+import styles from './PublicUnit.module.scss'
 import { useDispatch, useSelector } from "react-redux";
 import focus, { setFocusedContent } from "../../../../store/focus";
 import { useEffect, useState } from "react";
@@ -49,7 +49,7 @@ const PublicUnit = (props) => {
 
 
     return (
-        <div onClick={onClick} className={props.focus==='true'?classes.activeWrapper:classes.passiveWrapper}>
+        <div onClick={onClick} className={props.focus==='true'?styles.activeWrapper:styles.passiveWrapper}>
             <PublicPoster 
                 poster={props.poster}
             />

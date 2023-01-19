@@ -1,0 +1,16 @@
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 0px;
+    gap: 10px;
+    width: 162px;
+    height: 100%;
+}
+
+.avatar {
+    width: 142px;
+    height: 142px;
+    border-radius: 102.24px;
+}

@@ -1,11 +1,11 @@
 import React from "react";
-import classes from './PublicPoster.modules.css'
+import styles from './PublicPoster.module.scss'
 
 const PublicPoster = (props) => {
 
     return (
-        <div className={classes.wrapper}>
-            <img className={classes.poster} src={props.poster} alt="poster" />
+        <div className={styles.wrapper}>
+            <img className={styles.poster} src={props.poster} alt="poster" />
         </div>
     )
 }

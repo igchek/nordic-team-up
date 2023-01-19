@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './SearchInput.modules.css';
+import styles from './SearchInput.module.scss';
 import {useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import publicContent from '../../../../store/publicContent';
@@ -20,8 +20,8 @@ const SearchInput = () => {
 
   
   return (
-    <div className={classes.wrapper}>
-        <input className={classes.input} onChange={(e)=>{setSearch(e.target.value)}} type="" />
+    <div className={styles.wrapper}>
+        <input className={styles.input} onChange={(e)=>{setSearch(e.target.value)}} type="" />
     </div>
   )
 }

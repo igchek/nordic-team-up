@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import classes from './DashBoardSectionFocus.modules.css'
+import styles from './DashBoardSectionFocus.module.scss'
 import focus from '../../../store/focus'
 import sectionDashboard from '../../../store/sectionDashboard'
 import { useEffect, useMemo } from 'react'
@@ -23,7 +23,7 @@ const DashBoardSectionFocus = () => {
     if (!currentFocusedSection&&!currentFocusedSubsection ){
         const AllFormats = useSelector(({sectionDashboard})=>state.formats)
         return(
-                <div className={classes.sectionDashWrapper}>
+                <div className={styles.sectionDashWrapper}>
                     {AllFormats.map(format=>{
                         <DashSection
                             sectionTitle={format}
@@ -35,7 +35,7 @@ const DashBoardSectionFocus = () => {
     else if (currentFocusedSection!==''&&!currentFocusedSubsection){
         const AllSubsections = useSelector(({sectionDashboard})=> state.subSections)
         return(
-                <div className={classes.sectionDashWrapper}>
+                <div className={styles.sectionDashWrapper}>
                     {subSectionedContent.map(sub=>
                         <DashSection 
                             sectionTitle={Object.keys(sub)}
@@ -55,7 +55,7 @@ const DashBoardSectionFocus = () => {
         }
 
         return(
-                <div className={classes.subsectionDashWrapper}>
+                <div className={styles.subsectionDashWrapper}>
                     {subOutput.map(sub=>
                         <DashItem
                             id={sub.id}

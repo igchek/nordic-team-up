@@ -1,20 +1,20 @@
 import React from "react";
-import classes from './InvolvedContentPoster.modules.css'
+import styles from './InvolvedContentPoster.module.scss'
 
 
 const InvolvedContentPoster =(props) => {
     if (props.focus ==='false'){
         return (
-            <div className={classes.wrapper}>
-                <img className={classes.posterPassive} src={props.poster} alt="poster" />
+            <div className={styles.wrapper}>
+                <img className={styles.posterPassive} src={props.poster} alt="poster" />
             </div>
         )
     }
     else {
 
         return (
-            <div className={classes.wrapper}>
-                <img className={classes.posterActive} src={props.poster} alt="poster" />
+            <div className={styles.wrapper}>
+                <img className={styles.posterActive} src={props.poster} alt="poster" />
             </div>
         )
     }

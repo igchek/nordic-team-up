@@ -1,14 +1,14 @@
 import React from 'react'
-import classes from './DashItemAtoms.modules.css'
+import styles from './DashItemAtoms.module.scss'
 
 const DashItemTagList = (props) => {
     const tagArr = props.tagArray
   
     return (
-    <div>
+    <div className={styles.tagArrayWrapper}>
         {
             tagArr.map(tag=>{return(
-                <div className={classes.tagItem}>
+                <div className={styles.tagItem}>
                     {tag.value}
                 </div>
             )})

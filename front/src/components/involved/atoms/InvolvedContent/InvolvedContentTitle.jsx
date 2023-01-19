@@ -1,5 +1,5 @@
 import React from "react";
-import classes from './InvolvedContentTitle.modules.css'
+import styles from './InvolvedContentTitle.module.scss'
 
 
 const InvolvedContentTitle = (props) => {
@@ -7,14 +7,14 @@ const InvolvedContentTitle = (props) => {
     const isFocused = props.focus 
     if (isFocused === 'false'){
         return (
-            <div className={classes.wrapperPassive}>
+            <div className={styles.wrapperPassive}>
                 ${ContentTitle}
             </div>
         )
     }
     else {
         return (
-            <div className={classes.wrapperAvtive}>
+            <div className={styles.wrapperAvtive}>
                 ${ContentTitle}
             </div>
         )

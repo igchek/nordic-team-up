@@ -1,20 +1,29 @@
 import React from "react";
-import classes from './Modality.modules.css'
+import styles from './Modality.module.scss'
+import SvgSelector from "../../../common utils/SvgSelector";
 
 
 const Modality = (props) => {
      if (props.modality ==='vibe'){
         if (props.focus ==='false'){
         return (
-            <div className={classes.passiveWepapper}>
-                <img className={classes.passiveVibe} src="../../assets/atoms/modality/vibe.svg" alt="vibe" />
+            <div className={styles.wrpapper}>
+                <SvgSelector 
+                    tier='standart'
+                    focus='false'
+                    value='vibe'
+                />
             </div>
         )
         }
         else {
             return (
-                <div className={classes.activeWepapper}>
-                    <img className={classes.activeVibe} src="../../assets/atoms/modality/vibe.svg" alt="vibe" />
+                <div className={styles.wrpapper}>
+                    <SvgSelector 
+                        tier='standart'
+                        focus='true'
+                        value='vibe'
+                    />
                 </div>
             )
         }
@@ -22,15 +31,23 @@ const Modality = (props) => {
      else if (props.modality ==='sync'){
         if (props.focus ==='false'){
             return (
-                <div className={classes.passiveWepapper}>
-                    <img className={classes.passiveSync} src="../../assets/atoms/modality/sync.svg" alt="sync" />
+                <div className={styles.wrpapper}>
+                     <SvgSelector 
+                        tier='standart'
+                        focus='false'
+                        value='sync'
+                    />
                 </div>
             )
             }
             else {
                 return (
-                    <div className={classes.activeWepapper}>
-                        <img className={classes.activeSync} src="../../assets/atoms/modality/sync.svg" alt="sync" />
+                    <div className={styles.wrpapper}>
+                        <SvgSelector 
+                            tier='standart'
+                            focus='true'
+                            value='sync'
+                        />
                     </div>
                 )
             }
@@ -38,15 +55,23 @@ const Modality = (props) => {
      else if (props.modality ==='gig'){
         if (props.focus ==='false'){
             return (
-                <div className={classes.passiveWepapper}>
-                    <img className={classes.passiveGig} src="../../assets/atoms/modality/gig.svg" alt="gig" />
+                <div className={styles.wrpapper}>
+                        <SvgSelector 
+                            tier='standart'
+                            focus='false'
+                            value='gig'
+                        />
                 </div>
             )
             }
             else {
                 return (
-                    <div className={classes.activeWepapper}>
-                        <img className={classes.activeGig} src="../../assets/atoms/modality/gig.svg" alt="gig" />
+                    <div className={styles.wrpapper}>
+                        <SvgSelector 
+                            tier='standart'
+                            focus='true'
+                            value='gig'
+                        />
                     </div>
                 )
             }

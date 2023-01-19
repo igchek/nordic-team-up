@@ -1,5 +1,5 @@
 import React from "react";
-import classes from './InvolvedContent.modules.css'
+import styles from './InvolvedContent.module.scss'
 import {useSelector, useDispatch} from 'react-redux'
 import { useState, useEffect } from "react";
 import InvolvedContentPoster from "../atoms/InvolvedContentPoster";
@@ -31,7 +31,7 @@ const InvolvedContent = (props) => {
         }
     }
         return(
-            <div onClick={click} className={isFocused?classes.wrapperActive:classes.wrapperPassive}>
+            <div onClick={click} className={isFocused?styles.wrapperActive:styles.wrapperPassive}>
                 <InvolvedContentPoster 
                     img={props.img} 
                     focus={isFocused}

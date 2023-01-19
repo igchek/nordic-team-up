@@ -1,0 +1,10 @@
+@use '../../../../stylesCommon/templates.scss';
+
+.activeWrapper{
+    @include _templates.minorContent;
+    background: #888686;
+}
+
+.passiveWrapper{
+    @include _templates.minorContent;
+}

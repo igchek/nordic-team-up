@@ -1,9 +1,9 @@
 import React from 'react'
-import classes from './ContentFocus.modules.css'
+import styles from './ContentFocus.module.scss'
 
 const ContentFocus = (props) => {
   return (
-    <div>ContentFocus</div>
+    <div className={styles.wrapper}>ContentFocus</div>
   )
 }
 

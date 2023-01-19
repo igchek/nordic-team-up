@@ -1,6 +1,5 @@
 import React from 'react'
-import classes from './SourcePreset.modules.css'
-import SvgSelector from '../../../common utils/SvgSelector'
+import styles from './SourcePreset.module.scss'
 import {useDispatch} from 'react-redux'
 import {useState} from 'react'
 
@@ -33,26 +32,20 @@ const SourcePreset = () => {
 
 
 
-  return (<div>
-                <div onClick={artistPreset} className={classes.sourceWrapper}>
-                    <div className={classes.artistSocketNormal}>
+  return (
+            <div className={styles.wrapper}>
                         <SourceTemplate
+                            onClick={artistPreset}
                             value='artist'
                             focus={isArtistPreset}
                             tier='normal'
                         />
-                    </div>
-                </div>
-                <div onClick={venuePreset} className={classes.sourceWrapper}>
-                    <div className={classes.venueSocketNormal}>
                         <SourceTemplate
+                            onClick={venuePreset}
                             value='venue'
                             focus={isVenuePreset}
                             tier='normal'
                         />
-                    </div>
-                </div>
-
             </div>
   )
 }

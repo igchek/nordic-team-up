@@ -1,5 +1,5 @@
 import React from 'react'
-import classes from './DashSection.modules.css'
+import styles from './DashSection.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { useState, useMemo } from 'react'
 import sectionDashboard, { setFormatedContent, setSubSectionedContent, setSubsections } from '../../../../store/sectionDashboard'
@@ -97,11 +97,11 @@ const focusItem = (e) => {
 
 if (currentPrefocus==='null'){
     return(
-        <div className={classes.sectionWrapper}>
-            <div onClick={setFocusedSection(props.sectionTitle)} className={classes.sectionTitleWrapper}>
+        <div className={styles.sectionWrapper}>
+            <div onClick={setFocusedSection(props.sectionTitle)} className={styles.sectionTitleWrapper}>
                 {props.sectionTitle}
             </div>
-            <div className={classes.sectionContentOutput}>
+            <div className={styles.sectionContentOutput}>
                 {selectedSectionOutput.map(unit=>{
                     return(
                         <DashItem
@@ -125,11 +125,11 @@ if (currentPrefocus==='null'){
 else if (currentPrefocus!=='null'){
     if(selectionSectionVideoIncluded.includes(currentPrefocus)){
         return(
-            <div className={classes.sectionWrapper}>
-                <div className={classes.sectionTitleWrapper}>
+            <div className={styles.sectionWrapper}>
+                <div className={styles.sectionTitleWrapper}>
                     {props.sectionTitle}
                 </div>
-                <div className={classes.sectionContentOutput}>
+                <div className={styles.sectionContentOutput}>
                     {selectedSectionOutput.map(unit=>{
                         return(
                             <DashItem
@@ -158,11 +158,11 @@ else if (currentPrefocus!=='null'){
     }
     else if(!selectionSectionVideoIncluded.includes(currentPrefocus)){
             return(
-                <div className={classes.sectionWrapper}>
-                    <div className={classes.sectionTitleWrapper}>
+                <div className={styles.sectionWrapper}>
+                    <div className={styles.sectionTitleWrapper}>
                         {props.sectionTitle}
                     </div>
-                    <div className={classes.sectionContentOutput}>
+                    <div className={styles.sectionContentOutput}>
                         {selectedSectionOutput.map(unit=>{
                             return(
                                 <DashItem

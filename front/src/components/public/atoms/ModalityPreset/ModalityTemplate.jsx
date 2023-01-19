@@ -1,9 +1,10 @@
 import React from 'react'
 import SvgSelector from '../../../common utils/SvgSelector'
+import styles from './ModalityTemplate.module.scss'
 
 const ModalityTemplate = (props) => {
   return (
-    <div className={classes.wrapper}>
+    <div className={styles.wrapper}>
         <SvgSelector 
             value={props.value}
             focus={props.focus}

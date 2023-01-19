@@ -1,15 +1,15 @@
 import React from 'react'
-import classes from './DashItemAtoms.modules.css'
+import styles from './DashItemAtoms.module.scss'
 
 const DashItemTitle = (props) => {
   return (
-    <div className={classes.firstLineWrapper}>
-        <div className={classes.title}>
+    <div className={styles.titleWrapper}>
+        <div className={styles.title}>
             {props.title}
         </div>
-        <div className={classes.sourceWrapper}>
-            <img className={classes.authorLogo} src={props.authorLogo} alt="author logo" />
-            <div className={classes.authorName}>
+        <div className={styles.sourceWrapper}>
+            <img className={styles.authorLogo} src={props.authorLogo} alt="author logo" />
+            <div className={styles.authorName}>
                 {props.authorName}
             </div>
         </div>

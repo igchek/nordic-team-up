@@ -1,0 +1,8 @@
+@use '../../../../stylesCommon/templates.scss';
+
+.wrapper{
+    @include _templates.minorUnitImageWrapper;
+    .poster{
+        @include _templates.minorUnitImage;
+    }
+}

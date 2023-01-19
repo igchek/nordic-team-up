@@ -1,0 +1,178 @@
+@use '../../../../stylesCommon/_variables.scss';
+
+
+// clip
+
+.clipWrapper {
+    height: 498px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+        .clip {
+            width: 100%;
+            height: 100%;
+        
+        }
+        .clipDescriptionWrapper {
+                @include _templates.FontsDashSectionStandart ;
+                width: 576px;
+                height: 142px;
+                display: flex;
+                align-items: flex-start;
+                padding: 0px;
+                background: rgba(227, 227, 227, 0.36);
+                backdrop-filter: blur(3px);
+                color: $lighterThemeText;
+                position: absolute;
+                left: 15px;
+                bottom: 15px;
+
+
+                .clipAuthorDecription{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    padding: 0px;
+                    height: 83px;
+                    .authorLogo {
+                        display: column;
+                        align-items: center;
+                        justify-content: center;
+                        height: 75px;
+                        width: 75px;
+                        padding: 0px;
+                        gap:10px;
+                        border-radius: 40px;
+
+                    }
+                    .authorTitle {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: flex-start;
+                        align-items: flex-start;
+                        height: 83px;
+                        width: auto;
+                        @include _templates.FontsDashSectionStandart
+                    }
+            
+                }
+            .clipDescription{
+                width: 100%;
+                height: auto;
+                overflow-x: auto;
+                @include _templates.FontsDashSectionStandart
+             }
+            }
+                
+            .muteSocket{
+                &:hover{opacity: 100%;}
+                position: absolute;
+                right: 15px;
+                bottom: 15px;
+                width: 75px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                opacity: 30%;
+                filter: blur(75px);
+                }
+            
+
+        
+    }
+
+// modality
+
+.modalityWrapperActive {
+    @include _templates.modalityMinor
+
+}
+
+.modalityWrapperPassive {
+    @include _templates.modalityMinor;
+    opacity:0%;
+}
+
+.modalitySocket {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 10px;
+
+    width: 40px;
+    height: 40px;
+
+    background: #F5F5F5;
+    border-radius: 445px;
+    border: 1px solid;
+
+    border-image-source: linear-gradient(180deg, #175CE9 0%, #2EB3B6 100%);
+}
+
+// tag arrray
+
+.tagArrayWrapper{
+    width: 100%;
+    overflow-x: scroll;
+    height: 57.16px;
+    display: flex;
+    flex-direction: row;
+    padding: 6.80446px;
+    gap: 6.8px;
+    justify-content: center;
+    align-items: center;
+
+    .tagItem {
+        @include _templates.tagItem;
+        @include _templates.FontsDashSectionMicro;
+        color: #FFFFFF;
+    }
+}
+
+
+// Titles
+
+.titleWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    width: 100%;
+    height: 57.16px;
+
+    .title{
+        @include _templates.FontsDashSectionMinor;
+        color: #000000;
+    }
+    .sourceWrapper{
+        align-self: flex-end;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 0px 10.2067px 0px 0px;
+        width: 200.05px;
+        height: 100%;
+        .authorLogo{
+            width: 43.01px;
+            height: 43.01px;
+            border-radius: 30.9641px;
+        }
+        .authorName{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 0px;
+            gap: 3.44px;
+            width: auto;
+            height: 100%;
+            @include _templates.FontsDashSectionMinor;
+            color: #000000;
+        }
+    }
+}

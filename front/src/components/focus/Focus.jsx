@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import classes from './Focus.modules.css'
+import styles from './Focus.module.scss'
 import focus from '../../store/focus'
 import DashBoardSectionFocus from './Dashboard Focus/DashBoardSectionFocus'
 import ContentFocus from './Content Focus/ContentFocus'
@@ -13,27 +13,27 @@ const Focus = () => {
 
     if (focusedContent===''){
     return (
-      <div className={classes.focusWrapper}>
-          <div className={classes.upperVerticalWrapper}>
+      <div className={styles.focusWrapper}>
+          <div className={styles.upperVerticalWrapper}>
 
           </div>
-          <div className={classes.centralWrapper}>
+          <div className={styles.centralWrapper}>
             <DashBoardSectionFocus/>
           </div>
-          <div className={classes.lowerVerticalWrapper}>
+          <div className={styles.lowerVerticalWrapper}>
             
           </div>
       </div>
   )}
   else {
-    <div className={classes.focusWrapper}>
-          <div className={classes.upperVerticalWrapper}>
+    <div className={styles.focusWrapper}>
+          <div className={styles.upperVerticalWrapper}>
 
           </div>
-          <div className={classes.centralWrapper}>
+          <div className={styles.centralWrapper}>
             <ContentFocus/>
           </div>
-          <div className={classes.lowerVerticalWrapper}>
+          <div className={styles.lowerVerticalWrapper}>
             
           </div>
       </div>

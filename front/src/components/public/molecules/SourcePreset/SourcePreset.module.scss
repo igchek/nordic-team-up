@@ -1,0 +1,15 @@
+@use '../../../../stylesCommon/variables.scss';
+
+.wrapper{
+    @include _variables.darkerBackgroundColor;
+    background: $darkerBackgroundColor;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+
+    width: 100%;
+    height: 125px;
+}

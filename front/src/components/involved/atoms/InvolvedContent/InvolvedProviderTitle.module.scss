@@ -1,0 +1,11 @@
+@use '../../../../stylesCommon/_templates.scss';
+
+.wrapperActive {
+    @include _templates.minorUnitLowerTitle;
+    color:#BBBBBB;
+}
+
+.wrapperPassive {
+    @include _templates.minorUnitLowerTitle;
+    color:#C0C0C0;
+}

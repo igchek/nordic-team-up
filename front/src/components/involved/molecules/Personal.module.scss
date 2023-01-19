@@ -1,0 +1,13 @@
+@use '../../../stylesCommon/templates.scss';
+@use '../../../stylesCommon/variables.scss';
+
+.wrapper {
+    @include _variables.darkerBackgroundColor;
+    background: $darkerBackgroundColor;
+    @include _templates.FontsDashSectionStandart;
+    color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+}

@@ -1,0 +1,12 @@
+@use '../../../stylesCommon/templates.scss';
+ 
+
+ .wrapperActive {
+    @include _templates.minorContent;
+    background: #888686;
+ }
+
+ .wrapperPassive {
+    @include _templates.minorContent;
+    
+ }

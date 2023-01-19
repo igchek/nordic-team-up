@@ -1,0 +1,32 @@
+@use '../../../../stylesCommon/templates.scss';
+
+.dataWrapper{
+    @include _templates.minorUnitContentDataWrapper;
+    .modalityWrapper{
+        @include _templates.minorUnitModality;
+    }
+    .audienceWrapper{
+        @include _templates.minorUnitAudienceWrapper;
+        .audienceSocketActive{
+            @include _templates.minorUnitAudienceSocket;
+            background:#A7A7A7;
+            @include _templates.FontsMinorUnitAudience;
+        }
+        .audienceSocketPassive{
+            @include _templates.minorUnitAudienceSocket;
+            background:#ADADAD;
+            @include _templates.FontsMinorUnitAudience;
+        }
+    }
+
+}
+
+.sourceTypeWrapper{
+    height: 100%;
+    width: 97px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+}

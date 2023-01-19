@@ -2,12 +2,12 @@ import React from "react";
 import InvolvedOutput from "./molecules/InvolvedOutput";
 import LowerBar from "./molecules/LowerBar";
 import Personal from "./molecules/Personal";
-import classes from './PersonalSection.modules.css'
+import styles from './PersonalSection.module.scss'
 
 const PersonalSection = () => {
 
     return (
-        <div className={classes.sectionWrapper}>
+        <div className={styles.sectionWrapper}>
             <Personal/>
             <InvolvedOutput/>
             <LowerBar/>

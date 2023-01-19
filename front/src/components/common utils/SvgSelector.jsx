@@ -1,5 +1,5 @@
 import React from 'react'
-import classes from './SvgSelector.modules.css'
+import styles from './SvgSelector.modules.css'
 import VibeOffSvg from '../../assets/svg/VibeOffSvg'
 import VibeOnSvg from '../../assets/svg/VibeOnSvg'
 import SyncOffSvg from '../../assets/svg/SyncOffSvg'
@@ -20,12 +20,12 @@ const SvgSelector = (props) => {
   if (props.value ==='vibe' && props.focus ==='false')  {
     switch(tier){
         case 'standart':return(
-            <div className={classes.standart}> 
+            <div className={styles.standart}> 
                 <VibeOffSvg/>
             </div>
                     )
         case 'big': return(
-            <div className={classes.big}> 
+            <div className={styles.big}> 
                 <VibeOffSvg/>
             </div>
         )
@@ -37,12 +37,12 @@ const SvgSelector = (props) => {
   else if (props.value ==='vibe' && props.focus ==='true')  {
     switch(tier){
         case 'standart':return(
-            <div className={classes.standart}> 
+            <div className={styles.standart}> 
                 <VibeOnSvg/>
             </div>
                     )
         case 'big': return(
-            <div className={classes.big}> 
+            <div className={styles.big}> 
                 <VibeOnSvg/>
             </div>
         )
@@ -53,12 +53,12 @@ const SvgSelector = (props) => {
   else if (props.value ==='sync' && props.focus ==='false')  {
      switch(tier){
         case 'standart':return(
-            <div className={classes.standart}> 
+            <div className={styles.standart}> 
                 <SyncOffSvg/>
             </div>
                     )
         case 'big': return(
-            <div className={classes.big}> 
+            <div className={styles.big}> 
                 <SyncOffSvg/>
             </div>
         )
@@ -68,12 +68,12 @@ const SvgSelector = (props) => {
   else if (props.value ==='sync' && props.focus ==='true')  {
     switch(tier){
         case 'standart':return(
-            <div className={classes.standart}> 
+            <div className={styles.standart}> 
                 <SyncOnSvg/>
             </div>
                     )
         case 'big': return(
-            <div className={classes.big}> 
+            <div className={styles.big}> 
                 <SyncOnSvg/>
             </div>
         )
@@ -84,12 +84,12 @@ const SvgSelector = (props) => {
   else if (props.value ==='gig' && props.focus ==='false')  {
     switch(tier){
         case 'standart':return(
-            <div className={classes.standart}> 
+            <div className={styles.standart}> 
                 <GigOffSvg/>
             </div>
                     )
         case 'big': return(
-            <div className={classes.big}> 
+            <div className={styles.big}> 
                 <GigOffSvg/>
             </div>
         )
@@ -99,12 +99,12 @@ const SvgSelector = (props) => {
   else if (props.value ==='gig' && props.focus ==='true')  {
     switch(tier){
         case 'standart':return(
-            <div className={classes.standart}> 
+            <div className={styles.standart}> 
                 <GigOnSvg/>
             </div>
                     )
         case 'big': return(
-            <div className={classes.big}> 
+            <div className={styles.big}> 
                 <GigOnSvg/>
             </div>
         )
@@ -113,12 +113,12 @@ const SvgSelector = (props) => {
     else if (props.value ==='artst' && props.focus ==='true')  {
         switch(tier){
             case 'standart':return(
-                <div className={classes.standart}> 
+                <div className={styles.standart}> 
                     <ArtistOnSvg/>
                 </div>
                         )
             case 'big': return(
-                <div className={classes.big}> 
+                <div className={styles.big}> 
                     <ArtistOnSvg/>
                 </div>
             )
@@ -127,12 +127,12 @@ const SvgSelector = (props) => {
     else if (props.value ==='artst' && props.focus ==='false')  {
         switch(tier){
             case 'standart':return(
-                <div className={classes.standart}> 
+                <div className={styles.standart}> 
                     <ArtistOffSvg/>
                 </div>
                         )
             case 'big': return(
-                <div className={classes.big}> 
+                <div className={styles.big}> 
                     <ArtistOffSvg/>
                 </div>
             )
@@ -141,12 +141,12 @@ const SvgSelector = (props) => {
      else if (props.value ==='venue' && props.focus ==='true')  {
         switch(tier){
             case 'standart':return(
-                <div className={classes.standart}> 
+                <div className={styles.standart}> 
                     <VenueOnSvg/>
                 </div>
                         )
             case 'big': return(
-                <div className={classes.big}> 
+                <div className={styles.big}> 
                     <VenueOnSvg/>
                 </div>
             )
@@ -155,12 +155,12 @@ const SvgSelector = (props) => {
     else if (props.value ==='venue' && props.focus ==='false')  {
         switch(tier){
             case 'standart':return(
-                <div className={classes.standart}> 
+                <div className={styles.standart}> 
                     <VenueOffSvg/>
                 </div>
                         )
             case 'big': return(
-                <div className={classes.big}> 
+                <div className={styles.big}> 
                     <VenueOffSvg/>
                 </div>
             )
@@ -169,12 +169,12 @@ const SvgSelector = (props) => {
     else if (props.value ==='gear' && props.focus ==='true')  {
         switch(tier){
             case 'standart':return(
-                <div className={classes.standart}> 
+                <div className={styles.standart}> 
                     <GearOnSvg/>
                 </div>
                         )
             case 'big': return(
-                <div className={classes.big}> 
+                <div className={styles.big}> 
                     <GearOnSvg/>
                 </div>
             )
@@ -183,12 +183,12 @@ const SvgSelector = (props) => {
     else if (props.value ==='gear' && props.focus ==='false')  {
         switch(tier){
             case 'standart':return(
-                <div className={classes.standart}> 
+                <div className={styles.standart}> 
                     <GearOffSvg/>
                 </div>
                         )
             case 'big': return(
-                <div className={classes.big}> 
+                <div className={styles.big}> 
                     <GearOffSvg/>
                 </div>
             )
@@ -197,12 +197,12 @@ const SvgSelector = (props) => {
     else if (props.value ==='settings' && props.focus ==='true')  {
         switch(tier){
             case 'standart':return(
-                <div className={classes.standart}> 
+                <div className={styles.standart}> 
                     <SettingsOnSvg/>
                 </div>
                         )
             case 'big': return(
-                <div className={classes.big}> 
+                <div className={styles.big}> 
                     <SettingsOnSvg/>
                 </div>
             )
@@ -211,12 +211,12 @@ const SvgSelector = (props) => {
     else if (props.value ==='settings' && props.focus ==='false')  {
         switch(tier){
             case 'standart':return(
-                <div className={classes.standart}> 
+                <div className={styles.standart}> 
                     <SettingsOffSvg/>
                 </div>
                         )
             case 'big': return(
-                <div className={classes.big}> 
+                <div className={styles.big}> 
                     <SettingsOffSvg/>
                 </div>
             )
@@ -225,12 +225,12 @@ const SvgSelector = (props) => {
     else if (props.value ==='search' && props.focus ==='false')  {
         switch(tier){
             case 'standart':return(
-                <div className={classes.standart}> 
+                <div className={styles.standart}> 
                     <SearchOffSvg/>
                 </div>
                         )
             case 'big': return(
-                <div className={classes.big}> 
+                <div className={styles.big}> 
                     <SearchOffSvg/>
                 </div>
             )
@@ -239,12 +239,12 @@ const SvgSelector = (props) => {
     else if (props.value ==='search' && props.focus ==='true')  {
         switch(tier){
             case 'standart':return(
-                <div className={classes.standart}> 
+                <div className={styles.standart}> 
                     <SearchOnSvg/>
                 </div>
                         )
             case 'big': return(
-                <div className={classes.big}> 
+                <div className={styles.big}> 
                     <SearchOnSvg/>
                 </div>
             )
@@ -253,12 +253,12 @@ const SvgSelector = (props) => {
     else if (props.value ==='muted')  {
         switch(tier){
             case 'standart':return(
-                <div className={classes.standart}> 
+                <div className={styles.standart}> 
                     <MutedSvg/>
                 </div>
                         )
             case 'big': return(
-                <div className={classes.big}> 
+                <div className={styles.big}> 
                     <MutedSvg/>
                 </div>
             )
@@ -267,12 +267,12 @@ const SvgSelector = (props) => {
     else if (props.value ==='unmuted')  {
         switch(tier){
             case 'standart':return(
-                <div className={classes.standart}> 
+                <div className={styles.standart}> 
                     <UnmutedSvg/>
                 </div>
                         )
             case 'big': return(
-                <div className={classes.big}> 
+                <div className={styles.big}> 
                     <UnmutedSvg/>
                 </div>
             )

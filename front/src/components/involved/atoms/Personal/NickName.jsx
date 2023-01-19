@@ -1,10 +1,10 @@
 import React from "react";
-import classes from './NickName.modules.css'
+import styles from './NickName.module.scss'
 
 
 const NickName = (props) => {
     return (
-        <div className={classes.wrapper}>
+        <div className={styles.wrapper}>
             {props.nickName}
         </div>
     )

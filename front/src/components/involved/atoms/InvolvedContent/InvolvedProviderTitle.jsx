@@ -1,12 +1,12 @@
 import React from "react";
-import classes from './InvolvedProviderTitle.modules.css'
+import styles from './InvolvedProviderTitle.module.scss'
 
 const InvolvedProviderTitle = (props) => {
     const isFocused = props.focus
     const providerTitle = props.providerTitle
     if (isFocused ==='false'){
         return (
-            <div className={classes.wrapperPassive}>
+            <div className={styles.wrapperPassive}>
                 ${providerTitle}
             </div>
         )
@@ -14,7 +14,7 @@ const InvolvedProviderTitle = (props) => {
 
     else {
         return (
-            <div className={classes.wrapperActive}>
+            <div className={styles.wrapperActive}>
                 ${providerTitle}
             </div>
         )

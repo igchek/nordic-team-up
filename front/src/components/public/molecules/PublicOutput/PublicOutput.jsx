@@ -1,5 +1,5 @@
 import React from "react";
-import classes from './PublicOutput.modules.css'
+import styles from './PublicOutput.module.scss'
 import { useSelector, useDispatch } from "react-redux";
 import publicContent from "../../../../store/publicContent";
 import PublicUnit from "./PublicUnit";
@@ -11,7 +11,7 @@ const PublicOutput = () => {
     const currentFocusedContent = useSelector(({focus})=> state.focusedContent)
 
     return (
-        <div className={classes.wrapper}>
+        <div className={styles.wrapper}>
             {
                 sortedPublicContent?
                 sortedPublicContent.map((sortedUnit)=>{

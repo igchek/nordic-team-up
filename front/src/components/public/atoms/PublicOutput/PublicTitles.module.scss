@@ -1,0 +1,71 @@
+@use '../../../../stylesCommon/templates.scss';
+
+
+
+.passiveWrapper{
+    @include _templates.minorUnitTitleswrapper;
+    .activeProviderTitle{
+        @include _templates.minorUnitUpperTitle;
+        color:#FFFFFF;
+    }
+    .passiveProviderTitle{
+        @include _templates.minorUnitUpperTitle;
+        color: #000000;
+    }
+    .activeSourceType{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width:97px;
+    }
+    .passiveSourceType{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width:97px;
+    }
+    .activeContentTitle{
+        @include _templates.minorUnitUpperTitle;
+        color:#FFFFFF;
+    }
+    .passiveContentTitle{
+        @include _templates.minorUnitUpperTitle;
+        color: #000000;
+    }
+}
+
+.activeWrapper{
+    @include _templates.minorUnitTitleswrapper;
+    .activeProviderTitle{
+        @include _templates.minorUnitUpperTitle;
+        color:#FFFFFF;
+    }
+    .passiveProviderTitle{
+        @include _templates.minorUnitUpperTitle;
+        color: #000000;
+    }
+    .activeSourceType{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width:97px;
+    }
+    .passiveSourceType{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width:97px;
+    }
+    .activeContentTitle{
+        @include _templates.minorUnitUpperTitle;
+        color:#FFFFFF;
+    }
+    .passiveContentTitle{
+        @include _templates.minorUnitUpperTitle;
+        color: #000000;
+    }
+}

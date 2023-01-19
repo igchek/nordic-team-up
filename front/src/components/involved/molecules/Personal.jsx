@@ -1,5 +1,5 @@
 import React from "react";
-import classes from './Personal.modules.css'
+import styles from './Personal.module.scss'
 import { useSelector } from "react-redux";
 import personal from "../../../store/personal";
 import Avatar from "../../involved/atoms/Personal/Avatar";
@@ -14,7 +14,7 @@ const gear = () => {
     
 }
     return (
-        <div className={classes.wrapper}>
+        <div className={styles.wrapper}>
             <Avatar 
                 src = {userAvatar}
             />

@@ -1,16 +1,16 @@
 import React from 'react'
-import classes from './PersonalFocus.modules.css'
+import styles from './PersonalFocus.module.scss'
 
 const PersonalFocus = () => {
   return (
-    <div className={classes.majorWrapper}>
-        <div className={classes.upperVerticals}>
+    <div className={styles.majorWrapper}>
+        <div className={styles.upperVerticals}>
 
         </div>
-        <div className={classes.centralWrappper}>
+        <div className={styles.centralWrappper}>
             Some personal shit
         </div>
-        <div className={classes.lowerVerticals}>
+        <div className={styles.lowerVerticals}>
 
         </div>
     </div>
