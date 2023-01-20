@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './DashItemAtoms.module.scss'
 import { useRef } from 'react'
-import SvgSelector from '../../../common utils/SvgSelector'
+import SvgSelector from '../../../commonUtils/SvgSelector'
 
 const DashItemClip = (props) => {
     const isMuted = useRef(null)
