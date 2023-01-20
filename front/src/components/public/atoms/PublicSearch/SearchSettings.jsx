@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './SearchSettings.module.scss'
-import SvgSelector from '../../../common utils/SvgSelector'
+import SvgSelector from '../../../commonUtils/SvgSelector'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setPublicSettingsFocus } from '../../../../store/focus'

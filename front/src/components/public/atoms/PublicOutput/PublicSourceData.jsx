@@ -1,6 +1,6 @@
 import React from "react";
 import styles from './PublicSourceData.module.scss'
-import SvgSelector from "../../../common utils/SvgSelector";
+import SvgSelector from "../../../commonUtils/SvgSelector";
 
 
 const PublicSourceData = (props) => {

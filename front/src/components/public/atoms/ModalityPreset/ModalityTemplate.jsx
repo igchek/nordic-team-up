@@ -1,5 +1,5 @@
 import React from 'react'
-import SvgSelector from '../../../common utils/SvgSelector'
+import SvgSelector from '../../../commonUtils/SvgSelector'
 import styles from './ModalityTemplate.module.scss'
 
 const ModalityTemplate = (props) => {

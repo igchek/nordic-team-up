@@ -1,5 +1,5 @@
 import React from 'react'
-import PersonalFocus from '../components/focus/Personal Focus/PersonalFocus'
+import PersonalFocus from '../components/focus/PersonalFocus/PersonalFocus'
 import PersonalSection from '../components/involved/PersonalSection'
 import Public from '../components/public/Public'
 import styles from './Pages.module.scss'
