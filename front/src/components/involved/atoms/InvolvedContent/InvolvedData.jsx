@@ -1,6 +1,5 @@
 import React from "react";
-import { useEffect, useState, useMemo } from "react";
-import styles from './involvedData.module.scss'
+import styles from './InvolvedData.module.scss'
 import Modality from "./Modality";
 import CurrentAudience from "./CurrentAudience";
 

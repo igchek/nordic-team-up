@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './Personal.module.scss'
+import styles from "./Personal.module.scss"
 import { useSelector } from "react-redux";
 import personal from "../../../store/personal";
 import Avatar from "../../involved/atoms/Personal/Avatar";

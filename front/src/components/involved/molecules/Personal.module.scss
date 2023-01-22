@@ -1,5 +1,5 @@
-@use '../../../stylesCommon/templates.scss';
-@use '../../../stylesCommon/variables.scss';
+@import "../../../stylesCommon/templates.scss";
+@import "../../../stylesCommon/variables.scss";
 
 .wrapper {
     @include _variables.darkerBackgroundColor;

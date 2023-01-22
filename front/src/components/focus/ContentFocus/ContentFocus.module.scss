@@ -1,4 +1,4 @@
-@use '../../../stylesCommon/_variables.scss';
+@import "../../../stylesCommon/_variables.scss";
 
 .wrapper{
     @include _variables.primaryBackgroundColor;

@@ -2,7 +2,7 @@ import React from "react";
 import InvolvedOutput from "./molecules/InvolvedOutput";
 import LowerBar from "./molecules/LowerBar";
 import Personal from "./molecules/Personal";
-import styles from './PersonalSection.module.scss'
+import styles from "./PersonalSection.module.scss"
 
 const PersonalSection = () => {
 

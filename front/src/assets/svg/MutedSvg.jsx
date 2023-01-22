@@ -3,9 +3,9 @@ import React from 'react'
 const MutedSvg = () => {
   return (
     <div width='100%' height='100%'>
-        <svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+        <svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" 
 			width="800px" height="800px" viewBox="0 0 306.257 306.257"
-			xml:space="preserve">
+			xmlSpace="preserve">
 		<g>
 			<path d="M19.747,121.968v70.068c0,21.499,17.43,38.924,38.924,38.924h40.703l112.088,73.612
 				c11.351,6.271,26.808-5.883,34.372-21.256L47.261,84.75C31.333,89.628,19.747,104.438,19.747,121.968z"/>

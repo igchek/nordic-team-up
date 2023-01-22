@@ -1,16 +1,16 @@
 import React from "react";
-import InvolvedContentTitle from "../atoms/InvolvedContentTitle";
-import InvolvedProviderTitle from "../atoms/InvolvedProviderTitle";
-import classes from './InvolvedTitles.module.css'
+import InvolvedContentTitle from "./InvolvedContentTitle";
+import InvolvedProviderTitle from "./InvolvedProviderTitle";
+import styles from './InvolvedTitles.module.scss'
 
 
-const InvolvedTiitles = (props) => {
+const InvolvedTitles = (props) => {
     return (
-        <div className={classes.wrapper}>
+        <div className={styles.wrapper}>
             <InvolvedContentTitle ContentTitle={props.ContentTitle} focus={props.focus}/>
             <InvolvedProviderTitle providerTitle={props.providerTitle} focus={props.focus}/>
         </div>
     )
 }
 
-export default InvolvedTiitles
+export default InvolvedTitles

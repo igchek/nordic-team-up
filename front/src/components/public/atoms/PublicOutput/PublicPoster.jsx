@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './PublicPoster.module.scss'
+import styles from "./PublicPoster.module.scss"
 
 const PublicPoster = (props) => {
 

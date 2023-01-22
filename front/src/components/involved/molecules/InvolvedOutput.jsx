@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './InvolvedOutput.module.scss'
+import styles from "./InvolvedOutput.module.scss"
 import { useSelector } from "react-redux";
 import InvolvedContent from "./involvedContent";
 import involvedContent from "../../../store/involvedContent";

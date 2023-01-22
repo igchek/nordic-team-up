@@ -1,9 +1,9 @@
 import React from "react";
-import styles from './PublicTitles.module.scss'
+import styles from "./PublicTitles.module.scss"
 
 
 const PublicTitles = (props) => {
-    if (props.sourceType === 'content'){
+    if (props.sourceType === "content"){
         return (
             <div className={props.focus==='true'?styles.activeWrapper:styles.passiveWrapper}>
                 <div className={props.focus==='true'?styles.activeContentTitle:styles.passiveContentTitle}>{props.contentTitle}</div>

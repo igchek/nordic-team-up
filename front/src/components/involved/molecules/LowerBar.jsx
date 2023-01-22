@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './LowerBar.module.scss'
+import styles from "./LowerBar.module.scss"
 
 const LowerBar = () => {
 

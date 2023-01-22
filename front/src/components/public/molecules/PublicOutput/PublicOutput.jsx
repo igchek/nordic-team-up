@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './PublicOutput.module.scss'
+import styles from "./PublicOutput.module.scss"
 import { useSelector, useDispatch } from "react-redux";
 import publicContent from "../../../../store/publicContent";
 import PublicUnit from "./PublicUnit";
@@ -13,10 +13,10 @@ const PublicOutput = () => {
     return (
         <div className={styles.wrapper}>
             {
-                sortedPublicContent?
-                sortedPublicContent.map((sortedUnit)=>{
-                    return(
-                        {sortedUnit.sourceType==='content'?<PublicUnit
+                sortedPublicContent ?
+                sortedPublicContent.map(sortedUnit =>{
+                    return sortedUnit.sourceType==='content' ? 
+                    <PublicUnit
                                                             poster={sortedUnit.promoLogo}
                                                             sourceType={sortedUnit.sourceType}
                                                             contentTitle={sortedUnit.title}
@@ -25,33 +25,32 @@ const PublicOutput = () => {
                                                             modality={sortedUnit.modality}
                                                             id={sortedUnit.id}
                                                             />
-                        :<PublicUnit 
+                        : <PublicUnit 
                             poster={sortedUnit.logo}
                             sourceType={sortedUnit.providerType}
                             providerTitle={sortedUnit.providerTitle}
                             id={sortedUnit.id}
-                        />}
-                        
-                    )
+                        />
                 })
-                :publicContent.map((sortedUnit)=>{
-                    return(
-                        {sortedUnit.sourceType==='content'?<PublicUnit
-                                                            poster={sortedUnit.promoLogo}
-                                                            sourceType={sortedUnit.sourceType}
-                                                            contentTitle={sortedUnit.title}
-                                                            providerTitle={sortedUnit.author}
-                                                            audience={sortedUnit.currentAudience}
-                                                            modality={sortedUnit.modality}
-                                                            id={sortedUnit.id}
-                                                            />
+                : publicContent.map((sortedUnit)=>{
+                    return
+                        sortedUnit.sourceType==='content'?
+                        <PublicUnit
+                             poster={sortedUnit.promoLogo}
+                            sourceType={sortedUnit.sourceType}
+                             contentTitle={sortedUnit.title}
+                             providerTitle={sortedUnit.author}
+                             audience={sortedUnit.currentAudience}
+                             modality={sortedUnit.modality}
+                             id={sortedUnit.id}
+                        />
                         :<PublicUnit 
                             poster={sortedUnit.logo}
                             sourceType={sortedUnit.providerType}
                             providerTitle={sortedUnit.providerTitle}
                             id={sortedUnit.id}
-                        />}
-                    )
+                        />
+                    
                 })
             }
         </div>

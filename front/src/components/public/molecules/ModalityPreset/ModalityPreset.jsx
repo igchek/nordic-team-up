@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './ModalityPreset.module.scss';
+import styles from "./ModalityPreset.module.scss";
 import {useDispatch} from 'react-redux'
 import {useState} from 'react'
 import ModalityTemplate from '../../atoms/ModalityPreset/ModalityTemplate';

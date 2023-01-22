@@ -2,7 +2,7 @@ import React from "react";
 import PublicPoster from "../../atoms/PublicOutput/PublicPoster";
 import PublicSourceData from "../../atoms/PublicOutput/PublicSourceData";
 import PublicTitles from "../../atoms/PublicOutput/PublicTitles";
-import styles from './PublicUnit.module.scss'
+import styles from "./PublicUnit.module.scss"
 import { useDispatch, useSelector } from "react-redux";
 import focus, { setFocusedContent } from "../../../../store/focus";
 import { useEffect, useState } from "react";

@@ -1,10 +1,10 @@
 import React from "react";
-import styles from './InvolvedContent.module.scss'
+import styles from "./InvolvedContent.module.scss"
 import {useSelector, useDispatch} from 'react-redux'
 import { useState, useEffect } from "react";
-import InvolvedContentPoster from "../atoms/InvolvedContentPoster";
-import InvolvedTiitles from "../atoms/InvolvedTitles";
-import InvolvedData from "../atoms/InvolvedData";
+import InvolvedContentPoster from "../atoms/InvolvedContent/InvolvedContentPoster.jsx";
+import InvolvedTitles from "../atoms/InvolvedContent/InvolvedTitles.jsx";
+import InvolvedData from "../atoms/InvolvedContent/InvolvedData.jsx";
 import { setFocusedContent } from "../../../store/focus";
 import { getInvolvedContentById } from "../../../store/involvedContent";
 
@@ -36,7 +36,7 @@ const InvolvedContent = (props) => {
                     img={props.img} 
                     focus={isFocused}
                 />
-                <InvolvedTiitles 
+                <InvolvedTitles 
                     providerTitle={props.providerTitle} 
                     ContentTitle={props.ContentTitle} 
                     focus={isFocused}

@@ -1,5 +1,5 @@
-import React from 'react'
-import styles from './ContentFocus.module.scss'
+import React from "react"
+import styles from "./ContentFocus.module.scss"
 
 const ContentFocus = (props) => {
   return (

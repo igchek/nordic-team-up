@@ -22,6 +22,9 @@ const config = {
         //     entry: ['webpack.mock.ts']
         // }),
     },
+    resolve:{
+        extensions:['.js','.jsx','.ts','.tsx']
+    },
     devtool: 'source-map',
     plugins: [
         new HtmlWebpackPlugin({
@@ -83,4 +86,5 @@ module.exports = () => {
         config.mode = 'development';
     }
     return config;
+    
 };

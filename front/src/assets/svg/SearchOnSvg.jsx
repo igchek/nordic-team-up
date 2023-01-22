@@ -11,10 +11,10 @@ const SearchOnSvg = () => {
     </g>
     <defs>
     <linearGradient id="paint0_linear_25_2349" x1="24.2447" y1="0.464844" x2="24.2447" y2="46.5355" gradientUnits="userSpaceOnUse">
-    <stop stop-color="#E1C04C"/>
-    <stop offset="0.339006" stop-color="#A7E15C"/>
-    <stop offset="0.677568" stop-color="#5ED7D7"/>
-    <stop offset="1" stop-color="#A743A3"/>
+    <stop stopColor="#E1C04C"/>
+    <stop offset="0.339006" stopColor="#A7E15C"/>
+    <stop offset="0.677568" stopColor="#5ED7D7"/>
+    <stop offset="1" stopColor="#A743A3"/>
     </linearGradient>
     <clipPath id="clip0_25_2349">
     <rect width="47.255" height="46.0706" fill="white" transform="translate(0.617188 0.464844)"/>

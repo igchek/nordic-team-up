@@ -1,18 +1,19 @@
 import React from 'react'
-import styles from './SvgSelector.modules.css'
-import VibeOffSvg from '../../assets/svg/VibeOffSvg'
-import VibeOnSvg from '../../assets/svg/VibeOnSvg'
-import SyncOffSvg from '../../assets/svg/SyncOffSvg'
-import SyncOnSvg from '../../assets/svg/SyncOnSvg'
-import GigOffSvg from '../../assets/svg/GigOffSvg'
-import GigOnSvg from '../../assets/svg/GigOnSvg'
-import SearchOnSvg from '../../assets/svg/SearchOnSvg'
-import SearchOffSvg from '../../assets/svg/SearchOffSvg'
-import SettingsOnSvg from '../../assets/svg/SettingsOnSvg'
-import ArtistOnSvg from '../../assets/svg/ArtistOnSvg'
-import ArtistOffSvg from '../../assets/svg/ArtistOffSvg'
-import MutedSvg from '../../assets/svg/mutedSVG'
-import UnmutedSvg from '../../assets/svg/UnmutedSvg'
+import styles from './SvgSelector.module.scss';
+import VibeOffSvg from '../../assets/svg/VibeOffSvg.jsx'
+import VibeOnSvg from '../../assets/svg/VibeOnSvg.jsx'
+import SyncOffSvg from '../../assets/svg/SyncOffSvg.jsx'
+import SyncOnSvg from '../../assets/svg/SyncOnSvg.jsx'
+import GigOffSvg from '../../assets/svg/GigOffSvg.jsx'
+import GigOnSvg from '../../assets/svg/GigOnSvg.jsx'
+import SearchOnSvg from '../../assets/svg/SearchOnSvg.jsx'
+import SearchOffSvg from '../../assets/svg/SearchOffSvg.jsx'
+import SettingsOnSvg from '../../assets/svg/SettingsOnSvg.jsx'
+import ArtistOnSvg from '../../assets/svg/ArtistOnSvg.jsx'
+import ArtistOffSvg from '../../assets/svg/ArtistOffSvg.jsx'
+import MutedSvg from '../../assets/svg/mutedSVG.jsx'
+import UnmutedSvg from '../../assets/svg/UnmutedSvg.jsx'
+import GearSvg from '../../assets/svg/GearSvg.jsx'
 
 
 const SvgSelector = (props) => {
@@ -278,6 +279,35 @@ const SvgSelector = (props) => {
             )
         }
                 }
+    else if (props.value ==='unmuted')  {
+        switch(tier){
+            case 'standart':return(
+                <div className={styles.standart}> 
+                    <UnmutedSvg/>
+                </div>
+                        )
+            case 'big': return(
+                <div className={styles.big}> 
+                    <UnmutedSvg/>
+                </div>
+            )
+        }
+                }
+    else if (props.value ==='gear')  {
+        switch(tier){
+             case 'standart':return(
+                <div className={styles.standart}> 
+                    <GearSvg/>
+                 </div>
+                    )
+            case 'big': return(
+                <div className={styles.big}> 
+                     <GearSvg/>
+                </div>
+                    )
+         }
+                 }
+        
             }
   
 

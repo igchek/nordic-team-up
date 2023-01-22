@@ -1,6 +1,6 @@
 import React from "react";
 import SvgSelector from "../../commonUtils/SvgSelector";
-import styles from './SettingsGear.module.scss';
+import styles from "./SettingsGear.module.scss";
 import { useState } from "react";
 
 

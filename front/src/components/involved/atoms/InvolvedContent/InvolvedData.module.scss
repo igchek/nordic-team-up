@@ -1,4 +1,4 @@
-@use '../../../../stylesCommon/_templates.scss';
+@import "../../../../stylesCommon/_templates";
 
  .wrapper {
     @include _templates.minorUnitContentDataWrapper

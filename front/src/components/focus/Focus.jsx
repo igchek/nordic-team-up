@@ -1,9 +1,9 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import styles from './Focus.module.scss'
-import focus from '../../store/focus'
-import DashBoardSectionFocus from './DashboardFocus/DashBoardSectionFocus'
-import ContentFocus from './ContentFocus/ContentFocus'
+import styles from "./Focus.module.scss"
+import focus from "../../store/focus"
+import DashBoardSectionFocus from "./DashboardFocus/DashBoardSectionFocus"
+import ContentFocus from "./ContentFocus/ContentFocus"
 
 const Focus = () => {
     const focusedContent = useSelector(({focus})=>state.focusedContent)

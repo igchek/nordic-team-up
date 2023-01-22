@@ -1,4 +1,4 @@
-@use '../../../../stylesCommon/templates.scss';
+@use "../../../../stylesCommon/variables.scss";
 
 .activeWrapper{
     @include _templates.minorContent;

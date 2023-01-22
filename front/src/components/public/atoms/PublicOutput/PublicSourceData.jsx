@@ -1,11 +1,11 @@
 import React from "react";
-import styles from './PublicSourceData.module.scss'
+import styles from "./PublicSourceData.module.scss"
 import SvgSelector from "../../../commonUtils/SvgSelector";
 
 
 const PublicSourceData = (props) => {
    
-    if (props.sourceType ==='content'){
+    if (props.sourceType ==="content"){
         return (
             <div className={styles.dataWrapper}>
                 <div className={styles.modalityWrapper}>

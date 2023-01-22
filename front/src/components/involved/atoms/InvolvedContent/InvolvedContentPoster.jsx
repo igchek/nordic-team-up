@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './InvolvedContentPoster.module.scss'
+import styles from './InvolvedContentPoster.module.scss';
 
 
 const InvolvedContentPoster =(props) => {

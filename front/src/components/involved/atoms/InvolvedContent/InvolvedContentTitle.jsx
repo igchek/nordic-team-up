@@ -8,14 +8,14 @@ const InvolvedContentTitle = (props) => {
     if (isFocused === 'false'){
         return (
             <div className={styles.wrapperPassive}>
-                ${ContentTitle}
+                {ContentTitle}
             </div>
         )
     }
     else {
         return (
             <div className={styles.wrapperAvtive}>
-                ${ContentTitle}
+                {ContentTitle}
             </div>
         )
     }

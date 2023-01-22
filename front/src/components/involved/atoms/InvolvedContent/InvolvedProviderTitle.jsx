@@ -15,7 +15,7 @@ const InvolvedProviderTitle = (props) => {
     else {
         return (
             <div className={styles.wrapperActive}>
-                ${providerTitle}
+                {providerTitle}
             </div>
         )
     }
