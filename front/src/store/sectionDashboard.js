@@ -194,5 +194,5 @@ const sectionDashboardSlice =createSlice({
    
     )
 
-export const {setFormatContent, setFormats, setSubsections, setSubSectionedContent} = sectionDashboardSlice.actions
+export const {setFormatedContent, setFormats, setSubsections, setSubSectionedContent} = sectionDashboardSlice.actions
 export default sectionDashboardSlice.reducer

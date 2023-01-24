@@ -8,7 +8,7 @@ import involvedContent from "../../../store/involvedContent";
 
 
 const InvolvedOutput = (props) => {
-    const involvedContentArr = useSelector(({involvedContent}) => state.content)
+    const involvedContentArr = useSelector(({involvedContent}) => involvedContent.content)
 
 
 

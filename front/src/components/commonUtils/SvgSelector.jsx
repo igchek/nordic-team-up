@@ -13,7 +13,8 @@ import ArtistOnSvg from '../../assets/svg/ArtistOnSvg.jsx'
 import ArtistOffSvg from '../../assets/svg/ArtistOffSvg.jsx'
 import MutedSvg from '../../assets/svg/mutedSVG.jsx'
 import UnmutedSvg from '../../assets/svg/UnmutedSvg.jsx'
-import GearSvg from '../../assets/svg/GearSvg.jsx'
+import GearOffSvg from '../../assets/svg/GearOffSvg.jsx'
+import GearOnSvg from '../../assets/svg/GearOnSvg.jsx'
 
 
 const SvgSelector = (props) => {

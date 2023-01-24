@@ -11,7 +11,7 @@ import { getInvolvedContentById } from "../../../store/involvedContent";
 
 const InvolvedContent = (props) => {
     const dispatch = useDispatch()
-    const focusedContent = useSelector(({focus}) => state.focusedContent)
+    const focusedContent = useSelector(({focus}) => focus.focusedContent)
     const [isFocused, setFocus] = useState ('false')
 
     useEffect(()=>{

@@ -6,9 +6,9 @@ import DashBoardSectionFocus from "./DashboardFocus/DashBoardSectionFocus"
 import ContentFocus from "./ContentFocus/ContentFocus"
 
 const Focus = () => {
-    const focusedContent = useSelector(({focus})=>state.focusedContent)
-    const focusedSection = useSelector(({focus})=>state.focusedSection)
-    const focusedSubsection = useSelector(({focus})=>state.focusedSubsection)
+    const focusedContent = useSelector(({focus})=>focus.focusedContent)
+    const focusedSection = useSelector(({focus})=>focus.focusedSection)
+    const focusedSubsection = useSelector(({focus})=>focus.focusedSubsection)
 
 
     if (focusedContent===''){

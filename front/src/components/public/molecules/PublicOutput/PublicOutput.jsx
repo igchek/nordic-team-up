@@ -6,9 +6,9 @@ import PublicUnit from "./PublicUnit";
 import focus from "../../../../store/focus";
 
 const PublicOutput = () => {
-    const publicContent = useSelector(({publicContent})=> state.content)
-    const sortedPublicContent = useSelector(({publicContent})=> state.sortedContent)
-    const currentFocusedContent = useSelector(({focus})=> state.focusedContent)
+    const publicContent = useSelector(({publicContent})=> publicContent.content)
+    const sortedPublicContent = useSelector(({publicContent})=> publicContent.sortedContent)
+    const currentFocusedContent = useSelector(({focus})=> focus.focusedContent)
 
     return (
         <div className={styles.wrapper}>

@@ -12,8 +12,8 @@ import publicContent from "../../../../store/publicContent";
 
 const PublicUnit = (props) => {
     const UnitId = props.id
-    const currentFocusedContent = useSelector(({focus})=> state.focusedContent)
-    const publicContent = useSelector(({publicContent})=> state.content)
+    const currentFocusedContent = useSelector(({focus})=> focus.focusedContent)
+    const publicContent = useSelector(({publicContent})=> publicContent.content)
     const getContentbById = () => {
         for (let contentPiece of publicContent){
             if (contentPiece.id === UnitId){

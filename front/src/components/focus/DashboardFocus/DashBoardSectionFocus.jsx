@@ -1,17 +1,16 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import styles from './DashBoardSectionFocus.module.scss'
-import focus from '../../../store/focus'
-import sectionDashboard from '../../../store/sectionDashboard'
-import { useEffect, useMemo } from 'react'
+import { useEffect} from 'react'
 import DashSection from './molecules/DashSection'
 import DashItem from './molecules/DashItem'
+import {setFormatedContent} from '../../../store/sectionDashboard'
 
 const DashBoardSectionFocus = () => {
-    const currentFocusedSection = useSelector(({focus})=>state.focusedSection)
-    const currentFocusedSubsection = useSelector(({focus})=>state.focusedSubsection)
-    const AllContent = useMemo(()=>useSelector(({sectionDashboard})=>state.content), [currentFocusedSection, currentFocusedSubsection]) 
-    const subSectionedContent = useSelector(({sectionDashboard})=>state.subSectionedContent)
+    const currentFocusedSection = useSelector(({focus})=>focus.focusedSection)
+    const currentFocusedSubsection = useSelector(({focus})=>focus.focusedSubsection)
+    const AllContent = useSelector(({sectionDashboard})=>sectionDashboard.content)
+    const subSectionedContent = useSelector(({sectionDashboard})=>sectionDashboard.subSectionedContent)
     const dispatch = useDispatch()
     
     useEffect(() => {
@@ -21,7 +20,7 @@ const DashBoardSectionFocus = () => {
     }, [])
 
     if (!currentFocusedSection&&!currentFocusedSubsection ){
-        const AllFormats = useSelector(({sectionDashboard})=>state.formats)
+        const AllFormats = useSelector(({sectionDashboard})=>sectionDashboard.formats)
         return(
                 <div className={styles.sectionDashWrapper}>
                     {AllFormats.map(format=>{
@@ -33,7 +32,7 @@ const DashBoardSectionFocus = () => {
         )
     }
     else if (currentFocusedSection!==''&&!currentFocusedSubsection){
-        const AllSubsections = useSelector(({sectionDashboard})=> state.subSections)
+        const AllSubsections = useSelector(({sectionDashboard})=> sectionDashboard.subSections)
         return(
                 <div className={styles.sectionDashWrapper}>
                     {subSectionedContent.map(sub=>
@@ -46,8 +45,8 @@ const DashBoardSectionFocus = () => {
     }
     else if (currentFocusedSection!==''&&currentFocusedSubsection!==''){
         const subOutput = []
-        const currentSub = useSelector(({focus})=>state.focusedSubsection)
-        const AllSubs = useSelector(({sectionDashboard})=> state.subSections)
+        const currentSub = useSelector(({focus})=>focus.focusedSubsection)
+        const AllSubs = useSelector(({sectionDashboard})=> sectionDashboard.subSections)
         for (let sub of Object.entries(AllSubs)){
             if (Object.keys(sub)===currentSub){
                 subOutput=Object.values(sub)

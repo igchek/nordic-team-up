@@ -1,6 +1,5 @@
 import React from "react"
 
-import '../../../stylesCommon/_variables.scss'
 import styles from "./ContentFocus.module.scss"
 
 const ContentFocus = (props) => {
