@@ -1,10 +1,9 @@
-@import "../../../stylesCommon/templates.scss";
-
+@use "~/src/stylesCommon/templates";
 
 .sectionDashWrapper {
-    @include _templates.sectionOutput;
+    @include templates.sectionOutput;
 }
 
 .subsectionDashWrapper{
-    @include _templates.sectionOutput;
+    @include templates.sectionOutput;
 }

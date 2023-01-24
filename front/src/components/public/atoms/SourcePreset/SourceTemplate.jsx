@@ -1,5 +1,6 @@
 import React from "react"
 import styles from "./SourceTemplate.module.scss"
+import SvgSelector from "../../../commonUtils/SvgSelector"
 
 
 const SourceTemplate = (props) => {

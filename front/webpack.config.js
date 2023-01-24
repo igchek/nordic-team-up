@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpackMockServer = require("webpack-mock-server");
+const loader = require('sass-loader');
 
 const isProduction = process.env.NODE_ENV == 'production';
 
@@ -23,7 +24,7 @@ const config = {
         // }),
     },
     resolve:{
-        extensions:['.js','.jsx','.ts','.tsx']
+        extensions:['.js','.jsx','.ts','.tsx', '.sass', '.scss', '.module.scss']
     },
     devtool: 'source-map',
     plugins: [
@@ -49,12 +50,21 @@ const config = {
                 type: 'asset',
             },
             {
-                test: /\.scss$/,
+                test: /\.s[ac]css$/,
                 use: [
                     'style-loader',
                     'css-loader',
-                    'sass-loader',
+                    {
+                        loader:"sass-loader",
+                        options:{
+                            sassOptions:{
+                                indentWidth: 4,
+                                includePaths:[path.resolve(__dirname, "src/stylesCommon/")]
+                            }
+                        }
+                    }
                 ],
+
             },
             {
                 test: /\.module\.scss$/,
@@ -66,7 +76,15 @@ const config = {
                             modules: true,
                         },
                     },
-                    'sass-loader',
+                    {
+                        loader:"sass-loader",
+                        options:{
+                            sassOptions:{
+                                indentWidth: 4,
+                                includePaths:[path.resolve(__dirname, "src/stylesCommon/")]
+                            }
+                        }
+                    }
                 ],
             }
 

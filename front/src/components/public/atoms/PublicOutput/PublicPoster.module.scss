@@ -1,8 +1,8 @@
-@import "../../../../stylesCommon/templates.scss";
+@use "~/src/stylesCommon/templates";
 
 .wrapper{
-    @include _templates.minorUnitImageWrapper;
+    @include templates.minorUnitImageWrapper;
     .poster{
-        @include _templates.minorUnitImage;
+        @include templates.minorUnitImage;
     }
 }

@@ -1,21 +1,21 @@
-@import "../../../../stylesCommon/templates.scss";
+@use "~/src/stylesCommon/templates";
 
 .dataWrapper{
-    @include _templates.minorUnitContentDataWrapper;
+    @include templates.minorUnitContentDataWrapper;
     .modalityWrapper{
-        @include _templates.minorUnitModality;
+        @include templates.minorUnitModality;
     }
     .audienceWrapper{
-        @include _templates.minorUnitAudienceWrapper;
+        @include templates.minorUnitAudienceWrapper;
         .audienceSocketActive{
-            @include _templates.minorUnitAudienceSocket;
+            @include templates.minorUnitAudienceSocket;
             background:#A7A7A7;
-            @include _templates.FontsMinorUnitAudience;
+            @include templates.FontsMinorUnitAudience;
         }
         .audienceSocketPassive{
-            @include _templates.minorUnitAudienceSocket;
+            @include templates.minorUnitAudienceSocket;
             background:#ADADAD;
-            @include _templates.FontsMinorUnitAudience;
+            @include templates.FontsMinorUnitAudience;
         }
     }
 

@@ -1,8 +1,7 @@
-@import "../../../../stylesCommon/variables.scss";
+
 
 
 .wrapper {
-    @include _variables.primaryBackgroundColor;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -11,5 +10,5 @@
     padding: 0px;
     height: auto;
     width: 100%;
-    background: $primaryBackgroundColor;
+    background: #888686;
 }

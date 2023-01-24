@@ -2,6 +2,7 @@ import React from 'react'
 import styles from "./SourcePreset.module.scss"
 import {useDispatch} from 'react-redux'
 import {useState} from 'react'
+import SourceTemplate from '../../atoms/SourcePreset/SourceTemplate'
 
 const SourcePreset = () => {
     const dispatch = useDispatch()

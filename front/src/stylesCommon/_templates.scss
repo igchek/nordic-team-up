@@ -45,14 +45,13 @@
 // components
 
 @mixin minorUnitWrapper {
-    @include variables.minorUnitHeight;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     padding: 0px;
     box-sizing: border-box;
-    height: $minorUnitHeight;
+    height: 162px;
 }
 
 @mixin verticalOutput {
@@ -67,27 +66,23 @@
 }
 
 @mixin personalWrapper {
-    @include variables.verticalsColor;
-    @include variables.verticalsUpperHeight;
     padding: 0px;
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    background-color: $verticalsColor;
-    height: $verticalsUpperHeight;
+    background-color: rgba(136, 134, 134, 0.83);
+    height: 160px;
     
 }
 
 @mixin personalLowerVerticalWrapper {
-    @include variables.verticalsColor;
-    @include variables.verticalsLowerHeight;
-    height: $verticalsLowerHeight;
+    height: 124.67px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    background-color: $verticalsColor;
+    background-color: rgba(136, 134, 134, 0.83);
 
 }
 
@@ -226,7 +221,6 @@
 
     width: auto;
     height: 37.42px;
-    @include _templates.FontsDashSectionStandart;
     background: #D9D9D9;
     border-radius: 8.8458px;
 }
@@ -283,3 +277,4 @@
     padding: 0px;
     box-sizing: border-box;
 }
+

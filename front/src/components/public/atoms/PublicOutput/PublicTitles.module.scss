@@ -1,15 +1,14 @@
-@import "../../../../stylesCommon/templates.scss";
-
+@use "~/src/stylesCommon/templates";
 
 
 .passiveWrapper{
-    @include _templates.minorUnitTitleswrapper;
+    @include templates.minorUnitTitlesWrapper;
     .activeProviderTitle{
-        @include _templates.minorUnitUpperTitle;
+        @include templates.minorUnitUpperTitle;
         color:#FFFFFF;
     }
     .passiveProviderTitle{
-        @include _templates.minorUnitUpperTitle;
+        @include templates.minorUnitUpperTitle;
         color: #000000;
     }
     .activeSourceType{
@@ -27,23 +26,23 @@
         width:97px;
     }
     .activeContentTitle{
-        @include _templates.minorUnitUpperTitle;
+        @include templates.minorUnitUpperTitle;
         color:#FFFFFF;
     }
     .passiveContentTitle{
-        @include _templates.minorUnitUpperTitle;
+        @include templates.minorUnitUpperTitle;
         color: #000000;
     }
 }
 
 .activeWrapper{
-    @include _templates.minorUnitTitleswrapper;
+    @include templates.minorUnitTitlesWrapper;
     .activeProviderTitle{
-        @include _templates.minorUnitUpperTitle;
+        @include templates.minorUnitUpperTitle;
         color:#FFFFFF;
     }
     .passiveProviderTitle{
-        @include _templates.minorUnitUpperTitle;
+        @include templates.minorUnitUpperTitle;
         color: #000000;
     }
     .activeSourceType{
@@ -61,11 +60,11 @@
         width:97px;
     }
     .activeContentTitle{
-        @include _templates.minorUnitUpperTitle;
+        @include templates.minorUnitUpperTitle;
         color:#FFFFFF;
     }
     .passiveContentTitle{
-        @include _templates.minorUnitUpperTitle;
+        @include templates.minorUnitUpperTitle;
         color: #000000;
     }
 }

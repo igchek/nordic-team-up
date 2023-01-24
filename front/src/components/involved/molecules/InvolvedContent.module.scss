@@ -1,12 +1,12 @@
-@import "../../../stylesCommon/templates.scss";
+@use "~/src/stylesCommon/templates";
  
 
  .wrapperActive {
-    @include _templates.minorContent;
+    @include templates.minorContent;
     background: #888686;
  }
 
  .wrapperPassive {
-    @include _templates.minorContent;
+    @include templates.minorContent;
     
  }

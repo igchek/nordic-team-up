@@ -1,13 +1,14 @@
-@import "../../../../stylesCommon/_templates";
+@use "~/src/stylesCommon/templates";
+
 
 .wrapper {
-    @include _templates.minorUnitImageWrapper
+    @include templates.minorUnitImageWrapper
 }
 
 .posterActive {
-    @include _templates.minorUnitImage
+    @include templates.minorUnitImage
 }
 
 .posterPassive {
-    @include _templates.minorUnitImage
+    @include templates.minorUnitImage
 }

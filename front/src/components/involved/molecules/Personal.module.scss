@@ -1,10 +1,8 @@
-@import "../../../stylesCommon/templates.scss";
-@import "../../../stylesCommon/variables.scss";
+@use "~/src/stylesCommon/templates";
 
 .wrapper {
-    @include _variables.darkerBackgroundColor;
-    background: $darkerBackgroundColor;
-    @include _templates.FontsDashSectionStandart;
+    background: #888686;
+    @include templates.FontsDashSectionStandart;
     color: #ffffff;
     display: flex;
     flex-direction: row;

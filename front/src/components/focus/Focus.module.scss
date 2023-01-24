@@ -1,4 +1,4 @@
-@import "../../stylesCommon/variables.scss";
+
 
 .focusWrapper {
     display: flex;
@@ -7,21 +7,18 @@
     flex-direction: column;
     padding: 0px;
     .upperVerticalWrapper {
-        @include _variables.darkerBackgroundColor;
         width: 100%;
         height: 160px;
-        background: $darkerBackgroundColor;
+        background: #888686;
     }
     .centralWrapper {
-        @include _variables.primaryBackgroundColor;
         width: 100%;
         height: auto;
-        background: $primaryBackgroundColor;
+        background: #FFFFFF;
 
     }
     .lowerVerticalWrapper {
-        @include _variables.darkerBackgroundColor;
-        background: $darkerBackgroundColor;
+        background: #888686;
         width: 100%;
         height: 160px;
     }

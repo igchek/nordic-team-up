@@ -1,15 +1,14 @@
-@import "../../../../stylesCommon/_templates";
-
+@use "~/src/stylesCommon/templates";
 .wrapper {
-    @include _templates.minorUnitAudienceWrapper;
+    @include templates.minorUnitAudienceWrapper;
 }
 
 .passiveSocket {
-    @include _templates.minorUnitAudienceSocket;
+    @include templates.minorUnitAudienceSocket;
     background:#A7A7A7;
 }
 
 .activeSocket {
-    @include _templates.minorUnitAudienceSocket;
+    @include templates.minorUnitAudienceSocket;
     background:#ADADAD;
 }

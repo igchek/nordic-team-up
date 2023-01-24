@@ -1,11 +1,11 @@
-@import "../../../../stylesCommon/_templates";
+@use "~/src/stylesCommon/templates";
 
 .wrapperActive {
-    @include _templates.minorUnitLowerTitle;
+    @include templates.minorUnitLowerTitle;
     color:#BBBBBB;
 }
 
 .wrapperPassive {
-    @include _templates.minorUnitLowerTitle;
+    @include templates.minorUnitLowerTitle;
     color:#C0C0C0;
 }

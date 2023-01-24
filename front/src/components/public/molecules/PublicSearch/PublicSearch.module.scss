@@ -1,8 +1,7 @@
-@import "../../../../stylesCommon/variables.scss";
+
 
 .wrapper{
-    @include _variables.darkerBackgroundColor;
-    background: $darkerBackgroundColor;
+    background: #888686;
 
     display: flex;
     flex-direction: row;

@@ -1,6 +1,7 @@
-@import "../../../../stylesCommon/_templates";
+@use "~/src/stylesCommon/templates";
+
  .wrapper {
-    @include _templates.minorUnitModality
+    @include templates.minorUnitModality
 
  }
 
