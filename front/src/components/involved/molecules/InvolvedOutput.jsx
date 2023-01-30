@@ -1,15 +1,17 @@
 import React from "react";
 import styles from "./InvolvedOutput.module.scss"
 import { useSelector } from "react-redux";
-import InvolvedContent from "./involvedContent";
-import involvedContent from "../../../store/involvedContent";
+import InvolvedContent from "./InvolvedContent";
 
 
 
 
 const InvolvedOutput = (props) => {
     const involvedContentArr = useSelector(({involvedContent}) => involvedContent.content)
-
+    for (let piece of involvedContentArr){
+        console.log(piece.currentAudience)
+        console.log(`${Object.values(piece)}`)
+    }
 
 
 
@@ -18,7 +20,7 @@ const InvolvedOutput = (props) => {
     return(
         <div className={styles.wrapper}>
             {involvedContentArr.map(contentUnit=> {
-                <InvolvedContent 
+                return <InvolvedContent 
                     img={contentUnit.promoLogo}
                     providerTitle={contentUnit.author}
                     ContentTitle={contentUnit.title}
@@ -27,6 +29,7 @@ const InvolvedOutput = (props) => {
                     id={contentUnit.id}
                 />
             })}
+            
         </div>
     )
 

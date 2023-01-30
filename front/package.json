@@ -37,6 +37,7 @@
     "file-loader": "^6.2.0",
     "git-filter-repo": "^0.0.30",
     "handy-svg": "^1.0.8",
+    "immer": "^9.0.19",
     "node-sass": "^8.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

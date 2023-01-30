@@ -1,11 +1,11 @@
 @use "~/src/stylesCommon/templates";
 
 .wrapperActive {
-    @include templates.minorUnitLowerTitle;
-    color:#BBBBBB;
+    @include templates.minorUnitLowerTitle($isActive:true);
+    @include templates.FontsDashSectionStandart;
 }
 
 .wrapperPassive {
-    @include templates.minorUnitLowerTitle;
-    color:#C0C0C0;
+    @include templates.minorUnitLowerTitle($isActive:false);
+    @include templates.FontsDashSectionStandart;
 }

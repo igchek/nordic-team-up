@@ -7,13 +7,10 @@ const initialState = {
          author:'Black Keys', 
          currentAudience:236, 
          modality:'vibe', 
-         promoLogo:'../../../../assets/PromoLogo/BlackKeys.jpg'},
-        {id:'2',
-         title:'28.11 MSC',
-         author:'Black Keys', 
-         currentAudience:236, 
-         modality:'vibe', 
-         promoLogo:'../../../../assets/PromoLogo/BlackKeys.jpg'}
+         promoLogo:'../../../../assets/PromoLogo/BlackKeys.jpg',
+         artistLogo:'../../../../assets/ArtistLogo/BlackKeys.jpg'
+
+        }
          
     ],
     involvedSearchSettings: []

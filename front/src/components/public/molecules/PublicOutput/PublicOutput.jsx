@@ -1,9 +1,8 @@
 import React from "react";
 import styles from "./PublicOutput.module.scss"
 import { useSelector, useDispatch } from "react-redux";
-import publicContent from "../../../../store/publicContent";
 import PublicUnit from "./PublicUnit";
-import focus from "../../../../store/focus";
+import ModalityPreset from "../ModalityPreset/ModalityPreset";
 
 const PublicOutput = () => {
     const publicContent = useSelector(({publicContent})=> publicContent.content)
@@ -12,6 +11,7 @@ const PublicOutput = () => {
 
     return (
         <div className={styles.wrapper}>
+            <ModalityPreset/>
             {
                 sortedPublicContent ?
                 sortedPublicContent.map(sortedUnit =>{

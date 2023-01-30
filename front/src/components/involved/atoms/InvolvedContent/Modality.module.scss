@@ -1,7 +1,10 @@
 @use "~/src/stylesCommon/templates";
 
  .wrapper {
-    @include templates.minorUnitModality
+    @include templates.minorUnitModality;
+    .modalitySocketMUD {
+      @include templates.modalitySocketMUD;
+    }
 
  }
 

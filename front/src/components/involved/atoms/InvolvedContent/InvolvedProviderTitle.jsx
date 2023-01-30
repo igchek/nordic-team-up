@@ -7,7 +7,7 @@ const InvolvedProviderTitle = (props) => {
     if (isFocused ==='false'){
         return (
             <div className={styles.wrapperPassive}>
-                ${providerTitle}
+                {providerTitle}
             </div>
         )
     }

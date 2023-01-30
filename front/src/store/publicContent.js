@@ -7,9 +7,9 @@ const initialState = {
          author:'Cookey monster', 
          currentAudience:157, 
          modality:'vibe', 
-         promoLogo:'../../../../assets/PromoLogo/CookeyMonster.jpg',
+         promoLogo:'../../../../assets/PromoLogo/CookieMonster.jpg',
          sourceType:'content',
-         authorLogo:'../../../../assets/ArtistLogo/CoockeyMonster.jpg'    
+         authorLogo:'../../../../assets/ArtistLogo/CookieMonster.jpg'    
         },
          {id:'4',
          title:'Debasement',

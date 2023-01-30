@@ -1,0 +1,27 @@
+@use "~/src/stylesCommon/templates";
+
+.majorWrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 0%;
+    .upperVerticals{
+        @include templates.verticalHeights($upperImplied:true);
+        width: 100%;
+        background: #888686;
+    }
+    .centralWrappper{
+        background: white;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+
+    }
+    .lowerVerticals{
+        @include templates.verticalHeights($upperImplied:false);
+        background:#888686;
+        width: 100%;
+    }
+}

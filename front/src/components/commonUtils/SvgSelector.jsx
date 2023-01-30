@@ -112,7 +112,7 @@ const SvgSelector = (props) => {
         )
     }
             }
-    else if (props.value ==='artst' && props.focus ==='true')  {
+    else if (props.value ==='artist' && props.focus ==='true')  {
         switch(tier){
             case 'standart':return(
                 <div className={styles.standart}> 
@@ -126,7 +126,7 @@ const SvgSelector = (props) => {
             )
         }
                 }
-    else if (props.value ==='artst' && props.focus ==='false')  {
+    else if (props.value ==='artist' && props.focus ==='false')  {
         switch(tier){
             case 'standart':return(
                 <div className={styles.standart}> 

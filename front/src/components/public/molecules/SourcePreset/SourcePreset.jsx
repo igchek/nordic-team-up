@@ -1,50 +1,21 @@
 import React from 'react'
 import styles from "./SourcePreset.module.scss"
-import {useDispatch} from 'react-redux'
-import {useState} from 'react'
 import SourceTemplate from '../../atoms/SourcePreset/SourceTemplate'
 
 const SourcePreset = () => {
-    const dispatch = useDispatch()
-    const [isArtistPreset, setArtistPreset] = useState('false')
-    const [isVenuePreset, setVenuePreset] = useState('false')
-
-    const artistPreset = () => {
-        if (isArtistPreset==='false'){
-            setArtistPreset('true')
-            dispatch(setSortByArtistPreset(isArtistPreset))
-        }
-        else {
-            setArtistPreset('false')
-            dispatch(setSortByArtistPreset(isArtistPreset))
-        }
-    }
-
-    const venuePreset = () => {
-        if (isVenuePreset==='false'){
-            setVenuePreset('true')
-            dispatch(setSortByVenuePreset(isVenuePreset))
-        }
-        else {
-            setVenuePreset('false')
-            dispatch(setSortByVenuePreset(isVenuePreset))
-        }
-    }
 
 
 
   return (
             <div className={styles.wrapper}>
                         <SourceTemplate
-                            onClick={artistPreset}
                             value='artist'
-                            focus={isArtistPreset}
+                            focus='false'
                             tier='normal'
                         />
                         <SourceTemplate
-                            onClick={venuePreset}
                             value='venue'
-                            focus={isVenuePreset}
+                            focus='false'
                             tier='normal'
                         />
             </div>

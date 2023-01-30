@@ -1,11 +1,16 @@
-
+@use "~/src/stylesCommon/templates";
 
 .wrapper{
-    width: 50%;
     height: 100%;
+    width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 15px 48px;
-    gap: 10px;
+    padding: 0px;
+    gap: 0px;
+    max-width: 0px;
+    background: #888686;
+    .modalityPresetSocket{
+        @include templates.modalityPresetSocket;
+    }
 }

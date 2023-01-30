@@ -3,9 +3,13 @@
 .wrapper {
     background: #888686;
     @include templates.FontsDashSectionStandart;
-    color: #ffffff;
+    color: white;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    justify-content: center;
+    width: 100%;
+    @include templates.verticalHeights($upperImplied:true);
+    max-height: 10vh;
+    box-sizing: border-box;
+    flex-grow: 0;
 }

@@ -8,14 +8,14 @@
     .audienceWrapper{
         @include templates.minorUnitAudienceWrapper;
         .audienceSocketActive{
-            @include templates.minorUnitAudienceSocket;
-            background:#A7A7A7;
+            @include templates.minorUnitAudienceSocket($isActive:true);
             @include templates.FontsMinorUnitAudience;
+            color: white;
         }
         .audienceSocketPassive{
-            @include templates.minorUnitAudienceSocket;
-            background:#ADADAD;
+            @include templates.minorUnitAudienceSocket($isActive:true);
             @include templates.FontsMinorUnitAudience;
+            color: black;
         }
     }
 
@@ -23,10 +23,11 @@
 
 .sourceTypeWrapper{
     height: 100%;
-    width: 97px;
+    width: 20%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 0px;
+    margin: 0px;
 }

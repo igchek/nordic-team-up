@@ -1,10 +1,12 @@
+@use "~/src/stylesCommon/templates";
+
 .sectionWrapper {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     padding: 0px;
+    margin: 0px;
     position: relative;
-    width: 554px;
-    height: 100vh;
+    @include templates.sectionWidth($isSideline:true);
+    height: 100%;
 }
 

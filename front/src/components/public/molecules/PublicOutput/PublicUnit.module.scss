@@ -1,10 +1,9 @@
 @use "~/src/stylesCommon/templates";
 
 .activeWrapper{
-    @include templates.minorContent;
-    background: #888686;
+    @include templates.minorContent($isActive:true);
 }
 
 .passiveWrapper{
-    @include templates.minorContent;
+    @include templates.minorContent($isActive:false);
 }

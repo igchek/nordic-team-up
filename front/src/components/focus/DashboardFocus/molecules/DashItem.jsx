@@ -3,16 +3,21 @@ import DashItemModality from '../atoms/DashItemModality'
 import DashItemTagList from '../atoms/DashItemTagList'
 import DashItemTitle from '../atoms/DashItemTitle'
 import styles from './DashSection.module.scss'
-import { useState } from 'react'
+import { useRef, useEffect } from 'react'
 
 const DashItem = (props) => {
+    const cardImg = useRef(null)
+    useEffect(
+        ()=>{
+            cardImg.current.style.backgroundImage = `${props.promoPoster}`
+        },
+        []
+    )
     const cardId = props.id
-    styles.cardWrapperActive={...styles.cardWrapperActive, 'background-image':`${props.promoPoster};`}
-    styles.cardWrapperPassive={...styles.cardWrapperPassive, 'background-image':`${props.promoPoster};`}
 
   return (
     <div  className={props.focus?styles.cardWrapperActive:styles.cardWrapperPasssive}>
-        <div className={props.focus?styles.sectionModalityWrapperActive:styles.sectionModalityWrapperPassive}>
+        <div ref={cardImg} className={props.focus?styles.sectionModalityWrapperActive:styles.sectionModalityWrapperPassive}>
         <DashItemModality 
             focus={props.focus}
             modality={props.modality}

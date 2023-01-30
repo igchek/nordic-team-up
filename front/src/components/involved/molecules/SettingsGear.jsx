@@ -9,19 +9,24 @@ const SettingsGear = () => {
     const click = (event) => {
         if (isFocused){
             setFocus('false')
+            console.log('click')
         }
         else {
             setFocus('true')
+            console.log('click')
         }
     }
 
     return (
         <div className={styles.wrapper}>
-            <SvgSelector
-                value='gear'
-                tier='standart'
-                focus={isFocused}
-            />
+            <div onClick={click} className={styles.socket}>
+                <SvgSelector
+                    value='gear'
+                    tier='standart'
+                    focus={isFocused}
+                />
+            </div>
+
         </div>
     )
 }

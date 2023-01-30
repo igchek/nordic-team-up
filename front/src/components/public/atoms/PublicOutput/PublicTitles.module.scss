@@ -4,67 +4,43 @@
 .passiveWrapper{
     @include templates.minorUnitTitlesWrapper;
     .activeProviderTitle{
-        @include templates.minorUnitUpperTitle;
-        color:#FFFFFF;
+        @include templates.minorUnitUpperTitle($isActive:true);
     }
     .passiveProviderTitle{
-        @include templates.minorUnitUpperTitle;
-        color: #000000;
+        @include templates.minorUnitUpperTitle($isActive:false);
     }
     .activeSourceType{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        width:97px;
+        @include templates.minorUnitLowerTitle($isActive:true);
     }
     .passiveSourceType{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        width:97px;
+        @include templates.minorUnitLowerTitle($isActive:false);
     }
     .activeContentTitle{
-        @include templates.minorUnitUpperTitle;
-        color:#FFFFFF;
+        @include templates.minorUnitUpperTitle($isActive:true);
     }
     .passiveContentTitle{
-        @include templates.minorUnitUpperTitle;
-        color: #000000;
+        @include templates.minorUnitUpperTitle($isActive:false);
     }
 }
 
 .activeWrapper{
     @include templates.minorUnitTitlesWrapper;
     .activeProviderTitle{
-        @include templates.minorUnitUpperTitle;
-        color:#FFFFFF;
+        @include templates.minorUnitUpperTitle($isActive:true);
     }
     .passiveProviderTitle{
-        @include templates.minorUnitUpperTitle;
-        color: #000000;
+        @include templates.minorUnitUpperTitle($isActive:false);
     }
     .activeSourceType{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        width:97px;
+        @include templates.minorUnitLowerTitle($isActive:true);
     }
     .passiveSourceType{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        width:97px;
+        @include templates.minorUnitLowerTitle($isActive:true);
     }
     .activeContentTitle{
-        @include templates.minorUnitUpperTitle;
-        color:#FFFFFF;
+        @include templates.minorUnitUpperTitle($isActive:true);
     }
     .passiveContentTitle{
-        @include templates.minorUnitUpperTitle;
-        color: #000000;
+        @include templates.minorUnitUpperTitle($isActive:false);
     }
 }

@@ -4,7 +4,7 @@ const MutedSvg = () => {
   return (
     <div width='100%' height='100%'>
         <svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" 
-			width="800px" height="800px" viewBox="0 0 306.257 306.257"
+			width="100%" height="100%" viewBox="0 0 306.257 306.257"
 			xmlSpace="preserve">
 		<g>
 			<path d="M19.747,121.968v70.068c0,21.499,17.43,38.924,38.924,38.924h40.703l112.088,73.612

@@ -2,11 +2,11 @@
  
 
  .wrapperActive {
-    @include templates.minorContent;
-    background: #888686;
+    @include templates.minorContent($isActive:true);
+    @include templates.minorUnitSelectionColor($isSelected: true);
  }
 
  .wrapperPassive {
-    @include templates.minorContent;
-    
+    @include templates.minorContent($isActive:false);
+    @include templates.minorUnitSelectionColor($isSelected: false);
  }

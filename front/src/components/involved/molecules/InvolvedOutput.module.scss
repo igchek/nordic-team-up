@@ -2,10 +2,12 @@
 .wrapper {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
+    align-items: center;
+    justify-content: flex-start;
     padding: 0px;
     height: auto;
     width: 100%;
     background: white;
+    height:100vh;
+    box-sizing: border-box;
 }

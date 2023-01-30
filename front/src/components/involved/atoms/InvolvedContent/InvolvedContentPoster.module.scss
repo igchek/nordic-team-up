@@ -6,9 +6,9 @@
 }
 
 .posterActive {
-    @include templates.minorUnitImage
+    @include templates.minorUnitImage($isActive:true)
 }
 
 .posterPassive {
-    @include templates.minorUnitImage
+    @include templates.minorUnitImage($isActive:false)
 }

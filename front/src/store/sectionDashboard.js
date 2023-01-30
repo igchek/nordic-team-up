@@ -15,13 +15,13 @@ const initialState = {
          author:'Cookey monster', 
          currentAudience:157, 
          modality:'vibe', 
-         promoLogo:'../../../../assets/PromoLogo/CookeyMonster.jpg',
+         promoLogo:'../../../../assets/PromoLogo/CookieMonster.jpg',
          sourceType:'content',
          format:[
             'rave'
          ],
          meta:[],
-         authorLogo:'../../../../assets/ArtistLogo/CoockeyMonster.jpg'    
+         authorLogo:'../../../../assets/ArtistLogo/CoockieMonster.jpg'    
         },
          {id:'4',
          title:'Debasement',

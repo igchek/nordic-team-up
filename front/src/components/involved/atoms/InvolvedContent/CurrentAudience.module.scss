@@ -4,11 +4,11 @@
 }
 
 .passiveSocket {
-    @include templates.minorUnitAudienceSocket;
-    background:#A7A7A7;
+    @include templates.minorUnitAudienceSocket($isActive:false);
+    @include templates.FontsMinorUnitAudience;
 }
 
 .activeSocket {
-    @include templates.minorUnitAudienceSocket;
-    background:#ADADAD;
+    @include templates.minorUnitAudienceSocket($isActive:trues);
+    @include templates.FontsMinorUnitAudience;
 }

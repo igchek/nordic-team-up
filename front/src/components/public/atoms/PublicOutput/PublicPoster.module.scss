@@ -3,6 +3,6 @@
 .wrapper{
     @include templates.minorUnitImageWrapper;
     .poster{
-        @include templates.minorUnitImage;
+        @include templates.minorUnitImage($isActive:true);
     }
 }

@@ -12,14 +12,16 @@ import { getInvolvedContentById } from "../../../store/involvedContent";
 const InvolvedContent = (props) => {
     const dispatch = useDispatch()
     const focusedContent = useSelector(({focus}) => focus.focusedContent)
-    const [isFocused, setFocus] = useState ('false')
+    const [isFocused, setFocus] = useState (false)
 
     useEffect(()=>{
         if(props.id !== focusedContent.id && focusedContent){
-            setFocus('false')
+            setFocus(false)
+        }
+        else if (props.id === focusedContent.id && focusedContent){
+            setFocus(true)
         }
     },[focusedContent])
-
 
     const click = (event) => {
         if(props.id === focusedContent.id && focusedContent){
@@ -27,10 +29,12 @@ const InvolvedContent = (props) => {
         }
         else if ((props.id !==focusedContent.id && focusedContent)||(!focusedContent)){
             dispatch(setFocusedContent(getInvolvedContentById(props.id)))
-            setFocus('true')
+            setFocus(true)
         }
     }
+    console.log(`${props.ContentTitle} focus is ${isFocused}`)
         return(
+            
             <div onClick={click} className={isFocused?styles.wrapperActive:styles.wrapperPassive}>
                 <InvolvedContentPoster 
                     img={props.img} 
