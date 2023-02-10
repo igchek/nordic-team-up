@@ -4,6 +4,9 @@
     @include templates.minorUnitContentDataWrapper;
     .modalityWrapper{
         @include templates.minorUnitModality;
+        .modalitySocket {
+            @include templates.modalitySocketMUD;
+        }
     }
     .audienceWrapper{
         @include templates.minorUnitAudienceWrapper;
@@ -13,9 +16,9 @@
             color: white;
         }
         .audienceSocketPassive{
-            @include templates.minorUnitAudienceSocket($isActive:true);
+            @include templates.minorUnitAudienceSocket($isActive:false);
             @include templates.FontsMinorUnitAudience;
-            color: black;
+            color: white;
         }
     }
 

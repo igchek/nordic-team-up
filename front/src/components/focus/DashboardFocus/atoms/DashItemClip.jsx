@@ -16,7 +16,7 @@ const DashItemClip = (props) => {
 
     return (
     <div className={styles.clipWrapper}>
-        <video className={styles.clip} onClick={mute} src={props.video}  ref={isMuted}></video>
+        <video className={styles.clip} onClick={()=>mute()} src={props.video}  ref={isMuted}></video>
         <div className={styles.clipDescriptionWrapper}>
             <div className={styles.clipAuthorDecription}>
                 <img className={styles.authorLogo} src={props.authorLogo} alt="authorLogo" />
@@ -29,19 +29,11 @@ const DashItemClip = (props) => {
             </div>
         </div>
         <div className={styles.muteSocket}>
-            {isMuted?
-                <SvgSelector
-                    onClick={()=>{isMuted.current='true'}}
-                    value='muted'
-                    tier='standart'
-                />
-            :
-                <SvgSelector
-                    onClick={()=>{setMute('true')}}
-                    value='unmuted'
-                    tier='standart'
-                />
-            }
+            <SvgSelector
+                focus={true}
+                tier='standart'
+                value='mute'
+            />
         </div>
     </div>
   )

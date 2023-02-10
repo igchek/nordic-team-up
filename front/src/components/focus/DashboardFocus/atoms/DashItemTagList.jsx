@@ -9,7 +9,7 @@ const DashItemTagList = (props) => {
         {
             tagArr.map(tag=>{return(
                 <div className={styles.tagItem}>
-                    {tag.value}
+                    {Object.values(tag)}
                 </div>
             )})
         }

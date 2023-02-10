@@ -5,14 +5,14 @@ import { useState } from "react";
 
 
 const SettingsGear = () => {
-    const [isFocused, setFocus] =useState ('false')
+    const [isFocused, setFocus] =useState (false)
     const click = (event) => {
         if (isFocused){
-            setFocus('false')
+            setFocus(false)
             console.log('click')
         }
         else {
-            setFocus('true')
+            setFocus(true)
             console.log('click')
         }
     }

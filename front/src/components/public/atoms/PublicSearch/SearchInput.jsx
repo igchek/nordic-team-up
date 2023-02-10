@@ -2,7 +2,7 @@ import React from 'react';
 import styles from "./SearchInput.module.scss";
 import {useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {setSearchIndexInput} from '../../../../store/publicContent';
+// import {setSearchIndexInput} from '../../../../store/publicContent';
 
 
 
@@ -12,7 +12,7 @@ const SearchInput = () => {
   const [searchValue, setSearch] = useState('')
 
   useEffect(() =>{
-    dispatch(setSearchIndexInput(searchValue))
+    // dispatch(setSearchIndexInput(searchValue))
 
 
   },[searchValue])

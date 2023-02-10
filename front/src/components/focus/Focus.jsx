@@ -1,7 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import styles from "./Focus.module.scss"
-import focus from "../../store/focus"
 import DashBoardSectionFocus from "./DashboardFocus/DashBoardSectionFocus"
 import ContentFocus from "./ContentFocus/ContentFocus"
 
@@ -11,7 +10,7 @@ const Focus = () => {
     const focusedSubsection = useSelector(({focus})=>focus.focusedSubsection)
 
 
-    if (focusedContent===''){
+    if (!focusedContent.length>0){
     return (
       <div className={styles.focusWrapper}>
           <div className={styles.upperVerticalWrapper}>
@@ -26,6 +25,7 @@ const Focus = () => {
       </div>
   )}
   else {
+    return(
     <div className={styles.focusWrapper}>
           <div className={styles.upperVerticalWrapper}>
 
@@ -36,7 +36,7 @@ const Focus = () => {
           <div className={styles.lowerVerticalWrapper}>
             
           </div>
-      </div>
+      </div>)
   }
 }
 

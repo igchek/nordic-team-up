@@ -36,5 +36,13 @@ const InvolvedContentSlice = createSlice({
     }
 })
 
+export const pickInvolved = (id)=>{
+    for (let c of initialState.content){
+        if (c.id===id){
+            return c
+        }
+    }
+}
+
 export const {setInvolvedContent, setInvolvolvedSearchSettings, getInvolvedContentById} = InvolvedContentSlice.actions
 export default InvolvedContentSlice.reducer

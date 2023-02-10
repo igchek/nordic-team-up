@@ -8,10 +8,7 @@ import InvolvedContent from "./InvolvedContent";
 
 const InvolvedOutput = (props) => {
     const involvedContentArr = useSelector(({involvedContent}) => involvedContent.content)
-    for (let piece of involvedContentArr){
-        console.log(piece.currentAudience)
-        console.log(`${Object.values(piece)}`)
-    }
+    
 
 
 

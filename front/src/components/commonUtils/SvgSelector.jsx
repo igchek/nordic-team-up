@@ -15,12 +15,14 @@ import MutedSvg from '../../assets/svg/mutedSVG.jsx'
 import UnmutedSvg from '../../assets/svg/UnmutedSvg.jsx'
 import GearOffSvg from '../../assets/svg/GearOffSvg.jsx'
 import GearOnSvg from '../../assets/svg/GearOnSvg.jsx'
+import VenueOffSvg from '../../assets/svg/VenueOffSvg';
+import VenueOnSvg from '../../assets/svg/VenueOnSvg';
+import SettingsOffSvg from '../../assets/svg/SettingsOffSvg';
 
 
 const SvgSelector = (props) => {
-    const tier = props.tier
-  if (props.value ==='vibe' && props.focus ==='false')  {
-    switch(tier){
+  if (props.value ==='vibe' && !props.focus)  {
+    switch(props.tier){
         case 'standart':return(
             <div className={styles.standart}> 
                 <VibeOffSvg/>
@@ -36,8 +38,8 @@ const SvgSelector = (props) => {
             
       
 
-  else if (props.value ==='vibe' && props.focus ==='true')  {
-    switch(tier){
+  else if (props.value ==='vibe' && props.focus )  {
+    switch(props.tier){
         case 'standart':return(
             <div className={styles.standart}> 
                 <VibeOnSvg/>
@@ -52,8 +54,8 @@ const SvgSelector = (props) => {
             }
       
 
-  else if (props.value ==='sync' && props.focus ==='false')  {
-     switch(tier){
+  else if (props.value ==='sync' && !props.focus)  {
+     switch(props.tier){
         case 'standart':return(
             <div className={styles.standart}> 
                 <SyncOffSvg/>
@@ -67,8 +69,8 @@ const SvgSelector = (props) => {
     }
             }
       
-  else if (props.value ==='sync' && props.focus ==='true')  {
-    switch(tier){
+  else if (props.value ==='sync' && props.focus )  {
+    switch(props.tier){
         case 'standart':return(
             <div className={styles.standart}> 
                 <SyncOnSvg/>
@@ -83,8 +85,8 @@ const SvgSelector = (props) => {
             }
       
   
-  else if (props.value ==='gig' && props.focus ==='false')  {
-    switch(tier){
+  else if (props.value ==='gig' && !props.focus)  {
+    switch(props.tier){
         case 'standart':return(
             <div className={styles.standart}> 
                 <GigOffSvg/>
@@ -98,8 +100,8 @@ const SvgSelector = (props) => {
     }
             }
 
-  else if (props.value ==='gig' && props.focus ==='true')  {
-    switch(tier){
+  else if (props.value ==='gig' && props.focus )  {
+    switch(props.tier){
         case 'standart':return(
             <div className={styles.standart}> 
                 <GigOnSvg/>
@@ -112,8 +114,8 @@ const SvgSelector = (props) => {
         )
     }
             }
-    else if (props.value ==='artist' && props.focus ==='true')  {
-        switch(tier){
+    else if (props.value ==='artist' && props.focus )  {
+        switch(props.tier){
             case 'standart':return(
                 <div className={styles.standart}> 
                     <ArtistOnSvg/>
@@ -126,8 +128,8 @@ const SvgSelector = (props) => {
             )
         }
                 }
-    else if (props.value ==='artist' && props.focus ==='false')  {
-        switch(tier){
+    else if (props.value ==='artist' && !props.focus)  {
+        switch(props.tier){
             case 'standart':return(
                 <div className={styles.standart}> 
                     <ArtistOffSvg/>
@@ -140,8 +142,8 @@ const SvgSelector = (props) => {
             )
         }
                 }
-     else if (props.value ==='venue' && props.focus ==='true')  {
-        switch(tier){
+     else if (props.value ==='venue' && props.focus )  {
+        switch(props.tier){
             case 'standart':return(
                 <div className={styles.standart}> 
                     <VenueOnSvg/>
@@ -154,8 +156,8 @@ const SvgSelector = (props) => {
             )
         }
                 }
-    else if (props.value ==='venue' && props.focus ==='false')  {
-        switch(tier){
+    else if (props.value ==='venue' && !props.focus)  {
+        switch(props.tier){
             case 'standart':return(
                 <div className={styles.standart}> 
                     <VenueOffSvg/>
@@ -168,8 +170,8 @@ const SvgSelector = (props) => {
             )
         }
                 }
-    else if (props.value ==='gear' && props.focus ==='true')  {
-        switch(tier){
+    else if (props.value ==='gear' && props.focus )  {
+        switch(props.tier){
             case 'standart':return(
                 <div className={styles.standart}> 
                     <GearOnSvg/>
@@ -182,8 +184,8 @@ const SvgSelector = (props) => {
             )
         }
                 }
-    else if (props.value ==='gear' && props.focus ==='false')  {
-        switch(tier){
+    else if (props.value ==='gear' && !props.focus)  {
+        switch(props.tier){
             case 'standart':return(
                 <div className={styles.standart}> 
                     <GearOffSvg/>
@@ -196,8 +198,8 @@ const SvgSelector = (props) => {
             )
         }
                 }
-    else if (props.value ==='settings' && props.focus ==='true')  {
-        switch(tier){
+    else if (props.value ==='settings' && props.focus )  {
+        switch(props.tier){
             case 'standart':return(
                 <div className={styles.standart}> 
                     <SettingsOnSvg/>
@@ -210,8 +212,8 @@ const SvgSelector = (props) => {
             )
         }
                 }
-    else if (props.value ==='settings' && props.focus ==='false')  {
-        switch(tier){
+    else if (props.value ==='settings' && !props.focus)  {
+        switch(props.tier){
             case 'standart':return(
                 <div className={styles.standart}> 
                     <SettingsOffSvg/>
@@ -224,8 +226,8 @@ const SvgSelector = (props) => {
             )
         }
                 }
-    else if (props.value ==='search' && props.focus ==='false')  {
-        switch(tier){
+    else if (props.value ==='search' && !props.focus)  {
+        switch(props.tier){
             case 'standart':return(
                 <div className={styles.standart}> 
                     <SearchOffSvg/>
@@ -238,8 +240,8 @@ const SvgSelector = (props) => {
             )
         }
                 }
-    else if (props.value ==='search' && props.focus ==='true')  {
-        switch(tier){
+    else if (props.value ==='search' && props.focus )  {
+        switch(props.tier){
             case 'standart':return(
                 <div className={styles.standart}> 
                     <SearchOnSvg/>
@@ -253,7 +255,7 @@ const SvgSelector = (props) => {
         }
                 }
     else if (props.value ==='muted')  {
-        switch(tier){
+        switch(props.tier){
             case 'standart':return(
                 <div className={styles.standart}> 
                     <MutedSvg/>
@@ -267,7 +269,7 @@ const SvgSelector = (props) => {
         }
                 }
     else if (props.value ==='unmuted')  {
-        switch(tier){
+        switch(props.tier){
             case 'standart':return(
                 <div className={styles.standart}> 
                     <UnmutedSvg/>
@@ -281,7 +283,7 @@ const SvgSelector = (props) => {
         }
                 }
     else if (props.value ==='unmuted')  {
-        switch(tier){
+        switch(props.tier){
             case 'standart':return(
                 <div className={styles.standart}> 
                     <UnmutedSvg/>
@@ -295,7 +297,7 @@ const SvgSelector = (props) => {
         }
                 }
     else if (props.value ==='gear')  {
-        switch(tier){
+        switch(props.tier){
              case 'standart':return(
                 <div className={styles.standart}> 
                     <GearSvg/>

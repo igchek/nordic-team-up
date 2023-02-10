@@ -5,8 +5,29 @@
     flex-direction: column;
     padding: 0px;
     margin: 0px;
-    position: relative;
     @include templates.sectionWidth($isSideline:true);
     height: 100%;
+    overflow: hidden;
+        .personal{
+            @include templates.verticalHeights($upperImplied:true);
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0px;
+            margin: 0%;
+            overflow: hidden;
+        }
+        .output{
+            height: 100% ;
+            width: 100%;
+            overflow: hidden;
+        }
+        .LowerBar{
+            @include templates.verticalHeights($upperImplied:false);
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0px;
+            margin: 0%;
+            overflow: hidden;
+        }
 }
 

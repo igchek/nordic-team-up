@@ -4,10 +4,10 @@
 
 @mixin sectionWidth ($isSideline){
     @if $isSideline {
-        width: 20%;
+        width: 25%;
     }
     @else {
-        width: 80%;
+        width: 75%;
     }
 
 }
@@ -24,7 +24,7 @@
 
 @mixin minorUnitSelectionColor ($isSelected){
     @if $isSelected {
-        background-color: #888686;
+        background-color: #E9E9E9;
     }
     @else {
         background-color:#FFFFFF;
@@ -47,8 +47,8 @@ $lighterGlobalColor:#FFFFFF;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 800;
-    font-size: 17.0112px;
-    line-height: 21px;
+    font-size: 0.5rem;
+    line-height: 30%;
 
 }
 @mixin FontsDashSectionMicro {
@@ -61,17 +61,19 @@ $lighterGlobalColor:#FFFFFF;
 @mixin FontsDashSectionMajor{
     font-family: 'Inter';
     font-style: normal;
-    font-weight: 800;
-    font-size: 64px;
-    line-height: 77px;
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 20px;
+    overflow: hidden;
 }
 @mixin FontsMinorUnitAudience {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
-    font-size: 0.5rem;
+    font-size: 0.75rem;
     line-height: 26px;
     color: #FFFFFF;
+    overflow: hidden;
 }
 
 
@@ -125,12 +127,14 @@ $lighterGlobalColor:#FFFFFF;
     width: 90%;
     height: 90%;
     box-sizing: border-box;
+    overflow: hidden;
     }
     @else {
     border-radius: 50%;
     width: 90%;
     height: 90%;
     box-sizing: border-box;
+    overflow: hidden;
     }
 }
 
@@ -144,6 +148,7 @@ $lighterGlobalColor:#FFFFFF;
     padding: 5%;
     gap: 10px;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 
@@ -152,25 +157,28 @@ $lighterGlobalColor:#FFFFFF;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
-    overflow-x: auto;
+    align-items: flex-end;
+    overflow: hidden;
     box-sizing: border-box;
     color:#FFFFFF;
     margin: 0px;
     gap: 0px;
     padding: 0%;
+    white-space: nowrap;
     }
     @else {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     overflow-x: auto;
     box-sizing: border-box;
     color: #000000;
     margin: 0px;
     gap: 0px;
     padding: 0%;
+    white-space: nowrap;
+    overflow: hidden;
     }
         
 }
@@ -183,10 +191,11 @@ $lighterGlobalColor:#FFFFFF;
     align-items: center;
     padding: 0px 15%;
     gap: 10%;
-    overflow-x: auto;
+    overflow: hidden;
     width: 100%;
     height: 50%;
     color:#BBBBBB;
+    white-space: nowrap;
     }
     @else {
     display: flex;
@@ -195,10 +204,11 @@ $lighterGlobalColor:#FFFFFF;
     align-items: center;
     padding: 0px 15%;
     gap: 10%;
-    overflow-x: auto;
+    overflow: hidden;
     width: 100%;
     height: 50%;
     color:#C0C0C0;
+    white-space: nowrap;
     }
 }
 
@@ -210,6 +220,10 @@ $lighterGlobalColor:#FFFFFF;
     padding: 0px;
     gap: 0%;
     height: 100%;
+    white-space: nowrap;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 @mixin minorUnitContentDataWrapper {
@@ -220,6 +234,9 @@ $lighterGlobalColor:#FFFFFF;
     gap: 0%;
     margin: 0px;
     padding: 0px;
+    justify-content: center;
+    align-self: center;
+    overflow: hidden;
 }
 
 @mixin minorUnitModality {
@@ -229,6 +246,7 @@ $lighterGlobalColor:#FFFFFF;
     width: 100%;
     height: 50%;
     box-sizing: border-box;
+    overflow: hidden;
 
 }
 
@@ -250,11 +268,12 @@ $lighterGlobalColor:#FFFFFF;
     align-items: center;
     padding: 0px;
     gap: 10px;
-    border-radius: 20px;
-    width: auto;
+    border-radius: 10px;
+    width: 75%;
     height: 40%;
     background:#ADADAD;
     box-sizing: border-box;
+    overflow: hidden;
     }
     @else{
     display: flex;
@@ -263,11 +282,12 @@ $lighterGlobalColor:#FFFFFF;
     align-items: center;
     padding: 0px;
     gap: 10px;
-    border-radius: 20%;
-    width: auto;
+    border-radius: 10px;
+    width: 75%;
     height: 35%;
     background:#A7A7A7;
     box-sizing: border-box;
+    overflow: hidden;
     }
 }
 
@@ -384,11 +404,12 @@ $lighterGlobalColor:#FFFFFF;
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     padding: 0px;
     gap: 0%;
-    height: 75%;
+    height: 100%;
+    overflow: hidden;
 }
 
 @mixin minorContent ($isActive) {
@@ -402,6 +423,7 @@ $lighterGlobalColor:#FFFFFF;
     box-sizing: border-box;
     width: 100%;
     height: 10%;
+    overflow: hidden;
     }
     @else {
     display: flex;
@@ -412,7 +434,8 @@ $lighterGlobalColor:#FFFFFF;
     margin: 0px;
     box-sizing: border-box;
     width: 100%;
-    height: 15%;
+    height: 10%;
+    overflow: hidden;
     }
 }
 
@@ -422,13 +445,17 @@ $lighterGlobalColor:#FFFFFF;
     justify-content: center;
     width: 50%;
     height: 100%;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 5%;
 }
 
 @mixin modalitySocketMUD {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50%;
-    height: 100%;
+    width: 70%;
+    height: 70%;
     box-sizing: border-box;
+    overflow: hidden;
 }

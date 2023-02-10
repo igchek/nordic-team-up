@@ -96,113 +96,73 @@ const initialState = {
             state.publicSearchSettings = publicSearchSettings
         },
         setSortByVibePreset: (state, {type, payload:isVibePreset}) =>{
-            if (isVibePreset==='true') {
-                for (let contents of state.content){
-                    if (contents.sourceType==='content'&& contents.modality==='vibe'){
-                        state.sortedContent.push(contents)
+            if (isVibePreset) {
+                for (let content of state.content){
+                    if (content.modality==='vibe'){
+                        state.sortedContent.push(content)
                     }
                 }
+                    
             }
             else {
-                if (state.sortedContent.length>0){
-                    const vibesExcludedSort =[]
-                    for (let contents of state.sortedContent){
-                        if  (!(contents.modality&& contents.modality==='vibe')){
-                            vibesExcludedSort.push(contents)
-                        }
-                    }
-                    state.sortedContent=vibesExcludedSort
-                }
+                state.sortedContent = state.sortedContent.filter(scontent=> !scontent.modality==='vibe')
             }
-        },
+        }
+        ,
         setSortBySyncPreset: (state, {type, payload:isSyncPreset}) =>{
-            if (isSyncPreset==='true') {
-                for (let contents of state.content){
-                    if (contents.sourceType==='content'&& contents.modality==='sync'){
-                        state.sortedContent.push(contents)
+            if (isSyncPreset) {
+                for (let content of state.content){
+                    if (content.modality==='sync'){
+                        state.sortedContent.push(content)
                     }
                 }
+                    
             }
             else {
-                if (state.sortedContent.length>0){
-                    const syncsExcludedSort =[]
-                    for (let contents of state.sortedContent){
-                        if  (!(contents.modality&& contents.modality==='sync')){
-                            syncsExcludedSort.push(contents)
-                        }
-                    }
-                    state.sortedContent=syncsExcludedSort
-                }
+                state.sortedContent = state.sortedContent.filter(scontent=> !scontent.modality==='sync')
             }
         },
         setSortByGigPreset: (state, {type, payload:isGigPreset}) =>{
-            if (isGigPreset==='true') {
-                for (let contents of state.content){
-                    if (contents.sourceType==='content'&& contents.modality==='gig'){
-                        state.sortedContent.push(contents)
+            if (isGigPreset) {
+                for (let content of state.content){
+                    if (content.modality==='gig'){
+                        state.sortedContent.push(content)
                     }
                 }
+                    
             }
             else {
-                if (state.sortedContent.length>0){
-                    const gigsExcludedSort =[]
-                    for (let contents of state.sortedContent){
-                        if  (!(contents.modality&& contents.modality==='gig')){
-                            gigsExcludedSort.push(contents)
-                        }
-                    }
-                    state.sortedContent=gigsExcludedSort
-                }
-            }
-        },
+                state.sortedContent = state.sortedContent.filter(scontent=> !scontent.modality==='gig')
+            }},
         setSortByArtistPreset: (state, {type, payload:isArtistPreset}) =>{
-            if (isArtistPreset==='true') {
-                for (let contents of state.content){
-                    if (contents.sourceType==='artist'){
-                        state.sortedContent.push(contents)
+            if (isArtistPreset) {
+                for (let content of state.content){
+                    if (content.providerType==='artist'){
+                        state.sortedContent.push(content)
                     }
                 }
+                    
             }
             else {
-                if (state.sortedContent.length>0){
-                    const artistsExcludedSort =[]
-                    for (let contents of state.sortedContent){
-                        if  (!contents.sourceType==='artist'){
-                            artistsExcludedSort.push(contents)
-                        }
-                    }
-                    state.sortedContent=artistsExcludedSort
-                }
+                state.sortedContent = state.sortedContent.filter(scontent=> !scontent.sourceType==='artist')
             }
         },
         setSortByVenuePreset: (state, {type, payload:isVenuePreset}) =>{
-            if (isVenuePreset==='true') {
-                for (let contents of state.content){
-                    if (contents.sourceType==='venue'){
-                        state.sortedContent.push(contents)
+            if (isVenuePreset) {
+                for (let content of state.content){
+                    if (content.providerType==='venue'){
+                        state.sortedContent.push(content)
                     }
                 }
+                    
             }
             else {
-                if (state.sortedContent.length>0){
-                    const venuesExcludedSort =[]
-                    for (let contents of state.sortedContent){
-                        if  (!contents.sourceType==='venue'){
-                            venuesExcludedSort.push(contents)
-                        }
-                    }
-                    state.sortedContent=venuesExcludedSort
-                }
-            }
-        },
-        setSearchIndexInput: (state, {type, payload:inputValue}) => {
-            if(inputValue!==''){
-                state.publicSearchSettings.indexInput = inputValue
+                state.sortedContent = state.sortedContent.filter(scontent=> !scontent.sourceType==='venue')
             }
             
         }
     }
- })
+})
 
- export const {setSearchIndexInput, setPublicContent, setPublicSearchSettings, setSortByGigPreset, setSortBySyncPreset, setSortByVibePreset, setSortByVenuePreset, setSortByArtistPreset} =publicContentSlice.actions
+ export const { setPublicContent, setPublicSearchSettings, setSortByGigPreset, setSortBySyncPreset, setSortByVibePreset, setSortByVenuePreset, setSortByArtistPreset} =publicContentSlice.actions
  export default publicContentSlice.reducer

@@ -5,7 +5,7 @@ const initialState = {
         'concert',
         'stand up',
         'rave',
-        'free talk'
+        
 
 
     ],
@@ -17,7 +17,7 @@ const initialState = {
          modality:'vibe', 
          promoLogo:'../../../../assets/PromoLogo/CookieMonster.jpg',
          sourceType:'content',
-         format:[
+         formats:[
             'rave'
          ],
          meta:[],
@@ -30,7 +30,7 @@ const initialState = {
          modality:'vibe', 
          promoLogo:'.../../../../assets/PromoLogo/ElectricWizard.jpg',
          sourceType:'content',
-         format:[
+         formats:[
             'mosh pit',
             'doom',
             'outrage',
@@ -46,7 +46,7 @@ const initialState = {
          modality:'vibe', 
          promoLogo:'.../../../../assets/PromoLogo/TwoDoorCinemaClub.jpg',
          sourceType:'content',
-         format:[
+         formats:[
             '80s',
             'techno',
             'concert'
@@ -61,7 +61,7 @@ const initialState = {
          modality:'gig', 
          promoLogo:'.../../../../assets/PromoLogo/RadioHead.jpg',
          sourceType:'content',
-         format:[
+         formats:[
             'rock',
             'concert'
          ],
@@ -75,7 +75,7 @@ const initialState = {
          modality:'vibe', 
          promoLogo:'../../../../assets/PromoLogo/SpringKing.jpg',
          sourceType:'content',
-         format:[
+         formats:[
             'post punk',
             'mosh',
             'some debased tag',
@@ -91,7 +91,7 @@ const initialState = {
          modality:'sync', 
          promoLogo:'../../../../assets/PromoLogo/Komissarenko.jpg',
          sourceType:'content',
-         format:[
+         formats:[
             'stand up'
          ],
          meta:[],
@@ -104,7 +104,7 @@ const initialState = {
          modality:'vibe', 
          promoLogo:'../../../../assets/PromoLogo/LeisureSociety.jpg',
          sourceType:'content',
-         format:[
+         formats:[
             'chill',
             'melodic',
             'concert',
@@ -148,35 +148,38 @@ const sectionDashboardSlice =createSlice({
             for (let section of state.formats){
                   if(!state.formatedContent.section){
                      state.formatedContent={...state.formatedContent, section:[]}
-                     if (content.format===section){
+                     if (content.formats===section){
                         state.formatedContent.section.push(content)
                      }
                      }
                   else{
-                     if (content.format==={section}){
+                     if (content.formats===section){
                         state.formatedContent.section.push(content)
                      }
                   }
                   }
                },
          setSubsections:(state, {type, payload:tags}) => {
-            if (tags!==''){   
-               state.subSections=tags}
+            if (tags!==null){   
+               for (let tag of tags){
+                  state.subSections.push(tag)
+               }   
+            }
             else {
-               state.subSections=''
+               state.subSections=null
             }
          },
          setSubSectionedContent:(state, {type, payload:contents}) =>{
-            if (contents!==''){
+            if (contents!==null){
                for (let subsection of state.subSections){
                   for (let content of contents){
-                     if (!state.subSectionedContent.subsection){
+                     if (state.subSectionedContent.subsection===undefined){
                         state.subSectionedContent={...state.subSectionedContent, subsection:[]}
-                        if (content.formats.include(subsection)){
+                        if (content.formats.includes(subsection)){
                            state.subSectionedContent.subsection.push(content)
                         }
                      else {
-                        if (content.formats.include(subsection)){
+                        if (content.formats.includes(subsection)){
                            state.subSectionedContent.subsection.push(content)
                         }
                      }
@@ -184,7 +187,7 @@ const sectionDashboardSlice =createSlice({
                   }
                }}
             else {
-               state.subSectionedContent={}
+               state.subSectionedContent=[]
             }
          }
             }

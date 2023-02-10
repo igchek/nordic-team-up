@@ -1,8 +1,9 @@
 import React from 'react'
+import styles from './styles.module.scss';
 
 const MutedSvg = () => {
   return (
-    <div width='100%' height='100%'>
+    <div className={styles.svgTemplateWrapper} >
         <svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" 
 			width="100%" height="100%" viewBox="0 0 306.257 306.257"
 			xmlSpace="preserve">

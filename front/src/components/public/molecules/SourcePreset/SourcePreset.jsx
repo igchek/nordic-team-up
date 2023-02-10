@@ -10,13 +10,11 @@ const SourcePreset = () => {
             <div className={styles.wrapper}>
                         <SourceTemplate
                             value='artist'
-                            focus='false'
-                            tier='normal'
+                            tier='standart'
                         />
                         <SourceTemplate
                             value='venue'
-                            focus='false'
-                            tier='normal'
+                            tier='standart'
                         />
             </div>
   )

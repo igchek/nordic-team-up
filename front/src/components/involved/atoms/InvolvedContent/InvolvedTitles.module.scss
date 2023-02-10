@@ -1,5 +1,6 @@
 @use "~/src/stylesCommon/templates";
 
 .wrapper {
-    @include templates.minorUnitTitlesWrapper
+    @include templates.minorUnitTitlesWrapper;
+    @include templates.FontsDashSectionStandart;
 }

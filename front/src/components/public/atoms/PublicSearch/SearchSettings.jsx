@@ -6,25 +6,20 @@ import { useDispatch } from 'react-redux'
 import { setPublicSettingsFocus } from '../../../../store/focus'
 
 const SearchSettings = () => {
-  const [isSettingsOn, setSettings] = useState('false')
+  const [isSettingsOn, setSettings] = useState(false)
   const dispatch = useDispatch()
   const settingsToggle = () => {
-    if (isSettingsOn==='true'){
-      setSettings('true')
-      dispatch(setPublicSettingsFocus(isSettingsOn))}
-    else {
-      setSettings('false')
-      dispatch(setPublicSettingsFocus(isSettingsOn))
-    }
+      setSettings(!isSettingsOn)
+      dispatch(setPublicSettingsFocus(!isSettingsOn))
     }
 
     
 
   return (
-    <div className={styles.wrapper}>
+    <div onClick={()=>settingsToggle()} className={styles.wrapper}>
         <SvgSelector 
           value='settings'
-          tier='normal'
+          tier='standart'
           focus={isSettingsOn}
         />
     </div>

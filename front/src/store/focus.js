@@ -1,10 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
-    focusedContent:'',
-    focusedSection:'',
-    focusedSubsection:'',
-    foucsPublicSettings:''
+    focusedContent:[],
+    focusedSection:[],
+    focusedSubsection:[],
+    foucsPublicSettings:[]
 
 
 }
@@ -14,21 +14,42 @@ const FocusSlice = createSlice ({
     initialState,
     reducers:{
         setFocusedContent: (state, {type, payload:content}) =>{
-            state.focusedContent=content
+            if (content!==null){
+                if (state.focusedContent.length>0){
+                    state.focusedContent.splice(0,1, content)
+                }
+                else {
+                    state.focusedContent.push(content)
+                }
+            }
+            else{
+                state.focusedContent=[]
+            }
+                
+            
         },
         setFocusedSection: (state, {type, payload:section}) =>{
-            state.focusedSection=section
-            state.focusedSubsection=''
+            if(section!==''){
+                state.focusedSection.push(section)
+            }
+            else{
+                state.focusedSection=[]
+            }
         },
         setFocusedSubsection: (state, {type, payload:subsection}) => {
-            state.focusedSubsection=subsection
+            if(subsection!==''){
+                state.focusedSubsection.push(subsection)
+            }
+            else{
+                state.focusedSubsection=[]
+            }
         },
         setPublicSettingsFocus: (state, {type, payload:isPublicSettingsOn}) =>{
-            if(isPublicSettingsOn==='true'){
-            state.foucsPublicSettings='true'
+            if(isPublicSettingsOn){
+            state.foucsPublicSettings=true
             }
             else {
-                state.foucsPublicSettings=''
+                state.foucsPublicSettings=false
             }
 
     

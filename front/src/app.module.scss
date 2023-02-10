@@ -2,7 +2,11 @@
 
 .mainWrapper {
     height: 100vh;
-    width: 100%;
+    width: 100vw;
     padding: 0px;
     margin: 0px;
+    max-width: 100vw;
+    max-height: 100vh;
+    box-sizing: border-box;
+    overflow: hidden;
 }

@@ -6,36 +6,63 @@ import InvolvedContentPoster from "../atoms/InvolvedContent/InvolvedContentPoste
 import InvolvedTitles from "../atoms/InvolvedContent/InvolvedTitles.jsx";
 import InvolvedData from "../atoms/InvolvedContent/InvolvedData.jsx";
 import { setFocusedContent } from "../../../store/focus";
-import { getInvolvedContentById } from "../../../store/involvedContent";
 
 
 const InvolvedContent = (props) => {
     const dispatch = useDispatch()
+     
+
     const focusedContent = useSelector(({focus}) => focus.focusedContent)
+    const involvedContent = useSelector(({involvedContent})=> involvedContent.content)
+
+    const currentInvolved = involvedContent.find(item=>item.id===props.id)
+
     const [isFocused, setFocus] = useState (false)
 
+
+    
     useEffect(()=>{
-        if(props.id !== focusedContent.id && focusedContent){
+        if (focusedContent.length>0){
+            if (focusedContent[0].id===props.id){
+                setFocus(true)
+            }
+            else{
+                setFocus(false)
+            }
+        }
+        else {
             setFocus(false)
         }
-        else if (props.id === focusedContent.id && focusedContent){
-            setFocus(true)
-        }
+        
     },[focusedContent])
 
+    useEffect(()=>{
+        console.log(`${currentInvolved.title} focus if now ${isFocused}`)
+    },
+    [isFocused])
+
+
+
     const click = (event) => {
-        if(props.id === focusedContent.id && focusedContent){
-            dispatch(setFocusedContent(''))
-        }
-        else if ((props.id !==focusedContent.id && focusedContent)||(!focusedContent)){
-            dispatch(setFocusedContent(getInvolvedContentById(props.id)))
-            setFocus(true)
+        if (focusedContent.length>0){
+            if (focusedContent[0].id===props.id){
+                dispatch(setFocusedContent(null))
+                console.log(`${currentInvolved.title} is deselected`)
+            }
+            else{
+                dispatch(setFocusedContent(currentInvolved))
+                console.log(`${currentInvolved.title} is selected, focus altered`)
+            }
+            
+            }
+        else{
+            dispatch(setFocusedContent(currentInvolved))
+            console.log(`${currentInvolved.title} is selected and focus mounted`)
         }
     }
-    console.log(`${props.ContentTitle} focus is ${isFocused}`)
         return(
             
-            <div onClick={click} className={isFocused?styles.wrapperActive:styles.wrapperPassive}>
+            <div onClick={()=>click()} className={isFocused?styles.wrapperActive:styles.wrapperPassive}>
                 <InvolvedContentPoster 
                     img={props.img} 
                     focus={isFocused}

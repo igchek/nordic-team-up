@@ -5,6 +5,7 @@ import { useEffect} from 'react'
 import DashSection from './molecules/DashSection'
 import DashItem from './molecules/DashItem'
 import {setFormatedContent} from '../../../store/sectionDashboard'
+import { setFocusedContent } from '../../../store/focus'
 
 const DashBoardSectionFocus = () => {
     const currentFocusedSection = useSelector(({focus})=>focus.focusedSection)
@@ -12,6 +13,11 @@ const DashBoardSectionFocus = () => {
     const AllContent = useSelector(({sectionDashboard})=>sectionDashboard.content)
     const subSectionedContent = useSelector(({sectionDashboard})=>sectionDashboard.subSectionedContent)
     const dispatch = useDispatch()
+    const AllFormats = useSelector(({sectionDashboard})=>sectionDashboard.formats)
+    const AllSubsections = useSelector(({sectionDashboard})=> sectionDashboard.subSections)
+    const currentSub = useSelector(({focus})=>focus.focusedSubsection)
+
+
     
     useEffect(() => {
       for (let content of AllContent ){
@@ -19,54 +25,51 @@ const DashBoardSectionFocus = () => {
       }
     }, [])
 
-    if (!currentFocusedSection&&!currentFocusedSubsection ){
-        const AllFormats = useSelector(({sectionDashboard})=>sectionDashboard.formats)
+    if (!currentFocusedSection[0]&&!currentFocusedSubsection[0]){
+        
         return(
                 <div className={styles.sectionDashWrapper}>
-                    {AllFormats.map(format=>{
+                    {AllFormats.map(format=>{return(
                         <DashSection
                             sectionTitle={format}
-                        />
+                        />)
                     })}
                 </div>
         )
     }
-    else if (currentFocusedSection!==''&&!currentFocusedSubsection){
-        const AllSubsections = useSelector(({sectionDashboard})=> sectionDashboard.subSections)
+    else if (currentFocusedSection[0]&&!currentFocusedSubsection[0]){
+        
         return(
                 <div className={styles.sectionDashWrapper}>
-                    {subSectionedContent.map(sub=>
+                    {Object.entries(subSectionedContent).map(sub=>{return(
                         <DashSection 
                             sectionTitle={Object.keys(sub)}
-                        />
+                        />)}
                         )}
                 </div>
         )
     }
-    else if (currentFocusedSection!==''&&currentFocusedSubsection!==''){
+    else if (currentFocusedSection[0]&&currentFocusedSubsection[0]){
         const subOutput = []
-        const currentSub = useSelector(({focus})=>focus.focusedSubsection)
-        const AllSubs = useSelector(({sectionDashboard})=> sectionDashboard.subSections)
-        for (let sub of Object.entries(AllSubs)){
-            if (Object.keys(sub)===currentSub){
-                subOutput=Object.values(sub)
-            }
+        for (let content of subSectionedContent.currentFocusedSubsection[0]){
+            subOutput.push(content)
         }
 
         return(
                 <div className={styles.subsectionDashWrapper}>
-                    {subOutput.map(sub=>
+                    {subOutput.map(sub=>{return(
                         <DashItem
+                            onClick={(e)=>dispatch(setFocusedContent(e))}
                             id={sub.id}
-                            focus='false'
+                            focus={false}
                             modality={sub.modality}
                             title={sub.title}
                             authorLogo={sub.authorLogo}
                             authorName={sub.author}
                             promoPoster={sub.promoLogo}
-                            tagArray={{}}
+                            tagArray={sub.formats}
 
-                        />
+                        />)}
                         )}
                 </div>
         )

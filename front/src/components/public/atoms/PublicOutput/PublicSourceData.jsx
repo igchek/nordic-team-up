@@ -1,22 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./PublicSourceData.module.scss"
-import SvgSelector from "../../../commonUtils/SvgSelector";
+import SvgSelector from '../../../commonUtils/SvgSelector';
 
 
 const PublicSourceData = (props) => {
-   
+    
+
+
+
+
     if (props.sourceType ==="content"){
         return (
             <div className={styles.dataWrapper}>
                 <div className={styles.modalityWrapper}>
-                    <SvgSelector
-                        value={props.modality}
-                        tier='standart'
-                        foucs='true'
-                    />
+                    <div className={styles.modalitySocket}>
+                        <SvgSelector
+                            value={props.modality}
+                            tier='standart'
+                            focus={props.focus}
+                        />
+                    </div>
                 </div>
                 <div className={styles.audienceWrapper}>
-                    <div className={props.foucs==='true'?styles.audienceSocketActive:styles.audienceSocketPassive}>
+                    <div className={props.focus?styles.audienceSocketActive:styles.audienceSocketPassive}>
                         {props.audience}
                     </div>
                 </div>                               
@@ -29,7 +35,7 @@ const PublicSourceData = (props) => {
                 <SvgSelector
                     value={props.modality}
                     tier='standart'
-                    foucs='true'
+                    focus={props.focus}
                 />
             </div>
         )

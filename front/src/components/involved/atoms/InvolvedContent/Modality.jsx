@@ -5,42 +5,28 @@ import SvgSelector from "../../../commonUtils/SvgSelector";
 
 const Modality = (props) => {
      if (props.modality ==='vibe'){
-        if (props.focus ==='false'){
         return (
             <div className={styles.wrpapper}>
                 <div className={styles.modalitySocketMUD}>
                     <SvgSelector 
                         tier='standart'
-                        focus='false'
+                        focus={props.focus}
                         value='vibe'
                     />
                 </div>
 
             </div>
         )
-        }
-        else {
-            return (
-                <div className={styles.wrpapper}>
-                    <div className={styles.modalitySocketMUD}>
-                        <SvgSelector 
-                            tier='standart'
-                            focus='true'
-                            value='vibe'
-                        />
-                    </div>
-                </div>
-            )
-        }
+        
      }
      else if (props.modality ==='sync'){
-        if (props.focus ==='false'){
+        if (!props.focus){
             return (
                 <div className={styles.wrpapper}>
                     <div className={styles.modalitySocketMUD}>
                         <SvgSelector 
                             tier='standart'
-                            focus='false'
+                            focus={false}
                             value='sync'
                         />
                     </div>
@@ -53,7 +39,7 @@ const Modality = (props) => {
                         <div className={styles.modalitySocketMUD}>
                             <SvgSelector 
                                 tier='standart'
-                                focus='true'
+                                focus={true}
                                 value='sync'
                             />
                         </div>
@@ -62,13 +48,13 @@ const Modality = (props) => {
             }
      }
      else if (props.modality ==='gig'){
-        if (props.focus ==='false'){
+        if (!props.focus){
             return (
                 <div className={styles.wrpapper}>
                     <div className={styles.modalitySocketMUD}>
                         <SvgSelector 
                             tier='standart'
-                            focus='false'
+                            focus={false}
                             value='gig'
                         />
                     </div>
@@ -81,7 +67,7 @@ const Modality = (props) => {
                         <div className={styles.modalitySocketMUD}>
                             <SvgSelector 
                                 tier='standart'
-                                focus='true'
+                                focus={true}
                                 value='gig'
                             />
                         </div>

@@ -4,8 +4,15 @@ import DashItemTagList from '../atoms/DashItemTagList'
 import DashItemTitle from '../atoms/DashItemTitle'
 import styles from './DashSection.module.scss'
 import { useRef, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { setFocusedContent } from '../../../../store/focus'
 
 const DashItem = (props) => {
+    const dispatch = useDispatch()
+
+    const allContent = useSelector(({sectionDashboard})=>sectionDashboard.content)
+    const thisContent = allContent.find(content=>content.id===props.id)
+
     const cardImg = useRef(null)
     useEffect(
         ()=>{
@@ -13,10 +20,17 @@ const DashItem = (props) => {
         },
         []
     )
-    const cardId = props.id
+    
+    const clickEvent = (thisContent) => {
+        props.onClick(thisContent)
+        if (props.focus){
+            dispatch(setFocusedContent(thisContent))
+        }
+    }
+
 
   return (
-    <div  className={props.focus?styles.cardWrapperActive:styles.cardWrapperPasssive}>
+    <div onClick={()=>clickEvent(thisContent)} className={props.focus?styles.cardWrapperActive:styles.cardWrapperPasssive}>
         <div ref={cardImg} className={props.focus?styles.sectionModalityWrapperActive:styles.sectionModalityWrapperPassive}>
         <DashItemModality 
             focus={props.focus}

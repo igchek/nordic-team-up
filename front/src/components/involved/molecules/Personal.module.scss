@@ -6,10 +6,11 @@
     color: white;
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     width: 100%;
-    @include templates.verticalHeights($upperImplied:true);
+    height: 100%;
     max-height: 10vh;
     box-sizing: border-box;
     flex-grow: 0;
+    overflow: hidden;
 }

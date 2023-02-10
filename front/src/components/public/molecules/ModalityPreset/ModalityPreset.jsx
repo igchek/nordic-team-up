@@ -14,17 +14,17 @@ const ModalityPreset = () => {
     <div className={styles.wrapper}>
       <ModalityTemplate
         value='vibe'
-        focus='false'
+        focus={false}
         tier='standart'
       />
       <ModalityTemplate
         value='sync'
-        focus='false'
+        focus={false}
         tier='standart'
       />
       <ModalityTemplate
         value='gig'
-        focus='false'
+        focus={false}
         tier='standart'
       />
     </div>

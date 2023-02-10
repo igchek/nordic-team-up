@@ -1,15 +1,16 @@
 import React from "react";
 import styles from './CurrentAudience.module.scss'
+import { useEffect } from "react";
 
 
 const CurrentAudience = (props) => {
-    console.log(`current audience is ${props.audience}`)
-    if (props.focus === 'false'){
+
+
+    if (!props.focus){
         return (<div className={styles.wrapper}>
                     <div className={styles.passiveSocket}>
                         {props.audience}
                     </div>
-
         </div>)
     }
     else {

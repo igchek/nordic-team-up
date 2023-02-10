@@ -7,8 +7,13 @@ const InvolvedData = (props) => {
 
 
         return <div className={styles.wrapper}>
-                    <Modality modality={props.modality} />
-                    <CurrentAudience audince={props.audience}/>
+                    <Modality 
+                        modality={props.modality}
+                        focus={props.focus}
+                    />
+                    <CurrentAudience audience={props.audience}
+                                    focus={props.focus}
+                    />
                 </div>
 }
 

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import styles from "./SourceTemplate.module.scss"
 import SvgSelector from "../../../commonUtils/SvgSelector"
 import { useState } from "react"
@@ -9,23 +9,28 @@ import {setSortByArtistPreset, setSortByVenuePreset} from '../../../../store/pub
 const SourceTemplate = (props) => {
   const dispatch = useDispatch()
   
+  
   if (props.value==='artist'){
-    const [isArtistPreset, setArtistPreset] = useState('false')
+    const [isArtistPreset, setArtistPreset] = useState(false)
+    useEffect(()=>{
+      console.log(`artist preset is ${isArtistPreset}`)
+    },
+    [])
     const artistSet = (e) =>{
-      if (isArtistPreset==='false'){
-        setArtistPreset('true')
-        console.log('artist preset on')
-        dispatch(setSortByArtistPreset(isArtistPreset))
+      if (!isArtistPreset){
+        setArtistPreset(!isArtistPreset)
+        console.log(`artist preset is ${!isArtistPreset}`)
+        dispatch(setSortByArtistPreset(!isArtistPreset))
       }
       else {
-        setArtistPreset('false')
-        console.log('artist preset off')
-        dispatch(setSortByArtistPreset(isArtistPreset))
+        setArtistPreset(!isArtistPreset)
+        console.log(`artist preset is ${!isArtistPreset}`)
+        dispatch(setSortByArtistPreset(!isArtistPreset))
       }
     }
     return (
       <div className={styles.wrapper}>
-        <div onClick={artistSet} className={styles.modalityPresetSocket}>
+        <div onClick={()=>artistSet()} className={styles.modalityPresetSocket}>
           <SvgSelector 
                 value={props.value}
                 focus={isArtistPreset}
@@ -35,22 +40,26 @@ const SourceTemplate = (props) => {
       </div>)
   }
   else {
-    const [isVenuePreset, setVenuePreset] = useState('false')
+    const [isVenuePreset, setVenuePreset] = useState(false)
+    useEffect(()=>{
+      console.log(`venue preset is ${isVenuePreset}`)
+    },
+    [])
     const venueSet = (e) =>{
-      if (isVenuePreset==='false'){
-        setVenuePreset('true')
-        console.log('venue preset on')
-        dispatch(setSortByVenuePreset(isVenuePreset))
+      if (!isVenuePreset){
+        setVenuePreset(!isVenuePreset)
+        console.log(`venue preset id ${!isVenuePreset}`)
+        dispatch(setSortByVenuePreset(!isVenuePreset))
       }
       else {
-        setArtistPreset('false')
+        setVenuePreset(!isVenuePreset)
         console.log('venue preset off')
-        dispatch(setSortByVenuePreset(isVenuePreset))
+        dispatch(setSortByVenuePreset(!isVenuePreset))
       }
     }
     return (
       <div className={styles.wrapper}>
-        <div onClick={venueSet} className={styles.modalityPresetSocket}>
+        <div onClick={()=>venueSet()} className={styles.modalityPresetSocket}>
           <SvgSelector 
                 value={props.value}
                 focus={isVenuePreset}
