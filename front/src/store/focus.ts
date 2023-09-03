@@ -2,17 +2,17 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 import { contentTypes, chat } from './publicContent'
 
 interface focusLoad {
-    focusedContent:contentTypes|null,
+    focusedContent:contentTypes|undefined,
     isCommunityFocused:boolean,
-    focusedChat:chat|null,
+    focusedChat:chat|undefined,
 
 }
 
 
 const initialState :focusLoad = {
-    focusedContent:null,
+    focusedContent:undefined,
     isCommunityFocused:false,
-    focusedChat:null
+    focusedChat:undefined
 
 
 
@@ -22,9 +22,9 @@ const FocusSlice = createSlice ({
     name:'focus',
     initialState,
     reducers:{
-        setFocusedContent: (state, action:PayloadAction<contentTypes|null>) =>{
-            if (action.payload===null){
-                state.focusedContent=null
+        setFocusedContent: (state, action:PayloadAction<contentTypes|undefined>) =>{
+            if (action.payload===undefined){
+                state.focusedContent=undefined
             }
             else {
                 state.focusedContent=action.payload
@@ -32,9 +32,9 @@ const FocusSlice = createSlice ({
                 
             
         },
-        setFocusedChat: (state, action:PayloadAction<chat|null>) =>{
-            if (action.payload===null){
-                state.focusedChat=null
+        setFocusedChat: (state, action:PayloadAction<chat|undefined>) =>{
+            if (action.payload===undefined){
+                state.focusedChat=undefined
             }
             else {
                 state.focusedChat=action.payload

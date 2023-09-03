@@ -6,6 +6,8 @@ import styles from "./PublicUnit.module.scss"
 import { useAppDispatch, useAppSelector } from '../../../../hooks';
 import  { setFocusedContent } from "../../../../store/focus";
 import { useEffect, useState } from "react";
+
+import { contentTypes } from "../../../../store/publicContent";
  
 
 
@@ -31,12 +33,12 @@ interface IpublicHost {
 
 const PublicUnit:React.FC<IpublicContent| IpublicHost > = (props) => {
     
-    const currentFocusedContent = useAppSelector(({focus})=> focus.focusedContent)
+    const currentFocusedContent: contentTypes|undefined = useAppSelector(({focus})=> focus.focusedContent)
     const publicContent = useAppSelector(({publicContent})=> publicContent.content)
     
     const thisPublicUnit = publicContent.find(item=>item.id===props.id)
     const dispatch = useAppDispatch()
-    const [isFocused, setFocus] = useState(false)
+    const [isFocused, setFocus] = useState<boolean>(false)
 
     // useEffect(()=>{
     //     console.log(`${props.contentTitle} focus if ${isFocused}`)
@@ -47,7 +49,7 @@ const PublicUnit:React.FC<IpublicContent| IpublicHost > = (props) => {
 
     // отслеживаем передвижение элементов в фокусе и подсвечиваем текущий фокус
     useEffect(()=>{
-        if (currentFocusedContent!=null){
+        if (currentFocusedContent!=undefined){
             if (currentFocusedContent.id===props.id){
                 setFocus(true)
             }
@@ -62,7 +64,8 @@ const PublicUnit:React.FC<IpublicContent| IpublicHost > = (props) => {
     },[currentFocusedContent])
 
     useEffect(()=>{
-        if (thisPublicUnit) console.log(`${thisPublicUnit.title} focus if now ${isFocused}`)
+        if (thisPublicUnit && 'title' in thisPublicUnit && thisPublicUnit?.title)
+         console.log(`${thisPublicUnit.title} focus if now ${isFocused}`)
     },
     [isFocused])
 
@@ -75,8 +78,8 @@ const PublicUnit:React.FC<IpublicContent| IpublicHost > = (props) => {
             console.log(`${thisPublicUnit.title} is selected and focus mounted`)
         }
         else {
-            if(currentFocusedContent[0].id===props.id){
-                dispatch(setFocusedContent(null))
+            if(currentFocusedContent!=undefined && currentFocusedContent.id===props.id){
+                dispatch(setFocusedContent(undefined))
                 console.log(`${thisPublicUnit.title} is deselected`)
             }
             else{
@@ -99,13 +102,13 @@ const PublicUnit:React.FC<IpublicContent| IpublicHost > = (props) => {
                 focus={isFocused}
                 sourceType={props.sourceType}
                 contentTitle={props.contentTitle}
-                sourceTitle={props.sourceTitle}
-                providerTitle={props.providerTitle}
+                sourceTitle={props.contentTitle}
+                providerTitle={props.sourceType}
             />
             <PublicSourceData 
                 focus={isFocused}
                 audience={props.audience}
-                modality={props.modality||props.providerType}
+                modality={props.modality||props.sourceType}
                 sourceType={props.sourceType}
                 title={props.contentTitle}
             />
