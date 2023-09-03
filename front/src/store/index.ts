@@ -3,7 +3,6 @@ import personal from './personal'
 import involvedContent from './involvedContent'
 import publicContent from './publicContent'
 import focus from './focus'
-import sectionDashboard from './sectionDashboard'
 
 
 
@@ -13,9 +12,11 @@ const store = configureStore({
         involvedContent,
         publicContent,
         focus,
-        sectionDashboard,
 
     }
 })
 
 export default store
+
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch

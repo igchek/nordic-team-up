@@ -3,19 +3,39 @@ import PublicPoster from "../../atoms/PublicOutput/PublicPoster";
 import PublicSourceData from "../../atoms/PublicOutput/PublicSourceData";
 import PublicTitles from "../../atoms/PublicOutput/PublicTitles";
 import styles from "./PublicUnit.module.scss"
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from '../../../../hooks';
 import  { setFocusedContent } from "../../../../store/focus";
 import { useEffect, useState } from "react";
+ 
 
 
+interface IpublicContent {
+    id:number,
+    poster:string,
+    sourceType:string,
+    contentTitle:string,
+    sourceTitle:string,
+    audience:number,
+    modality:string
+}
 
-const PublicUnit = (props) => {
+interface IpublicHost {
+    id:number,
+    poster:string,
+    sourceType:string,
+    contentTitle:string,
+    providerTitle:string,
+    modality:string
+}
+
+
+const PublicUnit:React.FC<IpublicContent| IpublicHost > = (props) => {
     
-    const currentFocusedContent = useSelector(({focus})=> focus.focusedContent)
-    const publicContent = useSelector(({publicContent})=> publicContent.content)
+    const currentFocusedContent = useAppSelector(({focus})=> focus.focusedContent)
+    const publicContent = useAppSelector(({publicContent})=> publicContent.content)
     
     const thisPublicUnit = publicContent.find(item=>item.id===props.id)
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const [isFocused, setFocus] = useState(false)
 
     // useEffect(()=>{
@@ -27,8 +47,8 @@ const PublicUnit = (props) => {
 
     // отслеживаем передвижение элементов в фокусе и подсвечиваем текущий фокус
     useEffect(()=>{
-        if (currentFocusedContent.length>0){
-            if (currentFocusedContent[0].id===props.id){
+        if (currentFocusedContent!=null){
+            if (currentFocusedContent.id===props.id){
                 setFocus(true)
             }
             else{
@@ -42,7 +62,7 @@ const PublicUnit = (props) => {
     },[currentFocusedContent])
 
     useEffect(()=>{
-        console.log(`${thisPublicUnit.title} focus if now ${isFocused}`)
+        if (thisPublicUnit) console.log(`${thisPublicUnit.title} focus if now ${isFocused}`)
     },
     [isFocused])
 
@@ -50,7 +70,7 @@ const PublicUnit = (props) => {
 
     // клик ивент - загружаем в фокус выбранный элемент или выгружаем из фокуса уже выбранный
     const onClick = () => {
-        if (!currentFocusedContent.length>0){
+        if (currentFocusedContent!=undefined){
             dispatch(setFocusedContent(thisPublicUnit))
             console.log(`${thisPublicUnit.title} is selected and focus mounted`)
         }

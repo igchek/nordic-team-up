@@ -1,23 +1,15 @@
 import React, { useEffect } from "react";
 import styles from "./PublicOutput.module.scss"
-import { useSelector, useDispatch } from "react-redux";
+import { useAppSelector, useAppDispatch } from '../../../../hooks';
 import PublicUnit from "./PublicUnit";
 import ModalityPreset from "../ModalityPreset/ModalityPreset";
 
-const PublicOutput = () => {
-    const publicContent = useSelector(({publicContent})=> publicContent.content)
-    const sortedPublicContent = useSelector(({publicContent})=> publicContent.sortedContent)
-    const currentFocusedContent = useSelector(({focus})=> focus.focusedContent)
-    // useEffect(()=>{
-    //     console.log(`mounted public content is `, publicContent)
-    //     console.log(`mounted sorted content is`, sortedPublicContent)
-    // },
-    // [])
-    // useEffect(()=>{
-    //     console.log(`current selected public content is`, publicContent)
-    //     console.log(`current selected sorted content is`, sortedPublicContent)
-    // },
-    // [sortedPublicContent, publicContent])
+
+const PublicOutput:React.FC = () => {
+    const publicContent = useAppSelector(({publicContent})=> publicContent.content)
+    const sortedPublicContent = useAppSelector(({publicContent})=> publicContent.sortedContent)
+    const currentFocusedContent = useAppSelector(({focus})=> focus.focusedContent)
+
 
     return(
         <div className={styles.wrapper}>
@@ -25,7 +17,7 @@ const PublicOutput = () => {
             <div className={styles.output}>
                 {sortedPublicContent.length>0
                 ?
-                    sortedPublicContent.map(sortedUnit=>{ if(sortedUnit.sourceType==='content')
+                    sortedPublicContent.map(sortedUnit=>{ if('modality' in sortedUnit && sortedUnit?.modality)
                     {
                        return (<PublicUnit
                         id={sortedUnit.id}
@@ -33,11 +25,11 @@ const PublicOutput = () => {
                         sourceType={sortedUnit.sourceType}
                         contentTitle={sortedUnit.title}
                         sourceTitle={sortedUnit.author}
-                        audience={sortedUnit.currentAudience}
+                        audience={sortedUnit.AudienceParams.total}
                         modality={sortedUnit.modality}
                      />)
                     }
-                    else {
+                    else if (!('modality' in sortedUnit && sortedUnit?.modality)) {
                       return (<PublicUnit
                         id={sortedUnit.id}
                         poster={sortedUnit.logo}
@@ -49,7 +41,7 @@ const PublicOutput = () => {
                     }})
                 :
                     publicContent.map(publicUnit=>{if
-                        (publicUnit.sourceType==='content'){
+                        ('modality' in publicContent && publicContent?.modality){
                            return (<PublicUnit
                                         id={ publicUnit.id}
                                         poster={ publicUnit.promoLogo}

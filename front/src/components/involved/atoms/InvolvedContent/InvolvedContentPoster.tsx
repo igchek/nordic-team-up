@@ -6,7 +6,7 @@ const InvolvedContentPoster =(props) => {
     if (props.focus ==='false'){
         return (
             <div className={styles.wrapper}>
-                <img className={styles.posterPassive} src={props.poster} alt="poster" />
+                <img className={styles.posterPassive} src={require(`@PromoLogo/${props.img}.jpg`)} alt="poster" />
             </div>
         )
     }
@@ -14,7 +14,7 @@ const InvolvedContentPoster =(props) => {
 
         return (
             <div className={styles.wrapper}>
-                <img className={styles.posterActive} src={props.poster} alt="poster" />
+                <img className={styles.posterActive} src={require(`@PromoLogo/${props.img}.jpg`)} alt="poster" />
             </div>
         )
     }

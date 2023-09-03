@@ -5,7 +5,7 @@ import LowerBar from "./molecules/LowerBar";
 import Personal from "./molecules/Personal";
 import styles from "./PersonalSection.module.scss"
 
-const PersonalSection = () => {
+const PersonalSection : React.FC = () => {
     return (
         <div className={styles.sectionWrapper}>
             <div className={styles.personal}>

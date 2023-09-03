@@ -5,7 +5,7 @@ import styles from "./Avatar.module.scss"
 const Avatar = (props) => {
     return (
         <div className={styles.wrapper}>
-            <img className={styles.avatar} src={props.avatar} alt="avatar" />
+            <img className={styles.avatar} src={require(`@/assets/Personal/Avatars/${props.avatar}.jpg`)} alt="avatar" />
         </div>
     )
 }

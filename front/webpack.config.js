@@ -24,7 +24,15 @@ const config = {
         // }),
     },
     resolve:{
-        extensions:['.js','.jsx','.ts','.tsx', '.sass', '.scss', '.module.scss']
+        extensions:['.js','.jsx','.ts','.tsx', '.sass', '.scss', '.module.scss','.jpg'],
+        alias: {
+            "@": path.resolve(__dirname, "src"),
+            "@ArtistLogo": path.resolve(__dirname, "./src/assets/ArtistLogo"),
+            "@PromoLogo": path.resolve(__dirname, "./src/assets/PromoLogo"),
+            "@TemplatePics": path.resolve(__dirname, "./src/assets/templates"),
+            "@Types": path.resolve(__dirname, './Types')
+            // "@Avatar": path.resolve(__dirname, "./src/assets/Personal/Avatars")
+        }
     },
     devtool: 'source-map',
     plugins: [
@@ -37,6 +45,10 @@ const config = {
     ],
     module: {
         rules: [
+            {
+                test: /\.tsx?$/, 
+                loader: "ts-loader" 
+            },
             {
                 test: /\.(js|jsx)$/i,
                 loader: 'babel-loader',

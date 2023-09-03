@@ -2,13 +2,14 @@ import React from "react";
 import styles from "./InvolvedContent.module.scss"
 import {useSelector, useDispatch} from 'react-redux'
 import { useState, useEffect } from "react";
-import InvolvedContentPoster from "../atoms/InvolvedContent/InvolvedContentPoster.jsx";
-import InvolvedTitles from "../atoms/InvolvedContent/InvolvedTitles.jsx";
-import InvolvedData from "../atoms/InvolvedContent/InvolvedData.jsx";
+import InvolvedContentPoster from "../atoms/InvolvedContent/InvolvedContentPoster.js";
+import InvolvedTitles from "../atoms/InvolvedContent/InvolvedTitles.js";
+import InvolvedData from "../atoms/InvolvedContent/InvolvedData.js";
 import { setFocusedContent } from "../../../store/focus";
+import {motion} from 'framer-motion'
 
 
-const InvolvedContent = (props) => {
+const InvolvedContent : React.FC = (props) => {
     const dispatch = useDispatch()
      
 
@@ -43,7 +44,7 @@ const InvolvedContent = (props) => {
 
 
 
-    const click = (event) => {
+    const click = (event: Event) => {
         if (focusedContent.length>0){
             if (focusedContent[0].id===props.id){
                 dispatch(setFocusedContent(null))
@@ -62,7 +63,7 @@ const InvolvedContent = (props) => {
     }
         return(
             
-            <div onClick={()=>click()} className={isFocused?styles.wrapperActive:styles.wrapperPassive}>
+            <div onClick={()=>click(e)} className={isFocused?styles.wrapperActive:styles.wrapperPassive}>
                 <InvolvedContentPoster 
                     img={props.img} 
                     focus={isFocused}

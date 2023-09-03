@@ -4,7 +4,7 @@ import PersonalSection from '../components/involved/PersonalSection'
 import Public from '../components/public/Public'
 import styles from "./Pages.module.scss"
 
-const Personal = () => {
+const Personal: React.FC = () => {
   return (
     <div className={styles.browserWrapper}>
         <PersonalSection/>

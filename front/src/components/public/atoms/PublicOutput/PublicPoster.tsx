@@ -5,7 +5,7 @@ const PublicPoster = (props) => {
 
     return (
         <div className={styles.wrapper}>
-            <img className={styles.poster} src={props.poster} alt="poster" />
+            <img className={styles.poster} src={require(`@PromoLogo/${props.poster}.jpg`)} alt="poster" />
         </div>
     )
 }

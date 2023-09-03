@@ -4,7 +4,7 @@ import PublicSearch from './molecules/PublicSearch/PublicSearch'
 import SourcePreset from './molecules/SourcePreset/SourcePreset'
 import styles from "./Public.module.scss"
 
-const Public = () => {
+const Public:React.FC = () => {
   return (
     <div className={styles.wrapper}>
         <PublicSearch/>
