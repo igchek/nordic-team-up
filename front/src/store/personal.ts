@@ -1,69 +1,54 @@
 import {createSlice , PayloadAction} from '@reduxjs/toolkit'
+import { standartUserProfile } from './modules/libraries/Profiles/Template'
+import { geo } from './modules/libraries/Community/Chats/Template'
 
-type AvatarHistoryChunk = {
-    id:number;
-    src:String
+
+
+const initialState:standartUserProfile | null = {
+    profileId:'mock1',
+    profileLog:'Newb',
+    password:'mockPass1',
+    token:'fjopawfm',
+
+    profileFlavour:{
+        profilePic:'doge1',
+        profileNick:'Doge'
+        
+    }
+
+
 }
-
-type PersonalConfig<AvatarHistoryChunk> = {
-    currentAvatar: String;
-    userName:String;
-    password:String;
-    userLog:String;
-    mail:String,
-    habitat:String,
-    viewSettings:Object,
-    paymentSource:Object,
-    avatarHistory: AvatarHistoryChunk[]
-
-}
-
-const initialState:PersonalConfig<AvatarHistoryChunk> = {
-    currentAvatar:'doge1',
-    userName:'Maestro',
-    password:'qwerty12345',
-    userLog:'@maestro',
-    mail:'maestro@casual.com',
-    habitat:'Moscow',
-    viewSettings:{},
-    paymentSource:{},
-    avatarHistory:[{
-                    id:1,
-                    src:'doge1'
-                    
-                    }]
-}
-
 const PersonalSlice = createSlice({
     name:'personal',
     initialState,
     reducers:{
-        setUserName:(state, action:PayloadAction<string>) => {
-            state.userName = action.payload
+        setUserNick:(state, action:PayloadAction<string>) => {
+            state.profileFlavour.profileNick = action.payload
         },
         setPassword:(state,action:PayloadAction<string>) => {
             state.password = action.payload
         },
         setUserLog:(state,action:PayloadAction<string>) => {
-            if (action.payload[0] !=='@'){
-                state.userLog = `@${action.payload}`
-            }
-            else {
-                state.userLog = action.payload
-            }
+            state.profileLog=action.payload
         },
-        setHabitat:(state, action:PayloadAction<string>) => {
-            state.habitat = action.payload
+        setGeo:(state, action:PayloadAction<geo>) => {
+            state.profileGeo = action.payload
         },
         setMail:(state, action:PayloadAction<string>) => {
-            state.mail = action.payload
-        },
-        setPaymentSource:(state, action:PayloadAction<string>) => {
-            state.paymentSource = action.payload
-        }
+            if('profileMail' in state.profileFlavour && state.profileFlavour?.profileMail){
+                if (!state.profileFlavour.profileMail.includes(action.payload)){
+                    state.profileFlavour.profileMail.push(action.payload)
+                }
+                }
+            },
+        setProfile:(state, action:PayloadAction<standartUserProfile>)=>{
+            state=action.payload
         }
     }
+}
+        
+    
 )
 
-export const {setHabitat, setMail, setPassword, setPaymentSource, setUserLog, setUserName} = PersonalSlice.actions
+export const {setGeo, setMail, setPassword, setUserLog, setUserNick, setProfile} = PersonalSlice.actions
 export default PersonalSlice.reducer

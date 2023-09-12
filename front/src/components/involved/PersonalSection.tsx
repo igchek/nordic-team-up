@@ -4,22 +4,27 @@ import InvolvedOutput from "./molecules/InvolvedOutput";
 import LowerBar from "./molecules/LowerBar";
 import Personal from "./molecules/Personal";
 import styles from "./PersonalSection.module.scss"
+import {motion} from 'framer-motion'
 
-const PersonalSection : React.FC = () => {
+interface PersonalSectionI {
+
+}
+
+const PersonalSection : React.FC<PersonalSectionI> = () => {
     return (
-        <div className={styles.sectionWrapper}>
-            <div className={styles.personal}>
+        <motion.div className={styles.sectionWrapper}>
+            <motion.div className={styles.personal}>
                 <Personal />
-            </div>
+            </motion.div>
             
-            <div className={styles.output}>
+            <motion.div className={styles.output}>
                 <InvolvedOutput/>
-            </div>
-            <div className={styles.LowerBar}>
+            </motion.div>
+            <motion.div className={styles.LowerBar}>
                 <LowerBar/>
-            </div>
+            </motion.div>
             
-        </div>
+        </motion.div>
     )
 }
 

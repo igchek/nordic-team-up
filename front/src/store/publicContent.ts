@@ -1,103 +1,25 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
-import Modality from '../components/involved/atoms/InvolvedContent/Modality';
-
-export interface AudienceParams<Aggregation> {
-    total:number;
-    aggregated?:Aggregation
-}
-    export interface Aggregation {
-        name:string;
-        id:number;
-        total:number;
-    }
-
-export interface vibe {
-    id: number;
-    title: string;
-    author: string;
-    AudienceParams:AudienceParams<Aggregation>;
-    modality:string;
-    promoLogo:string;
-    sourceType:string;
-    authorLogo:string;
-
-
-}
-export interface sync {
-    id: number;
-    title: string;
-    author: string;
-    AudienceParams:AudienceParams<Aggregation>;
-    modality:string;
-    promoLogo:string;
-    sourceType:string;
-    authorLogo:string;
-}
-export interface gig {
-    id: number;
-    title: string;
-    author: string;
-    AudienceParams:AudienceParams<Aggregation>;
-    modality:string;
-    promoLogo:string;
-    sourceType:string;
-    authorLogo:string;
-}
-
-export interface artist {
-    id:number;
-    providerTitle:string;
-    providerType:string;
-    logo: string;
-    sourceType:string
-}
-
-export interface venue {
-    id:number;
-    providerTitle:string;
-    providerType:string;
-    logo:string;
-    unitType:string
-    sourceType:string
-}
-
-export interface PublicSearchSettings {
-    indexInput:string;
-}
+import { vibe } from './modules/libraries/Content/Vibe';
+import { sync } from './modules/libraries/Content/Sync';
+import { gig } from './modules/libraries/Content/Gig';
+import { artist } from './modules/libraries/Profiles/Artist';
+import { venue } from './modules/libraries/Profiles/Venue';
+import { publicSearchSettings } from './modules/libraries/Profiles/Template';
 
 
 
-export interface PublicLoad<contentTypes>  {
-    content: Array <contentTypes>;
-    publicSearchSettings:PublicSearchSettings;
-    sortedContent:(contentTypes)[];
+
+export class PublicLoad {
+    mockContent:any[]
+    content: (vibe|sync|gig|artist|venue)[];
+    publicSearchSettings?:publicSearchSettings;
+    sortedContent:(vibe|sync|gig|artist|venue)[];
 
 }
 
-export type chatType = 'public' | 'local' | 'private' | 'target'
 
-export interface chatParams {
-    
-}
-
-export interface chat {
-    chatId:number,
-    hostContentId:number,
-    chatTitle:string,
-    hostContentTitle:string,
-    chatType:chatType,
-    audience:number,
-    chatParams: chatParams
-
-}
-
- export type contentTypes = vibe | sync | gig | artist | venue
-    
-export type publicContent = vibe | sync | gig
-export type publicHost = artist | venue
-
-const initialState: PublicLoad<contentTypes> = {
-    content: [
+const initialState: PublicLoad = {
+    mockContent: [
         {id:3,
          title:'Cookey Rave',
          author:'Cookey monster', 
@@ -193,9 +115,7 @@ const initialState: PublicLoad<contentTypes> = {
           sourceType:'artist'
          }   
     ],
-    publicSearchSettings: {
-        indexInput:''
-    },
+    content: [],
     sortedContent: []
 }
  const publicContentSlice = createSlice({
@@ -205,68 +125,129 @@ const initialState: PublicLoad<contentTypes> = {
         setPublicContent: (state, action:PayloadAction<[]>) => {
             state.content = action.payload
         },
-        setPublicSearchSettings: (state, action:PayloadAction<PublicSearchSettings>) => {
+        setPublicSearchSettings: (state, action:PayloadAction<publicSearchSettings>) => {
             state.publicSearchSettings = action.payload
         },
         setSortByVibePreset: (state, action:PayloadAction<boolean>) =>{
             if (action.payload){
                 for (let content of state.content){
-                    if ('modality' in content && content?.modality&& content.modality==='vibe'){
+                    if ((content instanceof vibe)&&!(content instanceof sync)&&!(content instanceof gig)){
                         state.sortedContent.push(content)
                     }
             }}
             else {
-                state.sortedContent=state.sortedContent.filter((c)=>'modality' in c && c?.modality&& c.modality==='vibe')
+                state.sortedContent=state.sortedContent.filter((c)=>(c instanceof vibe)&&!(c instanceof sync)&&!(c instanceof gig))
             }
         }
         ,
         setSortBySyncPreset: (state, action:PayloadAction<boolean>) =>{
             if (action.payload){
                 for (let content of state.content){
-                    if ('modality' in content && content?.modality&& content.modality==='sync'){
-                        state.sortedContent.push(content)
+                    if ((content instanceof sync)&&!(content instanceof gig)){
+                        state.sortedContent!.push(content)
                     }
             }}
             else {
-                state.sortedContent=state.sortedContent.filter((c)=>'modality' in c && c?.modality&& c.modality==='sync')
+                state.sortedContent=state.sortedContent.filter((c)=>(c instanceof sync)&&!(c instanceof gig))
             }
         },
         setSortByGigPreset: (state, action:PayloadAction<boolean>) =>{
             if (action.payload){
                 for (let content of state.content){
-                    if ('modality' in content && content?.modality&& content.modality==='gig'){
+                    if (content instanceof gig){
                         state.sortedContent.push(content)
                     }
             }}
             else {
-                state.sortedContent=state.sortedContent.filter((c)=>'modality' in c && c?.modality&& c.modality==='gig')
+                state.sortedContent=state.sortedContent.filter((c)=>c instanceof gig)
             }    
         },
         setSortByArtistPreset: (state, action:PayloadAction<boolean>) =>{
             if (action.payload){
                 for (let content of state.content){
-                    if (content.sourceType==='artist'){
+                    if (content instanceof artist){
                         state.sortedContent.push(content)
                     }
             }}
             else {
-                state.sortedContent=state.sortedContent.filter((c)=>c.sourceType==='artist')
+                state.sortedContent=state.sortedContent.filter((c)=>c instanceof artist)
             }
         },
         setSortByVenuePreset: (state, action:PayloadAction<boolean>) =>{
             if (action.payload){
                 for (let content of state.content){
-                    if (content.sourceType==='venue'){
+                    if (content instanceof venue){
                         state.sortedContent.push(content)
                     }
             }}
             else {
-                state.sortedContent=state.sortedContent.filter((c)=>c.sourceType==='venue')
+                state.sortedContent=state.sortedContent.filter((c)=>c instanceof venue)
             }
             
+        },
+        setMocks: (state)=>{
+            for (let mock of state.mockContent){
+                if (mock.sourceType==='content'){
+                    if (mock.modality==='vibe'){
+                        state.content.push(new vibe
+                            (
+                                mock.id,
+                                mock.title,
+                                mock.author,
+                                mock.AudienceParams,
+                                mock.modality,
+                                mock.promoLogo,
+                                mock.sourceType,
+                                mock.authorLogo
+                            ))
+                    }
+                    else if (mock.modality==='sync'){
+                        state.content.push( new sync(
+                            new vibe(
+                                mock.id,
+                                mock.title,
+                                mock.author,
+                                mock.AudienceParams,
+                                mock.modality,
+                                mock.promoLogo,
+                                mock.sourceType,
+                                mock.authorLogo
+                            )
+                        ))
+                    }
+                    else if (mock.modality==='gig'){
+                        state.content.push(new gig(
+                             new sync(
+                            new vibe(
+                                mock.id,
+                                mock.title,
+                                mock.author,
+                                mock.AudienceParams,
+                                mock.modality,
+                                mock.promoLogo,
+                                mock.sourceType,
+                                mock.authorLogo
+                            )
+                        )
+                        )
+                        )
+                    }
+                }
+                else if (mock.sourceType==='artist'){
+                    state.content.push(
+                        new artist(
+                            mock.id,
+                            mock.providerTitle,
+                            mock.providerType,
+                            mock.logo,
+                            mock.sourceType
+                        )
+                    )
+                }
+            }
         }
     }
 })
 
- export const { setPublicContent, setPublicSearchSettings, setSortByGigPreset, setSortBySyncPreset, setSortByVibePreset, setSortByVenuePreset, setSortByArtistPreset} =publicContentSlice.actions
+ export const { setPublicContent, setPublicSearchSettings, setSortByGigPreset, setSortBySyncPreset, setSortByVibePreset, setSortByVenuePreset, setSortByArtistPreset, setMocks} =publicContentSlice.actions
  export default publicContentSlice.reducer

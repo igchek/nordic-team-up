@@ -1,12 +1,16 @@
 import React from "react";
 import styles from "./NickName.module.scss"
+import {motion} from 'framer-motion'
 
+interface  NickNameI {
+    nickName:string
+}
 
-const NickName = (props) => {
+const NickName:React.FC<NickNameI> = (props) => {
     return (
-        <div className={styles.wrapper}>
+        <motion.div className={styles.wrapper}>
             {props.nickName}
-        </div>
+        </motion.div>
     )
 }
 

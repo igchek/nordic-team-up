@@ -1,74 +1,21 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
+import { vibe } from './modules/libraries/Content/Vibe'
+import { sync } from './modules/libraries/Content/Sync'
+import { gig } from './modules/libraries/Content/Gig'
+import { artist } from './modules/libraries/Profiles/Artist'
+import { venue } from './modules/libraries/Profiles/Venue'
+import { involvedSearchSettings } from './modules/libraries/Profiles/Template'
 
 interface involvedLoad {
+    mockContent:any[]
     content:(vibe|sync|gig|artist|venue)[],
-    involvedSearchSettings:[]
-
-}
-
-interface AudienceParams<Aggregation> {
-    total:number;
-    aggregated?:Aggregation
-}
-    interface Aggregation {
-        name:string;
-        id:number;
-        total:number;
-    }
-
-interface vibe {
-    id: number;
-    title: string;
-    author: string;
-    AudienceParams:AudienceParams<Aggregation>;
-    modality:string;
-    promoLogo:string;
-    sourceType:string;
-    authorLogo:string;
-
-
-}
-interface sync {
-    id: number;
-    title: string;
-    author: string;
-    AudienceParams:AudienceParams<Aggregation>;
-    modality:string;
-    promoLogo:string;
-    sourceType:string;
-    authorLogo:string;
-}
-interface gig {
-    id: number;
-    title: string;
-    author: string;
-    AudienceParams:AudienceParams<Aggregation>;
-    modality:string;
-    promoLogo:string;
-    sourceType:string;
-    authorLogo:string;
-}
-
-interface artist {
-    id:number;
-    providerTitle:string;
-    providerType:string;
-    logo: string;
-    sourceType:string
-}
-
-interface venue {
-    id:number;
-    providerTitle:string;
-    providerType:string;
-    logo:string;
-    unitType:string
-    sourceType:string
+    sortedContent:(vibe|sync|gig|artist|venue)[],
+    involvedSearchSettings?:involvedSearchSettings
 }
 
 const initialState:involvedLoad = {
-    content: [
-        {id:3,
+    mockContent: [
+        {id:'3',
             title:'Cookey Rave',
             author:'Cookey monster', 
             AudienceParams:{
@@ -81,7 +28,9 @@ const initialState:involvedLoad = {
         }
          
     ],
-    involvedSearchSettings: []
+    content:[],
+    sortedContent:[]
+    // involvedSearchSettings: []
 }
 
 const InvolvedContentSlice = createSlice({
@@ -94,19 +43,83 @@ const InvolvedContentSlice = createSlice({
         setInvolvolvedSearchSettings: (state, action:PayloadAction<[]>) => {
             state.involvedSearchSettings = action.payload
         },
-        // getInvolvedContentById: (state, action:PayloadAction<number>): vibe|sync|gig|artist|venue => {
-        //     for (let content of state.content){
-        //         if (content.id===action.payload)
-        //              return content
-        //         else 
-        //             console.log('fuck')
-        //     }
-
-        // }
+        setMocks :(state, action:PayloadAction)=>{
+            for (let mock of state.mockContent){
+                if (mock.sourceType==='content'){
+                    if (mock.modality==='vibe'){
+                        state.content.push(new vibe
+                            (
+                                mock.id,
+                                mock.title,
+                                mock.author,
+                                mock.AudienceParams,
+                                mock.modality,
+                                mock.promoLogo,
+                                mock.sourceType,
+                                mock.authorLogo
+                            ))
+                    }
+                    else if (mock.modality==='sync'){
+                        state.content.push( new sync(
+                            new vibe(
+                                mock.id,
+                                mock.title,
+                                mock.author,
+                                mock.AudienceParams,
+                                mock.modality,
+                                mock.promoLogo,
+                                mock.sourceType,
+                                mock.authorLogo
+                            )
+                        ))
+                    }
+                    else if (mock.modality==='gig'){
+                        state.content.push(new gig(
+                             new sync(
+                            new vibe(
+                                mock.id,
+                                mock.title,
+                                mock.author,
+                                mock.AudienceParams,
+                                mock.modality,
+                                mock.promoLogo,
+                                mock.sourceType,
+                                mock.authorLogo
+                            )
+                        )
+                        )
+                        )
+                    }
+                }
+                else if (mock.sourceType==='artist'){
+                    state.content.push(
+                        new artist(
+                            mock.id,
+                            mock.providerTitle,
+                            mock.sourceType,
+                            mock.logo,
+                            mock.sourceType
+                        )
+                    )
+                }
+                else {
+                    state.content.push(
+                        new venue(
+                            mock.id,
+                            mock.title,
+                            mock.sourceType,
+                            mock.logo,
+                            mock.unitType,
+                            mock.sourceType
+                        )
+                    )
+                }
+            }
+        }
     }
 })
 
-export const pickInvolved = (id:number)=>{
+export const pickInvolved = (id:string)=>{
     for (let c of initialState.content){
         if (c.id===id){
             return c

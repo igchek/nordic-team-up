@@ -2,27 +2,26 @@ import React from 'react'
 import styles from "./SearchSettings.module.scss"
 import SvgSelector from "../../../commonUtils/SvgSelector"
 import { useState } from "react"
-import { useDispatch } from 'react-redux'
-import { setPublicSettingsFocus } from '../../../../store/focus'
+import { useAppDispatch } from '../../../../hooks'
+import {motion} from 'framer-motion'
 
-const SearchSettings = () => {
+const SearchSettings:React.FC = () => {
   const [isSettingsOn, setSettings] = useState(false)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const settingsToggle = () => {
       setSettings(!isSettingsOn)
-      dispatch(setPublicSettingsFocus(!isSettingsOn))
     }
 
     
 
   return (
-    <div onClick={()=>settingsToggle()} className={styles.wrapper}>
+    <motion.div onClick={()=>settingsToggle()} className={styles.wrapper}>
         <SvgSelector 
           value='settings'
           tier='standart'
           focus={isSettingsOn}
         />
-    </div>
+    </motion.div>
   )
 }
 

@@ -2,11 +2,18 @@ import React, { useEffect } from 'react'
 import SvgSelector from "../../../commonUtils/SvgSelector"
 import styles from "./ModalityTemplate.module.scss"
 import { useState } from 'react'
-import { useDispatch} from 'react-redux'
+import { useAppDispatch } from '../../../../hooks'
 import {setSortByVibePreset, setSortBySyncPreset, setSortByGigPreset} from '../../../../store/publicContent'
 
-const ModalityTemplate = (props) => {
-const dispatch = useDispatch()
+interface ModalityTemplate {
+  value:string
+  focus:boolean
+  tier:string
+}
+
+
+const ModalityTemplate:React.FC<ModalityTemplate> = (props) => {
+const dispatch = useAppDispatch()
 
   
 if (props.value==='vibe'){
@@ -14,18 +21,9 @@ if (props.value==='vibe'){
   const [isVibePreset, setVibePreset] = useState(false)
   
 
-  // useEffect(()=>{
-  //   console.log(`vibe preset is ${isVibePreset}`)
-  // },
-  // [isVibePreset])
-
-  // useEffect(()=>{
-  //   console.log(`vibe preset mounted is ${isVibePreset}`)
-  // },
-  // [])
 
 
-  const vibeSet = (e) =>{
+  const vibeSet = () =>{
       setVibePreset(!isVibePreset)
       dispatch(setSortByVibePreset(!isVibePreset))
   }
@@ -35,7 +33,7 @@ if (props.value==='vibe'){
         <SvgSelector 
             value={props.value}
             focus={isVibePreset}
-            tier={props.tier}
+            tier={'standart'}
         />
       </div>
 
@@ -44,17 +42,8 @@ if (props.value==='vibe'){
 }
 else if (props.value==='sync'){
   const [isSyncPreset, setSyncPreset] = useState(false)
-  // useEffect(()=>{
-  //   console.log(`sync preset mounted is ${isSyncPreset}`)
-  // },
-  // [])
 
-  // useEffect(()=>{
-  //   console.log(`sync preset is ${isSyncPreset}`)
-  // },
-  // [isSyncPreset])
-
-  const syncSet = (e) =>{
+  const syncSet = () =>{
     setSyncPreset(!isSyncPreset)
     dispatch(setSortBySyncPreset(!isSyncPreset))
   }
@@ -64,7 +53,7 @@ else if (props.value==='sync'){
         <SvgSelector 
             value={props.value}
             focus={isSyncPreset}
-            tier={props.tier}
+            tier={'standart'}
         />
       </div>
 
@@ -83,7 +72,7 @@ else if (props.value==='gig'){
   //   console.log(`gig preset mounted is ${isGigPreset}`)
   // },
   // [isGigPreset])
-  const gigSet = (e) =>{
+  const gigSet = () =>{
       setGigPreset(!isGigPreset)
       dispatch(setSortByGigPreset(!isGigPreset))
   }
@@ -93,7 +82,7 @@ else if (props.value==='gig'){
         <SvgSelector 
             value={props.value}
             focus={isGigPreset}
-            tier={props.tier}
+            tier={'standart'}
         />
       </div>
 

@@ -30,7 +30,8 @@ const config = {
             "@ArtistLogo": path.resolve(__dirname, "./src/assets/ArtistLogo"),
             "@PromoLogo": path.resolve(__dirname, "./src/assets/PromoLogo"),
             "@TemplatePics": path.resolve(__dirname, "./src/assets/templates"),
-            "@Types": path.resolve(__dirname, './Types')
+            "@Types": path.resolve(__dirname, './Types'),
+            "@Store": path.resolve(__dirname, "./src/store")
             // "@Avatar": path.resolve(__dirname, "./src/assets/Personal/Avatars")
         }
     },

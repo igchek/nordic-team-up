@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./LowerBar.module.scss"
 
-const LowerBar = () => {
+const LowerBar:React.FC = () => {
 
 
     return(

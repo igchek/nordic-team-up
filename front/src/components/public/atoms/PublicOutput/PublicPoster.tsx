@@ -1,12 +1,17 @@
 import React from "react";
 import styles from "./PublicPoster.module.scss"
+import {motion} from 'framer-motion'
 
-const PublicPoster = (props) => {
+interface PublicPosterI {
+    poster:string
+}
+
+const PublicPoster:React.FC<PublicPosterI> = (props) => {
 
     return (
-        <div className={styles.wrapper}>
+        <motion.div className={styles.wrapper}>
             <img className={styles.poster} src={require(`@PromoLogo/${props.poster}.jpg`)} alt="poster" />
-        </div>
+        </motion.div>
     )
 }
 

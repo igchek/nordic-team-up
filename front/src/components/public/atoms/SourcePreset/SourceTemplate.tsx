@@ -2,12 +2,17 @@ import React, { useEffect } from "react"
 import styles from "./SourceTemplate.module.scss"
 import SvgSelector from "../../../commonUtils/SvgSelector"
 import { useState } from "react"
-import { useDispatch } from "react-redux"
+import { useAppDispatch } from "../../../../hooks"
 import {setSortByArtistPreset, setSortByVenuePreset} from '../../../../store/publicContent'
 
 
-const SourceTemplate = (props) => {
-  const dispatch = useDispatch()
+interface SourceTemplateI {
+  value:string
+  focus:boolean
+}
+
+const SourceTemplate:React.FC<SourceTemplateI> = (props) => {
+  const dispatch = useAppDispatch()
   
   
   if (props.value==='artist'){
@@ -16,7 +21,7 @@ const SourceTemplate = (props) => {
       console.log(`artist preset is ${isArtistPreset}`)
     },
     [])
-    const artistSet = (e) =>{
+    const artistSet = () =>{
       if (!isArtistPreset){
         setArtistPreset(!isArtistPreset)
         console.log(`artist preset is ${!isArtistPreset}`)
@@ -34,7 +39,7 @@ const SourceTemplate = (props) => {
           <SvgSelector 
                 value={props.value}
                 focus={isArtistPreset}
-                tier={props.tier}
+                tier={'standart'}
             />
         </div>
       </div>)
@@ -45,7 +50,7 @@ const SourceTemplate = (props) => {
       console.log(`venue preset is ${isVenuePreset}`)
     },
     [])
-    const venueSet = (e) =>{
+    const venueSet = () =>{
       if (!isVenuePreset){
         setVenuePreset(!isVenuePreset)
         console.log(`venue preset id ${!isVenuePreset}`)
@@ -63,7 +68,7 @@ const SourceTemplate = (props) => {
           <SvgSelector 
                 value={props.value}
                 focus={isVenuePreset}
-                tier={props.tier}
+                tier={'standart'}
             />
         </div>
       </div>)

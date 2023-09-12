@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from "react";
 import styles from "./PublicSourceData.module.scss"
 import SvgSelector from '../../../commonUtils/SvgSelector';
+import { AudienceParams } from "../../../../store/modules/libraries/Content/Vibe";
+
+interface PublicContentSourceData {
+    modality:string
+    focus:boolean
+    audience:AudienceParams
+}      
 
 
-const PublicSourceData = (props) => {
+const PublicContentSourceData:React.FC<PublicContentSourceData> = (props) => {
     
 
 
 
 
-    if (props.sourceType ==="content"){
+
         return (
             <div className={styles.dataWrapper}>
                 <div className={styles.modalityWrapper}>
@@ -23,23 +30,11 @@ const PublicSourceData = (props) => {
                 </div>
                 <div className={styles.audienceWrapper}>
                     <div className={props.focus?styles.audienceSocketActive:styles.audienceSocketPassive}>
-                        {props.audience}
+                        {props.audience.total}
                     </div>
                 </div>                               
             </div>
         )
-    }
-    else {
-        return (
-            <div className={styles.sourceTypeWrapper}>
-                <SvgSelector
-                    value={props.modality}
-                    tier='standart'
-                    focus={props.focus}
-                />
-            </div>
-        )
-    }
 }
 
-export default PublicSourceData
+export default PublicContentSourceData

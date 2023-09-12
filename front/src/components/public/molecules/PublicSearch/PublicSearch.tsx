@@ -3,7 +3,7 @@ import SearchInput from '../../atoms/PublicSearch/SearchInput'
 import SearchSettings from '../../atoms/PublicSearch/SearchSettings'
 import styles from "./PublicSearch.module.scss"
 
-const PublicSearch = () => {
+const PublicSearch:React.FC = () => {
   return (
     <div className={styles.wrapper}>
         <SearchInput/>

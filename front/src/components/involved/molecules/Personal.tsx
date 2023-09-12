@@ -1,31 +1,33 @@
 import React, { useEffect } from "react";
 import styles from "./Personal.module.scss"
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../../hooks";
 import SettingsGear from "./SettingsGear";
 import Avatar from "../atoms/Personal/Avatar";
 import NickName from '../atoms/Personal/NickName';
+import {motion} from 'framer-motion'
 
-
-const Personal = () => {
-const userNickName = useSelector(({personal})=>personal.userName)
-const userAvatar = useSelector(({personal}) => personal.currentAvatar)
-
-
-const gear = () => {
-    
+interface Personal {
+ 
 }
+
+
+const Personal:React.FC<Personal> = () => {
+const userProfile = useAppSelector(({personal})=>personal)
+
+
+
     return (
-        <div className={styles.wrapper}>
+        <motion.div className={styles.wrapper}>
             <Avatar 
-                avatar = {userAvatar}
+                avatar = {userProfile.profileFlavour.profilePic}
             />
             <NickName 
-                nickName={userNickName}
+                nickName={userProfile.profileFlavour.profileNick}
             />
             <SettingsGear/>
 
 
-        </div>
+        </motion.div>
     )
 }
 
