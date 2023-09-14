@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './styles.module.scss';
 
-const GigOffSvg = (props) => {
+const GigOffSvg:React.FC = () => {
 
 
   return (

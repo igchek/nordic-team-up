@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './styles.module.scss';
 
-const MutedSvg = () => {
+const MutedSvg:React.FC = () => {
   return (
     <div className={styles.svgTemplateWrapper} >
         <svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" 

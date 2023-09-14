@@ -160,6 +160,7 @@ export class sync extends vibe {
             vibe.authorLogo
         )
         this.syncParams=syncParams
+        this.vibe=vibe
     }
         vibe:vibe;
         syncParams?:SyncParams<Option<Date, LineUpQue<LineUpUnit>>,ChargedOption<chargingParams>>;

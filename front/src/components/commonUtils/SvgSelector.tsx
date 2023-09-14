@@ -11,7 +11,7 @@ import SearchOffSvg from '../../assets/svg/SearchOffSvg.jsx'
 import SettingsOnSvg from '../../assets/svg/SettingsOnSvg.jsx'
 import ArtistOnSvg from '../../assets/svg/ArtistOnSvg.jsx'
 import ArtistOffSvg from '../../assets/svg/ArtistOffSvg.jsx'
-import MutedSvg from '../../assets/svg/mutedSVG.jsx'
+import MutedSvg from '../../assets/svg/MutedSvg'
 import UnmutedSvg from '../../assets/svg/UnmutedSvg.jsx'
 import GearOffSvg from '../../assets/svg/GearOffSvg.jsx'
 import GearOnSvg from '../../assets/svg/GearOnSvg.jsx'
@@ -19,8 +19,13 @@ import VenueOffSvg from '../../assets/svg/VenueOffSvg';
 import VenueOnSvg from '../../assets/svg/VenueOnSvg';
 import SettingsOffSvg from '../../assets/svg/SettingsOffSvg';
 
+interface SvgSelectorI {
+    value:string
+    focus:boolean
+    tier:string
+}
 
-const SvgSelector = (props) => {
+const SvgSelector:React.FC<SvgSelectorI> = (props) => {
   if (props.value ==='vibe' && !props.focus)  {
     switch(props.tier){
         case 'standart':return(
@@ -300,12 +305,12 @@ const SvgSelector = (props) => {
         switch(props.tier){
              case 'standart':return(
                 <div className={styles.standart}> 
-                    <GearSvg/>
+                    <GearOnSvg/>
                  </div>
                     )
             case 'big': return(
                 <div className={styles.big}> 
-                     <GearSvg/>
+                     <GearOffSvg/>
                 </div>
                     )
          }

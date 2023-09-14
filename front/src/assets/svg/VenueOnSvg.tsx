@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './styles.module.scss';
 
-const VenueOnSvg = () => {
+const VenueOnSvg:React.FC = () => {
   return (
     <div className={styles.svgTemplateWrapper} >
         <svg width="100%" height="100%" viewBox="0 0 88 97" fill="none" xmlns="http://www.w3.org/2000/svg">

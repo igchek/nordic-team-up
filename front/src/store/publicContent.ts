@@ -9,7 +9,7 @@ import { publicSearchSettings } from './modules/libraries/Profiles/Template';
 
 
 
-export class PublicLoad {
+export interface PublicLoad {
     mockContent:any[]
     content: (vibe|sync|gig|artist|venue)[];
     publicSearchSettings?:publicSearchSettings;

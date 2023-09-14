@@ -1,4 +1,4 @@
-import { Chat, chatType, chatParams, moderationSettings, ChatUser, standartMessage } from "./Template"
+import { Chat, chatType, chatParams, moderationSettings, ChatUser, standartMessage, message } from "./Template"
 
 
 
@@ -13,6 +13,7 @@ export class PublicChat extends Chat {
         audience:number,
         chatParams:chatParams,
         moderationSettings:moderationSettings,
+        messages:standartMessage[],
         chat:standartMessage[]
     ){
         super()
@@ -24,9 +25,20 @@ export class PublicChat extends Chat {
         this.audience=audience
         this.chatParams=chatParams
         this.moderationSettings=moderationSettings
+        this.messages=messages
         this.chat=chat
 
     }
+
+    chatId:string
+    hostContentId:string
+    chatTitle:string
+    hostContentTitle:string
+    chatType:chatType
+    audience:number
+    chatParams:chatParams
+    moderationSettings:moderationSettings
+    messages: standartMessage[]
     chat:standartMessage[]
     userList?:ChatUser[]
     admins?:ChatUser[]

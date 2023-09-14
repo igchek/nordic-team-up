@@ -1,12 +1,10 @@
-export class AudienceParams {
+import { Vibrations } from "../Profiles/Artist";
+
+export interface AudienceParams {
     total:number;
-    aggregated?:Aggregation
+    vibes?:Vibrations
 }
-    export class Aggregation {
-        name:string;
-        id:number;
-        total:number;
-    }
+
 
 export class vibe {
     constructor (

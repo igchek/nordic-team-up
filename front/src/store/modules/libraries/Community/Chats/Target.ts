@@ -18,14 +18,15 @@ export class TargetChat extends PrivateChat {
             chat.audience,
             chat.chatParams,
             chat.moderationSettings,
-            chat.inviteParams,
-            chat.privateRules
+            chat.messages,
+            chat.inviteParams
         )
+        this.chatId=chat.chatId
         this.offers=offers
 
 
     }
     offers:targetOffer[]
-    contracts:targetContract[]
+    contracts?:targetContract[]
     negotiations?:targetOfferNegotiations
 }

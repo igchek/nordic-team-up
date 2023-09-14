@@ -2,6 +2,7 @@ import { ChatUser, standartMessage } from "../Chats/Template";
 import {vibe} from '../../Content/Vibe'
 import {sync} from '../../Content/Sync'
 import { contractStructureParams, contractsSpreadSheet, coreParams, fundingParams, gig, operationalCostParams, profitStructureParams, securityParams, withdrawalParams, purchasingParams, cancelationParams } from "../../Content/Gig";
+import { TargetChat } from "../Chats/Target";
 export class target {
     constructor (
         id:number,
@@ -48,13 +49,20 @@ export class targetOffer {
         this.targets=targets,
         this.contractorId=contractorId
         this.hostId=hostId,
+        this.spreadSheet={
+            wages:0,
+            advances:0,
+            shares:0
+        }
         this.spreadSheet.wages=wages,
         this.spreadSheet.advances=advances,
         this.spreadSheet.shares=shares
-        this.reception.isRecieved=false,
-        this.reception.isRejected=false,
-        this.reception.isAgreed=false,
-        this.reception.isNegotiated=false
+        this.reception={
+            isRejected:false,
+            isRecieved:false,
+            isAgreed:false,
+            isNegotiated:false
+        }
 
 
     }
@@ -79,7 +87,8 @@ export class targetOfferNegotiations {
         baseOffer:targetOffer,
         contractorNegotiators:ChatUser[],
         hostNegotiators:ChatUser[],
-        initalCounterOffer:targetOffer
+        initalCounterOffer:targetOffer,
+        chat:TargetChat
     ){
         this.orinigalTargetOffer=baseOffer
         this.contractorId=baseOffer.contractorId
@@ -88,6 +97,7 @@ export class targetOfferNegotiations {
         this.hostNegotiators=hostNegotiators
         this.counterOffers=[]
         this.counterOffers.push(initalCounterOffer)
+        this.chat=chat
     }
     orinigalTargetOffer:targetOffer
     contractorId:number
@@ -95,7 +105,7 @@ export class targetOfferNegotiations {
     contractorNegotiators:ChatUser[]
     hostNegotiators:ChatUser[]
     counterOffers:targetOffer[]
-    chat:standartMessage|targetOffer[]
+    chat:TargetChat
 
     addCounterOffer(offer:targetOffer){
         this.counterOffers.push(offer)
@@ -121,6 +131,7 @@ export class targetContract extends targetOffer {
         this.targetContent=targetContent
         this.isCleared=false
         this.isMessy=false
+        this.clearingStatus={}
         
     }
     targetContent:vibe|sync|gig

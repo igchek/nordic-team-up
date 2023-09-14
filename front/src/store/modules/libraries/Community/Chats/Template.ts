@@ -3,15 +3,15 @@
 export type chatType = 'public' | 'local' | 'private' | 'target'
 
 export abstract class Chat {
-    chatId:string
-    hostContentId:string
-    chatTitle:string
-    hostContentTitle:string
-    chatType:chatType
-    audience:number
-    chatParams:chatParams
-    moderationSettings:moderationSettings
-    messages:standartMessage[]
+    abstract chatId:string
+    abstract  hostContentId:string
+    abstract  chatTitle:string
+    abstract  hostContentTitle:string
+    abstract  chatType:chatType
+    abstract  audience:number
+    abstract  chatParams:chatParams
+    abstract  moderationSettings:moderationSettings
+    abstract  messages:standartMessage[]
 
     
 }
@@ -61,11 +61,11 @@ export class ModerationRule {
 
 
 export abstract class message {
-    messageId:string
-    emiterId:string
-    chatId:string
-    date:Date
-    time:TimerHandler
+    abstract messageId:string
+    abstract emiterId:string
+    abstract chatId:string
+    abstract date:Date
+    abstract time:TimerHandler
     text?:string
     isAReply?:boolean
     repliantId?:string
@@ -87,7 +87,8 @@ export class standartMessage extends message {
         media?:[]
 
     ){
-        super()
+        super(
+        )
         this.messageId=messageId
         this.emiterId=emiterId
         this.chatId=chatId
@@ -99,6 +100,12 @@ export class standartMessage extends message {
         this.isRead=isRead
         this.media=media
     }
+    
+    messageId:string
+    emiterId:string
+    chatId:string
+    date:Date
+    time:TimerHandler
     media?:[]
 
 }
@@ -116,6 +123,7 @@ export class standartChat extends Chat {
         messages:standartMessage[]
     ){
         super()
+
         this.chatId=chatId
         this.hostContentId=hostContentId
         this.chatTitle=chatTitle
@@ -127,6 +135,15 @@ export class standartChat extends Chat {
         this.messages=messages
         
     }
+    chatId:string
+    hostContentId:string
+    chatTitle:string
+    hostContentTitle:string
+    chatType:chatType
+    audience:number
+    chatParams:chatParams
+    moderationSettings:moderationSettings
+    messages: standartMessage[]
 
 
 

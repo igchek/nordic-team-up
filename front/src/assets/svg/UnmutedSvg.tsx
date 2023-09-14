@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './styles.module.scss';
 
-const UnmutedSvg = () => {
+const UnmutedSvg:React.FC = () => {
   return (
     <div className={styles.svgTemplateWrapper} >
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enableBackground="new 0 0 1000 1000" xmlSpace="preserve">

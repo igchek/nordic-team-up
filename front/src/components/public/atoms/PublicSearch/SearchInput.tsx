@@ -2,7 +2,7 @@ import React from 'react';
 import styles from "./SearchInput.module.scss";
 import {useState, useEffect} from 'react';
 import { useAppDispatch, useAppSelector } from '../../../../hooks';
-// import {setSearchIndexInput} from '../../../../store/publicContent';
+
 
 
 
@@ -22,7 +22,7 @@ const SearchInput:React.FC = () => {
   
   return (
     <div className={styles.wrapper}>
-        <input className={styles.input} onChange={(e)=>{setSearch(e.target.value)}} type="" />
+        <input className={styles.input} onChange={(e:React.ChangeEvent<HTMLInputElement>)=>{setSearch((e.target as HTMLInputElement).value)}} type="" />
     </div>
   )
 }

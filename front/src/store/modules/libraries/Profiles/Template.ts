@@ -11,6 +11,15 @@ import { venue } from "./Venue"
 
 
 export abstract class user {
+    constructor(
+        profileId:string,
+        profileLog:string,
+        exchangeAPI?:exhangeAPIParams)
+        {
+        this.profileId=profileId
+        this.profileLog=profileLog
+        this.exchangeAPI=exchangeAPI
+        }
     profileId:string
     profileLog:string
     exchangeAPI?:exhangeAPIParams
@@ -23,26 +32,30 @@ export interface exhangeAPIParams{
 
 export class standartUserProfile extends user {
     constructor(
-        profileId:string,
-        profileLog:string,
+        user:user,
         password:string,
         token:string,
         nick:string,
+        pic:string,
 
         profileGeo?:geo,
 
     ){
-        super()
-        this.profileId=profileId
-        this.profileLog=profileLog
+        super(
+            user.profileId,
+            user.profileLog
+        )
         this.password=password
         this.token=token
         this.profileGeo=profileGeo
+        this.profileFlavour={
+            profilePic:'def',
+            profileNick:'def'
+        }
         this.profileFlavour.profileNick=nick
+        this.profileFlavour.profilePic=pic
     }
 
-    profileId: string
-    profileLog: string
     password:string
     token:string
 

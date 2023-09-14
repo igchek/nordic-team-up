@@ -36,19 +36,19 @@ export class artist {
 
 
 export abstract class vibeTemplate {
-    title:string
-    poster:string
+    
+    abstract title:string
+    abstract poster:string
 
-    format:TemplateFormats|string
+    abstract format:TemplateFormats|string
 }
 
 export type TemplateFormats = 'concert' | 'stand up'
 
 export class vibeCore extends vibeTemplate {
     constructor(
-        title:string,
-        poster:string,
-        format:TemplateFormats|string,
+        
+        vibeTemplate:vibeTemplate,
 
         emiterId:string,
         lineUp?:lineUpSummaryUnit[],
@@ -61,11 +61,12 @@ export class vibeCore extends vibeTemplate {
 
 
     ){
-        super()
-        this.title=title
-        this.poster=poster
-        this.format=format
-
+        super(
+            
+        )
+        this.title=vibeTemplate.title
+        this.poster=vibeTemplate.poster
+        this.format=vibeTemplate.format
         this.emiterId=emiterId
         this.lineUp=lineUp
         this.description=description
@@ -75,6 +76,9 @@ export class vibeCore extends vibeTemplate {
         this.media=media
     }
 
+    title: string
+    poster: string
+    format: string
     emiterId:string
     lineUp?:lineUpSummaryUnit[]
     description?:string
@@ -167,18 +171,17 @@ export class frequencyAllocation {
 
 export class VibratingContent extends vibeCore{
     constructor(
+        vibeTemplate:vibeTemplate,
         vibeCore:vibeCore,
         vibrations:Vibrations
     ){
         super(
-            vibeCore.title,
-            vibeCore.poster,
-            vibeCore.format,
+            vibeTemplate,
             vibeCore.emiterId,
-            vibeCore.lineUp,
-            vibeCore.description,
-            vibeCore.tags,
-            vibeCore.media  
+            vibeCore?.lineUp,
+            vibeCore?.description,
+            vibeCore?.tags,
+            vibeCore?.media
         )
         this.vibrations=vibrations
         this.isVibrating=true
@@ -265,10 +268,14 @@ export class crewMember extends user {
     constructor(
         id:string,
         log:string,
-        ex:exhangeAPIParams
+        ex?:exhangeAPIParams
     )
     {
-        super()
+        super(
+            id,
+            log,
+            ex
+        )
         this.profileId=id
         this.profileLog=log
         this.exchangeAPI=ex

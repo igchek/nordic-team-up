@@ -51,6 +51,10 @@ const config = {
                 loader: "ts-loader" 
             },
             {
+                test:/\.ts?$/, 
+                loader: "ts-loader"
+            },
+            {
                 test: /\.(js|jsx)$/i,
                 loader: 'babel-loader',
             },
