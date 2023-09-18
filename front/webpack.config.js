@@ -67,10 +67,9 @@ const config = {
                 type: 'asset',
             },
             {
-                test: /\.s[ac]css$/,
+                test: /\.scss$/,
                 use: [
                     { loader: "style-loader"},
-                    { loader: "css-modules-typescript-loader"},
                     { loader: "css-loader"},
                     {
                         loader:"sass-loader",
@@ -87,8 +86,8 @@ const config = {
             {
                 test: /\.module\.scss$/,
                 use: [
-                    'style-loader',
-                    { loader: "css-modules-typescript-loader"},
+                    { loader:'style-loader'},
+                    // { loader: "css-modules-typescript-loader"},
                     {
                         loader: 'css-loader',
                         options: {
@@ -101,7 +100,8 @@ const config = {
                             sassOptions:{
                                 indentWidth: 4,
                                 includePaths:[path.resolve(__dirname, "src/stylesCommon/")]
-                            }
+                            },
+                            implementation: require.resolve("sass")
                         }
                     }
                     
