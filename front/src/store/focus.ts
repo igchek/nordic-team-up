@@ -11,7 +11,7 @@ import { PrivateChat } from './modules/libraries/Community/Chats/Private'
 import { TargetChat } from './modules/libraries/Community/Chats/Target'
 
 
-interface focusLoad {
+export interface focusLoad {
     focusedContent:null|vibe|sync|gig,
     focusedHost:null|artist|venue,
     isCommunityFocused:boolean,

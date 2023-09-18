@@ -3,7 +3,7 @@ import { RouterProvider } from 'react-router-dom'
 import {Provider as ReduxProvider} from 'react-redux'
 import store from './store'
 import router from './router'
-import styles from './App.module.scss'
+import * as styles from './App.module.scss'
 
 
 

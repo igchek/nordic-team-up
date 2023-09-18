@@ -69,8 +69,9 @@ const config = {
             {
                 test: /\.s[ac]css$/,
                 use: [
-                    'style-loader',
-                    'css-loader',
+                    { loader: "style-loader"},
+                    { loader: "css-modules-typescript-loader"},
+                    { loader: "css-loader"},
                     {
                         loader:"sass-loader",
                         options:{
@@ -87,6 +88,7 @@ const config = {
                 test: /\.module\.scss$/,
                 use: [
                     'style-loader',
+                    { loader: "css-modules-typescript-loader"},
                     {
                         loader: 'css-loader',
                         options: {
@@ -102,6 +104,7 @@ const config = {
                             }
                         }
                     }
+                    
                 ],
             }
 

@@ -6,7 +6,7 @@ import { artist } from './modules/libraries/Profiles/Artist'
 import { venue } from './modules/libraries/Profiles/Venue'
 import { involvedSearchSettings } from './modules/libraries/Profiles/Template'
 
-interface involvedLoad {
+export interface involvedLoad {
     mockContent:any[]
     content:(vibe|sync|gig|artist|venue)[],
     sortedContent:(vibe|sync|gig|artist|venue)[],
