@@ -9,7 +9,7 @@ const isProduction = process.env.NODE_ENV == 'production';
 const stylesHandler = isProduction ? MiniCssExtractPlugin.loader : 'style-loader';
 
 const config = {
-    entry: './src/index.js',
+    entry: './src/index.tsx',
     output: {
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/'
@@ -18,7 +18,7 @@ const config = {
         open: true,
         host: 'localhost',
         // onBeforeSetupMiddleware: devServer => webpackMockServer.use(devServer.app, {
-        // 
+        //
             port: 8888,
         //     entry: ['webpack.mock.ts']
         // }),
@@ -47,12 +47,8 @@ const config = {
     module: {
         rules: [
             {
-                test: /\.tsx?$/, 
-                loader: "ts-loader" 
-            },
-            {
-                test:/\.ts?$/, 
-                loader: "ts-loader"
+                test: /\.tsx?$/,
+                use: ['babel-loader', 'ts-loader']
             },
             {
                 test: /\.(js|jsx)$/i,
@@ -104,7 +100,7 @@ const config = {
                             implementation: require.resolve("sass")
                         }
                     }
-                    
+
                 ],
             }
 
@@ -117,12 +113,12 @@ const config = {
 module.exports = () => {
     if (isProduction) {
         config.mode = 'production';
-        
+
         config.plugins.push(new MiniCssExtractPlugin());
-        
+
     } else {
         config.mode = 'development';
     }
     return config;
-    
+
 };
