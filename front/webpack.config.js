@@ -31,8 +31,8 @@ const config = {
             "@PromoLogo": path.resolve(__dirname, "./src/assets/PromoLogo"),
             "@TemplatePics": path.resolve(__dirname, "./src/assets/templates"),
             "@Types": path.resolve(__dirname, './Types'),
-            "@Store": path.resolve(__dirname, "./src/store")
-            // "@Avatar": path.resolve(__dirname, "./src/assets/Personal/Avatars")
+            "@Store": path.resolve(__dirname, "./src/store"),
+            "@Avatar": path.resolve(__dirname, "./src/assets/Personal/Avatars")
         }
     },
     devtool: 'source-map',
@@ -48,7 +48,7 @@ const config = {
         rules: [
             {
                 test: /\.tsx?$/, 
-                loader: "ts-loader" 
+                use: ['babel-loader','ts-loader']
             },
             {
                 test:/\.ts?$/, 
@@ -67,10 +67,14 @@ const config = {
                 type: 'asset',
             },
             {
-                test: /\.scss$/,
+                test: /\.s[ac]ss$/,
                 use: [
                     { loader: "style-loader"},
-                    { loader: "css-loader"},
+                    { loader: "css-loader",
+                        // options:{
+                        //     modules:true
+                        // }
+                        },
                     {
                         loader:"sass-loader",
                         options:{
@@ -90,9 +94,6 @@ const config = {
                     // { loader: "css-modules-typescript-loader"},
                     {
                         loader: 'css-loader',
-                        options: {
-                            modules: true,
-                        },
                     },
                     {
                         loader:"sass-loader",
@@ -101,9 +102,10 @@ const config = {
                                 indentWidth: 4,
                                 includePaths:[path.resolve(__dirname, "src/stylesCommon/")]
                             },
-                            implementation: require.resolve("sass")
+                            // implementation: require.resolve("sass")
                         }
-                    }
+                    },
+                   
                     
                 ],
             }

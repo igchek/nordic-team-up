@@ -1,6 +1,6 @@
 import React from 'react'
 import {createBrowserRouter} from 'react-router-dom'
-import Main from '../pages/Main.js'
+import Main from '../pages/Main'
 import Personal from '../pages/Personal'
 import Vibe from '../pages/Personal'
 import Sync from '../pages/Sync'

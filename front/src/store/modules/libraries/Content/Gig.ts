@@ -1,3 +1,4 @@
+import { standartUserProfile } from '../Profiles/Template'
 import {sync, ChargedOption, chargingParams} from './Sync'
 
 export class gig extends sync {
@@ -5,7 +6,7 @@ export class gig extends sync {
         sync:sync,
         securedOption?:ChargedOption<chargingParams>,
         fixedPrice?:number,
-        initiatiors?:[],
+        initiatiors?:standartUserProfile[],
         funds?:fundingParams,
         withdrawals?:withdrawalParams,
         cancelation?:cancelationParams,
@@ -25,7 +26,7 @@ export class gig extends sync {
     }
     securedOption?:ChargedOption<chargingParams>
     fixedPrice?:Number
-    initiatiors?:[]
+    initiatiors?:standartUserProfile[]
     funds?:fundingParams
     withdrawals?:withdrawalParams
     cancelation?:cancelationParams
