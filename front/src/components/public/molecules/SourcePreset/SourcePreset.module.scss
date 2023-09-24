@@ -1,0 +1,19 @@
+@use "@styles/templates";
+
+.wrapper{
+    background: #888686;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+    gap: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    max-height: 5%;
+    overflow: hidden;
+
+    width: 100%;
+    @include templates.verticalHeights($upperImplied:false);
+}

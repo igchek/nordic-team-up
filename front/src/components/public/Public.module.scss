@@ -1,0 +1,13 @@
+@use "@styles/templates";
+
+.wrapper {
+    @include templates.sectionWidth($isSideline:true);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: 0px;
+    margin: 0px;
+    height: 100%;
+    overflow: hidden;
+}

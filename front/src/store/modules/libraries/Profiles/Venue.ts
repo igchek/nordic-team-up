@@ -1,0 +1,23 @@
+export class venue {
+    constructor(
+        id:string,
+        providerTitle:string,
+        providerType:string,
+        logo:string,
+        unitType:string,
+        sourceType:string
+    ){
+        this.id=id
+        this.providerTitle=providerTitle
+        this.providerType=providerType
+        this.logo=logo
+        this.unitType=unitType
+        this.sourceType=sourceType
+    }
+    id:string;
+    providerTitle:string;
+    providerType:string;
+    logo:string;
+    unitType:string
+    sourceType:string
+}

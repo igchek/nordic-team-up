@@ -1,0 +1,22 @@
+
+.wrapper {
+    align-self: flex-end;
+    width:15%;
+    height: 100%;
+    opacity: 50%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover{
+        opacity: 100%;
+    }
+    .socket {
+        aspect-ratio: 1/1;
+        height: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+    }
+}

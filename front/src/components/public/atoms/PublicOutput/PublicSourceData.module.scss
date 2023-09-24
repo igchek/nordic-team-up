@@ -1,0 +1,36 @@
+@use "@styles//templates";
+
+.dataWrapper{
+    @include templates.minorUnitContentDataWrapper;
+    .modalityWrapper{
+        @include templates.minorUnitModality;
+        .modalitySocket {
+            @include templates.modalitySocketMUD;
+        }
+    }
+    .audienceWrapper{
+        @include templates.minorUnitAudienceWrapper;
+        .audienceSocketActive{
+            @include templates.minorUnitAudienceSocket($isActive:true);
+            @include templates.FontsMinorUnitAudience;
+            color: white;
+        }
+        .audienceSocketPassive{
+            @include templates.minorUnitAudienceSocket($isActive:false);
+            @include templates.FontsMinorUnitAudience;
+            color: white;
+        }
+    }
+
+}
+
+.sourceTypeWrapper{
+    height: 100%;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    margin: 0px;
+}

@@ -1,0 +1,46 @@
+@use "@styles//templates";
+
+
+.passiveWrapper{
+    @include templates.minorUnitTitlesWrapper;
+    .activeProviderTitle{
+        @include templates.minorUnitUpperTitle($isActive:true);
+    }
+    .passiveProviderTitle{
+        @include templates.minorUnitUpperTitle($isActive:false);
+    }
+    .activeSourceType{
+        @include templates.minorUnitLowerTitle($isActive:true);
+    }
+    .passiveSourceType{
+        @include templates.minorUnitLowerTitle($isActive:false);
+    }
+    .activeContentTitle{
+        @include templates.minorUnitUpperTitle($isActive:true);
+    }
+    .passiveContentTitle{
+        @include templates.minorUnitUpperTitle($isActive:false);
+    }
+}
+
+.activeWrapper{
+    @include templates.minorUnitTitlesWrapper;
+    .activeProviderTitle{
+        @include templates.minorUnitUpperTitle($isActive:true);
+    }
+    .passiveProviderTitle{
+        @include templates.minorUnitUpperTitle($isActive:false);
+    }
+    .activeSourceType{
+        @include templates.minorUnitLowerTitle($isActive:true);
+    }
+    .passiveSourceType{
+        @include templates.minorUnitLowerTitle($isActive:true);
+    }
+    .activeContentTitle{
+        @include templates.minorUnitUpperTitle($isActive:true);
+    }
+    .passiveContentTitle{
+        @include templates.minorUnitUpperTitle($isActive:false);
+    }
+}
