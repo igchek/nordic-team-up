@@ -1,0 +1,144 @@
+import mongoose from "mongoose";
+
+const gigSchema = new mongoose.Schema({
+    vibeId:{
+        type:mongoose.Schema.Types.ObjectId,
+        required:true
+    },
+    deployment:{
+        base:{
+            type:mongoose.Schema.Types.ObjectId,
+            required:true,
+            ref:'temporal frame'
+        },
+        venueId:{
+            type:mongoose.Schema.Types.ObjectId,
+            required:true
+        },
+        initiators:[{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'user'
+        }],
+        deploymentDate:{
+            type:Date,
+            required:true
+        },
+        required:true
+    },
+    flow:{
+        initiators:[{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'user'
+        }],
+        purchase:[{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'user'
+        }],
+        swapQuery:[{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'user'
+        }],
+        swaped:[{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'user'
+        }],
+        purchaseQuery:[{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'user'
+        }]
+    },
+
+    capacity:{
+        deployed:{
+            type:Number,
+            required:true
+        },
+        residual:{
+            type:Number,
+            required:true
+        },
+        maximal:{
+            type:Number,
+            required:false
+        }
+    },
+
+    funds:{
+       security:{
+            artist:{
+                type:mongoose.Schema.Types.ObjectId,
+                required:true,
+                ref:'transaction'
+            },
+            venue:{
+                type:mongoose.Schema.Types.ObjectId,
+                required:true,
+                ref:'transaction'
+            },
+            target:[{
+                type:mongoose.Schema.Types.ObjectId,
+                ref:'target proposition'
+            }],
+            required:true
+       },
+       advance:{
+            artist:{
+                type:mongoose.Schema.Types.ObjectId,
+                required:false,
+                ref:'transaction'
+            },
+            venue:{
+                type:mongoose.Schema.Types.ObjectId,
+                required:false,
+                ref:'transaction'
+            },
+            target:[{
+                type:mongoose.Schema.Types.ObjectId,
+                ref:'target proposition'
+            }],
+            required:false
+        },
+        profits:{
+            sales:{
+                type:Number,
+                required:true
+            },
+            artist:{
+                share:{
+                    type:Number,
+                    required:false
+                },
+                value:{
+                    type:Number,
+                    required:false
+                },
+                deposition:{
+                    type:mongoose.Schema.Types.ObjectId,
+                    required:false
+                },
+                required:false
+                
+            },
+            venue:{
+                share:{
+                    type:Number,
+                    required:false
+                },
+                value:{
+                    type:Number,
+                    required:false
+                },
+                deposition:{
+                    type:mongoose.Schema.Types.ObjectId,
+                    required:false
+                },
+                required:false
+            },
+            required:false
+        }
+    }
+    
+})
+
+const Gig = mongoose.models.Gig || mongoose.model('Gig', gigSchema)
+export default Gig

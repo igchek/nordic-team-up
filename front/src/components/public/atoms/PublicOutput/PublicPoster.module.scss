@@ -1,8 +1,0 @@
-@use "@styles//templates";
-
-.wrapper{
-    @include templates.minorUnitImageWrapper;
-    .poster{
-        @include templates.minorUnitImage($isActive:true);
-    }
-}

@@ -1,0 +1,147 @@
+import mongoose from "mongoose";
+
+const artistSchema = new mongoose.Schema({
+    contributors:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'User'
+    }],
+    description:{
+        title:{
+            type:String,
+            required:true
+        },
+        subtitle:{
+            role:{
+                type:String,
+                required:false
+            },
+            description:{
+                type:String,
+                required:false
+            },
+            required:false
+        },
+        tagLine:{
+            selfAdjusted:[{
+                type:String,
+                ref:'tag'
+            }],
+            computed:[{
+                type:String,
+                ref:'tag'
+            }],
+            required:false
+        },
+        required:true
+
+    },
+    media:{
+        logo:{
+            type:String,
+            required:true,
+            default:'artistLogo'
+        },
+        header:{
+            type:String,
+            required:false,
+            default:'hostHeader'
+        },
+        reel:[{
+            type:String,
+            ref:'reel'
+        }],
+        required:true
+    },
+    content:{
+        vibes:[{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'vibe'
+        }],
+        gigs:[{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'gig'
+        }],
+        required:false
+    },
+    balanceSheet:{
+        assets:{
+            deposited:{
+                quantity:{
+                    type:Number,
+                    required:false
+                },
+                gigs:[{
+                    type:mongoose.Schema.Types.ObjectId,
+                    ref:'gig'
+                }],
+                transactions:[{
+                    type:mongoose.Schema.Types.ObjectId,
+                    ref:'transaction'
+                }],
+                required:false,
+                default:0
+
+            },
+            pending:{
+                quantity:{
+                    type:Number,
+                    required:false
+                },
+                gigs:[{
+                    type:mongoose.Schema.Types.ObjectId,
+                    ref:'gig'
+                }],
+                transactions:[{
+                    type:mongoose.Schema.Types.ObjectId,
+                    ref:'transaction'
+                }],
+                required:false,
+                default:0
+
+            },
+            required:false
+            },
+        obligations:{
+            deposited:{
+                quantity:{
+                    type:Number,
+                    required:false
+                },
+                gigs:[{
+                    type:mongoose.Schema.Types.ObjectId,
+                    ref:'gig'
+                }],
+                transactions:[{
+                    type:mongoose.Schema.Types.ObjectId,
+                    ref:'transaction'
+                }],
+                required:false,
+                default:0
+
+            },
+            pending:{
+                quantity:{
+                    type:Number,
+                    required:false
+                },
+                gigs:[{
+                    type:mongoose.Schema.Types.ObjectId,
+                    ref:'gig'
+                }],
+                transactions:[{
+                    type:mongoose.Schema.Types.ObjectId,
+                    ref:'transaction'
+                }],
+                required:false,
+                default:0
+
+            },
+            required:false
+        }
+
+    }
+})
+
+const Artist = mongoose.models.Artist || mongoose.model('Artist', artistSchema)
+
+export default Artist

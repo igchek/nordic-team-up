@@ -11,9 +11,9 @@ import { publicSearchSettings } from './modules/libraries/Profiles/Template';
 
 export interface PublicLoad {
     mockContent:any[]
-    content: (vibe|sync|gig|artist|venue)[];
+    content: (vibe|sync|gig)[];
     publicSearchSettings?:publicSearchSettings;
-    sortedContent:(vibe|sync|gig|artist|venue)[];
+    sortedContent:(vibe|sync|gig)[];
 
 }
 

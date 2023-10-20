@@ -1,0 +1,167 @@
+ @use "../../stylesGlobal/variables";
+
+ 
+            // DashRow //
+
+.rowWrapper {
+    
+
+    width: 100%;
+    height: 25vh;
+
+    .rowLeftSegment{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        height: 100%;
+    }
+
+    .rowRightSegment{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        height: 100%;
+    }
+    
+}
+
+
+
+
+
+            // DashTemplate //
+.templateWrapper{
+    display: grid;
+    background-color: $unitBackground;
+    border-radius: 5%;
+    grid-template-rows: 50% 50%;
+    .templateHeader {
+        grid-row: 1;
+        display: flex;
+        background-size: cover;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        .bottomLine{
+            width: 100%;
+            height: 25%;
+            display: grid;
+            grid-template-columns: 80% 20%;
+            .titleSegment{
+                grid-column: 1;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                margin-left: 15%;
+                .titleSocket{
+                    border-radius: 20%;
+                    width: auto;
+                    height: 50%;
+                    color:$textLightColor;
+                    background-color: $interfaceGlobal;
+                    filter: blur(50%);
+
+                }
+            }
+            .modalitySegment {
+                grid-column:2;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .modalitySocket{
+                    aspect-ratio: 1/1;
+                    height: 80%;
+                }
+            }
+        }
+    }
+    .templateBody{
+        grid-row: 2;
+        display: grid;
+        grid-template-columns: 20% 60% 10% 10%;
+        .authorWrapper{
+            grid-column-start: 1;
+            grid-column-end: 2;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            .logoWrapper{
+                aspect-ratio: 1/1;
+                height: 80%;
+                border-radius: 50%;
+            }
+        }
+        .descriptionWrapper{
+            grid-column-start: 2;
+            grid-column-end: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            outline-offset: 10px;
+        }
+        .tagWrapper::-webkit-scrollbar{
+            display: none;
+        }
+        .tagWrapper{
+            grid-column-start: 3;
+            grid-column-end: 4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            overflow: scroll;
+            .tagSocket{
+                width: auto;
+                height:50%;
+                border-radius: 30%;
+                background-color: $interfaceGlobal;
+                color: $textLightColor;
+            }
+        }
+        .audienceSegment{
+            grid-column-start: 4;
+            display: grid;
+            grid-template-rows: 50% 50%;
+            .totalAudienceSegment{
+                grid-row: 1;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                .audienceSocket{
+                    border-radius: 20%;
+                    background-color: $interfaceGlobal;
+                    width: auto;
+                    height: 50%;
+                    margin-left: 15%;
+                    color:$textLightColor;
+                }
+                .audienceDescriptor{
+                    color: $textLightColor;
+                    height: 50%;
+                    width: auto;
+                }
+            }
+            .localAudienceSegment{
+                grid-row: 2;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                .audienceSocket{
+                    border-radius: 20%;
+                    background-color: $interfaceGlobal;
+                    width: auto;
+                    height: 50%;
+                    margin-left: 15%;
+                    color:$textLightColor;
+                }
+                .audienceDescriptor{
+                    color: $textLightColor;
+                    height: 50%;
+                    width: auto;
+                }
+            }
+        }
+    }
+}
