@@ -49,7 +49,7 @@ const UserOutput:React.FC<UserOutputI> = ({communityTarget, specificSearch}) => 
                 </div>
             :
             <div className={styles.ContentOutput}>
-                <NavBurger
+                <NavBurgerger
                     focus={false}
                     communityTarget={false}
                 />

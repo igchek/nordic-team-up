@@ -1,4 +1,4 @@
- @use "../../stylesGlobal/variables";
+ @use "src/app/stylesGlobal/variables";
 
  
             // DashRow //
@@ -34,7 +34,7 @@
             // DashTemplate //
 .templateWrapper{
     display: grid;
-    background-color: $unitBackground;
+    background-color: variables.$unitBackground;
     border-radius: 5%;
     grid-template-rows: 50% 50%;
     .templateHeader {
@@ -59,8 +59,8 @@
                     border-radius: 20%;
                     width: auto;
                     height: 50%;
-                    color:$textLightColor;
-                    background-color: $interfaceGlobal;
+                    color:variables.$textLightColor;
+                    background-color: variables.$interfaceGlobal;
                     filter: blur(50%);
 
                 }
@@ -116,8 +116,8 @@
                 width: auto;
                 height:50%;
                 border-radius: 30%;
-                background-color: $interfaceGlobal;
-                color: $textLightColor;
+                background-color: variables.$interfaceGlobal;
+                color: variables.$textLightColor;
             }
         }
         .audienceSegment{
@@ -131,14 +131,14 @@
                 align-items: center;
                 .audienceSocket{
                     border-radius: 20%;
-                    background-color: $interfaceGlobal;
+                    background-color: variables.$interfaceGlobal;
                     width: auto;
                     height: 50%;
                     margin-left: 15%;
-                    color:$textLightColor;
+                    color:variables.$textLightColor;
                 }
                 .audienceDescriptor{
-                    color: $textLightColor;
+                    color: variables.$textLightColor;
                     height: 50%;
                     width: auto;
                 }
@@ -150,14 +150,14 @@
                 align-items: center;
                 .audienceSocket{
                     border-radius: 20%;
-                    background-color: $interfaceGlobal;
+                    background-color: variables.$interfaceGlobal;
                     width: auto;
                     height: 50%;
                     margin-left: 15%;
-                    color:$textLightColor;
+                    color:variables.$textLightColor;
                 }
                 .audienceDescriptor{
-                    color: $textLightColor;
+                    color: variables.$textLightColor;
                     height: 50%;
                     width: auto;
                 }

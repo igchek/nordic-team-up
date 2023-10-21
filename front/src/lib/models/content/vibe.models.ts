@@ -31,13 +31,13 @@ const VibeSchema = new mongoose.Schema({
 
 
         media:{
-            artistLogo:[{
-                type:mongoose.Schema.Types.ObjectId,
-                ref:'artist'
-            }],
+            artistLogo:{
+                type:String,
+                required:true
+            },
             promoLogo:{type:String, required:false},
             reel:[{
-                type:String,
+                type:mongoose.Schema.Types.ObjectId,
                 ref:'media'
             }],
             description:{
@@ -46,6 +46,28 @@ const VibeSchema = new mongoose.Schema({
             },
             required:true
         },
+    
+    communities:{
+        publicCommunities:[
+            {
+                type:mongoose.Schema.Types.ObjectId,
+                ref:'community'
+            }
+        ],
+        privateCommunities:[
+            {
+                type:mongoose.Schema.Types.ObjectId,
+                ref:'community'
+            }
+        ],
+        targetCommunities:[
+            {
+                type:mongoose.Schema.Types.ObjectId,
+                ref:'community'
+            }
+        ],
+        required:true
+    },
 
     vibrations:{
         total:{
@@ -66,16 +88,20 @@ const VibeSchema = new mongoose.Schema({
         required:false
     },
 
-    syncs:[{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'sync'
-    }],
-
-    gigs:[{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'gig'
-    }]
-        
+    deployment:{
+        syncs:[{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'sync'
+        }],
+    
+        gigs:[{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'gig'
+        }],
+        required:false
+           
+    }
+     
     })
 
     

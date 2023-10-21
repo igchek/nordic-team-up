@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const artistSchema = new mongoose.Schema({
+    artistId:{
+        type:String,
+        required:true
+    },
     contributors:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:'User'
@@ -38,7 +42,7 @@ const artistSchema = new mongoose.Schema({
     media:{
         logo:{
             type:String,
-            required:true,
+            required:false,
             default:'artistLogo'
         },
         header:{
@@ -137,7 +141,8 @@ const artistSchema = new mongoose.Schema({
 
             },
             required:false
-        }
+        },
+        required:false
 
     }
 })

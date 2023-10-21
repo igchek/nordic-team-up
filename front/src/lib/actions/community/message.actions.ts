@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import Message from "../../models/community/message.models";
 import Media from "../../models/discrete/media.models";
 import Community from "../../models/community/community.models";
+import { connectToDB } from "@/lib/validations/mongoose";
 
 
 
@@ -43,6 +44,7 @@ export interface MessageI{
 
 export async function postMessage ({core, content, response}:MessageI){
     try{
+        connectToDB()
         const defaultContent = {
             textContent:content.textContent,
             mediaContent:[],
@@ -80,27 +82,47 @@ export async function postMessage ({core, content, response}:MessageI){
 }
 
 export async function pushLike(id:mongoose.Schema.Types.ObjectId){
-    const message = await Message.findOne({_id:id})
-    const emiter = await message.emiterId
+    try{
+        connectToDB()
+        const message = await Message.findOne({_id:id})
+        const emiter = await message.emiterId
 
-    message.response.likes.quantity++
-    message.response.likes.conveyers.push({_id:emiter})
-    await message.save()
+        message.response.likes.quantity++
+        message.response.likes.conveyers.push({_id:emiter})
+        await message.save()
+    }
+    catch(error:any){
+        throw new Error(`crashed pushing a like: ${error.message}`)
+    }
+    
 }
 
 export async function editMessage(id:mongoose.Schema.Types.ObjectId, updatedText:String){
-    const message = await Message.findOneAndUpdate({_id:id},{textContent:updatedText}, {new:true} )
-    message.content.edit.isEdited = true
-    const editDate = new Date
-    message.content.edit.date = editDate
-    await message.save()
-    return message
+    try{
+        connectToDB()
+        const message = await Message.findOneAndUpdate({_id:id},{textContent:updatedText}, {new:true} )
+        message.content.edit.isEdited = true
+        const editDate = new Date
+        message.content.edit.date = editDate
+        await message.save()
+        return message
+    }
+    catch(error:any){
+        throw new Error(`crashed editing message: ${error.message}`)
+    }
 }
 
 export async function deleteMessages(ids:mongoose.Schema.Types.ObjectId[]){
-    for (let id of ids){
-        await Message.findOneAndDelete({_id:id})
+    try{
+        connectToDB()
+        for (let id of ids){
+            await Message.findOneAndDelete({_id:id})
+        }
     }
+    catch(error:any){
+        throw new Error(`crashed deleting message: ${error.message}`)
+    }
+    
 }
 
 

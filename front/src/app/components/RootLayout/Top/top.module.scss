@@ -7,7 +7,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    background-color: $interfaceGlobal;
+    background-color: variables.$interfaceGlobal;
 }
 
 
@@ -35,8 +35,8 @@
     gap:10%;
     .authenticationButton{
         background-color: rgba($color: #000000, $alpha: 0.0);
-        border-color: $unitBackground;
-        color: $unitBackground;
+        border-color: variables.$unitBackground;
+        color: variables.$unitBackground;
         width:40%;
         height: 60%;
         border-radius: 10%;

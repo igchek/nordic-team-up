@@ -21,7 +21,7 @@
 .leftSide {
     width: 10vw;
     height: 100vh;
-    background-color: $backgroundGlobal;
+    background-color: variables.$backgroundGlobal;
 }
 
 .HomePageWrapper::-webkit-scrollbar {
@@ -31,18 +31,18 @@
     overflow: scroll;
     width: 100%;
     height: 100%;
-    background-color: $backgroundGlobal;
+    background-color: variables.$backgroundGlobal;
 }
 
 .Authentication {
     width: 100%;
     height: 100%;
-    background-color: $backgroundGlobal;
+    background-color: variables.$backgroundGlobal;
 }
 
 .top {
     color: black;
-    background-color: $interfaceGlobal;
+    background-color: variables.$interfaceGlobal;
     height: 7%;
 }
 
@@ -52,7 +52,7 @@
 }
 
 .contentMicro{
-    background-color: $backgroundGlobal;
+    background-color: variables.$backgroundGlobal;
     width: 15%;
 
 }

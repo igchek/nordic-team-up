@@ -76,6 +76,7 @@ interface userCreateI {
 }
 export async function createUser({nic, password, pic, email}:userCreateI){
     try{
+        connectToDB()
         let id = Math.random()*10000
         await User.create({
             core:{

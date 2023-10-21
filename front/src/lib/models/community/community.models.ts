@@ -11,7 +11,7 @@ const communitySchema = new mongoose.Schema({
             isModerated:{type:Boolean, required:true},
             required:true
         },
-        GeoId:{type:mongoose.Schema.Types.ObjectId, required:false},
+        Geo:{type:mongoose.Schema.Types.ObjectId, required:false},
         target:{
             isTargeted:{
                 type:Boolean,
