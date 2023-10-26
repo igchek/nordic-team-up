@@ -4,6 +4,8 @@ import Vibe from "@/lib/models/content/vibe.models";
 import Media from "@/lib/models/discrete/media.models";
 import Artist from "@/lib/models/profiles/artist.model";
 import mongoose from "mongoose";
+import { createCommunity } from "../community/comunity.actions";
+import { connectToDB } from "@/lib/validations/mongoose";
 
 export interface idObject {
     _id:mongoose.Schema.Types.ObjectId
@@ -31,6 +33,7 @@ export interface vibeCreateParams{
 
 export async function createVibe({artistId, core, media}:vibeCreateParams){
     try{
+        connectToDB()
         const artist = await Artist.findOne({id:artistId})
         let promoLogo=undefined
         let reelObjArray=[]
@@ -64,7 +67,26 @@ export async function createVibe({artistId, core, media}:vibeCreateParams){
 
         })
 
-        await Artist.findOneAndUpdate({_id:artist._id},{$push:{:newVibe._id}})
+        await artist.content.vibes.push({_id:newVibe._id}).save()
+        const defaultPublicCommunity = await createCommunity({
+            core:{
+                hostVibeId:newVibe.vibeId,
+                subtype:{
+                    isPublic:true,
+                    isPrivate:false,
+                    isPubliclyVisible:true,
+                    isModerated:false,
+                }
+            },
+            contents:{
+                title:`${newVibe.core.contentTitle} main`,
+                logo:newVibe.core.media.promoLogo,
+                messages:[],
+                audienceList:[...artist.contributors],
+                moderatorList:[]
+            }
+        })
+        await newVibe.communities.publicCommunities.push({_id:defaultPublicCommunity._id}).save()
 
         return newVibe
 

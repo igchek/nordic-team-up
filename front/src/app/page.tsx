@@ -6,7 +6,7 @@ import { sync } from '@/store/modules/libraries/Content/Sync'
 import { gig } from '@/store/modules/libraries/Content/Gig'
 import { useEffect, useState } from 'react'
 import { setMocks } from '@/store/publicContent'
-import DashRow from './components/HomePage/DashRow'
+import DashRow from 'src/components/HomePage/DashRow'
 
  
 export default function Home() {

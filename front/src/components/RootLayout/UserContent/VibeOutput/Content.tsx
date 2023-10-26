@@ -1,7 +1,8 @@
+"use client"
 import React from 'react'
 import styles from './content.module.scss'
 import {motion} from 'framer-motion'
-import SvgSelector from '@/app/Utils/SvgSelector'
+import SvgSelector from '@/Utils/SvgSelector'
 
 interface ContentI{
     id:string
@@ -20,7 +21,7 @@ const Content:React.FC<ContentI> = ({id, poster, contentTitle, authorTitle, moda
     return(
         <div className={styles.content}>
             <div className={styles.imgWrapper}>
-                <img src={`../../../../../assets/PromoLogo/${poster}.jpg`} alt="poster" />
+                <img className={styles.img} src={`src/assets/PromoLogo/${poster}.jpg`} alt="poster" />
             </div>
         </div>)
   }
@@ -28,7 +29,7 @@ const Content:React.FC<ContentI> = ({id, poster, contentTitle, authorTitle, moda
     return(
         <motion.div className={styles.content}>
             <motion.div className={styles.imgWrapper}>
-                <img src={`../../../../../assets/PromoLogo/${poster}.jpg`} alt="poster" />
+                <img className={styles.img} src={`src/assets/PromoLogo/${poster}.jpg`} alt="poster" />
             </motion.div>
         <motion.div className={styles.titles}>
             <div className={styles.contentTitle}>
@@ -40,7 +41,7 @@ const Content:React.FC<ContentI> = ({id, poster, contentTitle, authorTitle, moda
         </motion.div>
         <div className={styles.contentData}>
             <div className={styles.modalityWrapper}>
-                <div className={styles.modslitySocket}>
+                <div className={styles.modalitySocket}>
                     <SvgSelector
                         value={modality}
                         focus={focus}
@@ -48,7 +49,7 @@ const Content:React.FC<ContentI> = ({id, poster, contentTitle, authorTitle, moda
                     />
                 </div>
             </div>
-            <div className={styles.audiencWrapper}>
+            <div className={styles.audienceWrapper}>
                 <div className={styles.audienceSocket}>
                     {audience}
                 </div>

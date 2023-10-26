@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './common.module.scss'
-import SvgSelector from '@/app/Utils/SvgSelector'
+import SvgSelector from '@/Utils/SvgSelector'
 
 interface CommunityTopingI {
     logo:string

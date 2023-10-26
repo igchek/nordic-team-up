@@ -1,7 +1,11 @@
+"use client"
+
 import React from 'react'
 import styles from './common.module.scss'
-import SvgSelector from '@/app/Utils/SvgSelector'
+import SvgSelector from '@/Utils/SvgSelector'
 import {motion} from 'framer-motion'
+
+
 
 interface CommunityOutputSegmentI {
     segmentType:string
@@ -21,14 +25,16 @@ const CommunityOutputSegment:React.FC<CommunityOutputSegmentI> = ({segmentType,s
                     />
                 </div>
             </div>
-            <div className={styles.iconSocket}>
-                <SvgSelector
-                    value={segmentType}
-                    tier='standart'
-                    focus={selection}
-                />
+            <div className={styles.iconWrapper}>
+                <div className={styles.iconSocket}>
+                    <SvgSelector
+                        value={segmentType}
+                        tier='standart'
+                        focus={selection}
+                    />
+                </div>
             </div>
-            <div className={styles.titleSegmaen}>
+            <div className={styles.titleSegment}>
                 {segmentType}
             </div>
         </div>

@@ -39,6 +39,18 @@ const InvolvedContentSlice = createSlice({
         setInvolvolvedSearchSettings: (state, action:PayloadAction<[]>) => {
             state.involvedSearchSettings = action.payload
         },
+        sortByPreset:(state, action:PayloadAction<string|null>)=>{
+            if(!action.payload){
+                state.sortedContent=[]
+            }
+            else if (action.payload==='vibe'){
+                state.content.map((c)=>{
+                    if (c instanceof vibe){
+                        state.sortedContent.push(c)
+                    }
+                })
+            }
+        },
         setInvolvedMocks :(state, action:PayloadAction<any[]> )=>{
             const inMocks:any[] = action.payload
             const setMocks:(vibe|sync|gig)[] = []
@@ -95,5 +107,5 @@ export const pickInvolved = (id:string)=>{
     }
 }
 
-export const {setInvolvedContent, setInvolvolvedSearchSettings, setInvolvedMocks} = InvolvedContentSlice.actions
+export const {setInvolvedContent, setInvolvolvedSearchSettings, setInvolvedMocks, sortByPreset} = InvolvedContentSlice.actions
 export default InvolvedContentSlice.reducer

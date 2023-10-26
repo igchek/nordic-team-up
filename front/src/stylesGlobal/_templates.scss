@@ -1,0 +1,136 @@
+
+
+
+            // Output Unit //
+ @mixin outputUnit {
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr;
+    padding: 0;
+    margin: 0;
+    width: 20vw;
+    height:5vh;
+ }
+
+ @mixin outputUnitImageWrapper {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    grid-row-start: 1;
+    grid-row-end: 2;
+ }
+
+ @mixin outputUnitImageSocket {
+    aspect-ratio: 1/1;
+    height: 70%;
+    padding: 0;
+    margin: 0;
+    border-radius: 50%;
+ }
+
+ @mixin outputUnitTitles($isSegmented) {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    @if $isSegmented {
+        justify-content: center;
+        align-items: center;
+        white-space: nowrap;
+        overflow-x: hidden;
+    }
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+ }
+
+ @mixin outputUnitUpperTitle {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    margin-bottom: 10%;
+    padding: 0;
+    white-space: nowrap;
+    overflow-x: hidden;
+
+ }
+
+ @mixin outputUnitBottomTitle {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    margin-top: 10%;
+    padding: 0;
+    white-space: nowrap;
+    overflow-x: hidden
+ }
+
+ @mixin outputUnitData($isDigitized) {
+    grid-row-start:3 ;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    @if $isDigitized {
+        flex-direction: column;
+    }
+    @else {
+        justify-content: center;
+        align-items: center;
+    }
+ }
+
+ @mixin outputUnitDataSocket {
+    aspect-ratio: 1/1;
+    height: 70%;
+    margin: 0;
+    padding: 0;
+ }
+
+
+ @mixin outputUnitDataIcon {
+    height: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+ }
+
+ @mixin outputUnitDataDigital{
+    height: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+ }
+
+ @mixin outputUnitDataDigitalSocket {
+    width: 50%;
+    height: 30%;
+    border-radius: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+
+            // Icon Socket
+@mixin iconSocket {
+    aspect-ratio: 1/1;
+    height: 70%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

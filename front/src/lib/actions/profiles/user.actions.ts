@@ -4,11 +4,12 @@ import User from "../../models/profiles/user.models";
 import { revalidatePath } from "next/cache";
 import { connectToDB } from "../../validations/mongoose";
 import Vibe from "../../models/content/vibe.models";
+import { generateId } from "@/Utils/misc";
 
 
 interface editParams {
     userId:string,
-    nick:string,
+    nic:string,
     pic:string,
     path:string
 }
@@ -16,7 +17,7 @@ interface editParams {
 export async function updateUser(
     {
         userId,
-        nick,
+        nic,
         pic,
         path
     }:editParams
@@ -28,7 +29,7 @@ export async function updateUser(
     await User.findOneAndUpdate(
         {userId:userId},
         {
-            nick: nick.toLocaleLowerCase(),
+            nick: nic.toLocaleLowerCase(),
             pic 
         },
         {upsert:true}
@@ -38,7 +39,7 @@ export async function updateUser(
     }
     }
     catch (error:any){
-        throw new Error(`updating/creating user ${nick} crashed: ${error.message}`)
+        throw new Error(`updating user ${nic} crashed: ${error.message}`)
     }
     
 }
@@ -77,10 +78,10 @@ interface userCreateI {
 export async function createUser({nic, password, pic, email}:userCreateI){
     try{
         connectToDB()
-        let id = Math.random()*10000
+        const id = generateId(10000)
         await User.create({
             core:{
-                id:id.toString(),
+                id:id,
                 log:`${nic+id.toString()}`,
                 nic:nic,
                 pic:pic,

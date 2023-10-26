@@ -1,0 +1,162 @@
+@use 'src/stylesGlobal/variables';
+@use 'src/stylesGlobal/templates';
+
+                // Community Output //
+
+.wrapper{
+    display: grid;
+    grid-template-columns: 30% 70%;
+    width: 50%;
+    height: 100%;
+    .CommunityOutput::-webkit-scrollbar{
+        display: none;
+    }
+    .CommunityOutput{
+        grid-column-start: 2;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+}
+
+                // Community Output Segment //
+
+.segmentWrapper{
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    .segmentTopping{
+        width: 100%;
+        height: 5vh;
+        margin: 0;
+        padding: 0;
+        background-color: variables.$interfaceGlobal;
+        display: grid;
+        grid-template-rows: 15% 15% 70%;
+        margin: 0;
+        padding: 0;
+        .pointerWrapper{
+            grid-row-start: 1;
+            grid-row-end: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            .pointerSocket{
+                aspect-ratio: 1/1;
+                height: 50%;
+                margin: 0;
+                padding: 0;
+            }
+        }
+
+        .iconWrapper{
+            grid-row-start: 2;
+            grid-row-end: 3;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            .iconSocket{
+                aspect-ratio: 1/1;
+                height: 50%;
+                margin: 0;
+                padding: 0;
+            }
+        }
+        
+
+        .titleSegment{
+            grid-row-start: 3;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            width: auto;
+            margin: 0;
+            padding: 0;
+            // plug in fonts
+        }
+
+        
+    }
+    .segmentOutput{
+        width: 100%;
+        height: auto;
+        margin: 0;
+        padding: 0;
+        background-color: variables.$backgroundGlobal;
+    }
+}
+
+                // Community Toping //
+
+.communityToppingWrapper{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    width: 100%;
+    height: 100%;
+
+    .toppingContentWrapper{
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-rows: 80% 20%;
+        .titleSegment{
+            grid-row-start: 1;
+            grid-row-end: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: end;
+            .titleSocket{
+                width: auto;
+                height: 30%;
+                // plug in base font later
+            }
+        }
+        .modalitySegment{
+            grid-row-start: 2;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: end;
+            .modalitySocket{
+                aspect-ratio: 1/1;
+                height: 30%;
+            }
+        }
+    }
+}
+
+                // Community Unit //
+
+.communityUnit{
+    @include templates.outputUnit;
+    background-color: variables.$backgroundGlobal;
+    .imgSegment{
+        @include templates.outputUnitImageWrapper;
+        .img{
+            @include templates.outputUnitImageSocket;
+        }
+    }
+    .titleSegment{
+        @include templates.outputUnitTitles($isSegmented:false);
+
+    }
+    .pushSegment{
+        @include templates.outputUnitData($isDigitized:false);
+        .pushSocket{
+            @include templates.outputUnitDataSocket;
+        }
+    }
+}

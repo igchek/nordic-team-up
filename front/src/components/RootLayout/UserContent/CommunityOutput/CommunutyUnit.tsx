@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './content.module.scss'
-import SvgSelector from '@/app/Utils/SvgSelector'
+import SvgSelector from '@/Utils/SvgSelector'
 
 interface CommunityUnitI {
     id:string
@@ -14,7 +14,7 @@ const CommunutyUnit:React.FC<CommunityUnitI> = ({id, communityLogo, communityTit
   return (
     <div className={styles.communityUnit}>
         <div className={styles.imgSegment}>
-            <img src={`src/assets/community/logos/${communityLogo}.jpg`} alt="cLogo" />
+            <img className={styles.img} src={`src/assets/community/logos/${communityLogo}.jpg`} alt="cLogo" />
         </div>
         <div className={styles.titleSegment}>
             {communityTitle}
@@ -22,11 +22,14 @@ const CommunutyUnit:React.FC<CommunityUnitI> = ({id, communityLogo, communityTit
         <div className={styles.pushSegment}>
             {
                 push?
-                <SvgSelector
-                    value={`${push}`}
-                    tier='standart'
-                    focus={focus}
-                />
+                <div className={styles.pushSocket}>
+                    <SvgSelector
+                        value={`${push}`}
+                        tier='standart'
+                        focus={focus}
+                    />
+                </div>
+                
                 :
                 null
             }

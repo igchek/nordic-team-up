@@ -1,0 +1,180 @@
+@use 'src/stylesGlobal/variables';
+@use 'src/stylesGlobal/templates';
+
+                // Content Output  //
+
+
+.wrapper{
+    width: 50%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-rows: 30% 70%;
+    background-color: variables.$backgroundGlobal;
+    .output::-webkit-scrollbar{
+        display: none;
+    }
+    .output{
+        grid-row-start: 2;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        overflow-y: scroll;
+    }
+
+}
+
+                // NavBurger
+.NavBarWrapper{
+    grid-row-start: 1;
+    grid-row-end: 2;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: variables.$interfaceGlobal;
+    .searchWrapper{
+        width: 100%;
+        height: 50%;  
+        display: grid;
+        grid-template-columns: 70% 15% 15%;
+        padding: 0;
+        margin: 0;
+        .inputWrapper{
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                grid-column-start: 1;
+                grid-column-end: 2;
+                display: flex;
+                justify-content: center;
+                align-items: center;     
+            .searchInput{
+                width: 80%;
+                height: 70%;
+                background-color: variables.$backgroundGlobal;
+                border-radius: 30%;
+                display: inline-block;
+                text-align: center;    
+            }
+            .burgerWrapper{
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                grid-column-start: 2;
+                grid-column-end: 3;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .burgerSocket{
+                    @include templates.iconSocket;
+                }
+            }
+            .searchIconWrapper{
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                grid-column-start: 3;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .searchIconSocket{
+                    @include templates.iconSocket;
+                }
+            }
+        }
+        
+        
+    }
+    .outputPresetWrapper{
+        grid-row-start: 2;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 0;        
+        .outputPresetSegment{
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            .outputPresetSocket{
+                @include templates.iconSocket;
+            }
+        }
+    }
+
+}
+
+                // Content  //
+.content{
+    @include templates.outputUnit;
+    background-color: variables.$backgroundGlobal;
+    .imgWrapper{
+        @include templates.outputUnitImageWrapper;
+        .img{
+            @include templates.outputUnitImageSocket;
+        }
+    }
+
+    .titles{
+        @include templates.outputUnitTitles($isSegmented:true);
+        .contentTitle{
+            @include templates.outputUnitUpperTitle;
+        }
+        .artistTitle{
+            @include templates.outputUnitBottomTitle;
+        }
+    }
+    .contentData{
+        @include templates.outputUnitData($isDigitized:false);
+        .modalityWrapper{
+            @include templates.outputUnitDataIcon;
+            .modalitySocket{
+                @include templates.iconSocket;
+            }
+        }
+        .audienceWrapper{
+            @include templates.outputUnitDataDigital;
+            .audienceSocket{
+                @include templates.outputUnitDataDigitalSocket;
+            }   
+                
+            }
+    }
+
+}
+
+                // Host //
+.host{
+    @include templates.outputUnit;
+    background-color: variables.$backgroundGlobal;
+    .imgWrapper{
+        @include templates.outputUnitImageWrapper;
+        .img{
+            @include templates.outputUnitImageSocket;
+        }
+    }
+    .titles{
+        @include templates.outputUnitTitles($isSegmented:true);
+        .hostTitle{
+            @include templates.outputUnitUpperTitle;
+        }
+        .profileTitle{
+            @include templates.outputUnitBottomTitle;
+        }
+    }
+    .contentData{
+        @include templates.outputUnitData($isDigitized:false);
+        .iconWrapper{
+            @include templates.iconSocket;
+        }
+    }
+}
+

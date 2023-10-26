@@ -1,7 +1,7 @@
 "use server"
 
 import Media from "@/lib/models/discrete/media.models"
-import { generateId } from "@/lib/utils/misc"
+import { generateId } from "@/Utils/misc"
 import { connectToDB } from "@/lib/validations/mongoose"
 
 
