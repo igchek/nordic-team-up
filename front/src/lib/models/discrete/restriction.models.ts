@@ -1,126 +1,172 @@
 import mongoose from "mongoose";
 
+export interface restrictionData {
+    id:string
+    isIntact:boolean
+    target:{
+        vibeId?:string
+        communityId?:string
+        venueId?:string
+        userId?:string
+    }
+    source:{
+        patform:boolean
+        venue?:boolean
+        artist:boolean
+        community:boolean
+    }
+    contents:{
+        title:string
+        description?:string
+    }
+    execution?:{
+        penalty:{
+            mute?:false
+            ban:{
+                vibe:boolean
+                community:boolean
+                venue?:boolean
+                artist:boolean
+            }
+        }
+        duration:{
+            deployment:Date
+            suspension?:Date
+            termination?:Date
+        }
+        breachSource:{
+            posts:string[]
+            visibility:boolean
+        }
+    }
+}
+
+
+
 const restrictionSchema = new mongoose.Schema({
-    id:{
-        type:String,
-        required:true
-    },
     isIntact:{
         type:Boolean,
-        required:true,
+        required:[true, "intact status is required"],
         default:true
     },
     target:{
+        type:Object,
         vibeId:{
-            type:mongoose.Schema.Types.ObjectId,
-            required:false
+            type:String,
+            
         },
         communityId:{
-            type:mongoose.Schema.Types.ObjectId,
-            required:false
+            type:String,
+            
         },
         venueId:{
-            type:mongoose.Schema.Types.ObjectId,
-            required:false
+            type:String,
+            
         },
         userId:{
-            type:mongoose.Schema.Types.ObjectId,
-            required:true
+            type:String,
+            
         },
-        required:true
+        required:[true, "target specification is required"]
     },
     source:{
+        type:Object,
         platform:{
             type:Boolean,
-            required:true
         },
         venue:{
             type:Boolean,
-            required:false
+            
         },
         artist:{
             type:Boolean,
-            required:true
         },
         community:{
             type:Boolean,
-            required:true
+            required:[true, "community specification is required"]
         },
-        required:true
+        required:[true, "source specification is required"]
     },
     contents:{
+        type:Object,
         title:{
             type:String,
-            required:true
+            required:[true, "title specidication is required"]
         },
         description:{
             type:String,
-            required:false
+            
         },
-        required:true
+        required:[true, "content specification is required"]
     },
     execution:{
+        type:Object,
         penalty:{
+            type:Object,
             mute:{
                 type:Boolean,
-                required:false
+                
             },
             ban:{
+                type:Object,
                 vibe:{
                     type:Boolean,
-                    required:false
+                    default:false,
                 },
                 community:{
                     type:Boolean,
-                    required:false
+                    default:true,
                 },
                 venue:{
                     type:Boolean,
-                    required:false
+                    
                 },
                 artist:{
                     type:Boolean,
-                    required:false
+                    default:false,
+                    
                 },
-                required:false
+                
             },
-            required:true
+            required:[true, "penalty specification is required"]
         },
         duration:{
+            type:Object,
             deployment:{
                 type:Date,
-                required:true
+                required:[true, "deployment date is required"]
             },
             suspension:{
                 type:Date,
-                required:false
+                
             },
             termination:{
+                type:Object,
                 agent:{
                     type:mongoose.Schema.Types.ObjectId,
-                    required:true
+                    required:[true, "agent specification is required"]
                 },
                 date:{
                     type:Date,
-                    required:true
+                    required:[true, "date is required"]
                 },
-                required:false
+                
             },
-            required:true
+            required:[true, "duration is required"]
         },
         breachSource:{
+            type:Object,
             posts:[{
                 type:mongoose.Schema.Types.ObjectId,
                 ref:'message'
             }],
             visibility:{
                 type:Boolean,
-                required:true,
                 default:true
             },
-            required:true
+            required:[true, "breach source is required"]
         },
-        required:false
+        
     }
 
 })

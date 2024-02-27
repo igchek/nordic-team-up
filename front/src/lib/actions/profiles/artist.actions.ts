@@ -4,7 +4,7 @@ import Media from "@/lib/models/discrete/media.models"
 import Artist from "@/lib/models/profiles/artist.model"
 import User from "@/lib/models/profiles/user.models"
 import { connectToDB } from "@/lib/validations/mongoose"
-import mongoose from "mongoose"
+
 
 interface createArtistI{
     contributors:string[]
@@ -21,6 +21,26 @@ interface createArtistI{
     media:{
         logo?:string
         header?:string
+    }
+}
+
+export interface ArtistCoreData {
+    artistId:String
+    contributors:string[]
+    description:{
+        title:string
+        subtitle?:{
+            role?:string
+            description?:string
+        }
+        tagLine?:{
+            selfAdjusted?:string[]
+        }
+    }
+    media:{
+        logo?:string
+        header?:string
+        reel?:string
     }
 }
 

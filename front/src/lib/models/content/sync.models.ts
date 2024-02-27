@@ -1,8 +1,58 @@
 import mongoose from "mongoose";
+import { temporalFrameData } from "../discrete/temporalFrame.models";
+
+
+export interface SyncData {
+    id:string
+    vibeId:string
+    geo:string
+    options:{
+        requested:(mongoose.Schema.Types.ObjectId|temporalFrameData)[]
+        rejected?:(mongoose.Schema.Types.ObjectId|temporalFrameData)[]
+        approved?:(mongoose.Schema.Types.ObjectId|temporalFrameData)[]
+    }
+    engagement?:{
+        status:{
+            initialization:{
+                isInitializaed:boolean
+                date:Date
+            }
+            setBack:{
+                isSetBack:boolean
+                date?:Date
+                refresh?:Date
+            }
+            cancelation:{
+                isCanceled:boolean
+                date?:Date   
+            }
+            deployment:{
+                isDeployed:boolean
+                date?:Date
+                refresh?:Date
+            }
+        }
+        timeFrame:{
+            start:Date
+            deadline:Date
+            finish?:Date
+        }
+    }
+
+}
+
 
 const syncSchema = new mongoose.Schema({
+    id:{
+        type:String,
+        required:true
+    },
     vibeId:{
         type:mongoose.Schema.Types.ObjectId,
+        required:true
+    },
+    geo:{
+        type:String,
         required:true
     },
     options:{
@@ -31,9 +81,9 @@ const syncSchema = new mongoose.Schema({
                 },
                 date:{
                     type:Date,
-                    required:false
+                    
                 },
-                required:false
+                required:true
             },
             setBack:{
                 isSetBack:{
@@ -43,13 +93,13 @@ const syncSchema = new mongoose.Schema({
                 },
                 date:{
                     type:Date,
-                    required:false
+                    
                 },
                 refresh:{
                     type:Date,
-                    required:false
+                    
                 },
-                required:false
+                
             },
             cancelation:{
                 isCanceled:{
@@ -59,13 +109,9 @@ const syncSchema = new mongoose.Schema({
                 },
                 date:{
                     type:Date,
-                    required:false
+                    
                 },
-                refresh:{
-                    type:Date,
-                    required:false
-                },
-                required:false
+                
             },
             deployment:{
                 isDeployed:{
@@ -75,13 +121,13 @@ const syncSchema = new mongoose.Schema({
                 },
                 date:{
                     type:Date,
-                    required:false
+                    
                 },
                 refresh:{
                     type:Date,
-                    required:false
+                    
                 },
-                required:false
+                
             }
 
 
@@ -97,9 +143,9 @@ const syncSchema = new mongoose.Schema({
             },
             finish:{
                 type:Date,
-                required:false
+                
             },
-            required:false
+            
         },
         required:true
     }

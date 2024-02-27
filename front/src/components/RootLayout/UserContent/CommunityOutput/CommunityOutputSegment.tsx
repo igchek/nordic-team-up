@@ -1,18 +1,23 @@
 "use client"
 
 import React from 'react'
-import styles from './common.module.scss'
+import styles from './styles.module.scss'
 import SvgSelector from '@/Utils/SvgSelector'
 import {motion} from 'framer-motion'
+import { communityCoreData } from '@/lib/actions/community/comunity.actions'
+import CommunutyUnit from './CommunutyUnit'
+import { useAppSelector } from '@/hooks'
 
 
 
 interface CommunityOutputSegmentI {
+    communities:communityCoreData[]
     segmentType:string
     selection:boolean
 }
 
-const CommunityOutputSegment:React.FC<CommunityOutputSegmentI> = ({segmentType,selection}) => {
+const CommunityOutputSegment:React.FC<CommunityOutputSegmentI> = ({communities, segmentType,selection}) => {
+  const focusedCommunity = useAppSelector(({focus})=>{focus.focusCommunity})
   return (
     <motion.div className={styles.segmentWrapper}>
         <div className={styles.segmentTopping}>
@@ -39,7 +44,19 @@ const CommunityOutputSegment:React.FC<CommunityOutputSegmentI> = ({segmentType,s
             </div>
         </div>
         <motion.div className={styles.segmentOutput}>
-            {/* communities with correspondent type maped here */}
+            {communities.map((community)=>{
+                return(
+                    <CommunutyUnit
+                        id={community._id as string}
+                        vibeId={community.vibeId as string}
+                        communityLogo={community.logo as string}
+                        communityTitle={community.title as string}
+                        communityType={community.type as string}
+                        push={community.push?true:false}
+                        
+                    />
+                )
+            })}
         </motion.div>
     </motion.div>
   )

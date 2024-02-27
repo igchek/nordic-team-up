@@ -3,6 +3,9 @@ import personal from './personal'
 import involvedContent from './involvedContent'
 import publicContent from './publicContent'
 import focus from './focus'
+import communities from './communities'
+import push from './push'
+import user from './user'
 
 
 
@@ -12,6 +15,9 @@ const store = configureStore({
         involvedContent,
         publicContent,
         focus,
+        communities,
+        push,
+        user
 
     }
 })

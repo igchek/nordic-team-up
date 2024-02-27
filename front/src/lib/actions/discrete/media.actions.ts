@@ -10,6 +10,7 @@ interface mockUploadMediaI {
     type:string
 }
 
+// here be a mock media data base simulation cuz Im currently beyond Docker Compose and subsequent tech
 export async function mockUploadMedia ({title, type}:mockUploadMediaI){
     try{
         connectToDB()

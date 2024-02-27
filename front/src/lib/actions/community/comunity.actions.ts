@@ -1,29 +1,14 @@
 "use server"
 
 import mongoose from "mongoose";
-import Community from "../../models/community/community.models";
-import Message from "../../models/community/message.models";
+import Community, { communityData } from "../../models/community/community.models";
+import Message, { messageData } from "../../models/community/message.models";
 import User from "../../models/profiles/user.models";
 import { connectToDB } from "@/lib/validations/mongoose";
 import Vibe from "@/lib/models/content/vibe.models";
+import Restriction from "@/lib/models/discrete/restriction.models";
 
 
-export async function fetchMessages (id:mongoose.Schema.Types.ObjectId){
-    try{
-        connectToDB()
-        const messageQuery = await Community.findOne({_id:id}).populate({
-            path:'messages',
-            model:Message
-        }).exec()
-
-        const messages = await messageQuery.messages
-
-        return messages
-    }
-    catch (error:any) {
-        throw new Error(`Crashed fetching messages: ${error.message}`)
-    }
-}
 
 export async function fetchAudienceList (id:mongoose.Schema.Types.ObjectId){
     try{
@@ -98,5 +83,174 @@ export async function createCommunity({core, contents, additional}:createCommuni
     }
     catch (error:any){
         throw new Error (`Crashed creating community:${error.message}`)
+    }
+}
+
+export interface communityCoreData{
+    _id:String
+    vibeId:String
+    logo:String
+    title:String
+    subtitle?:String
+    audience:Number
+    push?:{
+        likes?:String[]
+        replies?:String[]
+        note?:Boolean
+    }
+    type:String
+}
+
+export interface communitiesCoreData{
+    publicCommunities:communityCoreData[]
+    privateCommunities?:communityCoreData[]
+    targetCommunities?:communityCoreData[]
+    pushLoad?:communityCoreData[]
+}
+
+export async function fetchCommunities({vibeId, userId}:{vibeId:String, userId:String}){
+    try{
+        connectToDB()
+        const user = await User.findOne({userId:userId}).populate(('community'))
+        const vibe = await Vibe.findOne({vibeId:vibeId}).populate('community')
+
+        // this is fucking lame. Pushing community based data type into user so to extract push notifications data so to optimise data flow... 
+        // Its 11th hour of coding and I'm done. If anyone finds this fucking stupid he's probably right 
+        
+        // so first we extract pushed communities from user and map them so they fit template core data structure
+
+        const pushLoad = user.involvement.involvedCommunities
+        const pushLoadMapped = pushLoad.map((c:any)=>{
+            c={
+                logo:c.content.contents.logo,
+                title:c.content.contents.title, 
+                subtitle:c.content.contents.subtitle,
+                audience:c.content.contents.audienceList.length,
+
+                // push load specifies  push notifications so that response data monitors replies/pushes for user via web socket (i guess. I really am done Headers. Hope this works)
+                push:{
+                    likes:c.push.likes,
+                    replies:c.push.replies,
+                    note:c.push.note
+                },
+
+                type:c.contents.core.type
+
+            }
+            })
+        
+        // then we extract all of the communities in a vibe that are visible(the invisible ones the user has access to are stored in user, i.e. alredy fetched to pushLoad)
+   
+
+            const publicCommunititesData = vibe.communities.publicCommunities.map((c:any)=>{
+                c={
+                    logo:c.contents.logo,
+                    title:c.contents.title, 
+                    subtitle:c.contents.subtitle,
+                    audience:c.contents.audienceList.length,
+                    type:c.contents.core.type
+
+                }
+                })
+
+            const privateCommunitiesData:communityCoreData[] = []
+            const privateLoad = vibe.communities.privateCommunities.map((c:any)=>{
+                if(c.core.subtype.isPubliclyVisible){
+                    c={
+                        logo:c.contents.logo,
+                        title:c.contents.title, 
+                        subtitle:c.contents.subtitle,
+                        audience:c.contents.audienceList.length,
+                        type:c.contents.core.type
+        
+                    }
+                    privateCommunitiesData.push(c)
+                }
+                
+                })
+            const targetCommunitiesData:communityCoreData[]  = []
+            const targetLoad = vibe.communities.targetCommunities.map((c:any)=>{
+                if(c.core.subtype.isPubliclyVisible){
+                    c={
+                        logo:c.contents.logo,
+                        title:c.contents.title, 
+                        subtitle:c.contents.subtitle,
+                        audience:c.contents.audienceList.length,
+                        type:c.contents.core.type
+            
+                    }
+                    targetCommunitiesData.push((c))
+                }
+                
+                })    
+
+            
+            
+        const communitiesCoreData:communitiesCoreData = {
+            publicCommunities:publicCommunititesData,
+            privateCommunities:privateCommunitiesData,
+            targetCommunities:targetCommunitiesData,
+            pushLoad:pushLoadMapped
+        }
+        return communitiesCoreData
+        
+    }
+    catch(error:any){
+        throw new Error(`Crashed fetching communities:${error.message}`)
+    }
+}
+
+export interface fetchCommunityI {
+    communityData:communityData
+    messages:messageData[]
+}
+
+export async function fetchCommunity({communityId, userId, messageLoad}:{communityId:string, userId:string, messageLoad:Number} ){
+    try{
+        connectToDB()
+        const user = await User.findOne({id:userId})
+        const communityData = await Community.findOne({id:communityId})
+        .populate({
+            path:'contents',
+            populate:{
+                path:'audienceList',
+                model:User,
+                select:'id log nic pic'
+            }
+        })
+        .populate({
+            path:'contents',
+            populate:{
+                path:'moderatorList',
+                model:User,
+                select:'id log nic pic'
+            }
+        })
+        .populate('restriction')
+        .populate('target proposition').exec()
+        // populate it wit target group contents later on as i write it
+
+        const messagesIdArray = await communityData.contents.messages.slice(-1, -messageLoad).reverse()
+        const messages = await Message.find({_id:{$in:messagesIdArray}}).exec()
+
+        return {communityData, messages}
+        
+    }
+    catch(error:any){
+        throw new Error(`Crashed fetching community:${error.message}`)
+    }
+}
+
+
+export async function fetchMessages({communityId, messagesLoaded, messageLoad}:{communityId:String, messagesLoaded:number, messageLoad:number}){
+    try{
+        connectToDB()
+        const community = await Community.findOne({id:communityId})
+        const messagesIdArray = community.contents.messages.slice(-messagesLoaded, -(messagesLoaded+messageLoad)).reverse()
+        const messagesData = await Message.find({_id:{$in:messagesIdArray}}).populate('media').populate({path:'conveyers', model:User, select:' pic nic id'}).exec()
+        return messagesData
+    }
+    catch(error:any){
+        throw new Error(`Crashed fetching messages:${error.message}`)
     }
 }

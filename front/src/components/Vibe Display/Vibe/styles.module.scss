@@ -1,0 +1,215 @@
+@use 'src/stylesGlobal/variables';
+@use 'src/stylesGlobal/templates';
+
+
+            // Major Visual //
+
+.majorVisual{
+    width: 100%;
+    height: 50vh;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+}
+
+            // Vibe Essentials //
+
+.essentialsWrapper{
+    display: block;
+    height:auto;
+    width: 100%;
+    background-color: variables.$backgroundGlobal;
+    margin: 0;
+    padding: 0;
+
+    .header{
+        width: 100%;
+        height:8vh;
+        background-color: variables.$interfaceGlobal;
+        color:variables.$textLightColor;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        
+    }
+    .body{
+        width:100%;
+        height:auto;
+        margin: 0;
+        padding: 0;
+        .state{
+            width:100%;
+            height:5vh;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            margin: 0;
+            
+            .audience{
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 2vw;
+                color: variables.$textDarkColor;
+                .audienceOutput{
+                    border-radius: 30%;
+                    width: auto;
+                    height: 70%;
+                    padding:5px;
+                    margin: 0;
+                    color:variables.$textLightColor;
+                    background-color: variables.$unitBackground;
+
+                }
+            }
+            .modality{
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                align-items: center;
+                gap: 2vw;
+                color: variables.$textDarkColor;
+                .modalitySocket{
+                    @include templates.iconSocket;
+                }
+            }
+        }
+        .tagOutput::-webkit-scrollbar{
+            display: none;
+        }
+        .tagOutput{
+            height: 5vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2vw;
+            overflow-x: scroll;
+            .tag{
+                background-color: variables.$unitBackground;
+                color:variables.$textLightColor;
+                width: auto;
+                height: 70%;
+                margin: 0;
+                padding: 5px;
+
+            }
+        .description{
+            min-height: 10vh;
+            height:auto;
+            width:100%;
+            text-align: center;
+            color:variables.$textDarkColor;
+        }
+        }
+    }
+}
+
+
+            // Line Up //
+
+.lineUp{
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    background-color: variables.$backgroundGlobal;
+    .singleHeader{
+        width: 100%;
+        height:8vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5%;
+        align-items: center;
+        background-color:variables.$interfaceGlobal;
+        color: variables.$textLightColor;
+        margin: 0;
+        padding: 0;
+        .logoSocket{
+            aspect-ratio: 1/1;
+            height: 5vh;
+            border-radius: 50%;
+            display: block;
+        }        
+    }
+    .multipleHeader{
+        width: 100%;
+        height: 16vh;
+        margin: 0;
+        padding: 0;
+        .headerTitle{
+            height: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color:variables.$interfaceGlobal;
+            color: variables.$textLightColor;
+        }
+        .lineUpOutput::-webkit-scrollbar{
+            display: none;
+        }
+        .lineUpOutput{
+            height: 50%;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-content: center;
+            gap: 5%;
+            overflow-x: scroll;
+
+
+            .logoSocket{
+                aspect-ratio: 1/1;
+                height: 70%;
+                border-radius: 50%;
+                display: block;
+                margin: 5%;
+            }
+        }
+    }
+    .description::-webkit-scrollbar{
+        display: none;
+    }
+    .descriptionWrapper{
+        width: 100%;
+        min-height: 5vh;
+        max-height: 15vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        align-self: stretch;
+        overflow-wrap: break-word;
+        overflow-y: scroll;
+        margin: 0;
+        padding: 0;
+    }
+    .reelWrapper{
+        width: 100%;
+        height: 40vh;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+
+
+            // Vibe Progression //
+.vibeProgression{
+    display: flex;
+    width: 100%;
+    min-height: 15vh;
+    max-height: 30vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: variables.$backgroundGlobal;
+    color: variables.$textDarkColor;
+    
+}

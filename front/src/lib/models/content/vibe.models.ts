@@ -1,15 +1,63 @@
 import mongoose from "mongoose";
+import { ArtistData } from "../profiles/artist.model";
+import { mediaData } from "../discrete/media.models";
+import { communityData } from "../community/community.models";
+import { resonationData } from "../discrete/resonation.models";
+import { GigData } from "./gig.models";
+import { SyncData } from "./sync.models";
+
+
+export interface vibeData {
+    _id:string
+    vibeId:string
+    core:{
+        creator:mongoose.Schema.Types.ObjectId|ArtistData,
+        creatorTitle:string
+        contentTitle:string
+        tagList?:{
+            ascribed?:string[]
+            computed:string[]
+        }
+        format?:string
+        media:{
+            artistLogo:string
+            promoLogo:string
+            reel?:mediaData[]
+            description?:string
+        }
+    }
+    communities:{
+        publicCommunities:(mongoose.Schema.Types.ObjectId|communityData)[]
+        privateCommunities:(mongoose.Schema.Types.ObjectId|communityData)[]
+        targetCommunities:(mongoose.Schema.Types.ObjectId|communityData)[]
+    }
+    vibrations:{
+        total:{
+            quantity:number
+            resonation:resonationData
+        }
+        distributed?:resonationData
+    }
+    deployment?:{
+        syncs:(mongoose.Schema.Types.ObjectId|SyncData)[]
+        gigs:(mongoose.Schema.Types.ObjectId|GigData)[]
+    }
+}
 
 const VibeSchema = new mongoose.Schema({
-    vibeId:{type:String, required:true},
+    vibeId:{type:String, required:[true, 'Needs a parent vibe id']},
 
     core:{
+        type:Object,
         creator:{
             type:mongoose.Schema.Types.ObjectId,
             ref:'artist',
-            required:true
+            
         },
-        contentTitle:{type:String, required:true},
+        creatorTitle:{
+            type:String, required:[true, 'Needs a creator title']
+        },
+        contentTitle:{type:String, required:[true, 'Needs a content title']},
         tagList:{
             ascribed:[{
             type:String,
@@ -20,34 +68,36 @@ const VibeSchema = new mongoose.Schema({
                 type:String,
                 ref:'Tag'
             }],
-            required:false
+            
             },
         format:{
             type:String,
-            required:false
+            
         },
-        required:true
+        required:[true, 'Needs a core']
         },
 
 
         media:{
+            type:Object,
             artistLogo:{
                 type:String,
-                required:true
+                required:[true, 'Needs an artist logo']
             },
-            promoLogo:{type:String, required:false},
+            promoLogo:{type:String},
             reel:[{
                 type:mongoose.Schema.Types.ObjectId,
                 ref:'media'
             }],
             description:{
                 type:String,
-                required:false
+                
             },
-            required:true
+            required:[true, 'Needs a media core']
         },
     
     communities:{
+        type:Object,
         publicCommunities:[
             {
                 type:mongoose.Schema.Types.ObjectId,
@@ -66,26 +116,29 @@ const VibeSchema = new mongoose.Schema({
                 ref:'community'
             }
         ],
-        required:true
+        required:[true, 'Needs communities']
     },
 
     vibrations:{
         total:{
+            type:Object,
             quantity:{
                 type:Number,
-                required:false,
+                required:[true, 'Needs '],
                 default:0
             },
             resonation:{
                 type:mongoose.Schema.Types.ObjectId,
-                required:false
-            }
+                ref:'resonation',
+                
+            },
+            required:[true, 'Needs total vivrations']
         },
         distributed:[{
             type:mongoose.Schema.Types.ObjectId,
             ref:'resonation'
         }],
-        required:false
+        
     },
 
     deployment:{
@@ -98,7 +151,7 @@ const VibeSchema = new mongoose.Schema({
             type:mongoose.Schema.Types.ObjectId,
             ref:'gig'
         }],
-        required:false
+        
            
     }
      

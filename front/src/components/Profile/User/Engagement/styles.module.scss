@@ -1,0 +1,148 @@
+@use "src/stylesGlobal/variables";
+
+
+
+    .engagementHeader{
+        width: 100%;
+        height: 8vh;
+        background-color: variables.$interfaceGlobal;
+        color: white;
+        font-weight: 700;
+        font-size: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .iconWrapper{
+            justify-self: flex-end;
+            width: 15%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .iconSocket{
+                aspect-ratio: 1/1;
+                height: 85%;
+            }
+        }
+    }
+    .engagementSelector{
+        height: auto;
+        width: 100%;
+        background-color: variables.$interfaceGlobal;
+        .selectorHeader{
+            width: 100%;
+            height: 8vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .selectorTitle{
+                width: 60%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                flex-wrap: wrap;
+                font-size: 2rem;
+                color: white;
+                font-weight: 700;
+
+            }
+            .roleSegment{
+                width: 40%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                flex-wrap: nowrap;
+                .roleWrapper{
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    .roleSocket{
+                        aspect-ratio: 1.1;
+                        height: 65%;
+                    }
+                }
+
+            }
+        }
+        
+
+    }
+    .engagementOutput{
+        width: 100%;
+        height: 8vh;
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        background-color: variables.$backgroundGlobal;
+        .engagementUnit{
+            width: auto;
+            height: 85%;
+            border-radius: 10px;
+            border-style: none;
+            background-color: variables.$interfaceGlobal;
+            .logoWrapper{
+                aspect-ratio: 1/1;
+                height: 100%;
+                border-radius: 10px;
+                border-style: none;
+                .logo{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .titleWrapper{
+                width: auto;
+                height: 100%;
+                display: flex;
+                font-size: 12px;
+                font-weight: 150;
+            }
+            
+        }
+        .engagementInput{
+            width: auto;
+            height: 75%;
+            display: flex;
+            border-radius: 50px;
+            border-style: none;
+            background-color: variables.$interfaceGlobal;
+            .imgWrapper{
+                aspect-ratio: 1/1;
+                height: 100%;
+
+                .imgMask{
+                    border-radius: 50px;
+                    border-style: none;
+                    height: 100%;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-image: linear-gradient(variables.$linearGradientTop, variables.$linearGradientBottom);
+                    .imgSocket{
+                        aspect-ratio: 1/1;
+                        height: 90%;
+                        border-radius: 50px;
+                        border-style: none;
+                        background-color: variables.$backgroundGlobal;
+                    }
+                }
+
+            }
+            .title{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                font-weight: 700;
+                color: white;
+                font-size: 1rem;
+
+            }
+        }
+    }
+
+ 

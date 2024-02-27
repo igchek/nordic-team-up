@@ -4,19 +4,83 @@
                 // Content Output  //
 
 
-.wrapper{
-    width: 50%;
+.InvolvementWrapper{
+    width: 100%;
     height: 100%;
     padding: 0;
     margin: 0;
-    display: grid;
-    grid-template-rows: 30% 70%;
+    display: block;
+
     background-color: variables.$backgroundGlobal;
     .output::-webkit-scrollbar{
         display: none;
     }
+    .NavBurger{
+        width: 100%;
+        height: 8vh;
+        background-color: variables.$interfaceGlobal;
+        color: white;
+        display: block;
+        .SearchWrapper{
+            display: flex;
+            height: 50%;
+            width: 100%;
+            .InputWrapper{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 80%;
+                .input:focus{
+                    outline-style: none;
+                }
+                .input{
+                    font-weight: 1000;
+                    width: 90%;
+                    height: 80%;
+                    border-radius: 20px;
+                    border-style: none;
+                    background-color: variables.$backgroundGlobal;
+                    text-align: center;
+                }
+            }
+            .iconWrapper{
+                display: flex;
+                justify-content: center;
+                width: 20%;
+                height: 100%;
+                align-items: center;
+                .iconSocket{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    aspect-ratio: 1/1;
+                    height: 80%;
+                }
+            }
+
+        }
+        .presetWrapper{
+            display: flex;
+            height: 50%;
+            width: 100%;
+            .preset{
+                height: 100%;
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+                display: flex;
+                .presetSocket{
+                    aspect-ratio: 1/1;
+                    height: 80%;
+                }
+            }
+        }
+
+    
+    }
     .output{
-        grid-row-start: 2;
+        grid-row: 2;
+        height: 100%;
         width: 100%;
         padding: 0;
         margin: 0;
@@ -26,91 +90,9 @@
 }
 
                 // NavBurger
-.NavBarWrapper{
-    grid-row-start: 1;
-    grid-row-end: 2;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    background-color: variables.$interfaceGlobal;
-    .searchWrapper{
-        width: 100%;
-        height: 50%;  
-        display: grid;
-        grid-template-columns: 70% 15% 15%;
-        padding: 0;
-        margin: 0;
-        .inputWrapper{
-                width: 100%;
-                height: 100%;
-                margin: 0;
-                padding: 0;
-                grid-column-start: 1;
-                grid-column-end: 2;
-                display: flex;
-                justify-content: center;
-                align-items: center;     
-            .searchInput{
-                width: 80%;
-                height: 70%;
-                background-color: variables.$backgroundGlobal;
-                border-radius: 30%;
-                display: inline-block;
-                text-align: center;    
-            }
-            .burgerWrapper{
-                width: 100%;
-                height: 100%;
-                margin: 0;
-                padding: 0;
-                grid-column-start: 2;
-                grid-column-end: 3;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                .burgerSocket{
-                    @include templates.iconSocket;
-                }
-            }
-            .searchIconWrapper{
-                width: 100%;
-                height: 100%;
-                margin: 0;
-                padding: 0;
-                grid-column-start: 3;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                .searchIconSocket{
-                    @include templates.iconSocket;
-                }
-            }
-        }
-        
-        
-    }
-    .outputPresetWrapper{
-        grid-row-start: 2;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0;
-        padding: 0;        
-        .outputPresetSegment{
-            width: 100%;
-            height: 100%;
-            justify-content: center;
-            align-items: center;
-            margin: 0;
-            padding: 0;
-            .outputPresetSocket{
-                @include templates.iconSocket;
-            }
-        }
-    }
 
-}
+
+
 
                 // Content  //
 .content{

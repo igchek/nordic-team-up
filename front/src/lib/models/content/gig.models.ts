@@ -1,8 +1,66 @@
 import mongoose from "mongoose";
+import { temporalFrameData } from "../discrete/temporalFrame.models";
+import { VenueData } from "../profiles/venue.model";
+import { userData } from "../profiles/user.models";
+import { transactionData } from "../discrete/transaction.models";
+import { targetPropositionData } from "../target/targetProposition.models";
+
+
+export interface GigData {
+    id:string
+    vibeId:string
+    deployment:{
+        base:mongoose.Schema.Types.ObjectId|temporalFrameData
+        venue:mongoose.Schema.Types.ObjectId|VenueData
+        deploymentDate:Date
+        geo:string
+    }
+    flow:{
+        initiators:(mongoose.Schema.Types.ObjectId|userData)[]
+        purchase:(mongoose.Schema.Types.ObjectId|userData)[]
+        swapQuery:(mongoose.Schema.Types.ObjectId|userData)[]
+        swaped:(mongoose.Schema.Types.ObjectId|userData)[]
+        purchaseQuery:(mongoose.Schema.Types.ObjectId|userData)[]
+    }
+    capacity:{
+        deployed:number
+        residual:number
+        maximal:number
+        price:number
+    }
+    funds:{
+        security:{
+            artist:mongoose.Schema.Types.ObjectId|transactionData
+            venue:mongoose.Schema.Types.ObjectId|transactionData
+            target:mongoose.Schema.Types.ObjectId|targetPropositionData
+        }
+        advance:{
+            artist:mongoose.Schema.Types.ObjectId|transactionData
+            venue:mongoose.Schema.Types.ObjectId|transactionData
+            target:mongoose.Schema.Types.ObjectId|targetPropositionData
+        }
+        profits:{
+            sales:number
+            artist:{
+                share:number
+                value:number
+                deposition:mongoose.Schema.Types.ObjectId|transactionData
+            }
+            venue:{
+                share:number
+                value:number
+                deposition:mongoose.Schema.Types.ObjectId|transactionData
+            }
+        }
+    }
+    }
 
 const gigSchema = new mongoose.Schema({
+    id:{
+        type:String
+    },
     vibeId:{
-        type:mongoose.Schema.Types.ObjectId,
+        type:String,
         required:true
     },
     deployment:{
@@ -11,16 +69,17 @@ const gigSchema = new mongoose.Schema({
             required:true,
             ref:'temporal frame'
         },
-        venueId:{
+        venue:{
             type:mongoose.Schema.Types.ObjectId,
+            ref:'venue',
             required:true
         },
-        initiators:[{
-            type:mongoose.Schema.Types.ObjectId,
-            ref:'user'
-        }],
         deploymentDate:{
             type:Date,
+            required:true
+        },
+        geo:{
+            type:String,
             required:true
         },
         required:true
@@ -59,7 +118,11 @@ const gigSchema = new mongoose.Schema({
         },
         maximal:{
             type:Number,
-            required:false
+            
+        },
+        price:{
+            type:Number,
+            
         }
     },
 
@@ -84,19 +147,19 @@ const gigSchema = new mongoose.Schema({
        advance:{
             artist:{
                 type:mongoose.Schema.Types.ObjectId,
-                required:false,
+                
                 ref:'transaction'
             },
             venue:{
                 type:mongoose.Schema.Types.ObjectId,
-                required:false,
+                
                 ref:'transaction'
             },
             target:[{
                 type:mongoose.Schema.Types.ObjectId,
                 ref:'target proposition'
             }],
-            required:false
+            
         },
         profits:{
             sales:{
@@ -106,35 +169,37 @@ const gigSchema = new mongoose.Schema({
             artist:{
                 share:{
                     type:Number,
-                    required:false
+                    
                 },
                 value:{
                     type:Number,
-                    required:false
+                    
                 },
                 deposition:{
                     type:mongoose.Schema.Types.ObjectId,
-                    required:false
+                    ref:'transaction',
+                    
                 },
-                required:false
+                
                 
             },
             venue:{
                 share:{
                     type:Number,
-                    required:false
+                    
                 },
                 value:{
                     type:Number,
-                    required:false
+                    
                 },
                 deposition:{
                     type:mongoose.Schema.Types.ObjectId,
-                    required:false
+                    ref:'transaction',
+                    
                 },
-                required:false
+                
             },
-            required:false
+            
         }
     }
     

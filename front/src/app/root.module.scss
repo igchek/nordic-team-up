@@ -1,13 +1,12 @@
-@use "./stylesGlobal/variables";
+@use "src/stylesGlobal/variables";
 
-// global variables
-// $interfaceGlobal:#888686;
-// $backgroundGlobal:white;
-// $unitBackground:#D9D9D9;
 
-// 
-
+.focus::-webkit-scrollbar{
+    display: none;
+}
 .focus{
+    overflow-x: scroll;
+    overflow-y: scroll;
     width: 100vw;
     height: 100vh;
 }
@@ -16,6 +15,19 @@
     height: 100vh;
     padding: 0;
     margin: 0;
+    overflow: hidden;
+    .display{
+        display: flex;
+        background-color: variables.$backgroundGlobal;
+        width: 100%;
+        height: 92%;
+        .focus{
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    }
+    
 }
 
 .leftSide {

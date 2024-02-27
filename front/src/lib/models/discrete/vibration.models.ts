@@ -1,17 +1,31 @@
 import mongoose from "mongoose";
+import { userData } from "../profiles/user.models";
+
+
+export interface vibrationData {
+    id:string
+    vibeId:string
+    userId:string
+    APP:number
+    date:Date
+}
 
 const vibrationSchema = new mongoose.Schema({
     vibeId:{
-        type:mongoose.Schema.Types.ObjectId,
-        required:true
+        type:String,
+        required:[true, "vibe id is required"]
+    },
+    userId:{
+        type:String,
+        required:[true, "user id is required"]
     },
     APP:{
         type:Number,
-        required:true
+        required:[true, "purchasing power is required"]
     },
     date:{
         type:Date,
-        required:true
+        required:[true, "date is required"]
     }
 })
 

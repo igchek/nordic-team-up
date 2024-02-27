@@ -1,11 +1,11 @@
 "use client"
 import React from 'react'
-import styles from 'common.module.scss'
+import styles from './styles.module.scss'
 import SvgSelector from '@/Utils/SvgSelector'
 import {useState} from 'react'
 import { motion } from 'framer-motion'
 import { useAppDispatch } from '@/hooks'
-import { sortByPreset } from '@/store/involvedContent'
+import { sortByModalityPreset } from '@/store/involvedContent'
 
 interface NavBurgerI {
     focus:boolean
@@ -14,122 +14,98 @@ interface NavBurgerI {
 
 export const NavBurger:React.FC<NavBurgerI> = (focus) => {
   const dispatch = useAppDispatch()
-  const [searhBurger, setSearchBurger] = useState(false)
-  const [presetFocus, setPresetFocus] = useState('')
+  const [isSearchSet, setSearchSet] = useState(false)
+  const [vibePreset, setVibePreset] = useState(false)
+  const [syncPreset, setSyncPreset] = useState(false)
+  const [gigPreset, setGigPreset] = useState(false)
 
-  const handlePreset = (e:string|null) =>{
-    if (presetFocus === e){
-      setPresetFocus('')
-      dispatch(sortByPreset(null))
-    }
-    else {
-      if(e==='vibe'){
-        setPresetFocus(e)
-        dispatch(sortByPreset(e))
-      }
-      else if(e==='community'){
-        setPresetFocus(e)
-        dispatch(sortByPreset(e))
-      }
-      else if (e==='artist'){
-        setPresetFocus(e)
-        dispatch(sortByPreset(e))
-      }
-    }
-  }
+  
 
   if (focus){
     return(
-      <div className={styles.NavBarWrapper}>
-        <div className={styles.searchWrapper}>
-          <div className={styles.inputWrapper}>
-            <input className={styles.searchInput} type="text" />
-            <div className={styles.burgerWrapper}>
-              <div
-                onClick={()=>setSearchBurger(!searhBurger)}
-                className={styles.burgerSocket}>
-                  <SvgSelector
-                    value='burger'
-                    tier='standart'
-                    focus={searhBurger}
-                  />
-              </div>
-            </div>
+      <div className={styles.NavBurger}>
+        <div className={styles.SearchWrapper}>
+          <div className={styles.InputWrapper}>
+            <input className={styles.input} type="text" />
           </div>
-          <div className={styles.searchIconWrapper}>
-            <div className={styles.searchIconSocket}>
+          <div className={styles.iconWrapper}>
+            <div className={styles.iconSocket}>
               <SvgSelector
                 value='search'
                 tier='standart'
-                focus={true}
+                focus={isSearchSet}
               />
             </div>
           </div>
         </div>
-        <motion.div className={styles.outputPresetWrapper}>
-            <div className={styles.outputPresetSegment}>
-              <div
-                onClick={()=>handlePreset('vibe')}
-              className={styles.outputPresetSocket}>
-                <SvgSelector
-                  value='vibe'
-                  tier='standart'
-                  focus={presetFocus==='vibe'?true:false}
-                />
-              </div>
+        <div className={styles.presetWrapper}>
+          <div onClick={()=>{
+            if(vibePreset){
+              dispatch(sortByModalityPreset('vibe'))
+              setVibePreset(!vibePreset)
+            }
+            else{
+              dispatch(sortByModalityPreset(null))
+              setVibePreset(!vibePreset)
+            }
+            
+          }} className={styles.preset}>
+            <div className={styles.presetSocket}>
+              <SvgSelector
+                value='vibe'
+                tier='standart'
+                focus={vibePreset}
+              />
             </div>
-            <div className={styles.outputPresetSegment}>
-              <div
-                onClick={()=>handlePreset('community')}
-              className={styles.outputPresetSocket}>
-                <SvgSelector
-                  value='community'
-                  tier='standart'
-                  focus={presetFocus==='community'?true:false}
-                />
-              </div>
+          </div>
+          <div onClick={()=>{
+            if(syncPreset){
+              dispatch(sortByModalityPreset('sync'))
+              setSyncPreset(!syncPreset)
+            }
+            else{
+              dispatch(sortByModalityPreset(null))
+              setSyncPreset(!syncPreset)
+            }
+            
+          }}
+           className={styles.preset}>
+            <div className={styles.presetSocket}>
+              <SvgSelector
+                value='sync'
+                tier='standart'
+                focus={syncPreset}
+              />
             </div>
-            <div className={styles.outputPresetSegment}>
-              <div
-                onClick={()=>handlePreset('artist')}
-              className={styles.outputPresetSocket}>
-                <SvgSelector
-                  value='artist'
-                  tier='standart'
-                  focus={presetFocus==='artist'?true:false}
-                />
-              </div>
+          </div>
+          <div onClick={()=>{
+            if(gigPreset){
+              dispatch(sortByModalityPreset('gig'))
+              setGigPreset(!gigPreset)
+            }
+            else{
+              dispatch(sortByModalityPreset(null))
+              setGigPreset(!gigPreset)
+            }
+            
+          }}
+           className={styles.preset}>
+            <div className={styles.presetSocket}>
+              <SvgSelector
+                value='gig'
+                tier='standart'
+                focus={gigPreset}
+              />
             </div>
-          </motion.div>
+          </div>
         </div>
+      </div>
     )
   }
   else
   return (
-    <div className={styles.NavBarWrapper}>
-        <div className={styles.inputWrapper}>
-            <input className={styles.searchInput} type="text" />
-            <div className={styles.burgerWrapper}>
-              <div
-                onClick={()=>setSearchBurger(!searhBurger)}
-                className={styles.burgerSocket}>
-                  <SvgSelector
-                    value='burger'
-                    tier='standart'
-                    focus={searhBurger}
-                  />
-              </div>
-            </div>
-          </div>
-          <div className={styles.searchIconWrapper}>
-            <div className={styles.searchIconSocket}>
-              <SvgSelector
-                value='search'
-                tier='standart'
-                focus={false}
-              />
-            </div>
-          </div>
+    <div className={styles.NavBurger}>
+      nav burger
     </div>
   )
 }

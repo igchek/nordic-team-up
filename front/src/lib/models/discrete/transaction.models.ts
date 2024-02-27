@@ -1,40 +1,61 @@
 import mongoose from "mongoose";
 
+export interface transactionData {  
+    issuerId:string
+    recepientId:string
+    transactionType:string
+    date:Date
+    emission:{
+        gigId:string
+        subcontract?:string
+    }
+    value:number
+    }
+
+
 const transactionSchema = new mongoose.Schema ({
-    issuer:{
-        type:mongoose.Schema.Types.ObjectId,
-        required:true
+    core:{
+        type:Object,
+        issuerId:{
+            type:String,
+            required:[true, "issue id is required"]
+        },
+        recepientId:{
+            type:String,
+            required:[true, "recepient id is required"]
+        },
+        transactionType:{
+            type:String,
+            required:[true, "transaction type is required"]
+        },
+        date:{
+            type:Date,
+            required:[true, "date is required"]
+        },
+        required:[true, "core is required"]
     },
-    recepient:{
-        type:mongoose.Schema.Types.ObjectId,
-        required:true
-    },
-    type:{
-        type:String,
-        required:true
-    },
-    date:{
-        type:Date,
-        required:true
-    },
+    
 
     // production chain emission - essentially within
     //  what contract structure transaction occurs
     emission:{
-        gig:{
+        type:Object,
+        gigId:{
             type:mongoose.Schema.Types.ObjectId,
-            required:true
+            ref:"gig",
+            required:[true, "stuff is required"]
         },
         subcontract:{
             type:mongoose.Schema.Types.ObjectId,
-            required:false
+            ref:"targetContract",
+            
         },
-        required:true
+        required:[true, "stuff is required"]
 
     },
-    quantity:{
+    value:{
         type:Number,
-        required:true
+        required:[true, "stuff is required"]
     }
 
 

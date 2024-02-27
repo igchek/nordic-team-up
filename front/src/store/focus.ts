@@ -12,19 +12,27 @@ import { TargetChat } from './modules/libraries/Community/Chats/Target'
 
 
 export interface focusLoad {
-    focusedContent:null|vibe|sync|gig,
-    focusedHost:null|artist|venue,
-    isCommunityFocused:boolean,
-    focusedChat:null|standartChat|PublicChat|LocalChat|PrivateChat|TargetChat,
+    focusVibe:{vibeId:string}|null
+    focusCommunity:{communityId:string}|null
+    subAccount:{
+        artist:null|{id:string}
+        venue:null|{id:string}
+        targetGroup:null|{id:string}
+    }
+    focusArtistAccount:{artistId:string}|null
 
 }
 
 
 const initialState :focusLoad = {
-    focusedContent:null,
-    focusedHost:null,
-    isCommunityFocused:false,
-    focusedChat:null
+    focusVibe:null,
+    focusCommunity:null,
+    focusArtistAccount:null,
+    subAccount:{
+        artist:null,
+        venue:null,
+        targetGroup:null
+    }
 
 
 
@@ -34,41 +42,39 @@ const FocusSlice = createSlice ({
     name:'focus',
     initialState,
     reducers:{
-        setFocusedContent: (state, action:PayloadAction<null|vibe|sync|gig>) =>{
-            if (action.payload!=null){
-                state.focusedContent=action.payload
+        setFocusedVibe:(state, action:PayloadAction<string|null>)=>{
+            if(action.payload){
+                state.focusVibe={vibeId:action.payload}
             }
-            else {
-                state.focusedContent=action.payload
+            else{
+                state.focusVibe=null
             }
-                
-            
         },
-        setFocusedHost:(state, action:PayloadAction<null|artist|venue>)=>{
-            if (action.payload!=null){
-                state.focusedHost=action.payload
+        setFocusedCommunity:(state, action:PayloadAction<string|null>)=>{
+            if(action.payload){
+                state.focusCommunity={communityId:action.payload}
             }
-            else state.focusedHost=action.payload
+            else{
+                state.focusCommunity=null
+            }
         },
-        setFocusedChat: (state, action:PayloadAction<null|standartChat|PublicChat|LocalChat|PrivateChat|TargetChat>) =>{
-            if (action.payload!=null){
-                state.focusedChat=action.payload
-            }
-            else {
-                state.focusedChat=action.payload
-            }
-
-    
+        setFocusArtistAccount:(state, action:PayloadAction<string|null>)=>{
+            if(action.payload){
+                state.subAccount.artist = {id:action.payload}
+            }else state.subAccount.artist = null
         },
-
-        setCommunityFocus:(state, action:PayloadAction<boolean>)=>{
-            if (action.payload){
-                state.isCommunityFocused=false
-            }
-            else state.isCommunityFocused=true
-        }
+        setFocusVenueAccount:(state, action:PayloadAction<string|null>)=>{
+            if(action.payload){
+                state.subAccount.venue = {id:action.payload}
+            }else state.subAccount.venue = null
+        },
+        setFocusTargetGroupAccount:(state, action:PayloadAction<string|null>)=>{
+            if(action.payload){
+                state.subAccount.targetGroup = {id:action.payload}
+            }else state.subAccount.targetGroup = null
+        },
     }
 })
 
-export const {setFocusedContent,setFocusedHost,setFocusedChat, setCommunityFocus} = FocusSlice.actions
+export const {setFocusedVibe, setFocusedCommunity, setFocusArtistAccount, setFocusTargetGroupAccount, setFocusVenueAccount} = FocusSlice.actions
 export default FocusSlice.reducer

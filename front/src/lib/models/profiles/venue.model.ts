@@ -1,7 +1,138 @@
 import mongoose from "mongoose";
+import { vibeData } from "../content/vibe.models";
+import { GigData } from "../content/gig.models";
+import { transactionData } from "../discrete/transaction.models";
+import { userData } from "./user.models";
+import { temporalFrameData } from "../discrete/temporalFrame.models";
+import { mediaData } from "../discrete/media.models";
+
+
+export interface VenueData {
+    _id:string
+    contributors:{
+        owners:(mongoose.Schema.Types.ObjectId|userData)[]
+        managers:(mongoose.Schema.Types.ObjectId|userData)[]
+    }
+    deploymentParams:{
+        physical:{
+            capacity:{
+                minimal:number
+                maximal:number
+            }
+            age:{
+                minimal:number
+                maximal:number
+            }
+        }
+        temporal:{
+            template:{
+                monday:{
+                    isTenable:boolean
+                    start:Date
+                    finish:Date
+                }
+                tuesday:{
+                    isTenable:boolean
+                    start:Date
+                    finish:Date
+                }
+                wednsday:{
+                    isTenable:boolean
+                    start:Date
+                    finish:Date
+                }
+                thursday:{
+                    isTenable:boolean
+                    start:Date
+                    finish:Date
+                }
+                friday:{
+                    isTenable:boolean
+                    start:Date
+                    finish:Date
+                }
+                saturday:{
+                    isTenable:boolean
+                    start:Date
+                    finish:Date
+                }
+                sunday:{
+                    isTenable:boolean
+                    start:Date
+                    finish:Date
+                }
+            }
+            specific:(mongoose.Schema.Types.ObjectId|temporalFrameData)[]
+            hosted:(mongoose.Schema.Types.ObjectId|temporalFrameData)[]
+        }
+        technical:Object
+        financial:{
+            template:{
+                perHour:number
+                perDay:number
+            }
+            adjustment:(mongoose.Schema.Types.ObjectId|temporalFrameData)[]
+        }
+    }
+    deployment:{
+        external:{
+            vibes:(mongoose.Schema.Types.ObjectId|vibeData)[]
+            gigs:(mongoose.Schema.Types.ObjectId|GigData)[]
+        }
+        internal:{
+            vibes:(mongoose.Schema.Types.ObjectId|vibeData)[]
+            gigs:(mongoose.Schema.Types.ObjectId|GigData)[]
+        }
+    }
+    description:{
+        title:string
+        subtitle?:{
+            role:string
+            description:string
+        }
+        tagLine:{
+            selfAdjusted:string[]
+            computed:string[]
+        }
+    }
+    media:{
+        logo:string
+        header:string
+        reel:mediaData[]
+    }
+    balanceSheet:{
+        assets:{
+            deposited:{
+                quantity:number
+                gigs:string[]
+                transactions:(mongoose.Schema.Types.ObjectId|transactionData)[]
+            }
+            pending:{
+                quantity:number
+                gigs:string[]
+                transactions:(mongoose.Schema.Types.ObjectId|transactionData)[]
+            }
+        }
+        obligations:{
+            deposited:{
+                quantity:number
+                gigs:string[]
+                transactions:(mongoose.Schema.Types.ObjectId|transactionData)[]
+            }
+            pending:{
+                quantity:number
+                gigs:string[]
+                transactions:(mongoose.Schema.Types.ObjectId|transactionData)[]
+            }
+        }
+    }
+}
+
+
 
 const venueSchema = new mongoose.Schema({
     contributors:{
+        type:Object,
         owners:[{
             type:mongoose.Schema.Types.ObjectId,
             ref:'user'
@@ -10,149 +141,161 @@ const venueSchema = new mongoose.Schema({
             type:mongoose.Schema.Types.ObjectId,
             ref:'user'
         }],
-        required:true
+        required:[true, 'stuff is required']
     },
 
     deploymentParams:{
         physical:{
+            type:Object,
             capacity:{
+                type:Object,
                 minimal:{
                     type:Number,
-                    required:false,
+                    
                     default:0
                 },
                 maximal:{
                     type:Number,
-                    required:false
+                    
                 },
                 
-                required:false
+                
             },
             age:{
+                type:Object,
                 minimal:{
                     type:Number,
-                    required:false,
+                    
                     default:16
                 },
                 maximal:{
                     type:Number,
-                    required:false
+                    
                 },
-                required:false
+                
             }
 
         },
         temporal:{
+            type:Object,
             template:{
+                type:Object,
                 monday:{
+                    type:Object,
                     isTenable:{
                         type:Boolean,
-                        required:true,
+                        required:[true, 'stuff is required'],
                         default:true
                     },
                     start:{
                         type:Date,
-                        required:false
+                        
                     },
                     finish:{
                         type:Date,
-                        required:false
+                        
                     }
                 },
                 tuesday:{
+                    type:Object,
                     isTenable:{
                         type:Boolean,
-                        required:true,
+                        required:[true, 'stuff is required'],
                         default:true
                     },
                     start:{
                         type:Date,
-                        required:false
+                        
                     },
                     finish:{
                         type:Date,
-                        required:false
+                        
                     }
                 },
                 wednsday:{
+                    type:Object,
                     isTenable:{
                         type:Boolean,
-                        required:true,
+                        required:[true, 'stuff is required'],
                         default:true
                     },
                     start:{
                         type:Date,
-                        required:false
+                        
                     },
                     finish:{
                         type:Date,
-                        required:false
+                        
                     },
-                    required:false
+                    
                 },
                 thursday:{
+                    type:Object,
                     isTenable:{
                         type:Boolean,
-                        required:true,
+                        required:[true, 'stuff is required'],
                         default:true
                     },
                     start:{
                         type:Date,
-                        required:false
+                        
                     },
                     finish:{
                         type:Date,
-                        required:false
+                        
                     },
-                    required:false
+                    
                 },
                 friday:{
+                    type:Object,
                     isTenable:{
                         type:Boolean,
-                        required:true,
+                        required:[true, 'stuff is required'],
                         default:true
                     },
                     start:{
                         type:Date,
-                        required:false
+                        
                     },
                     finish:{
                         type:Date,
-                        required:false
+                        
                     },
-                    required:false
+                    
                 },
                 saturday:{
+                    type:Object,
                     isTenable:{
                         type:Boolean,
-                        required:true,
+                        required:[true, 'stuff is required'],
                         default:true
                     },
                     start:{
                         type:Date,
-                        required:false
+                        
                     },
                     finish:{
                         type:Date,
-                        required:false
+                        
                     },
-                    required:false
+                    
                 },
                 sunday:{
+                    type:Object,
                     isTenable:{
                         type:Boolean,
-                        required:true,
+                        required:[true, 'stuff is required'],
                         default:true
                     },
                     start:{
                         type:Date,
-                        required:false
+                        
                     },
                     finish:{
                         type:Date,
-                        required:false
+                        
                     },
-                    required:false
+                    
                 }
             },
             specific:[{
@@ -170,70 +313,78 @@ const venueSchema = new mongoose.Schema({
             ref:'tech'
         }],
         financial:{
+            type:Object,
             template:{
+                type:Object,
                 perHour:{
                     type:Number,
-                    required:false
+                    
                 },
                 perDay:{
                     type:Number,
-                    required:false
+                    
                 },
-                required:false
+                
             },
             adjustment:[{
                 type:mongoose.Schema.Types.ObjectId,
                 ref:'temporal frame'
             }]
         },
-        required:false
+        
 
     },
 
     deployment:{
+        type:Object,
         external:{
+            type:Object,
             vibes:{
                 type:mongoose.Schema.Types.ObjectId,
                 ref:'vibe'
             },
-            gig:{
+            gigs:{
                 type:mongoose.Schema.Types.ObjectId,
                 ref:'gig'
             },
-            required:false
+            
         },
         internal:{
+            type:Object,
             vibes:[{
                 type:mongoose.Schema.Types.ObjectId,
                 ref:'vibe'
             }],
-            gig:[{
+            gigs:[{
                 type:mongoose.Schema.Types.ObjectId,
                 ref:'gig'
             }],
-            required:false
+            
         },
-        required:false
+        
     },
 
 
     description:{
+        type:Object,
         title:{
             type:String,
-            required:true
+            required:[true, 'stuff is required']
         },
         subtitle:{
+            type:Object,
             role:{
                 type:String,
-                required:false
+                
             },
             description:{
                 type:String,
-                required:false
+                
             },
-            required:false
+            
         },
         tagLine:{
+            type:Object,
             selfAdjusted:[{
                 type:String,
                 ref:'tag'
@@ -242,103 +393,111 @@ const venueSchema = new mongoose.Schema({
                 type:String,
                 ref:'tag'
             }],
-            required:false
+            
         },
-        required:true
+        required:[true, 'description is required']
 
     },
     media:{
+        type:Object,
         logo:{
             type:String,
-            required:true,
-            default:'venueLogo'
+            required:[true, 'logo is required'],
+            default:'default'
         },
         header:{
             type:String,
-            required:false,
-            default:'hostHeader'
+            
+            default:'default'
         },
         reel:[{
-            type:String,
-            ref:'reel'
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'media'
         }],
-        required:true
+        required:[true, 'media is required']
     },
 
     balanceSheet:{
+        type:Object,
         assets:{
+            type:Object,
             deposited:{
+                type:Object,
                 quantity:{
                     type:Number,
-                    required:false
+                    
                 },
                 gigs:[{
-                    type:mongoose.Schema.Types.ObjectId,
+                    type:String,
                     ref:'gig'
                 }],
                 transactions:[{
                     type:mongoose.Schema.Types.ObjectId,
                     ref:'transaction'
                 }],
-                required:false,
+                
                 default:0
 
             },
             pending:{
+                type:Object,
                 quantity:{
                     type:Number,
-                    required:false
+                    
                 },
                 gigs:[{
-                    type:mongoose.Schema.Types.ObjectId,
+                    type:String,
                     ref:'gig'
                 }],
                 transactions:[{
                     type:mongoose.Schema.Types.ObjectId,
                     ref:'transaction'
                 }],
-                required:false,
+                
                 default:0
 
             },
-            required:false
+            
             },
         obligations:{
+            type:Object,
             deposited:{
+                type:Object,
                 quantity:{
                     type:Number,
-                    required:false
+                    
                 },
                 gigs:[{
-                    type:mongoose.Schema.Types.ObjectId,
+                    type:String,
                     ref:'gig'
                 }],
                 transactions:[{
                     type:mongoose.Schema.Types.ObjectId,
                     ref:'transaction'
                 }],
-                required:false,
+                
                 default:0
 
             },
             pending:{
+                type:Object,
                 quantity:{
                     type:Number,
-                    required:false
+                    
                 },
                 gigs:[{
-                    type:mongoose.Schema.Types.ObjectId,
+                    type:String,
                     ref:'gig'
                 }],
                 transactions:[{
                     type:mongoose.Schema.Types.ObjectId,
                     ref:'transaction'
                 }],
-                required:false,
+                
                 default:0
 
             },
-            required:false
+            
         }
     }
 

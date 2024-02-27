@@ -1,67 +1,70 @@
 "use client"
 
 import React from 'react'
-import styles from './styls.module.scss'
-import { NavBurger } from './VibeOutput/NavBurger'
-import CommunityToping from './CommunityOutput/CommunityToping'
-import CommunityOutputSegment from './CommunityOutput/CommunityOutputSegment'
-import { useAppDispatch, useAppSelector } from '@/hooks'
-import { useEffect, useState } from 'react'
-import { setInvolvedMocks } from '@/store/involvedContent'
-import { motion } from 'framer-motion'
+import styles from './styles.module.scss'
+
+import {  useState, useEffect } from 'react'
 import ContentOutput from './VibeOutput/ContentOutput'
 import CommunityOutput from './CommunityOutput/CommunityOutput'
+import {useSession} from 'next-auth/react'
+import { useAppDispatch, useAppSelector } from '@/hooks'
+import { setInvolvedVibes } from '@/store/involvedContent'
+import { motion } from 'framer-motion'
 
 interface UserOutputI {
-    communityTarget:boolean
-    specificSearch:boolean
 }
 
-// essentialy UserOutput is a root layout navigation feature . 
-// Probably should implement global content exploration via it much like youtube side bar
 
-const UserOutput:React.FC<UserOutputI> = ({communityTarget, specificSearch}) => {
-    const dispatch = useAppDispatch()
-    const involvedMocks = useAppSelector(({involvedContent})=>involvedContent.mockContent)
 
-    const [isVibeSelected, setVibeSelction] = useState(false)
 
-    useEffect(()=>{
-        dispatch(setInvolvedMocks(involvedMocks))
-    }, [])
 
-    if (communityTarget){
-    return(
-        <motion.div className={styles.userOutput}>
-            {/* maped all chats user has ever posted in  */}
-        </motion.div>
-    )
-  }
-  else
+const UserOutput:React.FC<UserOutputI> =   () => {
+
+    const vibes = useAppSelector(({involvedContent})=>involvedContent.vibes)
+    const focusVibe = useAppSelector(({focus})=>focus.focusVibe)
+    const session = useSession()
+    if(session.data?.userData){
+        
+        
+
+
+    
+
+
+
     return (
-        <div className={styles.rootWrapper}>
-            {isVibeSelected?
-                <div  className={styles.wrapper}>
+        <motion.div 
+            initial={{opacity:0, width:0}}
+            animate={{opacity:1, width:'30%'}}
+            exit={{opacity:0, width:0}}
+        className={styles.InvolvementWrapper}>
+            {focusVibe?
+                <>
                     <ContentOutput
-                        focus={isVibeSelected}
-                        communityTarget={communityTarget}
+                        vibes={vibes}
+                        focus={focusVibe?true:false}
+                        communityTarget={false}
                     />
                     <CommunityOutput
                         
                     />
-                </div>
+                </>
 
             :
-                <div className={styles.wrapper}>
+               
                     <ContentOutput
-                        focus={isVibeSelected}
-                        communityTarget={communityTarget}
+                        vibes={vibes}
+                        focus={focusVibe?true:false}
+                        communityTarget={false}
                     />
-                </div>
+                
             }
-        </div>
+        </motion.div>
 
   )
+    }
+    else return null
+    
 }
 
 export default UserOutput

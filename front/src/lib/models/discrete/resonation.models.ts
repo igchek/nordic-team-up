@@ -1,15 +1,39 @@
 import mongoose from "mongoose";
+import { userData } from "../profiles/user.models";
+import { vibrationData } from "./vibration.models";
+
+export interface resonationData {
+    id:string
+    vibeId:string
+    aggregation:{
+        isAggregated:boolean
+        subdivisions?:(mongoose.Schema.Types.ObjectId|resonationData)[]
+        geo:string
+    }
+    audience:{
+        total:number
+        list:(mongoose.Schema.Types.ObjectId|userData)[]
+    }
+    priceDistribution?:{
+        resonator?:{
+            percentage:number
+            current:number
+        }
+        vibrations:(mongoose.Schema.Types.ObjectId|vibrationData)[]
+    }
+}
 
 
 const resonationSchema = new mongoose.Schema({
     vibeId:{
-        type:mongoose.Schema.Types.ObjectId,
-        required:true
+        type:String,
+        required:[true, "stuff is required"]
     },
     aggregation:{
+        type:Object,
         isAggregated:{
             type:Boolean,
-            required:true
+            required:[true, "aggregation status is required"]
         },
         subdivisions:[{
             type:mongoose.Schema.Types.ObjectId,
@@ -17,37 +41,41 @@ const resonationSchema = new mongoose.Schema({
         }],
         geo:{
             type:mongoose.Schema.Types.ObjectId,
-            required:false
+            
         },
-        required:false
+        required:[true, "aggregation sepcification is required"]
     },
     audience:{
+        type:Object,
         total:{
             type:Number,
-            required:true
+            required:[true, "total number is required"]
         },
         list:[{
             type:mongoose.Schema.Types.ObjectId,
-            required:true
+            ref:"User"
         }],
-        required:true
+        required:[true, "audience specification is required"]
     },
     priceDistribution:{
+        type:Object,
         resonator:{
+            type:Object,
             percentage:{
                 type:Number,
-                required:true
+                required:[true, "resonator percentage preset is required"]
             },
             current:{
                 type:Number,
-                required:true
-            }
+                default:0
+            },
+            
         },
         vibrations:[{
             type:mongoose.Schema.Types.ObjectId,
             ref:'vibration'
         }],
-        required:false
+        
     }
 })
 

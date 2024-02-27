@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import styles from './content.module.scss'
+import styles from './styles.module.scss'
 import {motion} from 'framer-motion'
 import SvgSelector from '@/Utils/SvgSelector'
 

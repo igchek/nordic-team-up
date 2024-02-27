@@ -4,6 +4,7 @@ import styles from './styles.module.scss';
 
 import CommunityOutputSegment from './CommunityOutputSegment';
 import CommunityToping from './CommunityToping';
+import { useAppDispatch, useAppSelector } from '@/hooks';
 
 interface CommunityOutputI {
 
@@ -11,7 +12,10 @@ interface CommunityOutputI {
 
 
 const CommunityOutput:React.FC<CommunityOutputI> = (props) => {
-
+    const publicCommunitites = useAppSelector(({communities})=>communities.publicCommunities)
+    const privateCommunities = useAppSelector(({communities})=>communities.privateCommunities)
+    const targetCommunities = useAppSelector(({communities})=>communities.targetCommunities)
+    const pushLoad = useAppSelector(({communities})=>communities.pushLoad)
     
 
     return(
@@ -23,13 +27,26 @@ const CommunityOutput:React.FC<CommunityOutputI> = (props) => {
                 />
                     <div className={styles.CommunityOutput}>
                         <CommunityOutputSegment
+                            communities={publicCommunitites}
                             segmentType='public'
                             selection={false}                       
                         />
-                        <CommunityOutputSegment
-                            segmentType='local'
+                        {
+                            privateCommunities &&
+                            <CommunityOutputSegment
+                            communities={privateCommunities}
+                            segmentType='private'
+                            selection={privateCommunities.length>3?false:true}                       
+                        />
+                        }
+                        {
+                            targetCommunities &&
+                            <CommunityOutputSegment
+                            communities={targetCommunities}
+                            segmentType='target'
                             selection={false}                       
                         />
+                        }
                         {/* best to map a selector state correspondendt 
                         to community contents of a selected vibe */}
                     </div>

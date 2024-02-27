@@ -2,38 +2,57 @@
 
 import { NavBurger } from './NavBurger';
 import styles from './styles.module.scss';
-import { useAppSelector } from '@/hooks';
+import { useAppDispatch,useAppSelector } from '@/hooks';
 import Content from './Content';
+import { useEffect } from 'react';
+import { setInvolvedVibes } from '@/store/involvedContent';
+import { userVibe } from '@/lib/models/profiles/user.models';
 
 interface ContentOutputI {
+    vibes:userVibe[]|null
     focus:boolean
     communityTarget:boolean
 }
 
-const ContentOutput:React.FC<ContentOutputI> = (props) =>{
-    const involvedContent = useAppSelector(({involvedContent})=>involvedContent.content)
-    const focusedContent = useAppSelector(({focus})=>focus.focusedContent)
+const ContentOutput:React.FC<ContentOutputI> = ({vibes, focus, communityTarget}) =>{
+    const dispatch = useAppDispatch()
+    const focusedVibe = useAppSelector(({focus})=>focus.focusVibe)
+    useEffect(()=>{
+        if(vibes && vibes.length>0){
+            dispatch(setInvolvedVibes(vibes))
+        }
+        
+    },[])
 
     return(
-        <div className={styles.wrapper}>
+        <div className={styles.InvolvementWrapper}>
             <NavBurger
-                focus={props.focus}
-                communityTarget={props.communityTarget}
+                focus={focus}
+                communityTarget={communityTarget}
             />
-            {involvedContent.map(content=>
-                    {return(
-                        <Content
-                            id={content.id}
-                            poster={`src/assets/PromoLogo/${content.promoLogo}.jpg`}
-                            contentTitle={content.title}
-                            authorTitle={content.author}
-                            modality={content.modality}
-                            audience={content.totalAudience}
-                            focus={focusedContent?.id===content.id?true:false}
-                            communityFocus={false}
-                        />
-                    )}
-                )}
+            <div className={styles.contentOutput}>
+                {vibes?
+                    vibes.map(vibe=>
+                        {return(
+                            <Content
+                                key={vibes.indexOf(vibe) + 1}
+                                _id={vibe.content._id}
+                                vibeId={vibe.content.vibeId}
+                                poster={`src/assets/PromoLogo/${vibe.content.core.media.promoLogo}.jpg`}
+                                contentTitle={vibe.content.core.contentTitle}
+                                authorTitle={vibe.content.core.creatorTitle}
+                                modality={vibe.modality}
+                                audience={vibe.content.vibrations.total.quantity}
+                                focus={focusedVibe?.vibeId===vibe.content.vibeId?true:false}
+                                communityFocus={false}
+                            />
+                        )}
+                    )
+                :
+                null}
+                
+            </div>
+            
 
         </div>
     )

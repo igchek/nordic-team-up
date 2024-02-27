@@ -1,0 +1,514 @@
+@use "src/stylesGlobal/variables";
+
+    .artistForm::-webkit-scrollbar{
+        display: none;
+    }
+    .artistForm{
+        overflow-y: scroll;
+        z-index: 0;
+        width: 100%;
+        height: auto;
+        font-weight: 700;
+        color: white;
+        
+        .formControls{
+            display: flex;
+            // grid-template-columns: 15% 60% 25%;          
+            position: absolute;
+            z-index: 1;
+            width: 100%;
+            height: 5vh;
+            font-weight: 1000;
+            color: white;
+            background-color: rgba(variables.$backgroundGlobal, $alpha: 0.0);
+            backdrop-filter: blur(10px);
+            .back{
+                // grid-column: 1/2;
+                height: 100%;
+                width: 15%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .socket{
+                    opacity: 0.5;
+                    aspect-ratio: 1/1;
+                    height: 60%;
+                }
+            }
+            .space{
+                width: 100%;
+                height: 100%;
+                grid-column: 2/3;
+            }
+            .controls{
+                width: 25%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .submitControl{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-weight: 700;
+                    font-size: 1rem;
+                    gap: 5px;
+                    // flex-wrap: wrap;
+                    width: 100%;
+                    height: 100%;
+                    .socket{
+                        aspect-ratio: 1/1;
+                        background-color: rgba($color: #000000, $alpha: 0.0);
+                        border-radius: 50px;
+                        border-style: none;
+                        height: 60%;
+                        opacity: 0.5;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+            }
+        }
+        .header{
+            background-size: cover;
+            width: 100%;
+            height: 30vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(variables.$interfaceGlobal, 0.5);
+            background-size: contain;
+            background-repeat: no-repeat;
+            .placeHolder{
+                height: 85%;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .socket{
+                   
+                    width: 75%;
+                    height: 50%;
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                  background-image: url(https://utfs.io/f/9eaa033b-d317-47d4-85a5-30969a1b4b0c-wazsg6.svg);  
+                }
+            }
+            .headerSetUpSegment{
+                height: 15%;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                gap:10px;
+                backdrop-filter: blur(15px);
+                flex-wrap: wrap;
+                .description{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: fit-content;
+                    height: 75%;
+                    color: white;
+                    font-size: 1rem;
+                    font-weight: 1000;
+                    flex-wrap: wrap;
+                }
+                .svgSocket{
+                    aspect-ratio: 1/1;
+                    height: 75%;
+                    border-style: none;
+                    border-radius: 50px;
+                    display: flex;
+                    justify-content: center;
+                    align-content: center;
+                    background-size: cover;
+                    .headerInput{
+                        display: flex;
+                        justify-content: center;
+                        align-content: center;
+                        aspect-ratio: 1/1;
+                        height: 100%;
+                        opacity: 0;
+                    }
+                }
+            }
+            .space{
+                height: 100%;
+                width: 100%;
+            }
+
+        }
+        .body{
+            height: auto;
+            width: 100;
+            .logoSegment{
+                height: 10vh;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                background-color: variables.$interfaceGlobal;
+                .logoOutput{
+                    width: 10%;
+                    height:100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                        .socket{
+                            aspect-ratio: 1/1;
+                            height:80%;
+                            border-radius: 100px;
+                            border-style: none;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background-size:cover ;
+                            // background-color: variables.$backgroundGlobal;
+                            .logoImage{
+                                width: 100%;
+                                height: 100%;
+                                border-radius: 100px;
+                                border-style: none;
+                                background-size: cover;
+                            }
+                            .svg{
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                aspect-ratio: 1/1;
+                                width: 75%;
+                                opacity: 0;
+                                
+                            }
+                        }
+                    
+                }
+                .description{
+                    color: rgb(255, 255, 255);
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    width: 25vw;
+                    height: 100%;
+                    font-weight: 700;
+                    font-size: 2rem;
+                    white-space: 'no-wrap';
+                    text-align: center;
+                    
+
+                }
+                .pseudoSegment{
+                    height: 100%;
+                    width: 10vw;
+                    display: flex;
+                    justify-content: center;
+                    align-content: center;
+                    .pushSocket{
+                        aspect-ratio: 1/1;
+                        height: 75%;
+                        border-style: none;
+                        border-radius: 50px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+            }
+            .titleSegment{
+                width: 100%;
+                height: 10vh;
+                display: flex;
+                flex-wrap: wrap;
+                align-content: center;
+                justify-content: center;
+                background-color: variables.$interfaceGlobal;
+                
+                .input{
+                    width: 60%;
+                    height: 50%;
+                    display: flex;
+                    justify-content: center;
+                    text-align: center;
+                    font-weight: 1000;
+                    font-size: 2rem;
+                    color: black;
+                    border-style: none;
+                    border-radius: 20px;
+                }
+                .input:focus{
+                    outline-style: none;
+                    opacity: 100%;
+                    
+                }
+                .input::-webkit-input-placeholder{
+                    opacity: 50%;
+                }
+            }
+            .subtitleSegment{
+                height: 5vh;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                color: black;
+                .description{
+                    width: 25%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+                    
+                    .pushSocket{
+
+                        aspect-ratio: 1/1;
+                        height: 50%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        .SvgSocket{
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            aspect-ratio: 1/1;
+                            height: 65%;
+                        }
+    
+                    }
+                    
+                    .push{
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                        color: black;
+                        font-weight: 1000;
+                        font-size: 1rem;
+                        white-space: 'no-wrap';
+                        height: 100%;
+                        width: 10vw;
+                    }
+                }
+                .space{
+                    width: 50%;
+                    height: 100%;
+                }
+                
+                .inputSegment{
+                    width: 25%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    .input{
+                        width: auto;
+                        height: 60%;
+                        min-width: 15vw;
+                        text-align: center;
+                        border-style: none;
+                        border-radius: 10px;
+                        color: white;
+                        font-weight: 700;
+                        font-size: 1rem;
+                        background-color: variables.$interfaceGlobal;
+                    }
+                    
+                }
+                .input:focus{
+                    outline-style: none;
+                }
+                .input::-webkit-input-placeholder{
+                    color: white;
+                    opacity: 50%;
+                }
+            }
+            .descriptionSegment{
+                width: 100%;
+                height: 25vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .inputMask{
+                    width: 80%;
+                    height: 80%;
+                    border-radius: 15px;
+                    border-style: none;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: variables.$interfaceGlobal;
+                    .input{
+                        width: 95%;
+                        height: 90%;
+                        display: block;
+                        font-weight: 1000;
+                        color: black;
+                        font-size: 1rem;
+                        border-radius: 15px;
+                        border-style: none;
+                        background-color: variables.$backgroundGlobal;
+                        text-align:start;
+                    }
+                    .input:focus{
+                        outline-style: none;
+                    }
+                    .input::-webkit-input-placeholder{
+                        opacity: 50%;
+                        color: variables.$interfaceGlobal;
+                        text-align: center;
+                    }
+                }
+            }
+            .tagSegment{
+                width: 100%;
+                height: auto;
+                background-color: variables.$interfaceGlobal;
+
+                font-weight: 1000;
+                .header{
+                    width: 100%;
+                    height: 5vh;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    color: white;
+                    font-size: 1rem;
+                    gap: 10px;
+                    .iconSocket{
+                        aspect-ratio: 1/1;
+                        height: 60%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                    }
+                }
+                
+                .tagLine::-webkit-scrollbar{
+                    display: none;
+                }
+                .tagLine{
+                    overflow-x: scroll;
+                    display: flex;
+                    gap: 10px;
+                    justify-content:   flex-start;
+                    align-items: center;
+                    height: 10vh;
+                    width: 100%;
+                    background-color: variables.$backgroundGlobal;
+                    .plusSegment{
+                        width: 10vw;
+                        min-width: 10vw;
+                        height: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-content: center;
+                        flex-wrap: wrap;
+                        .plusSocket{
+                            aspect-ratio: 1/1;
+                            height: 40%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+                    }
+                    
+                    .inputSegment{
+                        width: 50px;
+                        min-width: 10vw;
+                        height: 100%;
+                        display: flex;
+                        gap: 10px;
+                        justify-content: center;
+                        align-items: center;
+                        .input{
+                            width:fit-content;
+                            min-width: 15px;
+                            height: 45px;
+                            border-style: none;
+                            border-radius: 10px;
+                            text-align: center;
+                            background-color: rgba(variables.$interfaceGlobal, 0.5);
+                            color: white;
+                            font-size: 1rem;
+                            font-weight: 1000;
+
+                        }
+                        .input:focus{
+                            outline-style: none;
+                        }
+                        .input::-webkit-input-placeholder{
+                            color: variables.$interfaceGlobal;
+                        }
+                    }
+                    .tagOutput::-webkit-scrollbar{
+                        display: none;
+                    }
+                    .tagOutput{
+                        // position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        overflow-x: scroll;                        align-items: center;
+                        gap: 15px;
+                        overflow-x: scroll;
+                    }
+                }
+
+            }
+        }
+    }
+
+
+.tagTemplate{
+    width: fit-content;
+    min-width: 15px;
+    max-width: 200px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .outputSegment{
+        width: fit-content;
+
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .tagOutput:focus{
+            outline-style: none;
+        }
+        .tagOutput{
+            width: fit-content;
+            min-width: 10px;
+            height: 40%;
+            border-style: none;
+            border-radius: 10px;
+            text-align: center;
+            width: auto;
+            min-width: 8vw;
+            color: white;
+            font-weight: 1000;
+            font-size: 1.5rem;
+            background-color: variables.$interfaceGlobal;
+        }
+    }
+    .deleteSegment{
+        width: 5vw;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .deleteSocket{
+            aspect-ratio: 1/1;
+            height: 60%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0.5;
+        }
+
+    }
+}

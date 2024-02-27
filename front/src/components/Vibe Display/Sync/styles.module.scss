@@ -1,0 +1,16 @@
+@use 'src/stylesGlobal/variables';
+@use 'src/stylesGlobal/templates';
+
+
+.SyncProgression{
+    display: flex;
+    width: 100%;
+    min-height: 15vh;
+    max-height: 30vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: variables.$backgroundGlobal;
+    color: variables.$textDarkColor;
+    
+}

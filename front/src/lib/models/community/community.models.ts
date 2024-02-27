@@ -1,67 +1,112 @@
 import mongoose from "mongoose";
+import { messageData } from "./message.models";
+import { restrictionData } from "../discrete/restriction.models";
+import { targetPropositionData } from "../target/targetProposition.models";
+import { targetContractData } from "../target/targetContract.models";
+
+
+export interface communityData {
+    id:string
+    core?:{
+        hostVibeId:string
+        type:string
+        subtype:{
+            isPublic:boolean
+            isLocal:boolean
+            isPubliclyVisible:boolean
+            isModerated:boolean
+        }
+        Geo?:string
+        target:{
+            isTargeted:boolean
+            targeGroup?:{_id:mongoose.Schema.Types.ObjectId}
+        }
+    }
+    contents?:{
+        title:string
+        logo:string
+        subtitle:string
+        messages:(mongoose.Schema.Types.ObjectId|messageData)[]
+        audienceList:(mongoose.Schema.Types.ObjectId|{id:string, nic:string, logo:string})[]
+        moderatorList?:(mongoose.Schema.Types.ObjectId|{id:string, nic:string, logo:string})[]
+        banList:(mongoose.Schema.Types.ObjectId|restrictionData)[]
+    }
+    additional?:{
+        localRuleSet:({_id:mongoose.Schema.Types.ObjectId}|restrictionData)[]
+        target?:{
+            targetPropositions:(mongoose.Schema.Types.ObjectId|targetPropositionData)[]
+            targetContract:(mongoose.Schema.Types.ObjectId|targetContractData)[]
+        }
+    }
+}
 
 
 const communitySchema = new mongoose.Schema({
     core:{
-        hostVibeId:{type:mongoose.Schema.Types.ObjectId, required:true},
-        subtype:{
-            isPublic:{type:Boolean, required:true},
-            isLocal:{type:Boolean, required:true},
-            isPubliclyVisible:{type:Boolean, default:true, required:true},
-            isModerated:{type:Boolean, required:true},
-            required:true
+        hostVibeId:{type:String, required:[true, "host vibe id is required"]},
+        communityType:{type:String, required:[true, "community type is required"]},
+        presets:{
+            type:Object,
+            isPublic:{type:Boolean, required:[true, "publicity specification is required"]},
+            isLocal:{type:Boolean, required:[true, "locality specification is required"]},
+            isPubliclyVisible:{type:Boolean, default:true},
+            isModerated:{type:Boolean, required:[true, "moderation status is required"]},
+            required:[true, "preset specification is required"]
         },
-        Geo:{type:mongoose.Schema.Types.ObjectId, required:false},
+        title:{type:String, required:[true, "community is required"]},
+        logo:{type:String, default:'default' },
+        subtitle:{type:String,  },
+        Geo:{type:String, },
         target:{
+            type:Object,
             isTargeted:{
                 type:Boolean,
-                required:true
+                required:[true, "target status is required"]
             },
             targetGroup:{
                 type:mongoose.Schema.Types.ObjectId,
-                required:false,
-                ref:'target group'
-            }
+                
+                ref:'targetGroup'
+            },
+            required:[true, "target specification is required"]
         },
     },
     contents:{
-        title:{type:String, required:true},
-        logo:{type:String, required:false},
+        type:Object,
+        
         
         messages:[
             {
                 type:mongoose.Schema.Types.ObjectId,
-                required:true,
                 ref:'message'
             }
         ],
         audienceList:[
             {
                 type:mongoose.Schema.Types.ObjectId,
-                required:true,
+                required:[true, "at least one user is required"],
                 ref:'user'
             }
         ],
         moderatorList:[
             {
                 type:mongoose.Schema.Types.ObjectId,
-                required:false,
                 ref:'user'
             }
         ],
         banList:[
             {
                 type:mongoose.Schema.Types.ObjectId,
-                required:false,
                 ref:'restriction'
             }
         ],
-        required:true
+        required:[true, "contents specification is required"]
     },
 
     // additional infrastrucure
 
     additional:{
+        type:Object,
         localRuleSet:[
             {
                 type:mongoose.Schema.Types.ObjectId,
@@ -70,14 +115,18 @@ const communitySchema = new mongoose.Schema({
             }
         ],
         target:{
+            type:Object,
             targetPropositions:[{
                 type:mongoose.Schema.Types.ObjectId,
-                ref:'target propositions'
+                ref:'targetProposition'
             }],
-            targetContract:{type:mongoose.Schema.Types.ObjectId, required:false},
-            required:false
+            targetContract:{
+                type:mongoose.Schema.Types.ObjectId,
+                ref:'targetContract'
+            },
+            
         },
-        required:false
+        
         
 
     }

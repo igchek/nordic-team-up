@@ -1,68 +1,115 @@
 import mongoose from "mongoose"
+import { userData } from "../profiles/user.models"
+
+
+export interface temporalFrameData {
+    id:string
+    core:{
+        date:Date
+        isTenable:boolean
+        start?:Date
+        finish?:Date
+        pricing?:{
+            perHour?:number
+            perDay?:number
+        }
+    }
+    option?:{
+        vibeId:string
+        venueId:string
+        artistId:string
+        yield?:{
+            wage?:number
+            advance?:number
+            share?:number
+        }
+        resonation?:{
+            optimum:number
+            engagement:{
+                initial:(mongoose.Schema.Types.ObjectId|userData)[]
+                pending?:(mongoose.Schema.Types.ObjectId|userData)[]
+                insufficient?:(mongoose.Schema.Types.ObjectId|userData)[]
+                rejected?:(mongoose.Schema.Types.ObjectId|userData)[]
+                deployed?:(mongoose.Schema.Types.ObjectId|userData)[]
+            }
+        }
+        price:number
+    }
+}
 
 const temporalFrameSchema = new mongoose.Schema({
-    date:{
-        type:Date,
-        required:true
-    },
-    isTenable:{
-        type:Boolean,
-        required:true
-    },
-    start:{
-        type:Date,
-        required:false
-    },
-    finish:{
-        type:Date,
-        required:false
-    },
-    pricing:{
-        perHour:{
-            type:Number,
-            required:false
+    core:{
+        type:Object,
+        date:{
+            type:Date,
+            required:[true, "date is required"]
         },
-        perDay:{
-            type:Number,
-            required:false
+        isTenable:{
+            type:Boolean,
+            required:[true, "tenability status is required"]
         },
-        required:false
+        start:{
+            type:Date,
+            
+        },
+        finish:{
+            type:Date,
+            
+        },
+        pricing:{
+            type:Object,
+            perHour:{
+                type:Number,
+                
+            },
+            perDay:{
+                type:Number,
+                
+            },
+            
+        },
+        required:[true, "stuff is required"]
     },
+    
     option:{
+        type:Object,
+        vibeId:{
+            type:String,
+            required:[true, "vibe id is required"]
+        },
         venueId:{
-            type:mongoose.Schema.Types.ObjectId,
-            ref:'venue',
-            required:false
+            type:String,
+            
         },
         artistId:{
-            type:mongoose.Schema.Types.ObjectId,
-            ref:'venue',
-            required:false
+            type:String,
+            
         },
         yield:{
+            type:Object,
             wage:{
                 type:Number,
-                required:false
+                
             },
             advance:{
                 type:Number,
-                required:false
+                
             },
             share:{
                 type:Number,
-                required:false
+                
             },
+            
         },
-        vibeId:{
-            type:mongoose.Schema.Types.ObjectId,
-            required:true
-        },
+        
         resonation:{
+            type:Object,
             optimum:{
                 type:Number,
-                required:true
+                required:[true, "optimum specifics is required"]
             },
             engagement:{
+                type:Object,
                 initial:[{
                     type:mongoose.Schema.Types.ObjectId,
                     ref:'user'
@@ -83,17 +130,17 @@ const temporalFrameSchema = new mongoose.Schema({
                     type:mongoose.Schema.Types.ObjectId,
                     ref:'user'
                 }],
-                required:false
+                
             },
             
-            required:false
+            
         },
         price:{
             type:Number,
-            required:true
+            required:[true, "stuff is required"]
         },
 
-        required:false
+        
 
     }
 })

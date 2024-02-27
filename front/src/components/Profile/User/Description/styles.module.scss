@@ -1,0 +1,7 @@
+@use "src/stylesGlobal/variables";
+@use "src/stylesGlobal/templates";
+
+
+.descriptionUnit{
+    @include templates.descriptionUnit;
+}

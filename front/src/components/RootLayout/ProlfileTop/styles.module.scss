@@ -1,0 +1,59 @@
+@use "src/stylesGlobal/variables";
+
+
+.wrapper{
+    position: absolute;
+    z-index: 1;
+    backdrop-filter: blur(10px);
+    background-color: rgba($color: variables.$backgroundGlobal, $alpha: 0.0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 5.5vh;
+    .logOutSegment{
+        margin-left: 25px;
+        width: 150px;
+        height: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-style: none;
+        border-radius: 50px;
+        gap: 10px;
+        .iconSegment{
+            margin-left: 10px;
+            width: 30%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .iconSocket{
+                aspect-ratio: 1/1;
+                height: 75%;
+                border-style: none;
+                border-radius: 50px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+            }
+        }
+        .description{
+            margin-right: 10px;
+            width: 70%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1rem;
+            color: white;
+            flex-wrap: wrap;
+        }
+    }
+    .space{
+        height: 100%;
+        width: 100%;
+    }
+}

@@ -1,43 +1,64 @@
 import mongoose from "mongoose";
 
+
+export interface targetPropositionData {
+    hostContractId:string
+    title:string
+    description?:string
+    executionTiming?:{
+        preliminary?:Date
+        onSpot?:Date
+    }
+    yield?:{
+        advance?:number
+        wage?:number
+        share?:number
+    }
+}
+
+
+
 const targetPropositionSchema = new mongoose.Schema({
     hostContractId:{
-        type:mongoose.Schema.Types.ObjectId,
-        required:true
+        type:String,
+        required:[true, 'stuff is required']
     },
     title:{
         type:String,
-        required:true
+        required:[true, 'Need a title']
     },
     description:{
         type:String,
-        required:false
+        
     },
     executionTiming:{
+        type:Object,
         preliminary:{
             type:Date,
-            required:false
+            
         },
         onSpot:{
             type:Date,
-            required:false
+            
         },
-        required:false
+        
     },
     yield:{
+        type:Object,
         advance:{
             type:Number,
-            required:false
+            
         },
         wage:{
             type:Number,
-            required:false
+            
         },
         share:{
             type:Number,
-            required:false
+            
         },
-        required:false
+        required:[true, "yield description is required"]
+        
     }
 
 })
