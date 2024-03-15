@@ -35,7 +35,7 @@ const UserOutput:React.FC<UserOutputI> =   () => {
     return (
         <motion.div 
             initial={{opacity:0, width:0}}
-            animate={{opacity:1, width:'30%'}}
+            animate={{opacity:1, width:'100%'}}
             exit={{opacity:0, width:0}}
         className={styles.InvolvementWrapper}>
             {focusVibe?

@@ -9,7 +9,8 @@ export async function GET(request:NextRequest, {params}:{params:{id:string}}){
     try {
         const {id} = params
         await connectToDB()
-        const data = await User.findOne({_id:id})
+        const user = await User.findOne({_id:id})
+        const dataQuery =  User.findOne({_id:id})
         .populate({
                 path:'engagement',
                 populate:{
@@ -42,13 +43,13 @@ export async function GET(request:NextRequest, {params}:{params:{id:string}}){
                         model:TargetGroup
                     }
                 }
-        }).exec()
+        })
         
         
     
-        const engagement = data.engagement
-        // console.log(`engagement is`, data.engagement)
-        return NextResponse.json({engagement}, {status:200})
+        const {engagement} = await dataQuery.exec()
+
+        return NextResponse.json(engagement, {status:200})
         
 
     } catch (error:any) {

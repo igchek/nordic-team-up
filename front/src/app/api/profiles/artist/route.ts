@@ -1,5 +1,6 @@
 "use server"
 import { createArtist } from "@/lib/actions/profiles/artist.actions";
+import User from "@/lib/models/profiles/user.models";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request:NextRequest){
@@ -22,7 +23,19 @@ export async function POST(request:NextRequest){
             header:header
         }
         const newArtist =  await createArtist({contributors, description, media})
-        return NextResponse.json({newArtist}, {status:200})
+
+
+        if(newArtist){
+            for (let contributorId of newArtist.contributors){
+                
+                const contributor = await User.findOne({_id:contributorId})
+                const updcontributor = await User.findOneAndUpdate({_id:contributorId}, {$push:{'engagement.artists.accounts':newArtist._id}},{upsert:true})
+                
+            }
+        }
+
+
+        return NextResponse.json({_id:newArtist._id, title:newArtist.description.title, image:newArtist.media.logo}, {status:200})
     } catch (error:any) {
        console.log(`crashed posting artist:${error.message}`) 
     }

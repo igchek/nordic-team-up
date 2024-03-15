@@ -98,7 +98,7 @@ export interface VenueData {
     media:{
         logo:string
         header:string
-        reel:mediaData[]
+        reel:string[]
     }
     balanceSheet:{
         assets:{
@@ -411,8 +411,7 @@ const venueSchema = new mongoose.Schema({
             default:'default'
         },
         reel:[{
-            type:mongoose.Schema.Types.ObjectId,
-            ref:'media'
+            type:String,
         }],
         required:[true, 'media is required']
     },

@@ -1,11 +1,13 @@
 import mongoose from "mongoose";
 import { temporalFrameData } from "../discrete/temporalFrame.models";
+import { vibeData } from "./vibe.models";
 
 
 export interface SyncData {
-    id:string
-    vibeId:string
+    _id:string
+    baseVibe:vibeData
     geo:string
+    audience:number
     options:{
         requested:(mongoose.Schema.Types.ObjectId|temporalFrameData)[]
         rejected?:(mongoose.Schema.Types.ObjectId|temporalFrameData)[]
@@ -45,17 +47,24 @@ export interface SyncData {
 const syncSchema = new mongoose.Schema({
     id:{
         type:String,
-        required:true
+        required:[true, 'stuff is required']
     },
-    vibeId:{
+    baseVibe:{
         type:mongoose.Schema.Types.ObjectId,
-        required:true
+        ref:'vibe',
+        required:[true, 'stuff is required']
     },
     geo:{
         type:String,
-        required:true
+        required:[true, 'stuff is required']
+    },
+    audience:{
+        type:Number,
+        required:[true, 'stuff is required'],
+        default:0
     },
     options:{
+        type:Object,
         requested:[{
             type:mongoose.Schema.Types.ObjectId,
             ref:'temporal frame'
@@ -69,26 +78,30 @@ const syncSchema = new mongoose.Schema({
             ref:'temporal frame'
         }],
 
-        required:true
+        required:[true, 'stuff is required']
     },
     engagement:{
+        type:Object,
         status:{
+            type:Object,
             initialization:{
+                type:Object,
                 isInitializaed:{
                     type:Boolean,
-                    required:true,
+                    required:[true, 'stuff is required'],
                     default:false
                 },
                 date:{
                     type:Date,
                     
                 },
-                required:true
+                required:[true, 'stuff is required']
             },
             setBack:{
+                type:Object,
                 isSetBack:{
                     type:Boolean,
-                    required:true,
+                    required:[true, 'stuff is required'],
                     default:false
                 },
                 date:{
@@ -102,9 +115,10 @@ const syncSchema = new mongoose.Schema({
                 
             },
             cancelation:{
+                type:Object,
                 isCanceled:{
                     type:Boolean,
-                    required:true,
+                    required:[true, 'stuff is required'],
                     default:false
                 },
                 date:{
@@ -114,9 +128,10 @@ const syncSchema = new mongoose.Schema({
                 
             },
             deployment:{
+                type:Object,
                 isDeployed:{
                     type:Boolean,
-                    required:true,
+                    required:[true, 'stuff is required'],
                     default:false
                 },
                 date:{
@@ -133,13 +148,14 @@ const syncSchema = new mongoose.Schema({
 
         },
         timeFrame:{
+            type:Object,
             start:{
                 type:Date,
-                required:true
+                required:[true, 'stuff is required']
             },
             deadline:{
                 type:Date,
-                required:true
+                required:[true, 'stuff is required']
             },
             finish:{
                 type:Date,
@@ -147,7 +163,7 @@ const syncSchema = new mongoose.Schema({
             },
             
         },
-        required:true
+        required:[true, 'stuff is required']
     }
 
 })

@@ -165,7 +165,7 @@ const artistSchema = new mongoose.Schema({
                 default:0
 
             },
-            required:[true, 'stuff is required']
+            // required:[true, 'stuff is required']
             },
         obligations:{
             type:Object,
@@ -205,9 +205,9 @@ const artistSchema = new mongoose.Schema({
                 default:0
 
             },
-            required:[true, 'stuff is required']
+            // required:[true, 'stuff is required']
         },
-        required:[true, 'stuff is required']
+        // required:[false, 'stuff is not required']
 
     }
 })

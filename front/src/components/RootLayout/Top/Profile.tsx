@@ -6,7 +6,8 @@ import { useAppDispatch, useAppSelector } from '@/hooks'
 import { AnimatePresence, motion, useAnimate } from 'framer-motion'
 import SvgSelector from '@/Utils/SvgSelector'
 import {useSession} from 'next-auth/react'
-import { setArtistAccountFocus, setTargetGroupAccountFocus, setVenueAccountFocus } from '@/store/user'
+import { parseUserEngagementData, setArtistAccountFocus, setFocusAccountSelection, setTargetGroupAccountFocus, setUserAccountFocus, setVenueAccountFocus } from '@/store/user'
+import { getEngagement } from '@/lib/actions/profiles/user.actions'
 
 
 
@@ -18,7 +19,16 @@ const TopProfile:React.FC<ProfileI> = () => {
 
 
   const [wrapperSocpe, animateWrapper] = useAnimate()
-  const [selectedImageMaskScope, animateSelectedMask] = useAnimate()
+  const [focusImageScope, animateSelectedMask] = useAnimate()
+
+
+  const [userSubScope, animateUserSub] = useAnimate()
+  const [artistSubScope, animateArtistUserSub] = useAnimate()
+  const [venueSubScope, animateVenueUserSub] = useAnimate()
+  const [targetSubScope, animateTargetUserSub] = useAnimate()
+
+  const [selectorIconScope, animateIconSelector] = useAnimate()
+
   // debugger
   const dispatch = useAppDispatch()
   const focusAccount = useAppSelector(({user})=>user.focusSubAccount)
@@ -31,150 +41,208 @@ const TopProfile:React.FC<ProfileI> = () => {
   
 
 
+  // useEffect(()=>{
+  //   const focusEnter = ()=>{
+  //     animateWrapper(wrapperSocpe.current, {backdropFilter:'blur(10px)'})
+  //     animateSelectedMask(selectedImageMaskScope.current, {backgroundImage:`variables.$linearFocusGradient`})
+  //   }
+  //   const focusExit = async() =>{
+  //     animateWrapper(wrapperSocpe.current, {boxShadow:'null'})
+  //     animateSelectedMask(selectedImageMaskScope.current, {backgroundImage:`variables.$linearTemplateGradient`})
+  //   }
+  //   if(isAccountFocused){
+  //      focusEnter()
+  //   }
+  //   else  focusExit()
+  // },[isAccountFocused])
   useEffect(()=>{
-    const focusEnter = ()=>{
-      animateWrapper(wrapperSocpe.current, {backdropFilter:'blur(10px)'})
-      animateSelectedMask(selectedImageMaskScope.current, {backgroundImage:`variables.$linearFocusGradient`})
+    if(session.data?.userData){
+      fetch(`http://localhost:3000/api/profiles/user/data/engagement/${session.data.userData._id}`,{
+        method:'GET',
+        headers:{
+          'Content-type':'Application-json'
+        },
+        cache:'no-cache'
+      }).then( async res=>{
+         const engagamenets = await res.json()
+         console.log('engagements are', engagamenets)
+         dispatch(parseUserEngagementData(engagamenets))
+      })
     }
-    const focusExit = async() =>{
-      animateWrapper(wrapperSocpe.current, {boxShadow:'null'})
-      animateSelectedMask(selectedImageMaskScope.current, {backgroundImage:`variables.$linearTemplateGradient`})
+    
+    
+  }, [])
+
+
+
+
+
+  useEffect(()=>{
+    if(roleSelector.artist.focusAccount||roleSelector.venue.focusAccount|| roleSelector.targetGroup.focusAccount ){
+      if(isAccountFocused){
+        animateIconSelector(selectorIconScope.current, {backgroundColor:'rgba(136,134,134, 1)'})
+      }else animateIconSelector(selectorIconScope.current, {backgroundColor:'rgba(136,134,134, 0.5)'})
     }
-    if(isAccountFocused){
-       focusEnter()
-    }
-    else  focusExit()
-  },[isAccountFocused])
+
+  }, [isRoleSelectorFocused])
 
   return (
     <motion.div
-      ref={wrapperSocpe}
-      initial={{opacity:0, x:-15}}
-      animate={{opacity:1, x:0}}
-      exit={{opacity:0, x:-15}}
-    onClick={()=>{
-      if(!focusAccount){
-        if(isAccountFocused){
-          setAccountFocused(!isAccountFocused)
-          router.back()
-        }else{
-          setAccountFocused(!isAccountFocused)
-          router.push(`/Profile/User/${session.data?.userData._id}`)
-        }
-        
-      }
-      else if(focusAccount.type==='artist'){
-        if(isAccountFocused){
-          setAccountFocused(!isAccountFocused)
-          router.back()
-        }else{
-          setAccountFocused(!isAccountFocused)
-          router.push(`/Profile/Artist/${focusAccount._id}`)
-        }
-        
-      }
-      else if(focusAccount.type==='venue'){
-        if(isAccountFocused){
-          setAccountFocused(!isAccountFocused)
-          router.back()
-        }else{
-          setAccountFocused(!isAccountFocused)
-          router.push(`/Profile/Venue/${focusAccount._id}`)
-        }
-        
-      }
-      else if(focusAccount.type==='targetGroup'){
-        if(isAccountFocused){
-          setAccountFocused(!isAccountFocused)
-          router.back()
-        }else{
-          setAccountFocused(!isAccountFocused)
-          router.push(`/Profile/TargetGroup/${focusAccount._id}`)
-        }
-        
-      }
-    }} className={styles.profileWrapper}>
-      <div className={styles.coreSegment}>
-        <motion.div ref={selectedImageMaskScope} className={styles.imageMask}>
-          <div style={{backgroundImage:`url(${focusAccount?focusAccount.pic:session.data?.userData.core.pic})`}} className={styles.image}/>
+      initial={{x:-15, opacity:0}}
+      animate={{x:0, opacity:1}}
+      exit={{x:-15, opacity:0}}
+      layout
+      key='Profile'
+    className={styles.profileWrapper}>
+      <motion.div
+        onClick={()=>{
+          if(!focusAccount){
+            router.push(`/Profile/User/${session.data?.userData._id}`)
+          }
+          else if(focusAccount.type==='artist'){
+            router.push(`/Profile/Artist/${focusAccount._id}`)
+          }
+          else if(focusAccount.type==='venue'){
+            router.push(`/Profile/Venue/${focusAccount._id}`)
+          }
+          else if(focusAccount.type==='targetGroup'){
+            router.push(`/Profile/TargetGroup/${focusAccount._id}`)
+          }
+        }}
+      className={styles.focusSegment}>
+        <motion.div 
+          ref={focusImageScope}
+          style={focusAccount?{backgroundImage:`url(${focusAccount.pic}))`}:{backgroundImage:`url(${session.data?.userData.core.pic})`}}
+        className={styles.pic}/>
+        <motion.div className={styles.title}>
+          {focusAccount?focusAccount.title:session.data?.userData.core.nick}
         </motion.div>
-        <motion.div className={styles.nickSegment}>
-          {session.data?.userData.core.nick}
-        </motion.div>
-      </div>
+      </motion.div>
       <AnimatePresence>
-        {(roleSelector.artist.focusAccount || roleSelector.venue.focusAccount) &&
+        {(roleSelector.artist.focusAccount||roleSelector.targetGroup.focusAccount||roleSelector.venue.focusAccount) &&
           <motion.div
-            initial={{x:-15, opacity:0}}
-            animate={{x:0, opacity:1}}
-            exit={{x:-15, opacity:0}}
-          className={styles.roleSelector}>
-            <motion.div 
-              initial={isRoleSelectorFocused?{backgroundColor:'rgba(191, 191, 191, 0.5)'}:{backgroundColor:'rgba(191, 191, 191, 0)'}}
-              animate={isRoleSelectorFocused?{backgroundColor:'rgba(191, 191, 191, 1)'}:{backgroundColor:'rgba(191, 191, 191, 0.5)'}}
-              whileHover={{backgroundColor:'rgba(191, 191, 191, 1)'}}
-              onClick={()=>{setRoleSelectorFocus(!isRoleSelectorFocused)}}
-            className={styles.iconMask}>
-              <div className={styles.iconSocket}>
+            key={'SubAccounts'}
+            initial={{width:0}}
+            animate={{width:'auto'}}
+            exit={{width:0}}
+          className={styles.subAccounts}
+            onMouseEnter={()=>{
+              setRoleSelectorFocus(true)
+            }}
+            onMouseLeave={()=>{
+              setRoleSelectorFocus(false)
+            }}
+          >
+            <motion.div
+              initial={{x:-15, opacity:0}}
+              animate={{x:0, opacity:1}}
+              exit={{x:-15, opacity:0}}
+              ref={selectorIconScope}
+            className={styles.selectorIcon}>
+              <motion.div 
+                key={'selectorIcon'}
+                initial={{x:-15, opacity:0, rotate:-90}}
+                animate={{x:0, opacity:1, rotate:0}}
+                exit={{x:-15, opacity:0, rotate:-90}}
+                
+              className={styles.socket}>
                 <SvgSelector
                   tier='standart'
                   value='networking'
                   focus={isRoleSelectorFocused?true:false}
                 />
-              </div>
+              </motion.div>
             </motion.div>
             <AnimatePresence>
-            {isRoleSelectorFocused &&
-              <motion.div
-                initial={{x:-15, opacity:0}}
-                animate={{x:0, opacity:1}}
-                exit={{x:-15, opacity:0}}
-                key="selector output"
-                className={styles.selectorOutput}>
-                <AnimatePresence>
-                {roleSelector.artist.focusAccount &&
-                  <motion.div className={styles.iconSegment}>
-                    <div onClick={()=>{
-                      dispatch(setArtistAccountFocus((focusAccount && focusAccount.type==='artist')?false:true))
-                    }} className={styles.iconSocket}>
-                      <SvgSelector
-                        tier='standart'
-                        value='artist'
-                        focus={(focusAccount && focusAccount.type==='artist')?true:false}
-                      />
-                    </div>
-                  </motion.div>
-                }
-                {roleSelector.venue.focusAccount &&
-                    <div onClick={()=>{
-                      dispatch(setVenueAccountFocus((focusAccount && focusAccount.type==='venue')?false:true))
-                    }} className={styles.iconSocket}>
-                    <SvgSelector
-                      tier='standart'
-                      value='venue'
-                      focus={(focusAccount && focusAccount.type==='venue')?true:false}
-                    />
-                  </div>
-                }
-                {roleSelector.targetGroup.focusAccount &&
-                    <div onClick={()=>{
-                      dispatch(setTargetGroupAccountFocus((focusAccount && focusAccount.type==='targetGroup')?false:true))
-                    }} className={styles.iconSocket}>
-                    <SvgSelector
-                      tier='standart'
-                      value='targetGroup'
-                      focus={(focusAccount && focusAccount.type==='targetGroup')?true:false}
-                    />
-                  </div>
-                }
-                </AnimatePresence>
-                  
-                
-              </motion.div>
-            }
-            </AnimatePresence>
-          </motion.div>
-          
+              {
+                isRoleSelectorFocused &&
+                <motion.div
+                  key={'output'}
+                  initial={{ width:0,opacity:0}}
+                  animate={{ width:'auto',opacity:1}}
+                  exit={{ width:0,opacity:0}}
+                className={styles.subAccountsOutput}>
+                  {
+                    (focusAccount) &&
+                      <motion.div
+                        key={'user'}
+                        initial={{ opacity:0}}
+                        animate={{ opacity:1}}
+                        exit={{ opacity:0}}
+                        whileHover={{backgroundColor:'rgba(136,134,134, 1)'}}
+                        onClick={()=>{
+                          dispatch(setUserAccountFocus())
+                          router.push(`/Profile/User/${session.data?.userData._id}`)
+                        }}
+                      className={styles.subAccountWrapper}>
+                        <div 
+                          style={{backgroundImage:`url(${session.data?.userData.image})`}}
+                        className={styles.pic}/>
+                        {session.data?.userData.name}
+                      </motion.div>
+                  }
+                  <AnimatePresence>
+                  {
+                    (focusAccount?.type!=='artist' && roleSelector.artist.focusAccount) &&
+                    <motion.div 
+                        key={'artist'}
+                        initial={{ x:-15,opacity:0}}
+                        animate={{ x:0,opacity:1}}
+                        exit={{ x:-15,opacity:0}}
+                        whileHover={{borderColor:'white', borderStyle:'solid'}}
+                      onClick={()=>{
+                        dispatch(setFocusAccountSelection('artist'))
+                        router.push(`/Profile/Artist/${roleSelector.artist.focusAccount?._id}`)
+                      }}
+                      
+                    className={styles.subAccountWrapper}>
+                      <div
+                        style={{backgroundImage:`url(${roleSelector.artist.focusAccount?.image})`}}
+                      className={styles.pic}/>
+                      {roleSelector.artist.focusAccount.title}
+                    </motion.div>
+                  }
+                  </AnimatePresence>
+                  {
+                    (focusAccount?.type!=='venue' && roleSelector.venue.focusAccount) &&
+                    <motion.div 
+                      key={'venue'}
+                      initial={{ opacity:0}}
+                      animate={{ opacity:1}}
+                      exit={{ opacity:0}}
+                      whileHover={{backgroundColor:'rgba(136,134,134, 1)'}}
+                      onClick={()=>{
+                        dispatch(setFocusAccountSelection('venue'))
+                        router.push(`/Profile/Venue/${roleSelector.venue.focusAccount?._id}`)
+                      }}
+                      style={{backgroundImage:`url(${roleSelector.venue.focusAccount?.image})`}}
+                    className={styles.subAccountWrapper}>
+                      <div className={styles.pic}/>
+                      {roleSelector.venue.focusAccount.title}
+                    </motion.div>
+                  }
+                  {
+                    (focusAccount?.type!=='targetGroup' && roleSelector.targetGroup.focusAccount) &&
+                    <motion.div 
+                      key={'targetGroup'}
+                      initial={{ opacity:0}}
+                      animate={{ opacity:1}}
+                      exit={{ opacity:0}}
+                      whileHover={{backgroundColor:'rgba(136,134,134, 1)'}}
+                      onClick={()=>{
+                        dispatch(setFocusAccountSelection('targetGroup'))
+                        router.push(`/Profile/TargetGroup/${roleSelector.targetGroup.focusAccount?._id}`)
+                      }}
+                      style={{backgroundImage:`url(${roleSelector.targetGroup.focusAccount?.image})`}}
+                    className={styles.subAccountWrapper}>
+                      <div className={styles.pic}/>
+                      {roleSelector.targetGroup.focusAccount.title}
+                    </motion.div>
+                  }
+                </motion.div>
+              }
+              </AnimatePresence>
+            </motion.div>
         }
       </AnimatePresence>
     </motion.div>

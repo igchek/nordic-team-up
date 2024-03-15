@@ -5,6 +5,8 @@ import TemporalFrame from "@/lib/models/discrete/temporalFrame.models"
 import { connectToDB } from "@/lib/validations/mongoose"
 import mongoose from "mongoose"
 import { temporalFrameData } from "../discrete/temporalFrame.actions"
+import Artist from "@/lib/models/profiles/artist.model"
+import Vibe from "@/lib/models/content/vibe.models"
 
 
 export interface SyncData {
@@ -77,3 +79,5 @@ export async function fetchSync(syncId:mongoose.Schema.Types.ObjectId){
         throw new Error(`crashed fetching Sync Essentials: ${error.message}`)
     }
 }
+
+

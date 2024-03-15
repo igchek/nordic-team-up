@@ -160,15 +160,17 @@ export interface userCoreData {
 
 export async function getEngagement({id}:{id:string}){
     try {
-         const user = await fetch (`http://localhost:3000/api/profiles/user/data/engagement/${id}`,{
+         const userEngagement = await fetch (`http://localhost:3000/api/profiles/user/data/engagement/${id}`,{
             method:"GET",
             cache:'no-cache',
             headers:{
                 "Content-Type":"application/js"
             }
         }).then(res=>{ return res.json()})
+        const {engagement} = userEngagement
+        console.log('user engagement api return is', engagement)
 
-        return user
+        return userEngagement
         
     } catch (error:any) {
         throw new Error(`Crashed fetching engagement:${error.message}`)

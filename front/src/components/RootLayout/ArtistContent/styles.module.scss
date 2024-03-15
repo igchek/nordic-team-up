@@ -1,0 +1,63 @@
+@use "src/stylesGlobal/variables";
+@use "src/stylesGlobal/templates";
+
+.wrapper{
+    @include templates.NavigatorWrapper;
+    .selectorControls{
+        @include templates.NavigatorControls;
+        .search{
+            @include templates.NavigatorSearchWrapper;
+            .inputWrapper{
+                @include templates.NavigatorSearchInputWrapper;
+                .input{
+                    @include templates.NavigatorSearchInput;
+                }
+            }
+            .iconWrapper{
+                @include templates.NavgiatorSearchIconWrapper;
+                .iconSocket{
+                    @include templates.NavigatorSearchIconSocket;
+                }
+            }
+        }
+        .modalityPreset{
+            @include templates.NavigatorModalityPreset;
+            .modalityWrapper{
+            @include templates.NavigatorModalityWrapper;
+                .modalitySocket{
+            @include templates.NavigatorModalitySocket;
+                }
+            }
+        }
+    }
+    .outputWrapper{
+            @include templates.NavigatorTotalOutput;
+        .primaryOutput{
+            @include templates.NavigatorPrimaryOutput;
+            .outputPlaceholder{
+                height: 100%;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            // .outputSegment{
+            //     @include templates.;
+            //     .outputWrapper{
+            //     @include templates.;
+            //     }
+            // }
+        }
+        .secondaryOutput{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 75%;
+            height: 100%;
+            background-color: variables.$backgroundGlobal;
+           
+        }
+        
+    }
+    
+}

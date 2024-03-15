@@ -146,7 +146,7 @@ const UserSchema = new mongoose.Schema({
                 type:String||null,
                 default:null
             },
-            accounst:[{
+            accounts:[{
                 type:mongoose.Schema.Types.ObjectId,
                 ref:'artist'
             }],

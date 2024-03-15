@@ -2,13 +2,17 @@
 import styles from './root.module.scss'
 import { ReduxProvider } from '@/store/provider'
 import Top from '@/components/RootLayout/Top/Top'
-import UserOutput from '@/components/RootLayout/UserContent/UserOutput'
 import { Providers } from '@/components/Provider'
 import {Inter} from 'next/font/google'
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
  
 import { ourFileRouter } from "@/app/api/uploadthing/core";
+import { AnimatePresence } from 'framer-motion'
+
+import { motion } from 'framer-motion'
+import ContentNavigator from '@/components/RootLayout/Navigation/Navigator'
+
 
 
 const inter = Inter({
@@ -18,11 +22,12 @@ const inter = Inter({
 
 
 
-export default async  function RootLayout({
+export default   function RootLayout({
     children,
   }: {
     children: React.ReactNode
   }) {
+
     return (
       <html className={inter.className} lang="en">
         <head >
@@ -37,13 +42,14 @@ export default async  function RootLayout({
           />
             <Top
             />
-            <div className={styles.display}>
-                <UserOutput/>
-
+            <motion.div className={styles.display}>
+              <AnimatePresence>
+                <ContentNavigator/>
+              </AnimatePresence>
               <div className={styles.focus}>
                 {children}
               </div>
-            </div>
+            </motion.div>
           </ReduxProvider>
           
           </Providers>

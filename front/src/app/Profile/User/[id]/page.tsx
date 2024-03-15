@@ -17,9 +17,9 @@ async function getUserData(id:string){
             headers:{
                 "Content-Type":"application/js"
             }
-        }).then((res)=>{
+        }).then( async(res)=>{
             
-           let jres =  res.json()
+           let jres =  await res.json()
             return jres
         })
 

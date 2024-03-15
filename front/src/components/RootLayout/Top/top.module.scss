@@ -9,126 +9,89 @@
     align-items: center;
     background-color: variables.$interfaceGlobal;
     .profileWrapper{
-        border-style: none;
-        border-radius: 50px;
-        display: flex;
-        width:auto;
+        width: auto;
         height: 75%;
+        border-radius: 50px;
+        border-style: none;
         background-color: variables.$paleLightGray;
-        backdrop-filter: blur(20px);
-        .coreSegment{
-            width: auto;
-            min-width: 10vw;
+        display: flex;
+        align-items: center;
+        .focusSegment{
             height: 100%;
+            width: 10vw;
             display: flex;
+            // gap: 10px;
             align-items: center;
-            border-style: none;
-            border-radius: 50px;
-            .imageMask{
-                border-style: none;
-                border-radius: 50px;
+            .pic{
                 aspect-ratio: 1/1;
                 height: 100%;
-                background-image: linear-gradient(#195CEC,#31B5B7, 1);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                .image{
-                    border-style: none;
-                    border-radius: 50px;
-                    aspect-ratio: 1/1;
-                    height: 90%;
-                    background-size: cover;
-                }
+                border-radius: 50px;
+                border-style: none;
+                background-size: cover;
             }
-            .nickSegment{
+            .title{
+                overflow-x: hidden;
+                display: flex;
                 width: 100%;
                 height: 100%;
-                display: flex;
                 justify-content: center;
-                align-content: center;
-                flex-wrap: wrap;
-                font-weight: 700;
+                align-items: center;
+                // white-space: none;
                 color: white;
-
+                font-weight: 700;
+                font-size: 1rem;
             }
         }
-        .roleSelector{
-            height: 100%;
+        .subAccounts{
             width: auto;
+            height: 100%;
             display: flex;
             align-items: center;
-            .iconSegment{
-                width: 5vw;
+            .selectorIcon{
+                aspect-ratio: 1/1;
                 height: 100%;
                 display: flex;
+                border-radius: 50px;
+                border-style: none;
                 justify-content: center;
                 align-items: center;
-                .iconMask{
+                background-color:rgba(136,134,134, 0.5);
+                .socket{
                     aspect-ratio: 1/1;
-                    height: 80%;
-                    border-radius: 50px;
-                    border-style: none;
-                    .iconSocket{  
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                    }
-                }
-
-            }
-            .selectorOutput{
-                width: auto;
-                height: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                .iconSegment{
-                    width: 5vw;
-                    height: 100%;
+                    height: 75%;
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    .iconSocket{
+                }
+            }
+            .subAccountsOutput{
+                width: auto;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                .subAccountWrapper{
+                    width: 10vw;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    color: variables.$backgroundGlobal;
+                    font-weight: 700;
+                    font-size: 1rem;
+                    border-radius: 50px;
+                    border-style: none;
+                    background-color: rgba($color: variables.$interfaceContrast, $alpha: 0.5);
+                    
+                    .pic{
+                        border-radius: 50px;
+                        border-style: none;
+                        background-size: cover;
                         aspect-ratio: 1/1;
-                        height: 75%;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
+                        height: 100%;
                     }
                 }
             }
         }
-        .imgWrapper{
-
-            width: 15vw;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            .imgSocket{
-                aspect-ratio: 1/1;
-                height: 90%;
-                
-                .img{
-                    height: 100%;
-                    width: 100%;
-                    border-radius: 50px;
-
-                }
-            }
-           
-        }
-        .nickSocket{
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            font-size: 18px;
-            font-style: normal;
-            font-weight: 800;
-            color: var(--white, #FFF);
-            
-        }
+        
     }
 }
 

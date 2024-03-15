@@ -1,0 +1,74 @@
+@use "src/stylesGlobal/variables";
+@use "src/stylesGlobal/templates";
+
+
+.outputWrapper{
+    @include templates.SecondaryOutputWrapper;
+    .subSection{
+        @include templates.SecondaryOutputSegment;
+        .header{
+            @include templates.SecondaryOutputSegmentHeader;
+            .iconSegment{
+                @include templates.SecondaryOutputSegmentHeaderIconSegment;
+                .iconSocket{
+                    @include templates.SecondaryOutputSegmentHeaderIconSocket;
+                }
+            }
+            .titleSegment{
+                @include templates.SecondaryOutputSegmentHeaderTitle;
+            }
+            .toggleSegment{
+                @include templates.SecondaryOutputSegmentHeaderToggleSegment;
+                .toggleSocket{
+                    @include templates.SecondaryOutputSegmentHeaderToggleSocket;
+                }
+            }
+        }
+        .output{
+            @include templates.SecondaryOutputSegmentOutput;
+        }
+    }
+}
+
+
+.managementDeskWrapper{
+    @include templates.SecondaryOutputDeskWrapper;
+    .userHeader{
+        @include templates.SecondaryOutputDeskUpperBar;
+    }
+    .placeholder{
+        @include templates.SecondaryOutputDeskPlaceholder;
+        .iconSocket{
+            @include templates.SecondaryOutputDeskPlaceholderIconSocket;
+        }
+    }
+    .controls{
+        @include templates.SecondaryOutputDeskControlsWrapper;
+    }
+}
+
+
+.subSection{
+    @include templates.SecondaryOutputSegment;
+    .header{
+        @include templates.SecondaryOutputSegmentHeader;
+        .iconSegment{
+            @include templates.SecondaryOutputSegmentHeaderIconSegment;
+            .iconSocket{
+                @include templates.SecondaryOutputSegmentHeaderIconSocket;
+            }
+        }
+        .titleSegment{
+            @include templates.SecondaryOutputSegmentHeaderTitle;
+        }
+        .toggleSegment{
+            @include templates.SecondaryOutputSegmentHeaderToggleSegment;
+            .toggleSocket{
+                @include templates.SecondaryOutputSegmentHeaderToggleSocket;
+            }
+        }
+    }
+    .output{
+        @include templates.SecondaryOutputSegmentOutput;
+    }
+}

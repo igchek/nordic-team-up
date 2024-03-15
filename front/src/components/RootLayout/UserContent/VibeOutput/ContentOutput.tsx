@@ -25,7 +25,7 @@ const ContentOutput:React.FC<ContentOutputI> = ({vibes, focus, communityTarget})
     },[])
 
     return(
-        <div className={styles.InvolvementWrapper}>
+        <div className={styles.involvementWrapper}>
             <NavBurger
                 focus={focus}
                 communityTarget={communityTarget}

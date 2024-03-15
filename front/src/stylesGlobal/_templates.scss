@@ -219,3 +219,333 @@
          margin-left: 15px;
       }
 }
+
+
+            // account related content navigator
+
+@mixin NavigatorWrapper {
+   width: 30vw;
+   height: 100%;
+}
+
+
+@mixin NavigatorControls {
+   width: 100%;
+   height: 8vh;
+   background-color: variables.$interfaceGlobal;
+   display: block;
+}
+
+@mixin NavigatorSearchWrapper{
+   display: flex;
+   height: 50%;
+   width: 100%;
+   
+}
+
+@mixin NavigatorSearchInputWrapper{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 80%;
+}
+
+@mixin NavigatorSearchInput {
+   font-weight: 1000;
+   width: 90%;
+   height: 80%;
+   border-radius: 20px;
+   border-style: none;
+   background-color: variables.$backgroundGlobal;
+   text-align: center;
+}
+
+@mixin NavgiatorSearchIconWrapper{
+   display: flex;
+   justify-content: center;
+   width: 20%;
+   height: 100%;
+   align-items: center;
+}
+
+@mixin NavigatorSearchIconSocket{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   aspect-ratio: 1/1;
+   height: 80%;
+}
+
+@mixin NavigatorModalityPreset{
+   display: flex;
+   height: 50%;
+   width: 100%;
+}
+
+@mixin NavigatorModalityWrapper{
+   height: 100%;
+   width: 100%;
+   justify-content: center;
+   align-items: center;
+   display: flex;
+}
+
+@mixin NavigatorModalitySocket{
+   aspect-ratio: 1/1;
+   height: 80%;
+}
+
+
+
+
+
+            // account related  output
+
+   // minor content unit
+
+@mixin MinorContentUnitWrapper{
+   width: 100%;
+   height: 5vh;
+   display: flex;
+   background-color: variables.$backgroundGlobal;
+}
+
+@mixin MinorContentUnitLogoWrapper{
+   aspect-ratio: 1/1;
+   height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+@mixin MinorContentUnitLogoSocket{
+   aspect-ratio: 1/1;
+   height: 70%;
+   border-radius: 50px;
+   border-style: none;
+   background-size: cover;
+}
+
+@mixin MinorContentUnitTitles{
+   width: 100%;
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+
+}
+
+@mixin MinorContentUnitPrimaryTitle{
+   width: 100%;
+   height: 100%;
+   color: black;
+   font-weight: 700;
+   font-size: 1rem;
+   display: block;
+   justify-content: center;
+   align-items: center;
+}
+
+@mixin MinorContentUnitSecondaryTitle{
+   width: 100%;
+   height: 100%;
+   color: rgba($color: #000000, $alpha: 0.5);
+   font-weight: 700;
+   font-size: 0.5rem;
+   display: block;
+   justify-content: center;
+   align-items: center;
+}
+
+@mixin MinorContentUnitIndicators{
+   aspect-ratio: 1/1;
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+}
+
+@mixin MinorContentUnitUpdateWraper{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100%;
+   width: 100%;
+}
+
+@mixin MinorContentUnitUpdateSocket{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   aspect-ratio: 1/1;
+   height: 70%;
+}
+
+@mixin MinorContentUnitIndicatorWrapper{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100%;
+   width: 100%;
+}
+
+@mixin MinorContentUnitIndicatorSocket{
+   height: 50%;
+   width: 65%;
+   border-radius: 50px;
+   border-style: none;
+   background-color: variables.$interfaceGlobal;
+   color: variables.$backgroundGlobal;
+   font-weight: 700;
+   font-size: 1rem;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+      // Secondary output 
+   
+   // Management desk
+
+@mixin SecondaryOutputDeskWrapper{
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   height: 15vh;
+   background-color: variables.$interfaceGlobal;
+}
+
+@mixin SecondaryOutputDeskUpperBar{
+   height: 15%;
+   width: 100%;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-content: center;
+   font-weight: 700;
+   font-size: 1rem;
+   color: variables.$backgroundGlobal;
+}
+
+@mixin SecondaryOutputDeskPlaceholder{
+   width: 100%;
+   height: 70%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+@mixin SecondaryOutputDeskPlaceholderIconSocket{
+   aspect-ratio: 1/1;
+   height: 40%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: rgba($color: variables.$interfaceContrast, $alpha: 0.0);
+   border-radius: 50px;
+   border-style: none;
+}
+
+@mixin SecondaryOutputDeskControlsWrapper{
+   width: 100%;
+   height: 15%;
+   display: flex;
+   flex-direction: row;
+}
+
+
+   // output
+@mixin NavigatorTotalOutput{
+   display: flex;
+   flex-direction: row;
+   width: 100%;
+   height: 100%;
+}
+
+@mixin NavigatorPrimaryOutput{
+   width: 100%;
+   height: 100%;
+   overflow-y: scroll;
+   display: flex;
+   flex-direction: column;
+}
+
+@mixin SecondaryOutputWrapper{
+   width:25vw;
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+}
+
+@mixin SecondaryOutput{
+   width: 100%;
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+}
+
+   // secondary output segment
+@mixin SecondaryOutputSegment{
+   width: 100%;
+   height: auto;
+   display: flex;
+   flex-direction: column;
+}
+
+@mixin SecondaryOutputSegmentHeader{
+   background-color: variables.$interfaceGlobal;
+   width: 100%;
+   height: 4vh;
+   display: flex;
+   flex-direction: row;
+
+}
+
+@mixin SecondaryOutputSegmentHeaderIconSegment{
+   aspect-ratio: 1/1;
+   height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+@mixin SecondaryOutputSegmentHeaderIconSocket{
+   aspect-ratio: 1/1;
+   height: 60%;
+   border-style: none;
+   border-radius:50px;
+   background-color: rgba($color: variables.$interfaceContrast, $alpha: 1.0);
+
+
+}
+
+@mixin SecondaryOutputSegmentHeaderTitle{
+   width: 100%;
+   height: 100%;
+   justify-content: center;
+   align-items: center;
+   color: variables.$backgroundGlobal;
+   font-weight: 700;
+   font-size: 1rem;
+
+}
+
+@mixin SecondaryOutputSegmentHeaderToggleSegment{
+   aspect-ratio: 1/1;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100%;
+}
+
+@mixin SecondaryOutputSegmentHeaderToggleSocket{
+   aspect-ratio: 1/1;
+   height: 60%;
+   border-style: none;
+   border-radius:50px;
+}
+
+@mixin SecondaryOutputSegmentOutput{
+   width: 100%;
+   height: auto;
+   overflow-y: scroll;
+   max-height: 15vh;
+}

@@ -374,3 +374,6 @@ export async function checkModality({userId, vibeId}:{userId:String, vibeId:any}
         throw new Error(`Crashed checking out ${vibeId} modality for user ${userId}:${error.message}`)
     }
 }
+
+
+

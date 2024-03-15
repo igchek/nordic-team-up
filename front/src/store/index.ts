@@ -6,6 +6,7 @@ import focus from './focus'
 import communities from './communities'
 import push from './push'
 import user from './user'
+import subAccounts from './subAccounts'
 
 
 
@@ -17,7 +18,8 @@ const store = configureStore({
         focus,
         communities,
         push,
-        user
+        user,
+        subAccounts
 
     }
 })

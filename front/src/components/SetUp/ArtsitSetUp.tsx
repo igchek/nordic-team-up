@@ -9,6 +9,8 @@ import { motion, AnimatePresence, useAnimate } from 'framer-motion'
 import TagTemplate from './TagTemplate'
 import {useRouter} from 'next/navigation'
 import { useUploadThing } from '@/Utils/uploadhelpers'
+import { useAppDispatch } from '@/hooks'
+import { dispatchArtist } from '@/store/user'
 // import { utapi } from '@/Utils/server/uploadthing'
 // import { uploadLogo } from '@/lib/actions/content/files'
 // import ImageUploader from './uploaders/ImageUploader'
@@ -26,6 +28,7 @@ const ArtistSetUp:React.FC<ArtsitSetUpI> = () =>{
     const router = useRouter()
     const session = useSession()
     const {startUpload} = useUploadThing('media')
+    const dispatch = useAppDispatch()
 
 
 
@@ -67,10 +70,7 @@ const ArtistSetUp:React.FC<ArtsitSetUpI> = () =>{
             setSubmittanceState(false)
             console.log('submittance is', submittanceState)
         }
-        console.log('logoFile is', logoFile)
-        console.log('headerFile is', headerFile)
-        console.log('subtitle is', subTitle)
-        console.log('title is', title)
+
     },[title, logoFile, subTitle, headerFile])
 
 
@@ -106,17 +106,19 @@ const ArtistSetUp:React.FC<ArtsitSetUpI> = () =>{
                 let logo = logoUploadRes[0].url
                 let header = headerUploadRes[0].url
                 let id = [session.data?.userData._id]
-                const res = await fetch('http://localhost:3000/api/profiles/artist',{
+                await fetch('http://localhost:3000/api/profiles/artist',{
                     method:'POST', 
                     cache:'no-cache',
                     headers:{
                         'Content-Type':'application/json'
                     },
                     body:JSON.stringify({id, title, subTitle, description, tags, header, logo})
-                } )
-                if (res.ok){
-                    console.log('successfully posted an artist', res.body)
-                }
+                } ).then((res)=>res.json()).then((res)=>{
+                    dispatch(dispatchArtist({_id:res._id, title:res.title, image:res.image}))
+                    console.log('artist dispatched', res)
+                    router.push(`/Profile/User/${session.data?.userData._id}`)
+                })
+
             }
         } catch (error:any) {
             throw new Error(`Crashed submitting an artist:${error.message}`)
@@ -189,29 +191,29 @@ const ArtistSetUp:React.FC<ArtsitSetUpI> = () =>{
                     </div>
                     <div className={styles.space}/>
                     <div className={styles.controls}>
-                    {/* <AnimatePresence> */}
-                            {submittanceState &&
-                            
-                                <motion.div
-                                    initial={{opacity:0, x:-15}}
-                                    animate={{opacity:1, x:0}}
-                                    exit={{opacity:0, x:-15}}
-                                    transition={{duration:1}}
-                                className={styles.submitControl}>
-                                    Create artist account
-                                    <motion.button
-                                        type='submit'
-                                    whileHover={{opacity:1}} className={styles.socket}>
-                                        <SvgSelector
-                                            tier='standart'
-                                            value='done'
-                                            focus={true}
-                                        />
-                                    </motion.button>
-                                </motion.div>
-                            
-                            }
-                    {/* </AnimatePresence> */}
+                        <AnimatePresence>
+                                {submittanceState &&
+                                
+                                    <motion.div
+                                        initial={{opacity:0, x:-15}}
+                                        animate={{opacity:1, x:0}}
+                                        exit={{opacity:0, x:-15}}
+                                        transition={{duration:1}}
+                                    className={styles.submitControl}>
+                                        Create artist account
+                                        <motion.button
+                                            type='submit'
+                                        whileHover={{opacity:1}} className={styles.socket}>
+                                            <SvgSelector
+                                                tier='standart'
+                                                value='done'
+                                                focus={true}
+                                            />
+                                        </motion.button>
+                                    </motion.div>
+                                
+                                }
+                        </AnimatePresence>
                         
                     </div>
                     

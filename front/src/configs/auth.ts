@@ -37,8 +37,6 @@ export const authConfig:AuthOptions = {
     },
     callbacks:{
          session:async({ session, token }) =>{
-            // console.log(`pre token session is `, session)
-            // console.log(`pre session token is`, token)
             
                 if(token){
                     session.userData = {
@@ -63,7 +61,6 @@ export const authConfig:AuthOptions = {
                         email:token.core.email,
                         geo:token.core.geo,
                     }
-                    // console.log(`return session is`, session)
                     
                     return session
                 }
@@ -89,7 +86,6 @@ export const authConfig:AuthOptions = {
                         geo:user.core.geo
                         
                     }
-                    // console.log(`token is`, token)
                     return token
                 }
                 
@@ -99,7 +95,7 @@ export const authConfig:AuthOptions = {
             return token
          }
     },
-    secret:process.env.NEXT_AUTH_SECRET,
+    secret:process.env.NEXTAUTH_SECRET,
     pages:{
         signIn:"/SignIn",
     }

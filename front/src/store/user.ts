@@ -2,6 +2,8 @@ import { ArtistData } from '@/lib/models/profiles/artist.model'
 import { VenueData } from '@/lib/models/profiles/venue.model'
 import { TargetGroupData } from '@/lib/models/target/targetGroup.models'
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
+import { Playball } from 'next/font/google'
+import { artist } from './modules/libraries/Profiles/Artist'
 
 
 interface engagementInput{
@@ -86,37 +88,109 @@ const UserStateSlice = createSlice({
         setUserId:(state, action:PayloadAction<string|null>)=>{
             state.id=action.payload
         },
-    
-        setArtistAccountFocus:(state, action:PayloadAction<boolean>)=>{
-            if(action.payload && state.subAccounts.artist.focusAccount){
-                state.focusSubAccount={
-                    _id:state.subAccounts.artist.focusAccount._id,
-                    title:state.subAccounts.artist.focusAccount.title,
-                    pic:state.subAccounts.artist.focusAccount.image,
-                    type:'artist'
-                }
-            }else state.focusSubAccount=null
+        setUserAccountFocus:(state, action:PayloadAction)=>{
+            state.focusSubAccount=null
+            state.subAccounts.artist.isSelected=false
+            state.subAccounts.venue.isSelected=false
+            state.subAccounts.targetGroup.isSelected=false
         },
-        setVenueAccountFocus:(state, action:PayloadAction<boolean>)=>{
-            if(action.payload && state.subAccounts.venue.focusAccount){
-                state.focusSubAccount={
-                    _id:state.subAccounts.venue.focusAccount._id,
-                    title:state.subAccounts.venue.focusAccount.title,
-                    pic:state.subAccounts.venue.focusAccount.image,
-                    type:'venue'
-                }
-            }else state.focusSubAccount=null
+        setArtistAccountFocus:(state, action:PayloadAction<string>)=>{
+            if( !state.subAccounts.artist.focusAccount){
+                state.subAccounts.artist.accounts.forEach((artistAc)=>{
+                    if(artistAc._id===action.payload){
+                        state.subAccounts.artist.focusAccount=artistAc
+                    }
+                    
+                })          
+                      
+                
+            }else if(state.subAccounts.artist.focusAccount && state.subAccounts.artist.focusAccount._id===action.payload ){
+                state.subAccounts.artist.focusAccount=undefined
+            }
+            else if(state.subAccounts.artist.focusAccount && state.subAccounts.artist.focusAccount._id!==action.payload ){
+                state.subAccounts.artist.focusAccount= state.subAccounts.artist.accounts.find((sub)=>{sub._id===action.payload})
+            }
+
         },
-        setTargetGroupAccountFocus:(state, action:PayloadAction<boolean>)=>{
-            if(action.payload && state.subAccounts.targetGroup.focusAccount){
-                state.focusSubAccount={
-                    _id:state.subAccounts.targetGroup.focusAccount._id,
-                    title:state.subAccounts.targetGroup.focusAccount.title,
-                    pic:state.subAccounts.targetGroup.focusAccount.image,
-                    type:'targetGroup'
-                }
-            }else state.focusSubAccount=null
+        setVenueAccountFocus:(state, action:PayloadAction<string>)=>{
+            if( !state.subAccounts.venue.focusAccount){
+                state.subAccounts.venue.focusAccount= state.subAccounts.venue.accounts.find((sub)=>{sub._id===action.payload})
+                
+            }else if(state.subAccounts.venue.focusAccount && state.subAccounts.venue.focusAccount._id===action.payload ){
+                state.subAccounts.venue.focusAccount=undefined
+            }
+            else if(state.subAccounts.venue.focusAccount && state.subAccounts.venue.focusAccount._id!==action.payload ){
+                state.subAccounts.venue.focusAccount= state.subAccounts.venue.accounts.find((sub)=>{sub._id===action.payload})
+            }
+
         },
+
+        setTargetGroupAccountFocus:(state, action:PayloadAction<string>)=>{
+            if( !state.subAccounts.targetGroup.focusAccount){
+                state.subAccounts.targetGroup.focusAccount= state.subAccounts.targetGroup.accounts.find((sub)=>{sub._id===action.payload})
+                
+            }else if(state.subAccounts.targetGroup.focusAccount && state.subAccounts.targetGroup.focusAccount._id===action.payload ){
+                state.subAccounts.targetGroup.focusAccount=undefined
+            }
+            else if(state.subAccounts.targetGroup.focusAccount && state.subAccounts.targetGroup.focusAccount._id!==action.payload ){
+                state.subAccounts.targetGroup.focusAccount= state.subAccounts.targetGroup.accounts.find((sub)=>{sub._id===action.payload})
+            }
+
+        },
+        setFocusAccountSelection:(state, action:PayloadAction<string>)=>{
+            if(action.payload==='artist'){
+                if(state.focusSubAccount?.type==='artist'){
+                    state.focusSubAccount=null
+                    state.subAccounts.artist.isSelected=false
+                }
+                else{
+                    state.focusSubAccount={
+                        _id:state.subAccounts.artist.focusAccount?._id!,
+                        type:'artist',
+                        title:state.subAccounts.artist.focusAccount?.title!,
+                        pic:state.subAccounts.artist.focusAccount?.image!
+                    }
+                    state.subAccounts.artist.isSelected=true
+                    state.subAccounts.venue.isSelected=false
+                    state.subAccounts.targetGroup.isSelected=false
+                }
+            }
+            else if(action.payload==='targetGroup'){
+                if(state.focusSubAccount?.type==='targetGroup'){
+                    state.focusSubAccount=null
+                    state.subAccounts.targetGroup.isSelected=false
+                }
+                else{
+                    state.focusSubAccount={
+                        _id:state.subAccounts.targetGroup.focusAccount?._id!,
+                        type:'targetGroup',
+                        title:state.subAccounts.targetGroup.focusAccount?.title!,
+                        pic:state.subAccounts.targetGroup.focusAccount?.image!
+                    }
+                    state.subAccounts.targetGroup.isSelected=true
+                    state.subAccounts.venue.isSelected=false
+                    state.subAccounts.artist.isSelected=false
+                }
+            }
+            else if(action.payload==='venue'){
+                if(state.focusSubAccount?.type==='venue'){
+                    state.focusSubAccount=null
+                    state.subAccounts.venue.isSelected=false
+                }
+                else{
+                    state.focusSubAccount={
+                        _id:state.subAccounts.venue.focusAccount?._id!,
+                        type:'venue',
+                        title:state.subAccounts.venue.focusAccount?.title!,
+                        pic:state.subAccounts.venue.focusAccount?.image!
+                    }
+                    state.subAccounts.venue.isSelected=true
+                    state.subAccounts.venue.isSelected=false
+                    state.subAccounts.artist.isSelected=false
+                }
+            }
+        },
+
         setSubAccountFocus:(state, action:PayloadAction<'artist'|'venue'|'targetGroup'|null>)=>{
             if(action.payload==='artist'){
                 const focusAccount = state.subAccounts.artist.focusAccount as SubAccountShort
@@ -150,37 +224,68 @@ const UserStateSlice = createSlice({
             }
         },
         parseUserEngagementData:(state, action:PayloadAction<engagementInput>)=>{
-            if(action.payload.artists.accounts||action.payload.targetGroups.accounts||action.payload.venues.accounts)
-           { for (let artist of action.payload.artists.accounts){
-                let chunk:SubAccountShort = {
+            action.payload.artists.accounts.forEach((artist)=>{
+                state.subAccounts.artist.accounts.push({
                     _id:artist._id,
-                    title:artist.description?.title as string,
-                    image:artist?.media?.logo as string
+                    title:artist.description?.title!,
+                    image:artist.media?.logo!
+                })
+                if(action.payload.artists.focus && artist._id===action.payload.artists.focus){
+                    state.subAccounts.artist.focusAccount={
+                        _id:artist._id,
+                        title:artist.description?.title!,
+                        image:artist.media?.logo!
+
+                    }
                 }
-                state.subAccounts.artist.accounts.push(chunk)
-                if(action.payload.venues.focus && chunk._id===action.payload.artists.focus) state.subAccounts.artist.focusAccount=chunk
-            }
-            for (let venue of action.payload.venues.accounts){
-                let chunk:SubAccountShort = {
+                debugger
+            })
+            // debugger
+            action.payload.venues.accounts.forEach((venue)=>{
+                state.subAccounts.artist.accounts.push({
                     _id:venue._id,
-                    title:venue.description?.title as string,
-                    image:venue?.media?.logo as string
+                    title:venue.description?.title!,
+                    image:venue.media?.logo!
+                })
+                if(action.payload.venues.focus && venue._id===action.payload.venues.focus){
+                    state.subAccounts.venue.focusAccount={
+                        _id:venue._id,
+                        title:venue.description?.title!,
+                        image:venue.media?.logo!
+
+                    }
                 }
-                state.subAccounts.venue.accounts.push(chunk)
-                if(action.payload.venues.focus && chunk._id===action.payload.venues.focus) state.subAccounts.venue.focusAccount=chunk
-            }
-            for (let targetGoup of action.payload.targetGroups.accounts){
-                let chunk:SubAccountShort = {
-                    _id:targetGoup._id,
-                    title:targetGoup.core.title as string,
-                    image:targetGoup.core.pic as string
+            })
+            // debugger
+            action.payload.targetGroups.accounts.forEach((targetGroup)=>{
+                state.subAccounts.targetGroup.accounts.push({
+                    _id:targetGroup._id,
+                    title:targetGroup.core.title,
+                    image:targetGroup.core.pic!
+                })
+                if(action.payload.targetGroups.focus && targetGroup._id===action.payload.targetGroups.focus){
+                    state.subAccounts.targetGroup.focusAccount={
+                        _id:targetGroup._id,
+                        title:targetGroup.core.title,
+                        image:targetGroup.core.pic!
+
+                    }
                 }
-                state.subAccounts.venue.accounts.push(chunk)
-                if(action.payload.venues.focus && chunk._id===action.payload.venues.focus) state.subAccounts.venue.focusAccount=chunk
-            }
-        }}
+            })
+            // debugger
+
+            
+            
+           },
+        dispatchArtist:(state, action:PayloadAction<SubAccountShort>)=>{
+            state.subAccounts.artist.accounts.push({
+                _id:action.payload._id,
+                title:action.payload.title,
+                image:action.payload.image
+            })
+        }
     }
 })
 
-export const {setUserId, setArtistAccountFocus, setVenueAccountFocus,setTargetGroupAccountFocus, setSubAccountFocus, parseUserEngagementData} = UserStateSlice.actions
+export const {setUserId,setUserAccountFocus, setArtistAccountFocus,setFocusAccountSelection, setVenueAccountFocus,setTargetGroupAccountFocus, setSubAccountFocus, parseUserEngagementData, dispatchArtist} = UserStateSlice.actions
 export default UserStateSlice.reducer

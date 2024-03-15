@@ -8,6 +8,7 @@ import mongoose from "mongoose";
 import { temporalFrameData } from "../discrete/temporalFrame.actions";
 import { userCoreData } from "../profiles/user.actions";
 import { transactionData } from "../discrete/transaction.actions";
+import Artist from "@/lib/models/profiles/artist.model";
 
 
 export interface gigData {
@@ -83,3 +84,5 @@ export async function fetchGigEssentials(gigId:mongoose.Schema.Types.ObjectId){
     }
     
 }
+
+

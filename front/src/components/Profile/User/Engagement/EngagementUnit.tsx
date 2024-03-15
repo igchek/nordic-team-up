@@ -1,9 +1,8 @@
 "use client"
 import style from './styles.module.scss'
-import Image from 'next/image'
 import React from 'react'
 import { useAppDispatch, useAppSelector } from '@/hooks'
-import { setFocusArtistAccount, setFocusTargetGroupAccount, setFocusVenueAccount } from '@/store/focus'
+import { setArtistAccountFocus, setTargetGroupAccountFocus, setVenueAccountFocus } from '@/store/user'
 
 interface EngagementUnitI{
     _id:string
@@ -15,24 +14,16 @@ interface EngagementUnitI{
 const EngagementUnit:React.FC<EngagementUnitI> = ({_id, title,pic, role}) => {
     const dispatch = useAppDispatch()
     if(role==='artist'){
-        const focusArtist = useAppSelector(({focus})=>focus.subAccount.artist)
+        const focusArtist = useAppSelector(({user})=>user.subAccounts.artist.focusAccount)
     return (
     <div 
         onClick={()=>{
-            if(focusArtist){
-                dispatch(setFocusArtistAccount(_id))
-            }
-            else dispatch(setFocusArtistAccount(null))
-            
+            dispatch(setArtistAccountFocus(_id))
+           
         }}
     className={style.engagementUnit}>
-        <div className={style.logoWrapper}>
-            <Image
-                src={require(`@/assets/ArtistLogo/${pic}.jpg`)}
-                className={style.logo}
-                alt='logo'
-            />
-        </div>
+        <div style={{backgroundImage:`url(${pic})`}} className={style.logoWrapper}/>
+
         <div className={style.titleWrapper}>
             {title}
         </div>
@@ -40,24 +31,15 @@ const EngagementUnit:React.FC<EngagementUnitI> = ({_id, title,pic, role}) => {
   )
     }
     else if(role==='venue'){
-        const focusVenue= useAppSelector(({focus})=>focus.subAccount.venue)
+        const focusVenue= useAppSelector(({user})=>user.subAccounts.venue.focusAccount)
     return (
     <div 
         onClick={()=>{
-            if(focusVenue?.id!==_id || !focusVenue){
-                dispatch(setFocusVenueAccount(_id))
-            }
-            else dispatch(setFocusVenueAccount(null))
+            dispatch(setVenueAccountFocus(_id))
             
         }}
     className={style.engagementUnit}>
-        <div className={style.logoWrapper}>
-            <Image
-                src={require(`@/assets/VenueLogo/${pic}.jpg`)}
-                className={style.logo}
-                alt='logo'
-            />
-        </div>
+        <div style={{backgroundImage:`url(${pic})`}} className={style.logoWrapper}/>
         <div className={style.titleWrapper}>
             {title}
         </div>
@@ -65,24 +47,15 @@ const EngagementUnit:React.FC<EngagementUnitI> = ({_id, title,pic, role}) => {
   )
     }
     else if(role==='target group'){
-    const focusTarget = useAppSelector(({focus})=>focus.subAccount.targetGroup)
+    const focusTarget = useAppSelector(({user})=>user.subAccounts.targetGroup.focusAccount)
     return (
     <div 
         onClick={()=>{
-            if(focusTarget?.id!==_id || !focusTarget){
-                dispatch(setFocusTargetGroupAccount(_id))
-            }
-            else dispatch(setFocusTargetGroupAccount(null))
+            dispatch(setTargetGroupAccountFocus(_id))
             
         }}
     className={style.engagementUnit}>
-        <div className={style.logoWrapper}>
-            <Image
-                src={require(`@/assets/TargetLogo/${pic}.jpg`)}
-                className={style.logo}
-                alt='logo'
-            />
-        </div>
+        <div style={{backgroundImage:`url(${pic})`}} className={style.logoWrapper}/>
         <div className={style.titleWrapper}>
             {title}
         </div>

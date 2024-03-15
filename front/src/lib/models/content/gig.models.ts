@@ -4,23 +4,28 @@ import { VenueData } from "../profiles/venue.model";
 import { userData } from "../profiles/user.models";
 import { transactionData } from "../discrete/transaction.models";
 import { targetPropositionData } from "../target/targetProposition.models";
+import { vibeData } from "./vibe.models";
+import { SyncData } from "./sync.models";
 
 
 export interface GigData {
-    id:string
-    vibeId:string
+    _id:string
+    base:{
+        vibe:vibeData
+        sync:SyncData
+    }
     deployment:{
-        base:mongoose.Schema.Types.ObjectId|temporalFrameData
-        venue:mongoose.Schema.Types.ObjectId|VenueData
+        base:temporalFrameData
+        venue:VenueData
         deploymentDate:Date
         geo:string
     }
     flow:{
-        initiators:(mongoose.Schema.Types.ObjectId|userData)[]
-        purchase:(mongoose.Schema.Types.ObjectId|userData)[]
-        swapQuery:(mongoose.Schema.Types.ObjectId|userData)[]
-        swaped:(mongoose.Schema.Types.ObjectId|userData)[]
-        purchaseQuery:(mongoose.Schema.Types.ObjectId|userData)[]
+        initiators:userData[]
+        purchase:userData[]
+        swapQuery:userData[]
+        swaped:userData[]
+        purchaseQuery:userData[]
     }
     capacity:{
         deployed:number
@@ -30,26 +35,26 @@ export interface GigData {
     }
     funds:{
         security:{
-            artist:mongoose.Schema.Types.ObjectId|transactionData
-            venue:mongoose.Schema.Types.ObjectId|transactionData
-            target:mongoose.Schema.Types.ObjectId|targetPropositionData
+            artist:transactionData
+            venue:transactionData
+            target:targetPropositionData
         }
         advance:{
-            artist:mongoose.Schema.Types.ObjectId|transactionData
-            venue:mongoose.Schema.Types.ObjectId|transactionData
-            target:mongoose.Schema.Types.ObjectId|targetPropositionData
+            artist:transactionData
+            venue:transactionData
+            target:targetPropositionData
         }
         profits:{
             sales:number
             artist:{
                 share:number
                 value:number
-                deposition:mongoose.Schema.Types.ObjectId|transactionData
+                deposition:transactionData
             }
             venue:{
                 share:number
                 value:number
-                deposition:mongoose.Schema.Types.ObjectId|transactionData
+                deposition:transactionData
             }
         }
     }
@@ -59,32 +64,43 @@ const gigSchema = new mongoose.Schema({
     id:{
         type:String
     },
-    vibeId:{
-        type:String,
-        required:true
+    base:{
+        type:Object,
+        vibe:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'vibe',
+            required:[true, 'stuff is required']
+        },
+        sync:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'sync',
+            required:[true, 'stuff is required']
+        }
     },
     deployment:{
+        type:Object,
         base:{
             type:mongoose.Schema.Types.ObjectId,
-            required:true,
+            required:[true, 'stuff is required'],
             ref:'temporal frame'
         },
         venue:{
             type:mongoose.Schema.Types.ObjectId,
             ref:'venue',
-            required:true
+            required:[true, 'stuff is required']
         },
         deploymentDate:{
             type:Date,
-            required:true
+            required:[true, 'stuff is required']
         },
         geo:{
             type:String,
-            required:true
+            required:[true, 'stuff is required']
         },
-        required:true
+        required:[true, 'stuff is required']
     },
     flow:{
+        type:Object,
         initiators:[{
             type:mongoose.Schema.Types.ObjectId,
             ref:'user'
@@ -108,13 +124,14 @@ const gigSchema = new mongoose.Schema({
     },
 
     capacity:{
+        type:Object,
         deployed:{
             type:Number,
-            required:true
+            required:[true, 'stuff is required']
         },
         residual:{
             type:Number,
-            required:true
+            required:[true, 'stuff is required']
         },
         maximal:{
             type:Number,
@@ -127,24 +144,27 @@ const gigSchema = new mongoose.Schema({
     },
 
     funds:{
+        type:Object,
        security:{
+            type:Object,
             artist:{
                 type:mongoose.Schema.Types.ObjectId,
-                required:true,
+                required:[true, 'stuff is required'],
                 ref:'transaction'
             },
             venue:{
                 type:mongoose.Schema.Types.ObjectId,
-                required:true,
+                required:[true, 'stuff is required'],
                 ref:'transaction'
             },
             target:[{
                 type:mongoose.Schema.Types.ObjectId,
                 ref:'target proposition'
             }],
-            required:true
+            required:[true, 'stuff is required']
        },
        advance:{
+            type:Object,
             artist:{
                 type:mongoose.Schema.Types.ObjectId,
                 
@@ -162,11 +182,13 @@ const gigSchema = new mongoose.Schema({
             
         },
         profits:{
+            type:Object,
             sales:{
                 type:Number,
-                required:true
+                required:[true, 'stuff is required']
             },
             artist:{
+                type:Object,
                 share:{
                     type:Number,
                     
@@ -184,6 +206,7 @@ const gigSchema = new mongoose.Schema({
                 
             },
             venue:{
+                type:Object,
                 share:{
                     type:Number,
                     

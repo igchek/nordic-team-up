@@ -28,23 +28,14 @@ const SignInForm = () => {
   async function handleSubmit(e:any){
     e.preventDefault()
     try {
-        const res = await signIn('credentials', {
+        const res =  signIn('credentials', {
             nick:nick,
             email:email,
             password:password,
             redirect:false
-        }).then(()=>{
-          if(session.data?.userData){
-             getEngagement({id:session.data.userData._id})
-             .then((res)=>{
-              const {engagement} = res
-
-              dispatch(parseUserEngagementData(engagement))
-              
-              
-            })
-            router.push('/')
-          }
+        })
+        res.finally(()=>{
+          router.push(`/`)
         })
 
     } catch (error:any) {

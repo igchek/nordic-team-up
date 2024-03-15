@@ -6,7 +6,7 @@ import { AnimatePresence } from 'framer-motion'
 export default function page() {
   return (
     <div className={styles.wrapper}>
-      <AnimatePresence mode='wait'>
+      <AnimatePresence>
         <SignUpForm/>
       </AnimatePresence>
     </div>

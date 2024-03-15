@@ -8,7 +8,7 @@ export default function
 () {
   return (
     <div className={styles.wrapper}>
-      <AnimatePresence mode='wait'>
+      <AnimatePresence>
         <SignInForm/>
       </AnimatePresence>
     </div>

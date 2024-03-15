@@ -1,0 +1,47 @@
+@use "src/stylesGlobal/variables";
+@use "src/stylesGlobal/templates";
+
+
+
+.unitWrapper{
+    @include templates.MinorContentUnitWrapper;
+    .logoWrapper{
+        @include templates.MinorContentUnitLogoWrapper;
+        .logo{
+            @include templates.MinorContentUnitLogoSocket;
+        }
+    }
+    .titles{
+        @include templates.MinorContentUnitTitles;
+        .primaryTitle{
+            @include templates.MinorContentUnitPrimaryTitle;
+        }
+        .secondaryTitle{
+            @include templates.MinorContentUnitSecondaryTitle;
+        }
+    }
+    .indicators{
+        @include templates.MinorContentUnitIndicators;
+        
+        .updateWrapper{
+            @include templates.MinorContentUnitUpdateWraper;
+
+            .updateSocket{
+            @include templates.MinorContentUnitUpdateSocket;
+
+            }
+        }
+        .indicatorWrapper{
+            @include templates.MinorContentUnitIndicatorWrapper;
+
+            .indicatorSocket{
+            @include templates.MinorContentUnitIndicatorSocket;
+
+            }
+            .initializationSocket{
+            @include templates.MinorContentUnitIndicatorSocket;
+
+            }
+        }
+    }
+}
