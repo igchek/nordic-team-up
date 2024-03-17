@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 
 import React, { ChangeEvent, useState, useEffect } from 'react'
-import { uploadLogo } from '@/lib/actions/content/files'
+
 
 interface ImageUploaderI {
     returnController:React.Dispatch<React.SetStateAction<string[]>>

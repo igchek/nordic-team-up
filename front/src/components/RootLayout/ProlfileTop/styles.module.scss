@@ -11,6 +11,13 @@
     justify-content: center;
     width: 100%;
     height: 5.5vh;
+    .setUpSegment{
+        width: 25%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     .logOutSegment{
         margin-left: 25px;
         width: 150px;
@@ -53,6 +60,10 @@
         }
     }
     .space{
+        height: 100%;
+        width: 100%;
+    }
+    .placeholder{
         height: 100%;
         width: 100%;
     }
