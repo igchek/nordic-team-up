@@ -38,6 +38,7 @@ import DoneOnSvg from '@/assets/svg/DoneOn';
 import DoneOffSvg from '@/assets/svg/DoneOff';
 import UploadOnSvg from '@/assets/svg/UploadOnSvg';
 import UploadOffSvg from '@/assets/svg/UploadOffSvg';
+import PhotoOffSvg from '@/assets/svg/PhotoOffSvg';
 
 interface SvgSelectorI {
     value:string
@@ -490,6 +491,13 @@ const SvgSelector:React.FC<SvgSelectorI> = (props) => {
         return(
             <div className={styles.standart}>
                 <UploadOffSvg/>
+            </div>
+        )
+    }
+    else if (props.value==='photo' && props.focus===false){
+        return(
+            <div className={styles.standart}>
+                <PhotoOffSvg/>
             </div>
         )
     }
