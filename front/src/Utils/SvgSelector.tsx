@@ -39,6 +39,12 @@ import DoneOffSvg from '@/assets/svg/DoneOff';
 import UploadOnSvg from '@/assets/svg/UploadOnSvg';
 import UploadOffSvg from '@/assets/svg/UploadOffSvg';
 import PhotoOffSvg from '@/assets/svg/PhotoOffSvg';
+import SwapOffSvg from '@/assets/svg/SwapOffSvg';
+import SwapOnSvg from '@/assets/svg/SwapOnSvg';
+import PublicCommunityOn from '@/assets/svg/PublicCommunityOnSvg';
+import PublicCommunityOff from '@/assets/svg/PublicCommunityOffSvg';
+import PrivateCommunityOff from '@/assets/svg/PrivateCommunityOffSvg';
+import PrivateCommunityOn from '@/assets/svg/PrivateCommunityOnSvg';
 
 interface SvgSelectorI {
     value:string
@@ -408,22 +414,6 @@ const SvgSelector:React.FC<SvgSelectorI> = (props) => {
         )
         
             }
-    else if (props.value ==='target' && props.focus===true)  {
-        return(
-            <div className={styles.standart}>
-                <TargetOnSvg/>
-            </div>
-        )
-        
-            }
-    else if (props.value ==='target' && props.focus===false)  {
-        return(
-            <div className={styles.standart}>
-                <TargetOffSvg/>
-            </div>
-        )
-        
-            }
     else if (props.value ==='plus' && props.focus===false){
         return(
             <div className={styles.standart}>
@@ -498,6 +488,62 @@ const SvgSelector:React.FC<SvgSelectorI> = (props) => {
         return(
             <div className={styles.standart}>
                 <PhotoOffSvg/>
+            </div>
+        )
+    }
+    else if (props.value==='swap' && props.focus===false){
+        return(
+            <div className={styles.standart}>
+                <SwapOffSvg/>
+            </div>
+        )
+    }
+    else if (props.value==='swap' && props.focus===true){
+        return(
+            <div className={styles.standart}>
+                <SwapOnSvg/>
+            </div>
+        )
+    }
+    else if (props.value==='targetCommunity' && props.focus===true){
+        return(
+            <div className={styles.standart}>
+                <TargetOnSvg/>
+            </div>
+        )
+    }
+    else if (props.value==='targetCommunity' && props.focus===false){
+        return(
+            <div className={styles.standart}>
+                <TargetOffSvg/>
+            </div>
+        )
+    }
+    else if (props.value==='publicCommunity' && props.focus===true){
+        return(
+            <div className={styles.standart}>
+                <PublicCommunityOn/>
+            </div>
+        )
+    }
+    else if (props.value==='publicCommunity' && props.focus===false){
+        return(
+            <div className={styles.standart}>
+                <PublicCommunityOff/>
+            </div>
+        )
+    }
+    else if (props.value==='privateCommunity' && props.focus===false){
+        return(
+            <div className={styles.standart}>
+                <PrivateCommunityOff/>
+            </div>
+        )
+    }
+    else if (props.value==='privateCommunity' && props.focus===true){
+        return(
+            <div className={styles.standart}>
+                <PrivateCommunityOn/>
             </div>
         )
     }

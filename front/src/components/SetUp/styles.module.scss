@@ -452,7 +452,8 @@
                         width: 100%;
                         height: 100%;
                         display: flex;
-                        overflow-x: scroll;                        align-items: center;
+                        overflow-x: scroll;                        
+                        align-items: center;
                         gap: 15px;
                         overflow-x: scroll;
                     }
@@ -581,18 +582,130 @@
         }
 
 
+        
+    }
+    .setUp{
+        display: flex;
+        width: 100%;
+        height: auto;
         .contentSetUp{
+            width: 100%;
+            height: auto;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-
-
-            .headerSement{
+    
+    
+          
+            .titleInput{
                 width: 100%;
-                height: 30vh;
+                height: 7vh;
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                .input:focus{
+                    outline-style: none;
+                }
+                
+                .input{
+                    font-size: 2rem;
+                    font-weight: 700;
+                    text-align: center;
+                    width: fit-content;
+                    min-width: 15%;
+                    border-style: none;
+                    border-radius: 50px;
+                    opacity: 0.5;
+                    color: black;
+    
+                    
+                }
             }
-
+            .descriptionSegment{
+                width: 100%;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                .descriptionSelector{
+                    width: 100%;
+                    height: 7vh;
+                    display: flex;
+                    flex-direction: row;
+                    background-color: variables.$interfaceGlobal;
+                    .segment{
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-content: center;
+                        flex-wrap: wrap;
+                        color: variables.$backgroundGlobal;
+                        font-weight: 700;
+                        font-size: 1rem;
+                        gap: 3px;
+                        .icon{
+                            display: flex;
+                            justify-content: center;
+                            align-content: center;
+                            flex-wrap: wrap;
+                            height: 70%;
+                            aspect-ratio: 1/1;
+                            border-style: none;
+                            border-radius: 50px;
+                            background-color: rgba(variables.$backgroundGlobal, 1);
+                            .iconSocket{
+                                display: flex;
+                                justify-content: center;
+                                align-content: center;
+                                height: 70%;
+                                aspect-ratio: 1/1;
+                            }
+                        }
+                        .description{
+                            width: 10vw;
+                            height: 70%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+                    }
+                }
+                .descriptionOutput::-webkit-scrollbar{
+                    display: none;
+                }
+                .descriptionOutput{
+                    width: 100%;
+                    height: fit-content;
+                    max-height: 45vh;
+                    min-height: 20vh;
+                    overflow-y: scroll;
+                    .input:focus{
+                        outline-style: none;
+                    }
+                    .input{
+                        border-style: none;
+                        width: 100%;
+                        min-height: 20vh;
+                        max-height: 45vh;
+                        text-align: center;
+                        text-justify: auto;
+                        color: black;
+                        font-weight: 700;
+                        font-size: 1rem;
+                        margin: 0;
+                        padding: 0;
+                    }
+                }
+            }
+    
+        }
+        .communitySetUp{
+            display: block;
+            height: auto;
+            
         }
     }
+    
 }
