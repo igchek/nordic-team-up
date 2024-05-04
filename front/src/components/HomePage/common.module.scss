@@ -165,3 +165,267 @@
         }
     }
 }
+
+.curvature{
+    width: 100%;
+    height: 40vh;
+    position: relative;
+    .curve{
+        top: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+
+}
+
+
+.sectionTemplate{
+    width: 100%;
+    // height: auto;
+
+    .layout{
+        width: 80%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        border-style: none;
+        border-radius: 15px;
+        .pic{
+            height: 100%;
+            width: 15%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .picSocket{
+                aspect-ratio: 1/1;
+                display: flex;
+                width: 70%;
+            }
+        }
+
+    }
+
+    .sectionContent{
+        width: 100%;
+        color: white;
+        font-weight: 700;
+        font-size: 2rem;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .contentLayout{
+            height: 85%;
+            width: 90%;
+            display: flex;
+            flex-direction: row;
+            border-radius: 10px;
+            border-style: none;
+            .imgSegment{
+                // height: 100%;
+                width: 15%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .imgSocket{
+                    display: block;
+                    aspect-ratio: 1/1;
+                    height:70%;
+                }
+            }
+            .description{
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                .titleSegment{
+                    height: 10vh;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    .titleSocket{
+                        height: 70%;
+                        width: 90%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-wrap: wrap;
+                        border-style: none;
+                        border-radius: 15px;
+                        color: black;
+                        font-weight: 1000;
+                        text-align: center;
+                        font-size: 2rem;
+                        
+
+                    }
+                }
+                .artistSegment{
+                    width: 100%;
+                    height: 10vh;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 20px;
+                    .logoSocket{
+                        aspect-ratio: 1/1;
+                        height: 70%;
+                    }
+                    .artistTitleSocket{
+                        height: 70%;
+                        width: 40%;
+                        border-radius: 15px;
+                        border-style: none;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 1rem;
+                        font-weight: 700;
+                        color: black;
+
+                    }
+
+                }
+                .audience_format_Segment{
+                    width: 100%;
+                    height: 10vh;
+                    display: flex;
+                    flex-direction: row;
+                    .audienceSegment{
+                        width: 70%;
+                        height: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        .audienceDisplay{
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            border-style: none;
+                            border-radius: 15px;
+                            height: 90%;
+                            width: 100%;
+                            // flex-wrap: wrap;
+
+                            .iconSegment{
+                                aspect-ratio: 1/1;
+                                height: 100%;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                .iconSocket{
+                                    height: 50%;
+                                    aspect-ratio: 1/1;
+                                }
+                            }
+                            .totalOutput{
+                                width: 30%;
+                                height: 100%;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                font-weight: 700;
+                                font-size: 1rem;
+                                color: black;
+
+                            }
+                            .localVibrations{
+                                width: 50%;
+                                height: 100%;
+                                display: flex;
+                                .imageSegment{
+                                    aspect-ratio: 1/1;
+                                    height: 100%;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    .imageSocket{
+                                        aspect-ratio: 1/1;
+                                        height: 50%;
+                                    }
+                                }
+                                .localAudienceSocket{
+                                    width: 70%;
+                                    height: 100%;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    font-weight: 700;
+                                    font-size: 1rem;
+                                    color: black;
+                                    text-align: center;
+                                }
+                            }
+                        }
+                        
+                    }
+                    .formatSegment{
+                        width: 30%;
+                        height: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        .formatWrapper{
+                            width: 80%;
+                            height: 70%;
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            flex-wrap: wrap;
+                            .formatTitle{
+                                width: 80%;
+                                height: 100%;
+                                display: flex;
+                                justify-content: center;
+                                align-content: center;
+                                flex-wrap: wrap;
+                                font-weight: 700;
+                                font-size: 1rem;
+                                color: black;
+
+                            }
+                            .iconSegment{
+                                width: 20%;
+                                height: 100%;
+                                display: flex;
+                                justify-content: center;
+                                align-content: center;
+                                flex-wrap: wrap;
+                                .iconSocket{
+                                    height: 60%;
+                                    aspect-ratio: 1/1;
+                                    border-radius: 1000px;
+                                    border-style: none;
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+            .modalitySegment{
+                // height: 100%;
+                width: 15%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+                .modalitySocket{
+                    aspect-ratio: 1/1;
+                    width: 90%;
+                    border-style: none;
+                    border-radius: 1000px;
+
+                }
+            }
+        }
+    }
+}
+
+

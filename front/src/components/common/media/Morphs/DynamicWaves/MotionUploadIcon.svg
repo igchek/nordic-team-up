@@ -1,0 +1,29 @@
+<svg width="2324" height="2328" viewBox="0 0 2324 2328" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="pic" filter="url(#filter0_df_1_173)">
+<circle cx="1162" cy="1162" r="1158" fill="url(#pattern0_1_173)" shape-rendering="crispEdges"/>
+<circle cx="1162" cy="1162" r="1123" stroke="url(#paint0_linear_1_173)" stroke-width="70" shape-rendering="crispEdges"/>
+</g>
+<defs>
+<filter id="filter0_df_1_173" x="0" y="0" width="2324" height="2328" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_173"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_173" result="shape"/>
+<feGaussianBlur stdDeviation="2" result="effect2_foregroundBlur_1_173"/>
+</filter>
+<pattern id="pattern0_1_173" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image0_1_173" transform="translate(-0.239274) scale(0.00165017)"/>
+</pattern>
+<linearGradient id="paint0_linear_1_173" x1="1162" y1="4" x2="1162" y2="2320" gradientUnits="userSpaceOnUse">
+<stop stop-color="#D4C951"/>
+<stop offset="0.331596" stop-color="#C3D15A"/>
+<stop offset="0.659721" stop-color="#6FD1C2"/>
+<stop offset="1" stop-color="#9470B0"/>
+</linearGradient>
+
+</defs>
+</svg>

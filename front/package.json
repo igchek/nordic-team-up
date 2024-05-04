@@ -19,6 +19,7 @@
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "file-loader": "^6.2.0",
+    "flubber": "^0.4.2",
     "framer-motion": "^10.16.4",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.5.3",

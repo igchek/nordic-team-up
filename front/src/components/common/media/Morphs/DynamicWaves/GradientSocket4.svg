@@ -1,0 +1,13 @@
+<svg width="2606" height="2663" viewBox="0 0 2606 2663" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<circle cx="1303" cy="1360" r="1321.5" fill="url(#pattern0_1830_21443)" stroke="url(#paint0_linear_1830_21443)" stroke-width="77"/>
+<defs>
+<pattern id="pattern0_1830_21443" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image0_1830_21443" transform="scale(0.015625)"/>
+</pattern>
+<linearGradient id="paint0_linear_1830_21443" x1="832" y1="1074" x2="1394.5" y2="2497.5" gradientUnits="userSpaceOnUse">
+<stop stop-color="#4E8AFF"/>
+<stop offset="1" stop-color="#6FD1C2"/>
+</linearGradient>
+<image id="image0_1830_21443" width="64" height="64" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAONJREFUeF7t20EOhEAIRFG4/6F7DvEnYeFzryQIv6pBd2behOu9dPvsbog+k+NLgArQAqmJcw9iAAhSgZKB3IJkkAySQTJ4CiE+gA8oBeg0mH3Ai084P89HhqwEqIA209ICsQdjAeaZIgaAYKxBDMCAYy8fXwAIgiAIcoJpJEYGI4VjB3YrbC9gL2AvkCB43cM5PgZgAAZgQFnNZAhdGykQBEEQBEEQDBmgAm2glM/z+QUYisYUGoldO7kY32IEAzCg6RgIRgjFAsw+AgRBMNYgBmCAT2TCYfoPPz/HCqQCX1eBHzHnv7C7WhBSAAAAAElFTkSuQmCC"/>
+</defs>
+</svg>

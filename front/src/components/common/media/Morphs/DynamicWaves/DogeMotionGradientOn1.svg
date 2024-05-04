@@ -1,0 +1,15 @@
+<svg width="2316" height="2234" viewBox="0 0 2316 2234" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<path d="M2281 1117C2281 1713.39 1779.42 2199 1158 2199C536.584 2199 35 1713.39 35 1117C35 520.606 536.584 35 1158 35C1779.42 35 2281 520.606 2281 1117Z" fill="url(#pattern0_1_172)" stroke="url(#paint0_linear_1_172)" stroke-width="70"/>
+<defs>
+<pattern id="pattern0_1_172" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image0_1_172" transform="matrix(0.00159174 0 0 0.00165017 -0.213099 0)"/>
+</pattern>
+<linearGradient id="paint0_linear_1_172" x1="1158" y1="0" x2="1158" y2="2234" gradientUnits="userSpaceOnUse">
+<stop stop-color="#D4C951"/>
+<stop offset="0.331596" stop-color="#C3D15A"/>
+<stop offset="0.659721" stop-color="#6FD1C2"/>
+<stop offset="1" stop-color="#9470B0"/>
+</linearGradient>
+
+</defs>
+</svg>
