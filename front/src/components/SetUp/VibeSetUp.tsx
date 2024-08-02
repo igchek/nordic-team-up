@@ -1,14 +1,40 @@
 "use client"
 
-import React, { InputHTMLAttributes, useEffect, useState } from 'react' 
+import React, {  useEffect, useState } from 'react' 
 import styles from './styles.module.scss'
 import { AnimatePresence, motion, useAnimate } from 'framer-motion'
 import SvgSelector from '@/Utils/SvgSelector'
 import HeaderUploader from './uploaders/HeaderUploader'
 import MediaReel from './uploaders/MediaReel'
 import VibeCommunitySetUp from './VibeSetUp/VibeCommunitySetUp'
+import { CommunityShort } from './VibeSetUp/CommunityInput'
+import { useUploadThing } from '@/Utils/uploadhelpers'
+
 
 const VibeSetUp = () => {
+
+    async function parseCommunitites(communities:CommunityShort[]){
+        try {
+             const parseResult = communities.map(async(c)=>{
+                const uploadRes = await startUpload(c.pic.file)
+                if(uploadRes && uploadRes[0].url){
+                    return {...c, pic:{url:uploadRes[0].url}}
+                }
+             })
+             return parseResult
+        } catch (error) {
+            console.log('crashed parsing communities')
+        }
+    }
+
+    async function parseCarousel(media:{uerl:string, file:File}[]){
+        try {
+            
+        } catch (error) {
+            
+        }
+    }
+    const {startUpload} = useUploadThing('media')
 
     const [setUpSection, setSetUpSection] = useState<'content'|'community'>('content')
 
@@ -19,7 +45,7 @@ const VibeSetUp = () => {
 
             // animation controls
     const [titleInputScope, animateTitleInput] = useAnimate()
-    const [vibeSetUpScope, animateVibeSetUp] = useAnimate()
+    // const [vibeSetUpScope, animateVibeSetUp] = useAnimate()
     const [communitySetUpScope, animateCommunitySetUp] = useAnimate()
 
             // content control state
@@ -41,21 +67,8 @@ const VibeSetUp = () => {
 
 
             // community inputs
-    const [communities, setCommunities] = useState<{
-        id:number
-        logo:{
-            url:string
-            file:File[]
-        }
-        type:'public'|'private'|'target'
-        title:string
-        settings:{
-            geoDistribution:boolean
-            chat:boolean
-            syncRotation:boolean
-            externalMediaUpload:boolean
-        }
-    }[]>([])
+    const [communities, setCommunities] = useState<CommunityShort[]>([])
+    const [isSubmittable, setSubmittable] = useState(false)
 
 
 
@@ -64,7 +77,14 @@ const VibeSetUp = () => {
     async function formSubmit(e:any){
         e.preventDefault()
         try {
-            
+            let Communities = [...communities]
+            if(Communities.length){
+                await parseCommunitites(Communities).then(()=>{
+
+                })
+
+            }
+
         } catch (error:any) {
             throw new Error(`crashed posting a vibe:${error.message}`)
         }
@@ -72,6 +92,23 @@ const VibeSetUp = () => {
 
  
 
+    // useEffect(()=>{
+    //     if(!VibeTemplate){
+    //         dispatch(dispatchVibeTemplate(true))
+    //     }
+    // }, [])
+
+    useEffect(()=>{
+        if(contentTitle && contentDescription && contentHeaderUrl.length && contentHeaderFile.length){
+            setSubmittable(true)
+        }
+        else setSubmittable(false)
+    }, [
+        contentTitle,
+        contentDescription, 
+        contentHeaderFile.length,
+        contentHeaderUrl.length
+    ])
   return (
     <motion.form
         key={'vibe set up'}
@@ -153,7 +190,31 @@ const VibeSetUp = () => {
             
                 className={styles.submitSegment}
             >
-                                                                                                          
+                <AnimatePresence mode='wait'>
+                    {
+                        isSubmittable &&
+                        
+                            
+                            <motion.button
+                                key={`${Math.random()*1000} submit`}
+                                initial={{
+                                    opacity:0
+                                }}
+                                animate={{
+                                    opacity:1
+                                }}
+                                exit={{
+                                    opacity:0
+                                }}
+                                type='submit'
+                                className={styles.button}
+                            >
+                                Submit
+                            </motion.button>
+                        
+                    }  
+                </AnimatePresence>
+                                                                                                        
             </motion.div>
         </motion.div>
         <motion.div className={styles.setUp}>
@@ -355,6 +416,7 @@ const VibeSetUp = () => {
                     >
                         <VibeCommunitySetUp
                             outputControl={setCommunities}
+                            output={communities}
                         />
                     </motion.div>
                 }

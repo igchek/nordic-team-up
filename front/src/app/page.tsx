@@ -67,7 +67,7 @@ export default async function Home() {
           modality:'vibe'
         }}
       />
-      <FormExample/>
+
     </div>
   )
 }

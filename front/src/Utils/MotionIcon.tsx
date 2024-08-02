@@ -8,11 +8,16 @@ import SwapMSVG from '@/components/common/svg/SwapMSVG'
 import UploadMSVG from '@/components/common/svg/UploadMSVG'
 import InputUpload from '@/components/common/media/InputUpload'
 import FormExample from './FormExample'
+import MotionIconUpload from './FormExample'
 
 interface MotionIconI {
-    pic:string
+    pic:string[]
     focus:boolean
-    uploadControl?:React.Dispatch<React.SetStateAction<File[]>>
+    uploadControl?:{
+      fileUpload:React.Dispatch<React.SetStateAction<File[]>>,
+      urlUpload:React.Dispatch<React.SetStateAction<string[]>>
+    }
+    
 }
 
 
@@ -87,21 +92,24 @@ const MotionIcon:React.FC<MotionIconI> = ({pic, focus, uploadControl}) => {
         if (e.target.files){
             const file = e.target.files[0]
             fileReader.onloadend = (event) =>{
-                setUploadFile([file])
+                // uploadControl?.fileUpload([file])
                 const fileUrl = event.target?.result?.toString()||''
-                setUploadUrl([fileUrl])
+                uploadControl?.urlUpload([fileUrl])
+                console.log('uploader working')
             }
             fileReader.readAsDataURL(file)
         }
     }
     return (
       <motion.div
-          onMouseEnter={()=>{
+          onMouseEnter={(e)=>{
+            e.stopPropagation()
             // setFocus(true)
             animateBlurCircle(blurCircle.current,{fillOpacity:0.5})
             animateUploadWrapper(uploadWrapper.current, {opacity:1})
           }}
-          onMouseLeave={()=>{
+          onMouseLeave={(e)=>{
+            e.stopPropagation()
             // setFocus(false)
             animateBlurCircle(blurCircle.current, {fillOpacity:0})
             animateUploadWrapper(uploadWrapper.current, {opacity:0})
@@ -125,7 +133,9 @@ const MotionIcon:React.FC<MotionIconI> = ({pic, focus, uploadControl}) => {
          
           <defs>
           <pattern id="pattern0_1_172" patternContentUnits="objectBoundingBox" width="1" height="1">
-          <use xlinkHref="#image0_1_172" transform="translate(-0.239274) scale(0.00165017)"/>
+          <use xlinkHref="#image0_1_172"
+           transform="translate(-0.239274) scale(0.00165017)"
+           />
           </pattern>
           <linearGradient id="paint0_linear_1_172" x1="1120" y1="0" x2="1120" y2="2240" gradientUnits="userSpaceOnUse">
             <motion.stop ref={StopOneScope}/>
@@ -133,7 +143,7 @@ const MotionIcon:React.FC<MotionIconI> = ({pic, focus, uploadControl}) => {
             <motion.stop ref={StopThreeScope} offset="0.659721"/>
             <motion.stop ref={StopFourScope} offset="1"/>
           </linearGradient>
-          <motion.image ref={fillImage} id="image0_1_172" width="896" height="606" xlinkHref={pic?pic:uploadUrl.length?uploadUrl[0]:"https://utfs.io/f/c391c7ac-6831-4013-8e22-d6f4511a3889-l3gq70.svg"}/>
+          <motion.image ref={fillImage} id="image0_1_172" width="896" height="606" xlinkHref={pic?pic[0]:"https://utfs.io/f/c391c7ac-6831-4013-8e22-d6f4511a3889-l3gq70.svg"}/>
           </defs>
          
         </svg>
@@ -163,12 +173,11 @@ const MotionIcon:React.FC<MotionIconI> = ({pic, focus, uploadControl}) => {
                 }
                 
               </div>
-{/*               
-              <InputUpload
-                fileControl={setUploadFile}
-                urlControl={setUploadUrl}
-              /> */}
-              <FormExample/>
+
+              <MotionIconUpload
+                urlControl={uploadControl.urlUpload}
+                fileControl={uploadControl.fileUpload}
+              />
             </motion.label>
             
           </motion.div>
@@ -210,7 +219,7 @@ const MotionIcon:React.FC<MotionIconI> = ({pic, focus, uploadControl}) => {
             <motion.stop ref={StopThreeScope} offset="0.659721"/>
             <motion.stop ref={StopFourScope} offset="1"/>
           </linearGradient>
-          <image id="image0_1_172" width="896" height="606" xlinkHref={pic}/>
+          <image id="image0_1_172" width="896" height="606" xlinkHref={pic[0]}/>
           </defs>
         </svg>
         

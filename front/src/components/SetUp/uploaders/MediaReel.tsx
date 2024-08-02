@@ -200,7 +200,7 @@ const MediaReel:React.FC<MediaReelI> = ({urlControl, fileControl, UrlUpload, Fil
                                             />
                                         </motion.div>
                                     </motion.div>
-                                    <AnimatePresence>
+                                    {/* <AnimatePresence> */}
                                         {
                                             focusedMediaFrontControlHover &&
                                             <motion.div
@@ -213,7 +213,7 @@ const MediaReel:React.FC<MediaReelI> = ({urlControl, fileControl, UrlUpload, Fil
                                                 Set for front
                                             </motion.div>
                                         }
-                                    </AnimatePresence>
+                                    {/* </AnimatePresence> */}
                                 
                             </motion.div>
                         }
@@ -226,7 +226,7 @@ const MediaReel:React.FC<MediaReelI> = ({urlControl, fileControl, UrlUpload, Fil
         </motion.div>
 
                         {/* reel output */}
-        <AnimatePresence>
+        <AnimatePresence initial={false}>
             {
                 UrlUpload.length  &&
                 <motion.div
@@ -237,7 +237,7 @@ const MediaReel:React.FC<MediaReelI> = ({urlControl, fileControl, UrlUpload, Fil
                     className={styles.reelSegment}
                 >
                         {/* reel input */}
-                    <AnimatePresence>
+                    <AnimatePresence initial={false}>
                         {
                             isUploadable && 
                             <motion.div
@@ -263,13 +263,13 @@ const MediaReel:React.FC<MediaReelI> = ({urlControl, fileControl, UrlUpload, Fil
                             </motion.div>
                         }
                     
-                    </AnimatePresence>
+                    </AnimatePresence >
                     
                         {/* reel output */}
                     <motion.div
                         className={styles.output}
                     >
-                        <AnimatePresence>
+                        <AnimatePresence initial={false}>
                             {UrlUpload.map((url)=>{
                                 return(
                                 <motion.div

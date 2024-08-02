@@ -7,6 +7,9 @@ import User from "../../models/profiles/user.models";
 import { connectToDB } from "@/lib/validations/mongoose";
 import Vibe from "@/lib/models/content/vibe.models";
 import Restriction from "@/lib/models/discrete/restriction.models";
+import { CommunityParams } from "@/components/SetUp/VibeSetUp/CommunityInput";
+import TargetGroup from "@/lib/models/target/targetGroup.models";
+import TargetContract from "@/lib/models/target/targetContract.models";
 
 
 
@@ -60,31 +63,31 @@ interface createCommunityI{
     }
 }
 
-export async function createCommunity({core, contents, additional}:createCommunityI){
-    try{
-        connectToDB()
-        const newCommunity = await Community.create({
-            core,
-            contents,
-            additional
-        })
-        if (newCommunity.core.subtype.isPublic){
-            await Vibe.findOneAndUpdate({_id:core.hostVibeId}, {$push:{publicCommunities:{_id:newCommunity._id}}})
-        }
-        else if (newCommunity.core.subtype.isPrivate){
-            await Vibe.findOneAndUpdate({_id:core.hostVibeId}, {$push:{publicCommunities:{_id:newCommunity._id}}})
-        }
-        else if (newCommunity.core.target){
-            await Vibe.findOneAndUpdate({_id:core.hostVibeId}, {$push:{targetCommunities:{_id:newCommunity._id}}})
-        }
+// export async function createCommunity({core, contents, additional}:createCommunityI){
+//     try{
+//         connectToDB()
+//         const newCommunity = await Community.create({
+//             core,
+//             contents,
+//             additional
+//         })
+//         if (newCommunity.core.subtype.isPublic){
+//             await Vibe.findOneAndUpdate({_id:core.hostVibeId}, {$push:{publicCommunities:{_id:newCommunity._id}}})
+//         }
+//         else if (newCommunity.core.subtype.isPrivate){
+//             await Vibe.findOneAndUpdate({_id:core.hostVibeId}, {$push:{publicCommunities:{_id:newCommunity._id}}})
+//         }
+//         else if (newCommunity.core.target){
+//             await Vibe.findOneAndUpdate({_id:core.hostVibeId}, {$push:{targetCommunities:{_id:newCommunity._id}}})
+//         }
 
-        return {_id:newCommunity._id}
+//         return {_id:newCommunity._id}
         
-    }
-    catch (error:any){
-        throw new Error (`Crashed creating community:${error.message}`)
-    }
-}
+//     }
+//     catch (error:any){
+//         throw new Error (`Crashed creating community:${error.message}`)
+//     }
+// }
 
 export interface communityCoreData{
     _id:String
@@ -252,5 +255,72 @@ export async function fetchMessages({communityId, messagesLoaded, messageLoad}:{
     }
     catch(error:any){
         throw new Error(`Crashed fetching messages:${error.message}`)
+    }
+}
+
+
+export async function createCommunity({community}:{community:{
+        title:string,
+        logo:string,
+        header:string,
+        type:'public'|'private'|'target',
+        coreVibeId:{_id:string}, 
+        params:CommunityParams,
+        subtitle?:string,
+        Geo?:string,
+        target:{
+            isTargeted:boolean,
+            targetGroup:mongoose.Schema.Types.ObjectId
+        }  
+    }}){
+    try {
+        connectToDB()
+        
+        const newCommunity = new Community ({
+            core:{
+                hostVibeId:community.coreVibeId,
+                communityType:community.type,
+                params:{
+                    publicVisibility:community.params.publicVisibility,
+                    internalModeration:community.params.internalModeration,
+                    localization:community.params.localization,
+                    mediaUpload:community.params.mediaUpload,
+                    templateOffer:community.params.templateOffer,
+                    chat:community.params.chat
+
+                },
+                title:community.title,
+                logo:community.logo,
+                header:community.header,
+                Geo:community.Geo,
+                target:{
+                    isTargeted:community.type==='target'?true:false,
+                    TargetGroup:community.target.targetGroup
+                }
+
+            },
+            contents:{
+                messages:[],
+                audienceList:[],
+                moderatorList:[],
+                banList:[]
+            }
+        })
+
+        const ParentVibe = await Vibe.findOne({_id:newCommunity._id})
+        if(community.type==='private'){
+            ParentVibe.core.communities.privateCommunities.push({_id:newCommunity._id})
+        }
+        else if(community.type==='public'){
+            ParentVibe.core.communities.publicCommunities.push({_id:newCommunity._id})
+        }
+        else if(community.type==='target'){
+            ParentVibe.core.communities.targetCommunities.push({_id:newCommunity._id})
+        }
+        ParentVibe.save()
+        newCommunity.save()
+
+    } catch (error:any) {
+        throw new Error (`Crashed posting a community:${error.message}`)
     }
 }

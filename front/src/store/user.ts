@@ -238,7 +238,7 @@ const UserStateSlice = createSlice({
 
                     }
                 }
-                debugger
+                // debugger
             })
             // debugger
             action.payload.venues.accounts.forEach((venue)=>{

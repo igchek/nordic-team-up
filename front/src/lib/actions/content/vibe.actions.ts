@@ -14,6 +14,8 @@ import { fetchGigEssentials, gigData } from "./gig.actions";
 import { SyncData, fetchSync } from "./sync.actions";
 import { ArtistCoreData } from "../profiles/artist.actions";
 import { resonationData } from "../discrete/resonation.actions";
+import communities from "@/store/communities";
+import { CommunityParams } from "@/components/SetUp/VibeSetUp/CommunityInput";
 
 export interface idObject {
     _id:mongoose.Schema.Types.ObjectId
@@ -38,73 +40,92 @@ export interface vibeCreateParams{
     
 }
 
+export interface VibeTemplate {
+    title:string
+    description:string
+    header:string
+    logo:string
+    format?:string
+    media?:{url:string, isHeader:boolean}[]
+    communities?:{
+        title:string
+        type:'public'|'private'|'target'
+        logo:string,
+        header:string,
+        subtitle?:string,
+        params:CommunityParams,
+        geo?:string
+    }[]
 
-export async function createVibe({artistId, core, media}:vibeCreateParams){
-    try{
-        connectToDB()
-        const artist = await Artist.findOne({id:artistId})
-        let promoLogo=undefined
-        let reelObjArray=[]
-        if(media.promoLogo){
-            const promoIdObj = await Media.create({title:media.promoLogo, type:'.jpg'})
-            promoLogo={_id:promoIdObj._id}
-        }
-        if (media.reel && media.reel.length>0){
-            reelObjArray = []
-            for (let reel of media.reel){
-                const reelObj = await Media.create({title:reel, type:'.jpg'})
-                reelObjArray.push({_id:reelObj._id})
-            }
-        }
-        const artistLogo = await Media.findOne({title:media.artistLogo})
-
-        const newVibe = await Vibe.create({
-        vibeId:Math.floor(Math.random()*10000).toString(),
-        core:{
-            creator:{_id:artist._id},
-            contentTitle:core.contentTitle,
-            tagList:core.tagList,
-            format:core.format,
-            media:{
-                artistLogo:artistLogo,
-                promoLogo:promoLogo,
-                reel:reelObjArray,
-                description:media.description
-            }
-        }
-
-        })
-
-        await artist.content.vibes.push({_id:newVibe._id}).save()
-        const defaultPublicCommunity = await createCommunity({
-            core:{
-                hostVibeId:newVibe.vibeId,
-                subtype:{
-                    isPublic:true,
-                    isPrivate:false,
-                    isPubliclyVisible:true,
-                    isModerated:false,
-                }
-            },
-            contents:{
-                title:`${newVibe.core.contentTitle} main`,
-                logo:newVibe.core.media.promoLogo,
-                messages:[],
-                audienceList:[...artist.contributors],
-                moderatorList:[]
-            }
-        })
-        await newVibe.communities.publicCommunities.push({_id:defaultPublicCommunity._id}).save()
-
-        return newVibe
-
-    }
-    catch(error:any){
-        throw new Error(`Crashed creating a vibe: ${error.message}`)
-    }
-    
-    
 }
+
+
+// export async function createVibe({artistId, core, media}:vibeCreateParams){
+//     try{
+//         connectToDB()
+//         const artist = await Artist.findOne({id:artistId})
+//         let promoLogo=undefined
+//         let reelObjArray=[]
+//         if(media.promoLogo){
+//             const promoIdObj = await Media.create({title:media.promoLogo, type:'.jpg'})
+//             promoLogo={_id:promoIdObj._id}
+//         }
+//         if (media.reel && media.reel.length>0){
+//             reelObjArray = []
+//             for (let reel of media.reel){
+//                 const reelObj = await Media.create({title:reel, type:'.jpg'})
+//                 reelObjArray.push({_id:reelObj._id})
+//             }
+//         }
+//         const artistLogo = await Media.findOne({title:media.artistLogo})
+
+//         const newVibe = await Vibe.create({
+//         vibeId:Math.floor(Math.random()*10000).toString(),
+//         core:{
+//             creator:{_id:artist._id},
+//             contentTitle:core.contentTitle,
+//             tagList:core.tagList,
+//             format:core.format,
+//             media:{
+//                 artistLogo:artistLogo,
+//                 promoLogo:promoLogo,
+//                 reel:reelObjArray,
+//                 description:media.description
+//             }
+//         }
+
+//         })
+
+//         await artist.content.vibes.push({_id:newVibe._id}).save()
+//         const defaultPublicCommunity = await createCommunity({
+//             core:{
+//                 hostVibeId:newVibe.vibeId,
+//                 subtype:{
+//                     isPublic:true,
+//                     isPrivate:false,
+//                     isPubliclyVisible:true,
+//                     isModerated:false,
+//                 }
+//             },
+//             contents:{
+//                 title:`${newVibe.core.contentTitle} main`,
+//                 logo:newVibe.core.media.promoLogo,
+//                 messages:[],
+//                 audienceList:[...artist.contributors],
+//                 moderatorList:[]
+//             }
+//         })
+//         await newVibe.communities.publicCommunities.push({_id:defaultPublicCommunity._id}).save()
+
+//         return newVibe
+
+//     }
+//     catch(error:any){
+//         throw new Error(`Crashed creating a vibe: ${error.message}`)
+//     }
+    
+    
+// }
 
 
 
@@ -375,5 +396,77 @@ export async function checkModality({userId, vibeId}:{userId:String, vibeId:any}
     }
 }
 
+export async function uploadVibe({artistId, userId, vibeContents,}:{artistId:string, userId:string, vibeContents:VibeTemplate}){
+    try {
+        connectToDB()
+        const user = await User.findOne({_id:userId})
+        const artist = await Artist.findOne({_id:artistId})
+        const newVibe = await Vibe.create({
+            core:{
+                creator:artist._id,
+                creatorTitle:artist.title,
+                contentTitle:vibeContents.title,
+                tags:{
+                    ascribed:[],
+                    computed:[]
+                },
+                format:vibeContents.format,
+                description:vibeContents.description
+            },
+            media:{
+                artistLogo:artist.artistLogo,
+                promoLogo:vibeContents.logo,
+                reel:vibeContents.media
+            },
+            communities:{
+                
+            }
+        })
+        if (vibeContents.communities){
+            vibeContents.communities.forEach(async (c)=>{
+                const community = await Community.create({
+                    core:{
+                        hostVibeId:newVibe._id,
+                        communityType:c.type,
+                        params:{
+                            publicVisibility:c.params.publicVisibility,
+                            internalModeration:c.params.internalModeration,
+                            localization:c.params.localization,
+                            mediaUpload:c.params.mediaUpload,
+                            templateOffer:c.params.templateOffer,
+                            chat:c.params.chat
+                        },
+                        title:c.title,
+                        header:c.header,
+                        logo:c.logo,
+                        subtitle:c.subtitle,
+                        Geo:c.geo,
+                        target:{
+                            isTargeted:c.type==='target'?true:false
+                        }
+                    },
+                    contents:{
+                        messages:[],
+                        audienceList:[],
+                        moderatorList:[],
+                        banList:[]
+                    }
+                    
+                })
+                if(c.type==='private'){
+                    newVibe.communities.coomunities.priivateCommunities.push({_id:community._id})
+                }
+                else if(c.type==='public'){
+                    newVibe.communities.publicCommunities.push({_id:community._id})
+                }
+                else {
+                    newVibe.communities.targetCommunities.push({_id:community._id})
+                }
+            })
+        }
 
+    } catch (error:any) {
+        throw new Error (`Crashed posting a vibe:${error.message}`)
+    }
+}
 

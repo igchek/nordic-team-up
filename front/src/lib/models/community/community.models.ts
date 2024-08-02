@@ -45,15 +45,18 @@ const communitySchema = new mongoose.Schema({
     core:{
         hostVibeId:{type:String, required:[true, "host vibe id is required"]},
         communityType:{type:String, required:[true, "community type is required"]},
-        presets:{
+        params:{
             type:Object,
-            isPublic:{type:Boolean, required:[true, "publicity specification is required"]},
-            isLocal:{type:Boolean, required:[true, "locality specification is required"]},
-            isPubliclyVisible:{type:Boolean, default:true},
-            isModerated:{type:Boolean, required:[true, "moderation status is required"]},
+            publicVisibility:{type:Boolean, required:[true, "publicity specification is required"]},
+            internalModeration:{type:Boolean, required:[true, "locality specification is required"]},
+            localization:{type:Boolean, default:true},
+            mediaUpload:{type:Boolean, required:[true, "moderation status is required"]},
+            templateOffer:{type:Boolean, required:[true, "template offer is required"]},
+            chat:{type:Boolean, required:[true, "chat is required"]},
             required:[true, "preset specification is required"]
         },
         title:{type:String, required:[true, "community is required"]},
+        header:{type:String, default:[true, "header is required"]},
         logo:{type:String, default:'default' },
         subtitle:{type:String,  },
         Geo:{type:String, },

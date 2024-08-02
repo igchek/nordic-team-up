@@ -80,7 +80,7 @@ export const styleSheet = {
         }
     },
     vibeSectionContent:'#EAEAEA',
-    vibeSectionLayout:'#DBDBDB'
+    vibeSectionLayout:'#D4D4D4'
 
 
 }

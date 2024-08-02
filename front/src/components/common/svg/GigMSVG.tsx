@@ -196,7 +196,7 @@ const GigMSVG:React.FC<MSVG> = ({ focus}) => {
 
         className={styles.wrapper}
     >
-        <svg width="132" height="132" viewBox="0 0 132 132" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="100%" height="100%" viewBox="0 0 132 132" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g id="focus=on">
           <g id="Svibe pic" clipPath="url(#clip0_50_275)">
           <g id="Group">

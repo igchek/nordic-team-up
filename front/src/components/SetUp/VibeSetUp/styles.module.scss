@@ -8,234 +8,239 @@
     grid-auto-flow: row;
     grid-auto-rows: auto;
     width: 100%;
-    .communityInput{
-        height: 7vh;
-        display: grid;
-        box-sizing: border-box;
-        grid-template-columns: 15% 1fr 30% 15%;
-        .logoSegment{
-            grid-column: 1/2;
-            display: flex;
-            justify-content: center;
-            align-content: center;
-            height: 7vh;
-            .logoSocket{
-                aspect-ratio: 1/1;
-                height: 70%;
-            }
-        }
-        .titleSegment{
-            height: 7vh;
-            grid-column: 2/3;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            font-size: 1rem;
-            font-weight: 700;
-            // color: variables.$backgroundGlobal;
-            .input{
-                border-radius: 50px;
-                background-color: variables.$backgroundGlobal;
-                text-align: center;
-                outline-style: none;
-            }
-
-        }
-        .typeSegment{
-            height: 7vh;
-            grid-column: 3/4;
-            display: grid;
-            grid-template-columns: 50% 50%;
-            .typeSocket{
-                grid-column: 1/2;
-                display: flex;
-                justify-content: center;
-                align-content: center;
-                height: 7vh;
-                .typeSelector{
-                    width: 70%;
-                    height: 70%;
-                    border-style: none;
-                    border-radius: 50px;
-                    background-color: variables.$interfaceContrast;
-                    display: flex;
-                    align-items: center;
-                    flex-wrap: wrap;
-                    flex-direction: row;
-                    .typeSegment{
-                        display: flex;
-                        justify-content: center;
-                        height: 100%;
-                        width: 100%;
-                        .iconSocket{
-                            aspect-ratio: 1/1;
-                            height: 70%;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                        }
-
-                    }
-
-
-                }
-                
-            }
-            .typeDescription{
-                grid-column: 2;
-                display: flex;
-                flex-wrap: wrap;
-                align-items: center;
-                justify-content: center;
-                color: variables.$backgroundGlobal;
-                font-weight: 700;
-                font-size: 1rem;
-                gap: 3px;
-                .description{
-                    height: 50%;
-                    width: 70%;
-                }
-                .suggestion{
-                    aspect-ratio: 1/1;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }
-            }
-        }
-        .controls{
-            height: 7vh;
-            grid-column: 4;
-            display: flex;
-            .control{
-                width: 100%;
-                height: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                .icon{
-                    aspect-ratio: 1/1;
-                    height: 70%;
-                    border-style: none;
-                    border-radius: 50px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    background-color: variables.$backgroundGlobal;
-                }
-            }
-        }
-    }
-    .communityOutput::-webkit-scrollbar{
-        display: none;
-    }
-    .communityOutput{
-        display: grid;
-        grid-auto-flow: row;
-        grid-auto-rows: 7vh;
-        height: 30vh;
-        overflow-x: scroll;
-        .outputUnit{
-            width: 100%;
-            display: grid;
-            grid-template-columns: 15% 1fr 15%;
-            .logoSegment{
-                grid-column: 1/2;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100%;
-                .logo{
-                    aspect-ratio: 1/1;
-                    height: 70%;
-                    border-style: none;
-                    border-radius: 100px;
-                    background-position: 100%;
-                    background-size: cover;
-                }
-            }
-            .titleSegment{
-                grid-column: 2/3;
-                height: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-weight: 700;
-                font-size: 1rem;
-            }
-            .typeSegment{
-                grid-column: 3;
-                display: flex;
-                height: 100%;
-                justify-content: center;
-                align-items: center;
-                .iconSocket{
-                    aspect-ratio: 1/1;
-                    height: 70%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }
-            }
-
-        }
-    }
-    .settings{
+    // background-color: aqua;
+    .communitySetUpInput{
         height: auto;
         width: 100%;
         display: grid;
-        grid-template-rows: 7vh auto;
-        .header{
-            grid-row: 1/2;
-            width: 100%;
+        grid-auto-rows: auto;
+
+        .input{
             display: flex;
-            justify-content: center;
-            align-items: center;
-            color: variables.$backgroundGlobal;
-            font-weight: 700;
-            font-size: 1rem;
-            background-color: variables.$interfaceGlobal;
-        }
-        .settingsOutput::-webkit-scrollbar{
-            display: none;
-        }
-        .settingsOutput{
-            grid-row: 2;
             width: 100%;
-            display: grid;
-            grid-auto-flow: row;
-            grid-auto-rows: 7vh;
-            min-height: 21vh;
-            max-height: 35vh;
-            overflow-y: scroll;
-            .settingUnit{
-                width: 100%;
+            height: 10vh;
+            flex-direction: row;
+
+            .logo{
+                width: 15%;
+                height: 100%;
                 display: flex;
-                .description{
-                    width: 70%;
-                    height: 100%;
-                    justify-content: flex-start;
-                    align-items: center;
-                    flex-wrap: wrap;
-                    color: black;
-                    font-weight: 700;
-                    font-size: 1rem;
+                justify-content: center;
+                align-items: center;
+                .socket{
+                    aspect-ratio: 1/1;
+                    height: 70%;
                 }
-                .switcherSegment{
-                    width: 30%;
-                    height: 100%;
-                    justify-content: center;
-                    align-items: center;
-                    display: flex;
-                    .switcherSocket{
-                        height: 50%;
-                        width: 50%;
-                    }
+            }
+            .title{
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                
+                .input{
+                    outline-style: none;
+                    width: 30vw;
+                    height: 70%;
+                    border-style: none;
+                    border-radius: 10px;
+                    background-color: variables.$interfaceGlobal;
+                    text-align: center;
+                    font-weight: 700;
+                    color: white;
+                    font-size: 1rem;
 
                 }
             }
-        }
-    }
+            .type{
+                width: 15%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
 
+                .placeholder{
+                    width: 100%;
+                    height: 20%;
+
+                }
+                .typeSelectorSegment{
+                    width: 100%;
+                    height: 60%;
+                    .typeSelector{
+                        border-style: none;
+                        border-radius: 40px;
+                        height: 80%;
+                        width: 10vw;
+                        background-color: variables.$interfaceGlobal;
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        .typeSegment{
+                            width: 100%;
+                            height: 100%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            .socket{
+                                aspect-ratio: 1/1;
+                                height: 70%;
+                            }
+                        }
+                    }
+                }
+                .typeDescriptor{
+                    width: 100%;
+                    height: 20%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    .description{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        color: black;
+                        font-weight: 700;
+                        font-size: 1rem;
+                        flex-wrap: wrap;
+                    }
+                }
+            }
+            .controls{
+                width: 30%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .delete{
+                    width: 100%;
+                    height: 100%;
+                    justify-content: center;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    .socket{
+                        aspect-ratio: 1/1;
+                        height: 70%;
+                    }
+                }
+                .fulfill{
+                    width: 100%;
+                    height: 100%;
+                    justify-content: center;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    .socket{
+                        aspect-ratio: 1/1;
+                        height: 70%;
+                    }
+                }
+            }
+        }
+        .params{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+
+            .title{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: variables.$interfaceGlobal;
+                color: white;
+                font-weight: 1000;
+                font-size: 1.5rem;
+
+            }
+            .paramsOutput::-webkit-scrollbar{
+                display: none;
+            }
+            .paramsOutput{
+                display: flex;
+                flex-direction: column;
+                min-height: 25vh;
+                max-height: 40vh;
+                justify-content: flex-start;
+                overflow-y: scroll;
+            }
+        }
+
+        
+    }
+    .output::-webkit-scrollbar{
+        display: none;
+    }
+    .output{
+        min-height: 15vh;
+        max-height: 30vh;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        overflow-y: scroll;
+        .communityUnit{
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            height: 5vh;
+            .pic{
+                width: 10vw;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .socket{
+                    aspect-ratio: 1/1;
+                    height: 70%;
+                }
+            }
+            .titles{
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                height: 100%;
+                .mainTitle{
+                    height: 100%;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: flex-end;
+                    color: black;
+                    font-weight: 700;
+                    font-size: 1rem;
+                    flex-wrap: wrap;
+                }
+                .subtitle{
+                    height: 100%;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: gray;
+                    font-weight: 700;
+                    font-size: 0.75rem;
+
+                }
+            }
+            .type{
+                width: 10vw;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .socket{
+                    border-style: none;
+                    border-radius: 100px;
+                    background-color: variables.$interfaceContrast;
+                    aspect-ratio: 1/1;
+                    height: 70%;
+                }
+            }
+        }
+
+    }
 }

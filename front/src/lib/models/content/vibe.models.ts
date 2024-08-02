@@ -74,6 +74,10 @@ const VibeSchema = new mongoose.Schema({
             type:String,
             
         },
+        description:{
+            tyoe:String,
+            required:[true, 'Needs a description']
+        },
         required:[true, 'Needs a core']
         },
 
@@ -89,10 +93,6 @@ const VibeSchema = new mongoose.Schema({
                 type:mongoose.Schema.Types.ObjectId,
                 ref:'media'
             }],
-            description:{
-                type:String,
-                
-            },
             required:[true, 'Needs a media core']
         },
     

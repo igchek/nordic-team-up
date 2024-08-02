@@ -177,4 +177,4 @@ const HeaderUploader:React.FC<HeaderUploaderI> = ({UrlUpload, FileUpload, urlCon
   )
 }
 
-export default HeaderUploader
+export default React.memo(HeaderUploader)

@@ -3,13 +3,27 @@ import { motion, useAnimate } from 'framer-motion'
 import styles from './styles.module.scss'
 import { styleSheet } from '@/stylesGlobal/variables'
 
-interface MSVG{
+export interface MSVG{
     focus:boolean
 }
 
 
-const VibeMSVG:React.FC<MSVG> = ({focus}) => {
+const VibeMSVG = ({focus}:MSVG) => {
+  // const [FirstStop, animateFirstStop] = useAnimate()
+  // const [SecondStop, animateSecondStop] = useAnimate()
+  // const [ThirdStop, animateThirdStop] = useAnimate()
+  // const [FourthStop, animateFourthStop] = useAnimate()
 
+  // const [blur, animateBlur] = useAnimate()
+
+  // useEffect(()=>{
+  //   if(focus){
+  //     animateBlur(blur.current, {stdDeviation:'10'})
+  //   }
+  //   else{
+  //     animateBlur(blur.current, {stdDeviation:'0'})
+  //   }
+  // })
 
   return (
     <motion.div
@@ -26,7 +40,9 @@ const VibeMSVG:React.FC<MSVG> = ({focus}) => {
                 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
                 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
                 <feOffset/>
-                <feGaussianBlur stdDeviation="9.58449"/>
+                <motion.feGaussianBlur
+                //  ref={blur} 
+                 stdDeviation="9.58449"/>
                 <feComposite in2="hardAlpha" operator="out"/>
                 <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/>
                 <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_50_233"/>
@@ -37,16 +53,16 @@ const VibeMSVG:React.FC<MSVG> = ({focus}) => {
                         initial={focus?{stopColor:styleSheet.$MSVGDefault}:{stopColor:styleSheet.gradients.quaterciary.FirstStop}}
                         animate={focus?{stopColor:styleSheet.gradients.quaterciary.FirstStop}:{stopColor:styleSheet.$MSVGDefault}} />
                     <motion.stop 
-                        initial={focus?{stopColor:styleSheet.$MSVGDefault}:{stopColor:styleSheet.gradients.quaterciary.FirstStop}}
-                        animate={focus?{stopColor:styleSheet.gradients.quaterciary.FirstStop}:{stopColor:styleSheet.$MSVGDefault}}
+                        initial={focus?{stopColor:styleSheet.$MSVGDefault}:{stopColor:styleSheet.gradients.quaterciary.SecondStop}}
+                        animate={focus?{stopColor:styleSheet.gradients.quaterciary.SecondStop}:{stopColor:styleSheet.$MSVGDefault}}
                     offset="0.362211" />
                     <motion.stop 
-                        initial={focus?{stopColor:styleSheet.$MSVGDefault}:{stopColor:styleSheet.gradients.quaterciary.FirstStop}}
-                        animate={focus?{stopColor:styleSheet.gradients.quaterciary.FirstStop}:{stopColor:styleSheet.$MSVGDefault}}
+                        initial={focus?{stopColor:styleSheet.$MSVGDefault}:{stopColor:styleSheet.gradients.quaterciary.ThirdStop}}
+                        animate={focus?{stopColor:styleSheet.gradients.quaterciary.ThirdStop}:{stopColor:styleSheet.$MSVGDefault}}
                     offset="0.596591" />
                     <motion.stop 
-                        initial={focus?{stopColor:styleSheet.$MSVGDefault}:{stopColor:styleSheet.gradients.quaterciary.FirstStop}}
-                        animate={focus?{stopColor:styleSheet.gradients.quaterciary.FirstStop}:{stopColor:styleSheet.$MSVGDefault}}
+                        initial={focus?{stopColor:styleSheet.$MSVGDefault}:{stopColor:styleSheet.gradients.quaterciary.FourthStop}}
+                        animate={focus?{stopColor:styleSheet.gradients.quaterciary.FourthStop}:{stopColor:styleSheet.$MSVGDefault}}
                     offset="1" />
                   </linearGradient>
                   </defs>
